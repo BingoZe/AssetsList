@@ -74,11 +74,11 @@ body {
 .container-header {
     display: flex;
     flex: 0;
+    height: 5vh;
 }
 
 header {
     border: 2px dotted black;
-    height: 10vh; 
     text-align: center;
     width: 88%;
 }
