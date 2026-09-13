@@ -75,21 +75,24 @@ body {
 
 .container-header {
     display: flex;
-    flex: 0;
-    height: 5vh;
-    background-color: var(--blue);
+    height: 5rem;
+    width: 100%;
 }
 
 header {
-    /*border: 2px dotted black;*/
-    background-color: var(--light);
-    text-align: center;
-    width: 88%;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    
+    background: radial-gradient(
+                                circle,
+                                rgba(238,174,202,1) 0%,
+                                rgba(148,187,233,1) 100%
+                            );
+
+    border-bottom: 2px solid var(--blue);
+        
 }
 /*For future use - Better scale when notifications, avatar, user menus & configs are implemented*/
 .header-actions {
@@ -116,13 +119,21 @@ header {
 }
 
 
-
-
 .fixed-title {
-    /*border: 2px dotted black;*/
-    width: 12%;
-    height: 10vh;   
-    color: var(--light);
+    width: 14rem;
+    background-color: var(--blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-logo {
+    width: 50%;
+    aspect-ratio: 1/1;
+    background-image: url("../img/DwemerWorks-logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
@@ -133,23 +144,57 @@ header {
 }
 
 nav {
+    width: 220px;
+    padding: 2% 0 0 0%;
     background-color: var(--blue);
-    color: var(--white);
-    /*border: 2px dotted black;*/
-    width: 12%;
-    
-    
+    color: white;
+
+    margin-top: 0;
+    border: none;
+
+    display: flex;
+    flex-direction: column;
 }
 
-nav > ul{
+nav ul {
     list-style: none;
+    padding: 20px;
+    margin: 0;
 }
 
+.nav-ul-items {
+    padding: 12px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-ul-items:hover {
+    background-color: rgba(255,255,255,0.1);
+    padding-left: 10px;
+}
+.nav-ul-items li {
+    margin-bottom: 5px;
+}
+
+.nav-ul-items  a{
+    display: block;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all .2s ease;
+}
+
+.nav-ul-items a:hover {
+    background-color: rgba(255,255,255,0.15);
+    transform: translateX(5px);
+}
 
 /*Main Properties */
 main {
     /*border: 2px dotted black;*/
-    width: 88%;
+    width: 90%;
     background-color: var(--main-background);
-    
+  
 }
+

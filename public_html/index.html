@@ -8,13 +8,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>DwemerWorks</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel ="stylesheet" href="main.css"/>
+        <link rel ="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
      
     <body>
 
         <div class="container-header">
-            <div class="fixed-title">DwemerWorks</div>
+            <div class="fixed-title">
+                <figure class="nav-logo">             
+                </figure>
+            </div>
             <header>
                 <div class="search-item">
                     <input type="text" class ="search-buttom" placeholder="Search asset..."/>
@@ -27,27 +32,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         
         <div class="container-main-nav">
         
-        <nav>NAV
+        <nav>
                 <ul class ="nav-ul-items">
-                    <li>All Assets</li>
-                    <li>Add Asset</li>
-                    <li>Categories</li>
-                    <li>Active</li>
-                    <li>History</li>
-                    <li>Settings</li>
+                    <li><a href="#">All Assets</a></li>
+                    <li><a href="#">Add Asset</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Active</a></li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Settings</a></li>
                     
                 </ul>
+
         
         
         </nav>
      
-        <main>MAIN
-            
+        <main id="main-content">
+  
+                <h2>Welcome to DwemerWorks</h2>
         
         </main>
       
       
        </div> 
+        <script src="js/router.js"></script>
     </body>
     
 </html>
