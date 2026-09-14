@@ -41,6 +41,7 @@ body {
 }
 :root {
     --blue: #4e73df;
+    --blueGradient: linear-gradient(101deg,rgba(78, 115, 223, 1) 0%, rgba(148, 187, 233, 1) 100%);
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #e83e8c;
@@ -70,9 +71,9 @@ body {
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --main-background: #f8f9fc;
 }
-
-/*Header Properties */
-
+/* ==========================================
+/*Header Properties 
+ ==========================================*/
 .container-header {
     display: flex;
     height: 5rem;
@@ -85,11 +86,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    background: radial-gradient(
-                                circle,
-                                rgba(238,174,202,1) 0%,
-                                rgba(148,187,233,1) 100%
-                            );
+    background: var(--blueGradient);
 
     border-bottom: 2px solid var(--blue);
         
@@ -120,8 +117,8 @@ header {
 
 
 .fixed-title {
-    width: 14rem;
-    background-color: var(--blue);
+    width: 13.4rem;
+    background-color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,15 +133,16 @@ header {
     background-position: center;
 }
 
-
-/*Nav Properties */
+/* ==========================================
+/*Nav Properties 
+========================================== */
 .container-main-nav {
     display: flex;
     flex: 1;
 }
 
 nav {
-    width: 220px;
+    width: 14%;
     padding: 2% 0 0 0%;
     background-color: var(--blue);
     color: white;
@@ -190,11 +188,35 @@ nav ul {
     transform: translateX(5px);
 }
 
-/*Main Properties */
+
+/* ==========================================
+/*Main Properties 
+========================================== */
 main {
     /*border: 2px dotted black;*/
     width: 90%;
     background-color: var(--main-background);
+    padding-left: 2%;
   
 }
 
+/* ==========================================
+   PAGE: ADD ASSET
+   ========================================== */
+
+.page-add-asset {
+    padding: 24px;
+    max-width: 600px;
+}
+
+.page-add-asset .asset-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.page-add-asset input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

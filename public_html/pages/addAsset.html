@@ -1,49 +1,74 @@
-<h2>Add Asset</h2>
+<div class="page-add-asset">
+    <h2>Add Asset</h2>
+    
 
-<form class="asset-form">
+    <form class="asset-form">
 
-    <label for="assetName">
-        Asset Name
-    </label>
+        <label for="assetId">
+            Asset ID
+        </label>
 
-    <input
-        type="text"
-        id="assetName"
-        name="assetName">
+        <input
+            type="text"
+            id="assetId"
+            name="assetId">
 
-    <br><br>
+        <br>
 
-    <label for="description">
-        Description
-    </label>
+        <label for="assetName">
+            Asset Name
+        </label>
 
-    <textarea
-        id="description"
-        name="description">
-    </textarea>
+        <input
+            type="text"
+            id="assetName"
+            name="assetName">
 
-    <br><br>
+        <br><br>
 
-    <label for="category">
-        Category
-    </label>
+        <label for="serviceTag">
+            Service Tag
+        </label>
 
-    <select id="category">
+        <input
+            type="text"
+            id="serviceTag"
+            name="serviceTag">
 
-        <option>
-            Hardware
-        </option>
+        <br>
 
-        <option>
-            Software
-        </option>
+        <label for="description">
+            Description
+        </label>
 
-    </select>
+        <textarea
+            id="description"
+            name="description">
+        </textarea>
 
-    <br><br>
+        <br>
 
-    <button type="submit">
-        Save Asset
-    </button>
+        <label for="category">
+            Category
+        </label>
 
-</form>
+        <select id="category">
+
+            <option>
+                Hardware
+            </option>
+
+            <option>
+                Software
+            </option>
+
+        </select>
+
+        <br>
+
+        <button type="submit">
+            Save Asset
+        </button>
+
+    </form>
+</div>
