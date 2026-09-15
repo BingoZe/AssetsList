@@ -1,74 +1,104 @@
 <div class="page-add-asset">
-    <h2>Add Asset</h2>
     
+    <div class="AddAssetHeader">
+        <h2>Add Asset</h2>
+    </div>
+    
+    <div class="addAssetContainer">
+        <form class="asset-form">
+            
+            <!--Item 1-->
+            <div class="form-group">
+                <label for="assetId">
+                    Asset ID
+                </label>
 
-    <form class="asset-form">
+                <input
+                    type="text"
+                    id="assetId"
+                    name="assetId">
+            </div>
+            
+            
+            <!--Item 2-->
+            <div class="form-group">
+                <label for="assetName">
+                    Asset Name
+                </label>
 
-        <label for="assetId">
-            Asset ID
-        </label>
+                <input
+                    type="text"
+                    id="assetName"
+                    name="assetName">
+            </div>
+            
+            
+            <!--Item 3-->
+            <div class="form-group">
+                <label for="serviceTag">
+                    Service Tag
+                </label>
 
-        <input
-            type="text"
-            id="assetId"
-            name="assetId">
+                <input
+                    type="text"
+                    id="serviceTag"
+                    name="serviceTag">
+            </div>
+            
+            <!--Item 4-->
+            <div class="form-group">
+                <label for="user">
+                    User
+                </label>
 
-        <br>
+                <input
+                    type="text"
+                    id="user"
+                    name="user">
+            </div>
+            
+            <!--Item 5-->
+            <div class="form-group">
+                <label for="type">
+                    Type
+                </label>
 
-        <label for="assetName">
-            Asset Name
-        </label>
+                <select id="type">
 
-        <input
-            type="text"
-            id="assetName"
-            name="assetName">
+                    <option>
+                        Hardware
+                    </option>
 
-        <br><br>
+                    <option>
+                        Software
+                    </option>
 
-        <label for="serviceTag">
-            Service Tag
-        </label>
+                </select>
+            </div>
+            
+            <!--Item 5-->
+            <div class="form-group">
+                <label for="notes">
+                    Notes
+                </label>
 
-        <input
-            type="text"
-            id="serviceTag"
-            name="serviceTag">
+                <textarea
+                    id="notes"
+                    name="notes">
+                </textarea>
 
-        <br>
-
-        <label for="description">
-            Description
-        </label>
-
-        <textarea
-            id="description"
-            name="description">
-        </textarea>
-
-        <br>
-
-        <label for="category">
-            Category
-        </label>
-
-        <select id="category">
-
-            <option>
-                Hardware
-            </option>
-
-            <option>
-                Software
-            </option>
-
-        </select>
-
-        <br>
-
-        <button type="submit">
-            Save Asset
-        </button>
-
-    </form>
+            </div>
+            
+            <!--Item 6-->
+            <div class="saveBtn">
+                <button type="submit">
+                    Save Asset
+                </button>
+            </div>
+            
+        </form>
+    </div>
+    
+    
+    
 </div>

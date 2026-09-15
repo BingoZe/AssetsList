@@ -211,13 +211,22 @@ main {
 
 .page-add-asset {
     padding: 24px;
-    max-width: 600px;
+    max-width: 98%;
 }
 
 .page-add-asset .asset-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.form-group {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+}
+
+.saveBtn {
+    grid-column: 1 / -1;
 }
 
 .page-add-asset input {
@@ -225,3 +234,20 @@ main {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+.AddAssetHeader{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--main-background);
+    border-radius: 4px;
+    
+}
+
+
+.addAssetContainer{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: var(--white);
+}
+
