@@ -157,6 +157,8 @@ nav {
 
     display: flex;
     flex-direction: column;
+    
+    position: sticky;
 }
 
 nav ul {
@@ -234,6 +236,8 @@ fieldset{
 .form-group {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+ 
 }
 
 .saveBtn {
@@ -267,4 +271,11 @@ fieldset{
     height: 100%;    
     border-radius: 4px;
     border: 1px solid #ccc;
+}
+
+.notes {
+    height: 100px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+     
 }
