@@ -43,6 +43,7 @@ body {
     --blue: #4e73df;
     --blueGradient: linear-gradient(90deg,rgba(148, 187, 223, 1) 0%, rgba(78, 115, 223, 1) 50%, rgba(148, 187, 223, 1) 100%);
     --indigo: #6610f2;
+    --blueSoftBorder: rgba(202, 228, 255, 0.3);
     --purple: #6f42c1;
     --pink: #e83e8c;
     --red: #e74a3b;
@@ -216,13 +217,18 @@ main {
 .page-add-asset .generalInfo {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 20px;
 }
 
 fieldset{
     margin: 3vh;
     border-radius: 10px;
-    border: 1px groove var(--grey);
+    border: 2px groove  var(--blueSoftBorder);
+}
+
+.formLegends {
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
 .form-group {
@@ -232,6 +238,7 @@ fieldset{
 
 .saveBtn {
     grid-column: 1 / -1;
+    padding-left: 2%;
 }
 
 .page-add-asset input {
@@ -256,3 +263,8 @@ fieldset{
     background-color: var(--white);
 }
 
+.typeSelect {
+    height: 100%;    
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}

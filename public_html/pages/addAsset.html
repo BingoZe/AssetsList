@@ -7,95 +7,131 @@
     <div class="addAssetContainer">
         <form class="asset-form">
             
-            <!--Item 1-->
-            <div class="form-group">
-                <label for="assetId">
-                    Asset ID
-                </label>
+            <fieldset class="generalInfo">
+                <legend class="formLegends">General Information</legend>
+                
+                <!--Item 1-->
+                <div class="form-group">
+                    <label for="assetId">
+                        Asset ID
+                    </label>
 
-                <input
-                    type="text"
-                    id="assetId"
-                    name="assetId">
-            </div>
+                    <input
+                        type="text"
+                        id="assetId"
+                        name="assetId">
+                </div>
+
+
+                <!--Item 2-->
+                <div class="form-group">
+                    <label for="assetName">
+                        Asset Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="assetName"
+                        name="assetName">
+                </div>
+
+
+                <!--Item 3-->
+                <div class="form-group">
+                    <label for="serviceTag">
+                        Service Tag
+                    </label>
+
+                    <input
+                        type="text"
+                        id="serviceTag"
+                        name="serviceTag">
+                </div>
+
+                <!--Item 4-->
+                <div class="form-group">
+                    <label for="type">
+                        Type
+                    </label>
+
+                    <select id="type" class="typeSelect">
+
+                        <option>
+                            Hardware
+                        </option>
+
+                        <option>
+                            Software
+                        </option>
+
+                    </select>
+                </div>  
+                
+                <!--Item 5-->
+                <div class="form-group">
+                    <label for="acquisitionDate">
+                        Acquisition Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="acquisitionDate"
+                        name="acquisitionDate">
+                </div>
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="acquisitionvalue">
+                        Acquisition Value
+                    </label>
+
+                    <input
+                        type="number"
+                        id="acquisitionvalue"
+                        name="acquisitionvalue">
+                </div>
+            </fieldset>
             
             
-            <!--Item 2-->
-            <div class="form-group">
-                <label for="assetName">
-                    Asset Name
-                </label>
+            <fieldset class="OwnerLocation">
+                <legend class="formLegends">Owner & Location</legend>
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="user">
+                        User
+                    </label>
 
-                <input
-                    type="text"
-                    id="assetName"
-                    name="assetName">
-            </div>
+                    <input
+                        type="text"
+                        id="user"
+                        name="user">
+                </div>
+
+        
+            </fieldset>
             
             
-            <!--Item 3-->
-            <div class="form-group">
-                <label for="serviceTag">
-                    Service Tag
-                </label>
+            <fieldset class="description">
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="notes">
+                        Additional Notes
+                    </label>
 
-                <input
-                    type="text"
-                    id="serviceTag"
-                    name="serviceTag">
-            </div>
-            
-            <!--Item 4-->
-            <div class="form-group">
-                <label for="user">
-                    User
-                </label>
+                    <textarea
+                        id="notes"
+                        name="notes">
+                    </textarea>
 
-                <input
-                    type="text"
-                    id="user"
-                    name="user">
-            </div>
-            
-            <!--Item 5-->
-            <div class="form-group">
-                <label for="type">
-                    Type
-                </label>
+                </div>
+            </fieldset>
+                <!--Item 8-->
+                <div class="saveBtn">
+                    <button type="submit">
+                        Save Asset
+                    </button>
+                </div>
 
-                <select id="type">
-
-                    <option>
-                        Hardware
-                    </option>
-
-                    <option>
-                        Software
-                    </option>
-
-                </select>
-            </div>
-            
-            <!--Item 5-->
-            <div class="form-group">
-                <label for="notes">
-                    Notes
-                </label>
-
-                <textarea
-                    id="notes"
-                    name="notes">
-                </textarea>
-
-            </div>
-            
-            <!--Item 6-->
-            <div class="saveBtn">
-                <button type="submit">
-                    Save Asset
-                </button>
-            </div>
-            
         </form>
     </div>
     
