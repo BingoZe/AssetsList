@@ -41,7 +41,8 @@ body {
 }
 :root {
     --blue: #4e73df;
-    --blueGradient: linear-gradient(101deg,rgba(78, 115, 223, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    --blueGradient: linear-gradient(90deg,rgba(148, 187, 223, 1) 0%, rgba(78, 115, 223, 1) 50%, rgba(148, 187, 223, 1) 100%);
+    --navGradient:
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #e83e8c;
@@ -76,8 +77,9 @@ body {
  ==========================================*/
 .container-header {
     display: flex;
-    height: 5rem;
-    width: 100%;
+    height: 5vh;
+    width: 100vw;
+    background: var(--blueGradient);
 }
 
 header {
@@ -86,9 +88,8 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    background: var(--blueGradient);
-
-    border-bottom: 2px solid var(--blue);
+    
+   
         
 }
 /*For future use - Better scale when notifications, avatar, user menus & configs are implemented*/
@@ -101,10 +102,14 @@ header {
     flex: 1;
     display: flex;
     justify-content: flex-start;
+    padding-left: 6%;
+    
     
 }
 .search-buttom{
     padding-right: 10%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .notification {
@@ -117,15 +122,14 @@ header {
 
 
 .fixed-title {
-    width: 13.4rem;
-    background-color: var(--white);
+    width: 7%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .nav-logo {
-    width: 50%;
+    width: 100%;
     aspect-ratio: 1/1;
     background-image: url("../img/DwemerWorks-logo.png");
     background-size: contain;
@@ -142,10 +146,11 @@ header {
 }
 
 nav {
-    width: 14%;
+    width: 10%;
     padding: 2% 0 0 0%;
-    background-color: var(--blue);
-    color: white;
+    
+    background: RGBA(148, 187, 223,1);
+    background: linear-gradient(188deg,rgba(148, 187, 223, 1) 0%, rgba(78, 115, 223, 1) 50%);
 
     margin-top: 0;
     border: none;
