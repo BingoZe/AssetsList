@@ -42,7 +42,6 @@ body {
 :root {
     --blue: #4e73df;
     --blueGradient: linear-gradient(90deg,rgba(148, 187, 223, 1) 0%, rgba(78, 115, 223, 1) 50%, rgba(148, 187, 223, 1) 100%);
-    --navGradient:
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #e83e8c;
@@ -214,10 +213,16 @@ main {
     max-width: 98%;
 }
 
-.page-add-asset .asset-form {
+.page-add-asset .generalInfo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+}
+
+fieldset{
+    margin: 3vh;
+    border-radius: 10px;
+    border: 1px groove var(--grey);
 }
 
 .form-group {
