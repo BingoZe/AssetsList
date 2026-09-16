@@ -239,7 +239,7 @@ main {
     max-width: 98%;
 }
 
-.page-add-asset .generalInfo {
+.page-add-asset .generalInfo, .OwnerLocation {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
