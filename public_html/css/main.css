@@ -129,7 +129,9 @@ header {
 }
 
 .nav-logo {
-    width: 100%;
+    width: 40%;
+    min-width: 50px;
+    max-width: 80px;
     aspect-ratio: 1/1;
     background-image: url("../img/DwemerWorks-logo.png");
     background-size: contain;
@@ -207,6 +209,27 @@ main {
   
 }
 
+.mainPage{
+    padding: 24px;
+    max-width: 98%;
+}
+
+.mainHeader{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--main-background);
+    border-radius: 4px;
+}
+
+.mainContainer{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: var(--white);
+}
+
+
+
 /* ==========================================
    PAGE: ADD ASSET
    ========================================== */
@@ -260,7 +283,7 @@ fieldset{
 }
 
 
-.addAssetContainer{
+.addAssetContainer {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;

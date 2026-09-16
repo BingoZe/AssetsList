@@ -8,3 +8,5 @@ async function loadPage(page){
     const html = await response.text();
     document.getElementById("main-content").innerHTML = html;
     };
+    
+    
