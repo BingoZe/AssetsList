@@ -9,18 +9,18 @@
         
         
         <div class="headerNav">
-            <ul>
-                <li>General</li>
-                <li>Warranty</li>
-                <li>Financial</li>
-                <li>Repair History</li>
+            <ul class ="headerUl">
+                <li><a href="#" class="tabLinks" onclick="openTab(event,'generalTab')">General</a></li>
+                <li><a href="#" class="tabLinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
+                <li><a href="#">Financial</a></li>
+                <li><a href="#">Repair History</a></li>
             </ul>
         </div>
     </div>
     
     <div class="addAssetContainer">
         <form class="asset-form">
-            
+            <div id="generalTab" class="tabcontent">
             <!-- ################################################################################## -->
             <!-- GENERAL INFO   ################################################################### -->
             <!-- ################################################################################## -->
@@ -87,12 +87,12 @@
 
                     <select id="type" class="typeSelect">
 
-                        <option>
-                            Hardware
+                        <option id="typeLaptop">
+                            Laptop
                         </option>
 
-                        <option>
-                            Software
+                        <option id="typeMobile">
+                            Mobile
                         </option>
 
                     </select>
@@ -127,11 +127,11 @@
                     </label>
 
                     <select id="assetStatus" class="statusSelect">
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Repairing</option>
-                        <option>Retired</option>
-                        <option>Lost</option>
+                        <option id="statusActive">Active</option>
+                        <option id="statusInactive">Inactive</option>
+                        <option id="statusRepairing">Repairing</option>
+                        <option id="statusRetired">Retired</option>
+                        <option id="statusLost">Lost</option>
                         
                         
                     </select>
@@ -203,13 +203,40 @@
 
                 </div>
             </fieldset>
+            </div>
+            
+            <div id="warrantyTab" class="tabcontent">
+            <!-- ################################################################################## -->
+            <!-- WARRANTY#####  ################################################################### -->
+            <!-- ################################################################################## -->  
+            
+             <fieldset class="test">
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="test">
+                        Test
+                    </label>
+
+                    <textarea class="test"
+                        id="test"
+                        name="test">
+                    </textarea>
+
+                </div>
+            </fieldset>           
+            
+            
+            
+            
+            
+            </div>
                 <!--Item 8-->
                 <div class="saveBtn">
                     <button type="submit">
                         Save Asset
                     </button>
                 </div>
-
+                
         </form>
     </div>
     

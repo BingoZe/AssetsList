@@ -115,10 +115,12 @@ header {
 
 .notification {
     margin-left: 20px;
+    color: white;
 }
 
 .user-profile {
     margin-left: 20px;
+    color: white;
 }
 
 
@@ -285,13 +287,28 @@ fieldset{
 }
 
 
-.headerNav ul{
+.headerUl{
    list-style: none;
    display:flex;
    align-items: center;
    gap: 2%;
    padding: 0;
  }
+ .headerUl  a{
+    display: block;
+    padding: 0 0;
+    color: #858796;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all .2s ease-out;
+}
+
+.headerUl li a:hover {
+    font-weight: 700;  
+    color: var(--blue);
+}
+
+
 
 .addAssetContainer {
     padding: 10px;
