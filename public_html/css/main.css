@@ -242,7 +242,7 @@ main {
     max-width: 98%;
 }
 
-.page-add-asset .generalInfo, .OwnerLocation {
+.page-add-asset .generalInfo, .OwnerLocation, .warranty {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;

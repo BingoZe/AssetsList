@@ -10,9 +10,9 @@
         
         <div class="headerNav">
             <ul class ="headerUl">
-                <li><a href="#" class="tabLinks" onclick="openTab(event,'generalTab')">General</a></li>
-                <li><a href="#" class="tabLinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
-                <li><a href="#">Financial</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'generalTab')">General</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'financialTab')">Financial</a></li>
                 <li><a href="#">Repair History</a></li>
             </ul>
         </div>
@@ -98,29 +98,7 @@
                     </select>
                 </div>  
                 
-                <!--Item 5-->
-                <div class="form-group">
-                    <label for="acquisitionDate">
-                        Acquisition Date
-                    </label>
 
-                    <input
-                        type="date"
-                        id="acquisitionDate"
-                        name="acquisitionDate">
-                </div>
-
-                <!--Item 6-->
-                <div class="form-group">
-                    <label for="acquisitionvalue">
-                        Acquisition Value
-                    </label>
-
-                    <input
-                        type="number"
-                        id="acquisitionvalue"
-                        name="acquisitionvalue">
-                </div>
                 <!--Item 6-->                <div class="form-group">
                     <label for="assetStatus">
                         Status
@@ -205,26 +183,140 @@
             </fieldset>
             </div>
             
-            <div id="warrantyTab" class="tabcontent">
+
             <!-- ################################################################################## -->
             <!-- WARRANTY#####  ################################################################### -->
             <!-- ################################################################################## -->  
-            
-             <fieldset class="test">
+            <div id="warrantyTab" class="tabcontent">          
+             <fieldset class="warranty">
+                <legend class="formLegends">Warranty</legend>
                 <!--Item 7-->
                 <div class="form-group">
-                    <label for="test">
-                        Test
+                    <label for="warrantyDetails">
+                        Warranty Details
                     </label>
 
-                    <textarea class="test"
-                        id="test"
-                        name="test">
-                    </textarea>
+                    <input
+                        type="text"
+                        id="warrantyDetails"
+                        name="warrantyDetails">
+
+                </div>
+                       
+
+                                  <!--Item 7-->
+                <div class="form-group">
+                    <label for="warrantyExpiryDate">
+                        Warranty Expiry Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="warrantyExpiryDate"
+                        name="warrantyExpiryDate">
+
+                </div>
+           
+            
+            
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="warrantyDocs">
+                        Warranty Docs
+                    </label>
+
+                    <input
+                        type="file"
+                        id="warrantyDocs"
+                        name="warrantyDocs">
 
                 </div>
             </fieldset>           
             
+            <!-- ################################################################################## -->
+            <!-- Financial#####  ################################################################### -->
+            <!-- ################################################################################## -->  
+            <div id="financialTab" class="tabcontent">          
+             <fieldset class="Financial">
+                 
+                <legend class="formLegends">Financial</legend>
+                               <!--Item 5-->
+                <div class="form-group">
+                    <label for="acquisitionDate">
+                        Acquisition Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="acquisitionDate"
+                        name="acquisitionDate">
+                </div>
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="acquisitionvalue">
+                        Acquisition Value
+                    </label>
+
+                    <input
+                        type="number"
+                        id="acquisitionvalue"
+                        name="acquisitionvalue">
+                </div>
+
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="usefulLife">
+                        Useful Life (Years)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="usefulLife"
+                        name="usefulLife">
+                </div>
+           
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="depreciation">
+                        Depreciation
+                    </label>
+
+                    <input
+                        type="number"
+                        id="depreciation"
+                        name="depreciation">
+                </div>
+           
+           
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="netValue">
+                        Net Value
+                    </label>
+
+                    <input
+                        type="number"
+                        id="netValue"
+                        name="netValue">
+                </div>
+           
+            
+            
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="purchaseInvoice">
+                        Purchase Invoice
+                    </label>
+
+                    <input
+                        type="file"
+                        id="purchaseInvoice"
+                        name="purchaseInvoice">
+
+                </div>
+            </fieldset>            
             
             
             
