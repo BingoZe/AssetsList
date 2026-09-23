@@ -9,9 +9,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel ="stylesheet" href="css/main.css"/>
-        
+
     </head>
-     
+
     <body>
 
         <div class="container-header">
@@ -25,40 +25,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 <div class="notification">Notifications</div>
                 <div class="user-profile">User Profile</div>         
-                        
+
             </header>
         </div>
-        
+
         <div class="container-main-nav">
-        
+
         <nav>
                 <ul class ="nav-ul-items">
-                    <li><a href="index.html">Asset Register</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); loadPage('pages/assetRegister.html')">Asset Register</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/addAsset.html')">Register New Asset</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/categories.html')">Categories</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/active.html')">Active</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/addAsset.html')">History</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/settings.html')">Settings</a></li>
-                    
+
                 </ul>
         </nav>
-     
+
         <main id="main-content">
-            
+
             <div class="mainPage">
                 <div class="mainHeader">
-                    <h2>DwemerWorks index main</h2>
+                    <h2>DwemerWorks Dashboard</h2>
                 </div>
                 <div class="mainContainer">
-                    
+
                 </div>              
             </div>
-        
+
         </main>
-      
-      
+
+
        </div> 
         <script src="js/router.js"></script>
     </body>
-    
+
 </html>

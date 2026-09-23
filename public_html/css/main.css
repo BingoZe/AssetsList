@@ -330,3 +330,41 @@ fieldset{
 #generalTab{
     display:block;
 }
+
+
+/* ==========================================
+   PAGE: ASSET REGISTER
+   ========================================== */
+.searchNav {
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 1%;
+}
+
+.searchNav label{
+    font-weight: 700;
+}
+
+.allAssets{
+    width: 100%;
+    table-layout: fixed;
+}
+
+.searchNavElement{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.searchNav input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.allAssets th{
+    width: calc(100% / 6);
+    text-align: left;
+    padding-left: 0.5%;
+}
+

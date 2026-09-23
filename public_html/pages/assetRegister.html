@@ -1,0 +1,176 @@
+            
+<div class="mainPage">
+    <div class="mainHeader">
+        <h2>Asset Register</h2>
+        <p>Manage and track all organizational assets</p>
+
+
+        <div class="searchNav">
+            <div class="searchNavElement">
+                <label for="searchAsset">
+                    Search
+                </label>    
+                <input
+                    type="text"
+                    id="searchButton"
+                    name="searchButton">
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="type">
+                    Type
+                </label>
+
+                <select id="type" class="typeSelect">
+
+                    <option id="typeLaptop">
+                        Laptop
+                    </option>
+
+                    <option id="typeMobile">
+                        Mobile
+                    </option>
+
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="assetStatus">
+                    Status
+                </label>
+
+                <select id="assetStatus" class="statusSelect">
+                    <option id="statusActive">Active</option>
+                    <option id="statusInactive">Inactive</option>
+                    <option id="statusRepairing">Repairing</option>
+                    <option id="statusRetired">Retired</option>
+                    <option id="statusLost">Lost</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="assetRegLocation">
+                    Location
+                </label>
+
+                <select id="locationSelect" class="locationSelect">
+                    <option id="deployed">Deployed</option>
+                    <option id="returned">Returned</option>
+                    <option id="comms">Comms</option>
+                    <option id="trainingRoom">Training Room</option>
+                    <option id="meetingPod">Meeting Pod</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="assetRegResponsibleUser">
+                    Responsible User
+                </label>
+
+                <select id="responsibleUserSelect" class="responsibleUserSelect">
+                    <option id="placeholder">Placeholder</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="assetRegAcquisitionYear">
+                    Responsible User
+                </label>
+
+                <select id="acquisitionYearSelect" class="acquisitionYearSelect">
+                    <option id="placeholder">Placeholder</option>
+                </select>
+            </div>      
+        </div>
+    </div>
+        <!-- MAIN CONTENT-->
+    <div class="mainContainer">
+        <table class="allAssets">
+            <thead class="tableHeader">
+                <tr>
+                    
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Asset ID</span>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                   
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Asset Name</span>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Type</span>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Location</span>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Status</span>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">User</span>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                </tr>
+            </thead>
+
+
+        </table>
+    </div>              
+</div>
