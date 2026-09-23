@@ -219,7 +219,7 @@ main {
 
 .mainHeader{
     width: 100%;
-    padding: 10px;
+    margin: 0 0 2% 0;
     border: 1px solid var(--main-background);
     border-radius: 4px;
 }
@@ -367,4 +367,13 @@ fieldset{
     text-align: left;
     padding-left: 0.5%;
 }
+
+
+.tableHeaderElement {
+    margin: 0 0 9% 0;
+    padding: 2%;  
+}
+
+
+
 
