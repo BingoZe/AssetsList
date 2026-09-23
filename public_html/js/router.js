@@ -6,26 +6,27 @@
 async function loadPage(page){
     const response = await fetch(page);
     const html = await response.text();
+     
     document.getElementById("main-content").innerHTML = html;
-    };
+     
+    const generalTab = document.getElementById("generalTab");
+     
+    if(generalTab){
+    generalTab.style.display = "block";
+}
+}
     
     
-function openTab(evt,tabName){
-    var i, tabcontent, tablinks;
-    
-    tabcontent = document.getElementsByClassName("tabcontent");
-    
-    for(i = 0; i<tabcontent.length;i++){
-        tabcontent[i].style.display="none";
+function openTab(evt, tabName) {
+ 
+    let tabcontent = document.getElementsByClassName("tabcontent");
+     
+    for(let i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
     }
-    
-    tablinks = document.getElementsByClassName("tablinks");
-    for(i = 0; i<tablinks.length;i++){
-        tablinks[i].className = tablinks[i].className.replace("active","");
-    }
-    
+     
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-        
+     
+    evt.preventDefault();
 }
     

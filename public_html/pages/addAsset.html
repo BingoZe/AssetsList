@@ -13,7 +13,7 @@
                 <li><a href="#" class="tablinks" onclick="openTab(event,'generalTab')">General</a></li>
                 <li><a href="#" class="tablinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
                 <li><a href="#" class="tablinks" onclick="openTab(event,'financialTab')">Financial</a></li>
-                <li><a href="#">Repair History</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'repairTab')">Repair History</a></li>
             </ul>
         </div>
     </div>
@@ -232,12 +232,12 @@
 
                 </div>
             </fieldset>           
-            
+            </div>
             <!-- ################################################################################## -->
             <!-- Financial#####  ################################################################### -->
             <!-- ################################################################################## -->  
             <div id="financialTab" class="tabcontent">          
-             <fieldset class="Financial">
+             <fieldset class="financial">
                  
                 <legend class="formLegends">Financial</legend>
                                <!--Item 5-->
@@ -316,9 +316,105 @@
                         name="purchaseInvoice">
 
                 </div>
+            </fieldset> 
+            </div>
+            <!-- ################################################################################## -->
+            <!-- Repairs#####  ################################################################### -->
+            <!-- ################################################################################## -->  
+            <div id="repairTab" class="tabcontent">          
+             <fieldset class="repair">
+                 
+                <legend class="formLegends">Repair</legend>
+                               <!--Item 5-->
+                <div class="form-group">
+                    <label for="acquisitionDate">
+                        Issue Description
+                    </label>
+
+                    <input
+                        type="text"
+                        id="issueDescription"
+                        name="issueDescription">
+                </div>
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="issueDate">
+                        Issue Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="issueDate"
+                        name="issueDate">
+                </div>
+
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="supportTicketNumber">
+                        Support Ticket Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="supportTicketNumber"
+                        name="supportTicketNumber">
+                </div>
+           
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="repairCost">
+                        Repair Cost (€)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="repairCost"
+                        name="repairCost">
+                </div>
+                
+                <div class="form-group">
+                    <label for="purchaseInvoice">
+                        Repair Invoice
+                    </label>
+
+                    <input
+                        type="file"
+                        id="repairInvoice"
+                        name="repairInvoice">
+
+                </div>
+           
+           
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="netValue">
+                        Net Value
+                    </label>
+
+                    <input
+                        type="number"
+                        id="netValue"
+                        name="netValue">
+                </div>          
+     
             </fieldset>            
             
-            
+            <fieldset class="description">
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="technicianNotes">
+                        Technician Notes
+                    </label>
+
+                    <textarea class="technicianNotes"
+                        id="technicianNotes"
+                        name="technicianNotes">
+                    </textarea>
+
+                </div>
+            </fieldset>
             
             
             </div>
