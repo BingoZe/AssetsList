@@ -1,10 +1,15 @@
    
 /*localstorage*/
 
-const assetForm = document.querySelector(".asset-form");
-
-assetForm.addEventListener("submit", (event) =>{
-   
+function initAssetForm(){
+    const assetForm = document.querySelector(".asset-form");
+    
+    if(!assetForm){
+        return;
+    }
+    
+    
+    assetForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     
     const assetID = document.getElementById("assetId").value;
@@ -46,4 +51,5 @@ assetForm.addEventListener("submit", (event) =>{
     
     alert("Record saved");
     
-});
+    });
+}

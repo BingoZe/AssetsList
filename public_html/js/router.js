@@ -15,5 +15,9 @@ async function loadPage(page){
      
     if(generalTab){
     generalTab.style.display = "block";
+    }
+    
+    initAssetForm();
 }
-}
+
+
