@@ -18,6 +18,11 @@ async function loadPage(page){
     }
     
     initAssetForm();
+    
+    if(page.includes("assetRegister")){
+        renderAssets();
+    }
+    
 }
 
 

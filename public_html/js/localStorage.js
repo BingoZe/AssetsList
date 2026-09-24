@@ -12,7 +12,7 @@ function initAssetForm(){
     assetForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     
-    const assetID = document.getElementById("assetId").value;
+    const assetId = document.getElementById("assetId").value;
     const assetName = document.getElementById("assetName").value;
     const serviceTag = document.getElementById("serviceTag").value;
     const model = document.getElementById("model").value;
@@ -21,7 +21,7 @@ function initAssetForm(){
     const user = document.getElementById("user").value;
     const userEmail = document.getElementById("userEmail").value;
     const location = document.getElementById("location").value;
-    const additionalNotes = document.getElementById("notes").value;
+    const notes = document.getElementById("notes").value;
     const warrantyDetails = document.getElementById("warrantyDetails").value;
     const warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
     const warrantyDocs = document.getElementById("warrantyDocs").value;
@@ -39,7 +39,7 @@ function initAssetForm(){
     const technicianNotes = document.getElementById("technicianNotes").value;    
     
     const asset = {
-    assetID,
+    assetId,
     assetName,
     serviceTag,
     model,
@@ -48,7 +48,7 @@ function initAssetForm(){
     user,
     userEmail,
     location,
-    additionalNotes,
+    notes,
     warrantyDetails,
     warrantyExpiryDate,
     warrantyDocs,
@@ -71,8 +71,37 @@ function initAssetForm(){
     assets.push(asset);
 
     localStorage.setItem("assets", JSON.stringify(assets));
+    
+    assetForm.reset();
 
     alert("Record saved");
     
+    renderAssets();
+    
     });
 }
+
+function renderAssets(){
+       
+    const assets = JSON.parse(localStorage.getItem("assets")) || [];
+    let output = "";
+    assets.forEach((asset,index) => {
+        output += `
+        <tr>
+            
+            <td>${asset.assetId}</td>
+            <td>${asset.assetName}</td>
+            <td>${asset.serviceTag}</td>
+            <td>${asset.type}</td>
+            <td>${asset.location}</td>
+            <td>${asset.status}</td>
+            <td>${asset.user}</td>
+                    
+        </tr>
+        `;
+    });
+    
+    console.log(document.getElementById("tableBody"));
+    
+    document.querySelector(".tableBody").innerHTML = output;
+};
