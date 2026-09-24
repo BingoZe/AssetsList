@@ -38,17 +38,40 @@ function initAssetForm(){
     const repairInvoice = document.getElementById("repairInvoice").value;
     const technicianNotes = document.getElementById("technicianNotes").value;    
     
-    const asset ={
-     assetID, assetName, serviceTag, model,type, status, user, userEmail,location, 
-     additionalNotes, warrantyDetails, warrantyExpiryDate, warrantyDocs, acquisitionDate, 
-     acquisitionvalue, usefulLife, depreciation, netValue, purchaseInvoice, issueDescription,
-     issueDate, supportTicketNumber, repairCost, repairInvoice, technicianNotes         
-    };
-    
-    localStorage.setItem("asset", JSON.stringify(asset));
-    
-    console.log(JSON.parse(localStorage.getItem("asset")));
-    
+    const asset = {
+    assetID,
+    assetName,
+    serviceTag,
+    model,
+    type,
+    status,
+    user,
+    userEmail,
+    location,
+    additionalNotes,
+    warrantyDetails,
+    warrantyExpiryDate,
+    warrantyDocs,
+    acquisitionDate,
+    acquisitionvalue,
+    usefulLife,
+    depreciation,
+    netValue,
+    purchaseInvoice,
+    issueDescription,
+    issueDate,
+    supportTicketNumber,
+    repairCost,
+    repairInvoice,
+    technicianNotes
+};
+
+    const assets = JSON.parse(localStorage.getItem("assets")) || [];
+
+    assets.push(asset);
+
+    localStorage.setItem("assets", JSON.stringify(assets));
+
     alert("Record saved");
     
     });
