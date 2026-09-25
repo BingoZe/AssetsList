@@ -12,7 +12,12 @@ function initAssetForm(){
     assetForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     
-    const assetId = document.getElementById("assetId").value;
+    
+    const randomAssetNumber = Math.floor(Math.random() * 1000);
+    const assetId = `AST${randomAssetNumber.toString().padStart(3, "0")}`;        
+            
+    
+    
     const assetName = document.getElementById("assetName").value;
     const serviceTag = document.getElementById("serviceTag").value;
     const model = document.getElementById("model").value;
