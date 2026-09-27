@@ -89,7 +89,7 @@ function initAssetForm(){
 }
 
 
-/*implementacao CRUD - renderAssets representa READ*/
+/*implementacao CRUD - renderAssets representa READ apenas para table no Add asset*/
 
 function renderAssets(){
        
@@ -108,7 +108,7 @@ function renderAssets(){
             <td>
                 <button class="btTdItemView">View</button>
                 <button class="btTdItemEdit">Edit</button>
-                <button class="btTdItemDelete" onclick=deleteAsset(${index})>Delete</button>
+                <button class="btTdItemDelete" onclick="deleteAsset('${asset.assetId}')">Delete</button>
             </td>
                     
         </tr>
@@ -120,17 +120,31 @@ function renderAssets(){
     document.querySelector(".tableBody").innerHTML = output;
 };
 
+function viewAsset(index){
+    const assets = JSON.parse(localStorage.getItem("assets")) || []; 
+    const asset = assets[index];
+    
+    
+}
+
 /*deleteAsset() representa o DELETE*/
 
-function deleteAsset(index){
+function deleteAsset(assetId){
     const assets = JSON.parse(localStorage.getItem("assets")) || [];
     
     /*confirmando com usuario antes de deletar*/
     if(!confirm("Are you sure you want to delete it?")){
         return;
-    }else
+    }   
     
-        assets.splice(index, 1);
+    /*buscando o assetID dentro do array de assets*/
+     for(let i = 0; i < assets.length;i++){
+         if(assets[i].assetId === assetId){
+             assets.splice(i,1);
+             break;
+            }
+        
+        }
     
         localStorage.setItem("assets",JSON.stringify(assets));
     

@@ -1,0 +1,422 @@
+<div class="page-add-asset">
+    
+    <div class="AddAssetHeader">
+        
+        
+        <div class="headerTitle">
+            <h2>Add Asset</h2>
+        </div>
+        
+        
+        <div class="headerNav">
+            <ul class ="headerUl">
+                <li><a href="#" class="tablinks" onclick="openTab(event,'generalTab')">General</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'financialTab')">Financial</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'repairTab')">Repair History</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="addAssetContainer">
+        <form class="asset-form">
+            <div id="generalTab" class="tabcontent">
+            <!-- ################################################################################## -->
+            <!-- GENERAL INFO   ################################################################### -->
+            <!-- ################################################################################## -->
+            <fieldset class="generalInfo">
+                <legend class="formLegends">General Information</legend>
+                
+                <!--Item 1-->
+                <div class="form-group">
+                    <label for="assetId">
+                        Asset ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="assetId"
+                        name="assetId">
+                </div>
+
+
+                <!--Item 2-->
+                <div class="form-group">
+                    <label for="assetName">
+                        Asset Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="assetName"
+                        name="assetName">
+                </div>
+
+
+                <!--Item 3-->
+                <div class="form-group">
+                    <label for="serviceTag">
+                        Service Tag
+                    </label>
+
+                    <input
+                        type="text"
+                        id="serviceTag"
+                        name="serviceTag">
+                </div>
+
+                <!--Item 3-->
+                <div class="form-group">
+                    <label for="model">
+                        Model
+                    </label>
+
+                    <input
+                        type="text"
+                        id="model"
+                        name="model">
+                </div>
+                
+                
+                
+                <!--Item 4-->
+                <div class="form-group">
+                    <label for="type">
+                        Type
+                    </label>
+
+                    <select id="type" class="typeSelect">
+
+                        <option id="typeLaptop">
+                            Laptop
+                        </option>
+
+                        <option id="typeMobile">
+                            Mobile
+                        </option>
+
+                    </select>
+                </div>  
+                
+
+                <!--Item 6-->                <div class="form-group">
+                    <label for="assetStatus">
+                        Status
+                    </label>
+
+                    <select id="assetStatus" class="statusSelect">
+                        <option id="statusActive">Active</option>
+                        <option id="statusInactive">Inactive</option>
+                        <option id="statusRepairing">Repairing</option>
+                        <option id="statusRetired">Retired</option>
+                        <option id="statusLost">Lost</option>
+                        
+                        
+                    </select>
+                </div>
+            </fieldset>
+            
+            <!-- ################################################################################## -->
+            <!-- OWNER & LOCATION  ################################################################### -->
+            <!-- ################################################################################## -->        
+            
+            <fieldset class="OwnerLocation">
+                <legend class="formLegends">Owner & Location</legend>
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="user">
+                        User
+                    </label>
+
+                    <input
+                        type="text"
+                        id="user"
+                        name="user">
+                </div>
+
+        
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="userEmail">
+                        User Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="userEmail"
+                        name="userEmail">
+                </div>
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location">
+                </div>
+
+        
+            </fieldset>
+            
+            
+            <!-- ################################################################################## -->
+            <!-- NOTES ################################################################### -->
+            <!-- ################################################################################## -->        
+                        
+            
+            <fieldset class="description">
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="notes">
+                        Additional Notes
+                    </label>
+
+                    <textarea class="notes"
+                        id="notes"
+                        name="notes">
+                    </textarea>
+
+                </div>
+            </fieldset>
+            </div>
+            
+
+            <!-- ################################################################################## -->
+            <!-- WARRANTY#####  ################################################################### -->
+            <!-- ################################################################################## -->  
+            <div id="warrantyTab" class="tabcontent">          
+             <fieldset class="warranty">
+                <legend class="formLegends">Warranty</legend>
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="warrantyDetails">
+                        Warranty Details
+                    </label>
+
+                    <input
+                        type="text"
+                        id="warrantyDetails"
+                        name="warrantyDetails">
+
+                </div>
+                       
+
+                                  <!--Item 7-->
+                <div class="form-group">
+                    <label for="warrantyExpiryDate">
+                        Warranty Expiry Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="warrantyExpiryDate"
+                        name="warrantyExpiryDate">
+
+                </div>
+           
+            
+            
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="warrantyDocs">
+                        Warranty Docs
+                    </label>
+
+                    <input
+                        type="file"
+                        id="warrantyDocs"
+                        name="warrantyDocs">
+
+                </div>
+            </fieldset>           
+            </div>
+            <!-- ################################################################################## -->
+            <!-- Financial#####  ################################################################### -->
+            <!-- ################################################################################## -->  
+            <div id="financialTab" class="tabcontent">          
+             <fieldset class="financial">
+                 
+                <legend class="formLegends">Financial</legend>
+                               <!--Item 5-->
+                <div class="form-group">
+                    <label for="acquisitionDate">
+                        Acquisition Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="acquisitionDate"
+                        name="acquisitionDate">
+                </div>
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="acquisitionvalue">
+                        Acquisition Value
+                    </label>
+
+                    <input
+                        type="number"
+                        id="acquisitionvalue"
+                        name="acquisitionvalue">
+                </div>
+
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="usefulLife">
+                        Useful Life (Years)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="usefulLife"
+                        name="usefulLife">
+                </div>
+           
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="depreciation">
+                        Depreciation
+                    </label>
+
+                    <input
+                        type="number"
+                        id="depreciation"
+                        name="depreciation">
+                </div>
+           
+           
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="netValue">
+                        Net Value
+                    </label>
+
+                    <input
+                        type="number"
+                        id="netValue"
+                        name="netValue">
+                </div>
+           
+            
+            
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="purchaseInvoice">
+                        Purchase Invoice
+                    </label>
+
+                    <input
+                        type="file"
+                        id="purchaseInvoice"
+                        name="purchaseInvoice">
+
+                </div>
+            </fieldset> 
+            </div>
+            <!-- ################################################################################## -->
+            <!-- Repairs#####  ################################################################### -->
+            <!-- ################################################################################## -->  
+            <div id="repairTab" class="tabcontent">          
+             <fieldset class="repair">
+                 
+                <legend class="formLegends">Repair</legend>
+                               <!--Item 5-->
+                <div class="form-group">
+                    <label for="issueDescription">
+                        Issue Description
+                    </label>
+
+                    <input
+                        type="text"
+                        id="issueDescription"
+                        name="issueDescription">
+                </div>
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="issueDate">
+                        Issue Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="issueDate"
+                        name="issueDate">
+                </div>
+
+
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="supportTicketNumber">
+                        Support Ticket Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="supportTicketNumber"
+                        name="supportTicketNumber">
+                </div>
+           
+                <!--Item 6-->
+                <div class="form-group">
+                    <label for="repairCost">
+                        Repair Cost (€)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="repairCost"
+                        name="repairCost">
+                </div>
+                
+                <div class="form-group">
+                    <label for="repairInvoice">
+                        Repair Invoice
+                    </label>
+
+                    <input
+                        type="file"
+                        id="repairInvoice"
+                        name="repairInvoice">
+
+                </div>
+           
+                          
+     
+            </fieldset>            
+            
+            <fieldset class="description">
+                <!--Item 7-->
+                <div class="form-group">
+                    <label for="technicianNotes">
+                        Technician Notes
+                    </label>
+
+                    <textarea class="technicianNotes"
+                        id="technicianNotes"
+                        name="technicianNotes">
+                    </textarea>
+
+                </div>
+            </fieldset>
+            
+            
+            </div>
+                <!--Item 8-->
+                <div class="saveBtn">
+                    <button type="submit">
+                        Save Asset
+                    </button>
+                </div>
+                
+        </form>
+    </div>
+    
+    
+    
+</div>

@@ -23,6 +23,10 @@ async function loadPage(page){
         renderAssets();
     }
     
+    if(page.includes("viewAsset")){
+        renderAssets();
+    }
+    
+
+
 }
-
-
