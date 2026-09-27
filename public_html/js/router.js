@@ -24,9 +24,20 @@ async function loadPage(page){
     }
     
     if(page.includes("viewAsset")){
-        renderAssets();
+        renderViewAsset();
     }
     
 
 
+}
+
+
+function viewAsset(assetId){
+     
+    /*salva o assetId a ser visualizado no sessionStorage*/
+    
+    sessionStorage.setItem("ViewAssetId", assetId);
+    
+    loadPage("viewAsset.html");
+      
 }
