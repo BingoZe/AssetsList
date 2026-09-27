@@ -1,6 +1,8 @@
    
 /*localstorage*/
 
+/*implemantacao do CRUD - initAssetForm corresponde ao Create*/
+
 function initAssetForm(){
     const assetForm = document.querySelector(".asset-form");
     
@@ -86,6 +88,9 @@ function initAssetForm(){
     });
 }
 
+
+/*implementacao CRUD - renderAssets representa READ*/
+
 function renderAssets(){
        
     const assets = JSON.parse(localStorage.getItem("assets")) || [];
@@ -93,7 +98,6 @@ function renderAssets(){
     assets.forEach((asset,index) => {
         output += `
         <tr>
-            
             <td>${asset.assetId}</td>
             <td>${asset.assetName}</td>
             <td>${asset.serviceTag}</td>
@@ -101,6 +105,11 @@ function renderAssets(){
             <td>${asset.location}</td>
             <td>${asset.status}</td>
             <td>${asset.user}</td>
+            <td>
+                <button class="btTdItemView">View</button>
+                <button class="btTdItemEdit">Edit</button>
+                <button class="btTdItemDelete" onclick=deleteAsset(${index})>Delete</button>
+            </td>
                     
         </tr>
         `;
@@ -110,3 +119,20 @@ function renderAssets(){
     
     document.querySelector(".tableBody").innerHTML = output;
 };
+
+/*deleteAsset() representa o DELETE*/
+
+function deleteAsset(index){
+    const assets = JSON.parse(localStorage.getItem("assets")) || [];
+    
+    /*confirmando com usuario antes de deletar*/
+    if(!confirm("Are you sure you want to delete it?")){
+        return;
+    }else
+    
+        assets.splice(index, 1);
+    
+        localStorage.setItem("assets",JSON.stringify(assets));
+    
+        renderAssets();    
+}

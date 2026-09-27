@@ -347,6 +347,7 @@ fieldset{
 
 .allAssets{
     width: 100%;
+    border-collapse: collapse;
     table-layout: fixed;
 }
 
@@ -363,7 +364,7 @@ fieldset{
 }
 
 .allAssets th{
-    width: calc(100% / 6);
+    width: calc(100% / 8);
     text-align: left;
     padding-left: 0.5%;
 }
@@ -374,6 +375,66 @@ fieldset{
     padding: 2%;  
 }
 
+.allAssets th,
+.allAssets td {
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+ 
+.allAssets tbody tr {
+    border-top: 1px solid #e3e6f0;
+}
+
+
+/*Table asset register buttons*/
+.btTdItemView {
+    background-color: var(--gray-dark);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    width: 19%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ 
+.btTdItemView:hover {
+    background-color: var(--yellow);
+}
+
+.btTdItemEdit {
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    width: 19%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ 
+.btTdItemEdit:hover {
+    background-color: #bb2d3b;
+}
+
+
+
+
+.btTdItemDelete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 9px;
+    font-size: 0.7rem;
+    width: 20%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ 
+.btTdItemView:hover {
+    background-color: #bb2d3b;
+}
 
 
 
