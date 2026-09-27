@@ -136,3 +136,14 @@ function deleteAsset(index){
     
         renderAssets();    
 }
+
+/*update */
+
+function updateAsset(index){
+    const assets = JSON.parse(localStorage.getItem("assets")) || [];
+    const asset = assets[index];
+    
+    document.getElementById("assetId").value = asset.assetId;
+    
+
+}
