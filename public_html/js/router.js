@@ -31,13 +31,13 @@ async function loadPage(page){
 
 }
 
-
+/*Funcao viewAsset tem a funcao de guardar qual asset foi clicado o view*/
 function viewAsset(assetId){
      
     /*salva o assetId a ser visualizado no sessionStorage*/
     
     sessionStorage.setItem("ViewAssetId", assetId);
     
-    loadPage("viewAsset.html");
+    loadPage('pages/viewAsset.html');
       
 }

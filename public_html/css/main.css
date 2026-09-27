@@ -394,7 +394,6 @@ fieldset{
     border: none;
     padding: 8px 12px;
     font-size: 0.7rem;
-    width: 19%;
     cursor: pointer;
     border-radius: 4px;
 }
@@ -408,8 +407,7 @@ fieldset{
     color: white;
     border: none;
     padding: 8px 12px;
-    font-size: 0.7rem;
-    width: 19%;
+    font-size: 0.6rem;
     cursor: pointer;
     border-radius: 4px;
 }
@@ -419,15 +417,12 @@ fieldset{
 }
 
 
-
-
 .btTdItemDelete {
     background-color: #dc3545;
     color: white;
     border: none;
-    padding: 8px 9px;
+    padding: 8px 12px;
     font-size: 0.7rem;
-    width: 20%;
     cursor: pointer;
     border-radius: 4px;
 }

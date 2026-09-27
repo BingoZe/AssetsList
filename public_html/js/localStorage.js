@@ -158,8 +158,16 @@ function renderAssets(){
 /*renderViewAsset - Exibe apenas no View*/
 
 
-function renderViewAsset(assetId){
+function renderViewAsset(){
+    const selectedAssetId = sessionStorage.getItem("ViewAssetId");
     
+    const assets = getAssets();
+    
+    for(let i = 0; i<assets.length;i++){
+        if(assets[i].assetId ===selectedAssetId){
+            document.getElementById("assetName").value =assets[i].assetName;
+        }
+    }
     
 }
 
