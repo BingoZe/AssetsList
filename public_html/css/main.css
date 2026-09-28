@@ -209,7 +209,7 @@ main {
     width: 90%;
     background-color: var(--main-background);
     padding-left: 2%;
-  
+ 
 }
 
 .mainPage{
@@ -219,7 +219,7 @@ main {
 
 .mainHeader{
     width: 100%;
-    margin: 0 0 2% 0;
+    margin: 0 0 0.8% 0;
     border: 1px solid var(--main-background);
     border-radius: 4px;
 }
@@ -231,25 +231,18 @@ main {
     background-color: var(--white);
 }
 
-
-
 /* ==========================================
    PAGE: ADD ASSET
    ========================================== */
 
-.page-add-asset {
-    padding: 0;
-    max-width: 98%;
-}
-
-.page-add-asset .generalInfo, .OwnerLocation, .warranty, .financial, .repair{
+.mainPage .generalInfo, .OwnerLocation, .warranty, .financial, .repair{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
 fieldset{
-    margin: 3vh;
+    margin: 1vh;
     border-radius: 10px;
     border: 2px groove  var(--blueSoftBorder);
 }
@@ -271,21 +264,11 @@ fieldset{
     padding-left: 2%;
 }
 
-.page-add-asset input, select {
+.mainPage input, select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
-.AddAssetHeader{
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--main-background);
-    border-radius: 4px;
-    display: block;
-      
-}
-
 
 .headerUl{
    list-style: none;
@@ -308,7 +291,7 @@ fieldset{
     color: var(--blue);
 }
 
-.addAssetContainer {
+.assetContainer {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
