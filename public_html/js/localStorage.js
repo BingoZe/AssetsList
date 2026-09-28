@@ -165,7 +165,12 @@ function renderViewAsset(){
     
     for(let i = 0; i<assets.length;i++){
         if(assets[i].assetId ===selectedAssetId){
+           
             document.getElementById("assetName").value =assets[i].assetName;
+            
+            /*modo de leitura apenas*/
+            document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
+            
         }
     }
     
