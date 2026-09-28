@@ -166,8 +166,32 @@ function renderViewAsset(){
     for(let i = 0; i<assets.length;i++){
         if(assets[i].assetId ===selectedAssetId){
            
+            document.getElementById("assetId").value =assets[i].assetId;
             document.getElementById("assetName").value =assets[i].assetName;
-            
+            document.getElementById("serviceTag").value =assets[i].serviceTag;
+            document.getElementById("model").value =assets[i].model;
+            document.getElementById("type").value =assets[i].type;
+            document.getElementById("assetStatus").value =assets[i].assetStatus;
+            document.getElementById("user").value =assets[i].user;
+            document.getElementById("userEmail").value =assets[i].userEmail;
+            document.getElementById("location").value =assets[i].location;
+            document.getElementById("notes").value =assets[i].notes;
+            document.getElementById("warrantyDetails").value =assets[i].warrantyDetails;
+            document.getElementById("warrantyExpiryDate").value =assets[i].warrantyExpiryDate;
+            document.getElementById("warrantyDocs").value =assets[i].warrantyDocs;
+            document.getElementById("acquisitionDate").value =assets[i].acquisitionDate;
+            document.getElementById("acquisitionvalue").value =assets[i].acquisitionvalue;
+            document.getElementById("usefulLife").value =assets[i].usefulLife;
+            document.getElementById("depreciation").value =assets[i].depreciation;
+            document.getElementById("netValue").value =assets[i].netValue;
+            document.getElementById("purchaseInvoice").value =assets[i].purchaseInvoice;
+            document.getElementById("issueDescription").value =assets[i].issueDescription;
+            document.getElementById("issueDate").value =assets[i].issueDate;
+            document.getElementById("supportTicketNumber").value =assets[i].supportTicketNumber;
+            document.getElementById("repairCost").value =assets[i].repairCost;
+            document.getElementById("repairInvoice").value =assets[i].repairInvoice;
+            document.getElementById("technicianNotes").value =assets[i].technicianNotes;
+   
             /*modo de leitura apenas*/
             document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
             
