@@ -36,8 +36,14 @@ function viewAsset(assetId){
      
     /*salva o assetId a ser visualizado no sessionStorage*/
     
-    sessionStorage.setItem("ViewAssetId", assetId);
+    sessionStorage.setItem("viewAssetId", assetId);
     
     loadPage('pages/viewAsset.html');
       
+}
+
+function closeViewAsset(){
+    sessionStorage.removeItem("viewAssetId");
+    loadPage('pages/assetRegister.html');
+
 }

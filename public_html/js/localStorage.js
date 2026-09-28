@@ -159,7 +159,7 @@ function renderAssets(){
 
 
 function renderViewAsset(){
-    const selectedAssetId = sessionStorage.getItem("ViewAssetId");
+    const selectedAssetId = sessionStorage.getItem("viewAssetId");
     
     const assets = getAssets();
     
