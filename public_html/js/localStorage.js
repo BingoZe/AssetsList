@@ -127,7 +127,7 @@ function initAssetForm(){
 /* renderAssets representa READ apenas para table no Add asset*/
 
 function renderAssets(){
-       
+        
     const assets = getAssets();
     let output = "";
     assets.forEach((asset) => {
@@ -141,8 +141,8 @@ function renderAssets(){
             <td>${asset.status}</td>
             <td>${asset.user}</td>
             <td>
-                <button class="btTdItemView" onclick="viewAsset('${asset.assetId}')">View</button>
-                <button class="btTdItemEdit" onclick="updateAsset('${asset.assetId}')">Edit</button>
+                <button class="btTdItemView" onclick="viewAsset('${asset.assetId}','view')">View</button>
+                <button class="btTdItemEdit" onclick="viewAsset('${asset.assetId}','edit')">Edit</button>
                 <button class="btTdItemDelete" onclick="deleteAsset('${asset.assetId}')">Delete</button>
             </td>
                     
@@ -159,7 +159,9 @@ function renderAssets(){
 
 
 function renderViewAsset(){
+    
     const selectedAssetId = sessionStorage.getItem("viewAssetId");
+    const selectedMode = sessionStorage.getItem("mode");
     
     const assets = getAssets();
     
@@ -192,17 +194,17 @@ function renderViewAsset(){
             document.getElementById("repairInvoice").value =assets[i].repairInvoice;
             document.getElementById("technicianNotes").value =assets[i].technicianNotes;
    
-            /*modo de leitura apenas*/
-            document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
+   
+            /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
+            if(selectedMode === "edit"){                                       
+                document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = false;});
+            }else
+                document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
             
         }
     }
     
 }
-
-
-
-
 
 /*
  -------------
@@ -243,8 +245,3 @@ function deleteAsset(assetId){
    
 /*update */
 
-function updateAsset(assetId){
-    const assets = getAssets();
-    
-
-}
