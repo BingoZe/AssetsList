@@ -47,6 +47,13 @@ function initAssetForm(){
     assetForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     
+    const mode = sessionStorage.getItem("mode");
+    console.log(mode);
+ 
+    if(mode === "edit"){
+        saveUpdatedAsset();
+        return;
+    }
 
     const randomAssetNumber = Math.floor(Math.random() * 1000);
     const assetId = `AST${randomAssetNumber.toString().padStart(3, "0")}`;        
