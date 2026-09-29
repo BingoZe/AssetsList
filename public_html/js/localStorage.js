@@ -10,8 +10,14 @@
 
 
 function getAssets(){
-    return JSON.parse(localStorage.getItem("assets")) || [];
-
+     
+    try{
+        return JSON.parse(localStorage.getItem("assets")) || [];
+    }
+    catch(error){
+        return [];
+}
+ 
 }
 
 function saveAssets(assets){
