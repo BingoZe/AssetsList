@@ -10,7 +10,10 @@
 
 
 function getAssets(){
-    return JSON.parse(localStorage.getItem("assets")) || [];
+    if(!localStorage.getItem("assets")){
+        return;
+    } else
+        return JSON.parse(localStorage.getItem("assets")) || [];
 
 }
 
@@ -52,7 +55,7 @@ function initAssetForm(){
     const serviceTag = document.getElementById("serviceTag").value;
     const model = document.getElementById("model").value;
     const type = document.getElementById("type").value;
-    const status = document.getElementById("assetStatus").value;
+    const assetStatus = document.getElementById("assetStatus").value;
     const user = document.getElementById("user").value;
     const userEmail = document.getElementById("userEmail").value;
     const location = document.getElementById("location").value;
@@ -79,7 +82,7 @@ function initAssetForm(){
     serviceTag,
     model,
     type,
-    status,
+    assetStatus,
     user,
     userEmail,
     location,
@@ -243,5 +246,91 @@ function deleteAsset(assetId){
  -------------
     */
    
-/*update */
+/*update 
 
+function saveUpdatedAsset(){
+    const selectedAssetId = sessionStorage.getItem("viewAssetId"); 
+    
+    console.log("selectedAssetId:", selectedAssetId);
+    
+    const assets = getAssets();
+    
+    
+    console.log("assets:", assets);
+    
+    for(let i= 0; i <assets.length;i++){
+        
+        console.log("comparando:", assets[i].assetId, selectedAssetId);
+        
+        if(assets[i].assetId===selectedAssetId){
+            
+            console.log("asset encontrado");
+            
+            assets[i].assetName = document.getElementById("assetName").value;
+            assets[i].serviceTag = document.getElementById("serviceTag").value;
+            assets[i].model = document.getElementById("model").value;
+            assets[i].type = document.getElementById("type").value;
+            assets[i].assetStatus = document.getElementById("assetStatus").value;
+            assets[i].user = document.getElementById("user").value;
+            assets[i].userEmail = document.getElementById("userEmail").value;
+            assets[i].location = document.getElementById("location").value;
+            assets[i].warrantyDetails = document.getElementById("warrantyDetails").value;
+            assets[i].warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
+            assets[i].warrantyDocs = document.getElementById("warrantyDocs").value;
+            assets[i].acquisitionDate = document.getElementById("acquisitionDate").value;
+            assets[i].acquisitionvalue = document.getElementById("acquisitionvalue").value;
+            assets[i].warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
+            assets[i].usefulLife = document.getElementById("usefulLife").value;
+            assets[i].depreciation = document.getElementById("depreciation").value;
+            assets[i].netValue = document.getElementById("netValue").value;
+            assets[i].purchaseInvoice = document.getElementById("purchaseInvoice").value;
+            assets[i].issueDescription = document.getElementById("issueDescription").value;
+            assets[i].issueDate = document.getElementById("issueDate").value;
+            assets[i].supportTicketNumber = document.getElementById("supportTicketNumber").value;
+            assets[i].repairCost = document.getElementById("repairCost").value;
+            assets[i].repairInvoice = document.getElementById("repairInvoice").value;
+            assets[i].technicianNotes = document.getElementById("technicianNotes").value;
+
+            break;
+   
+        }
+    }
+    
+     
+    saveAssets();   
+    alert("Record saved");
+     
+    closeViewAsset();
+    
+}*/
+
+/*function saveUpdatedAsset(){
+
+    const selectedAssetId =
+        sessionStorage.getItem("viewAssetId");
+
+    console.log("selectedAssetId:", selectedAssetId);
+
+    const assets = getAssets();
+
+    console.log("assets:", assets);
+
+    for(let i = 0; i < assets.length; i++){
+
+        console.log("comparando:",
+            assets[i].assetId,
+            selectedAssetId
+        );
+
+        if(assets[i].assetId === selectedAssetId){
+
+            console.log("asset encontrado");
+
+            // resto do código...
+
+            saveAssets(assets);
+
+            break;
+        }
+    }
+}*/
