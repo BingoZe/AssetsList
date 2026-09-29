@@ -52,7 +52,7 @@ function initAssetForm(){
     const serviceTag = document.getElementById("serviceTag").value;
     const model = document.getElementById("model").value;
     const type = document.getElementById("type").value;
-    const status = document.getElementById("assetStatus").value;
+    const assetStatus = document.getElementById("assetStatus").value;
     const user = document.getElementById("user").value;
     const userEmail = document.getElementById("userEmail").value;
     const location = document.getElementById("location").value;
@@ -79,7 +79,7 @@ function initAssetForm(){
     serviceTag,
     model,
     type,
-    status,
+    assetStatus,
     user,
     userEmail,
     location,
@@ -138,7 +138,7 @@ function renderAssets(){
             <td>${asset.serviceTag}</td>
             <td>${asset.type}</td>
             <td>${asset.location}</td>
-            <td>${asset.status}</td>
+            <td>${asset.assetStatus}</td>
             <td>${asset.user}</td>
             <td>
                 <button class="btTdItemView" onclick="viewAsset('${asset.assetId}','view')">View</button>
