@@ -246,7 +246,7 @@ fieldset{
  
 }
 
-.saveBtn, .closeBtn {
+.formButtons {
     grid-column: 1 / -1;
     padding-left: 1%;
 }

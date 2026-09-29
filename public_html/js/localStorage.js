@@ -10,11 +10,14 @@
 
 
 function getAssets(){
-    if(!localStorage.getItem("assets")){
-        return;
-    } else
+     
+    try{
         return JSON.parse(localStorage.getItem("assets")) || [];
-
+    }
+    catch(error){
+        return [];
+    }
+ 
 }
 
 function saveAssets(assets){
@@ -141,7 +144,7 @@ function renderAssets(){
             <td>${asset.serviceTag}</td>
             <td>${asset.type}</td>
             <td>${asset.location}</td>
-            <td>${asset.status}</td>
+            <td>${asset.assetStatus}</td>
             <td>${asset.user}</td>
             <td>
                 <button class="btTdItemView" onclick="viewAsset('${asset.assetId}','view')">View</button>
@@ -246,7 +249,7 @@ function deleteAsset(assetId){
  -------------
     */
    
-/*update 
+
 
 function saveUpdatedAsset(){
     const selectedAssetId = sessionStorage.getItem("viewAssetId"); 
@@ -302,7 +305,7 @@ function saveUpdatedAsset(){
      
     closeViewAsset();
     
-}*/
+}
 
 /*function saveUpdatedAsset(){
 
