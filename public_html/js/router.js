@@ -43,7 +43,6 @@ function viewAsset(assetId,mode){
 }
 
 
-
 function closeViewAsset(){
     sessionStorage.removeItem("viewAssetId");
     sessionStorage.removeItem("mode");
