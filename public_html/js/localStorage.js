@@ -47,12 +47,10 @@ function initAssetForm(){
     assetForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     
-    
+
     const randomAssetNumber = Math.floor(Math.random() * 1000);
     const assetId = `AST${randomAssetNumber.toString().padStart(3, "0")}`;        
-            
-    
-    
+      
     const assetName = document.getElementById("assetName").value;
     const serviceTag = document.getElementById("serviceTag").value;
     const model = document.getElementById("model").value;
@@ -252,22 +250,13 @@ function deleteAsset(assetId){
 
 function saveUpdatedAsset(){
     const selectedAssetId = sessionStorage.getItem("viewAssetId"); 
-    
-    console.log("selectedAssetId:", selectedAssetId);
-    
+
     const assets = getAssets();
-    
-    
-    console.log("assets:", assets);
     
     for(let i= 0; i <assets.length;i++){
         
-        console.log("comparando:", assets[i].assetId, selectedAssetId);
-        
         if(assets[i].assetId===selectedAssetId){
-            
-            console.log("asset encontrado");
-            
+   
             assets[i].assetName = document.getElementById("assetName").value;
             assets[i].serviceTag = document.getElementById("serviceTag").value;
             assets[i].model = document.getElementById("model").value;
@@ -292,16 +281,14 @@ function saveUpdatedAsset(){
             assets[i].repairCost = document.getElementById("repairCost").value;
             assets[i].repairInvoice = document.getElementById("repairInvoice").value;
             assets[i].technicianNotes = document.getElementById("technicianNotes").value;
-
-            break;
-   
+            break;   
         }
     }
     
-     
-    saveAssets();   
+    saveAssets(assets);  
+
     alert("Record saved");
-     
+      
     closeViewAsset();
     
 }
