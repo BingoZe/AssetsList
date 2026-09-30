@@ -3,6 +3,10 @@
 
 function btnExport(){
 
+    const disparaExport = document.getElementById("buttonExport");
+    
+    disparaExport.addEventListener("click",()=>{
+           
     const assets = getAssets();
 
     let csvContent =
@@ -31,6 +35,8 @@ function btnExport(){
 
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
+    document.body.removeChild(link);    
 
+    });
+    
 }
