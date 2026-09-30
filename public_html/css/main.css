@@ -313,7 +313,7 @@ fieldset{
     display:block;
 }
 
-.btnAddNewAsset, .btnExport{
+.btnAddNewAsset, .buttonExport{
     background-color: var(--blue);
     color: white;
     border: none;
@@ -325,7 +325,7 @@ fieldset{
     height: 4vh;
 }
 
-.btnExport {
+.buttonExport {
     background-color: var(--gray-dark) !important;
     margin-left: 64%;
 }
