@@ -23,6 +23,14 @@ function saveAssets(assets){
     return localStorage.setItem("assets", JSON.stringify(assets));
 }
 
+function getMode(){
+    try{
+     return sessionStorage.getItem("mode");
+    }
+    catch(error){
+        return [];
+    }
+}
 
 
 /* -------------implemantacao do CRUD-------------*/
@@ -43,16 +51,20 @@ function initAssetForm(){
         return;
     }
     
-    
+      
+                
     assetForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     
-    const mode = sessionStorage.getItem("mode");
+    const mode = getMode();
     console.log(mode);
  
     if(mode === "edit"){
         saveUpdatedAsset();
         return;
+    }else if (mode === "view"){
+        
+        return closeViewAsset();
     }
 
     const randomAssetNumber = Math.floor(Math.random() * 1000);
@@ -120,9 +132,9 @@ function initAssetForm(){
     assetForm.reset();
 
     alert("Record saved");
-    
+        
     renderAssets();
-    
+      
     });
 }
 
@@ -208,9 +220,10 @@ function renderViewAsset(){
             /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
             if(selectedMode === "edit"){                                       
                 document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = false;});
-            }else
+            }else {
                 document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
-            
+                document.querySelector(".resave").style.display="none";
+            }
         }
     }
     
@@ -260,8 +273,10 @@ function saveUpdatedAsset(){
 
     const assets = getAssets();
     
+    /*iterando sobre todos os registros*/
     for(let i= 0; i <assets.length;i++){
         
+        /*procurando ID selecionada e puxando atributos*/
         if(assets[i].assetId===selectedAssetId){
    
             assets[i].assetName = document.getElementById("assetName").value;

@@ -2,7 +2,11 @@
 <div class="mainPage">
     <div class="mainHeader">
         <h2>Asset Register</h2>
-        <p>Manage and track all organizational assets</p>
+        <div class="subMainHeader">
+            <p>Manage and track all organizational assets</p>
+            <button class="btnExport" >Export</button>
+            <button class="btnAddNewAsset" onclick="event.preventDefault(); loadPage('pages/addAsset.html')"> + Add New Asset</button>
+        </div>
 
 
         <div class="searchNav">

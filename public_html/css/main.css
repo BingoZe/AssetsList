@@ -218,6 +218,18 @@ main {
     background-color: var(--white);
 }
 
+.subMainHeader{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin-right: 1.5%;
+    margin-bottom: 0.2%;
+}
+
+
+
 /* ==========================================
    PAGE: ADD ASSET
    ========================================== */
@@ -299,6 +311,23 @@ fieldset{
  
 #generalTab{
     display:block;
+}
+
+.btnAddNewAsset, .btnExport{
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    padding: 0;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 7vw;
+    height: 4vh;
+}
+
+.btnExport {
+    background-color: var(--gray-dark) !important;
+    margin-left: 64%;
 }
 
 
