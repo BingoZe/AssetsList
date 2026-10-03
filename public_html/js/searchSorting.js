@@ -26,8 +26,10 @@ function searchElement(){
         
         const filteredAssets = assets.filter(asset=>asset.assetStatus.toLowerCase().includes(searchItem));
         
-        renderAssets(filteredAssets);
-        
+        if(filteredAssets){
+            renderAssets(filteredAssets);
+        }else
+            renderAssets();
         
         
     }); 
