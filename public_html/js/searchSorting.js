@@ -3,13 +3,16 @@ function searchElement(){
     const assets = getAssets();  
     
     /*campo busca*/
-    let lookupItem = document.getElementById("searchField");
+    const lookupItem = document.getElementById("searchField");
     
     /*campo status*/
-    let statusLookupItem = document.getElementById("assetStatus");
+    const statusLookupItem = document.getElementById("assetStatus");
     
     /*campo type*/
-    let typeLookupItem = document.getElementById("typeSelect");
+    const typeLookupItem = document.getElementById("typeSelect");
+    
+    /*campo type*/
+    const locationLookupItem = document.getElementById("locationSelect");
     
     /* adiciona evento ao campo search - Asset Register*/
     lookupItem.addEventListener("input",function(){
@@ -60,6 +63,25 @@ function searchElement(){
 
         
         if(searchItem !=="all types"){
+            renderAssets(filteredAssets);
+
+        }else /*mostra todos os assets*/
+            renderAssets();
+
+        
+        
+    }); 
+    
+    locationLookupItem.addEventListener("change",function(){
+                
+        const searchItem = locationLookupItem.value.toLowerCase();   
+        
+        const filteredAssets = assets.filter(asset=>
+            asset.location.toLowerCase()
+            .includes(searchItem));
+
+        
+        if(searchItem !=="all locations"){
             renderAssets(filteredAssets);
 
         }else /*mostra todos os assets*/

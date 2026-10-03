@@ -3,9 +3,9 @@
 
 function btnExport(){
 
-    const disparaExport = document.getElementById("buttonExport");
+    const triggerExport = document.getElementById("buttonExport");
     
-    disparaExport.addEventListener("click",()=>{
+    triggerExport.addEventListener("click",()=>{
            
     const assets = getAssets();
 
