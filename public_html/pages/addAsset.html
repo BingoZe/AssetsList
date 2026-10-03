@@ -96,7 +96,7 @@
                     </label>
 
                     <select id="assetStatus" class="statusSelect">
-                        <option id="statusActive">Active</option>
+                        <option id="statusActive" selected>Active</option>
                         <option id="statusInactive">Inactive</option>
                         <option id="statusRepairing">Repairing</option>
                         <option id="statusRetired">Retired</option>
@@ -143,10 +143,14 @@
                         Location
                     </label>
 
-                    <input
-                        type="text"
-                        id="location"
-                        name="location">
+                <select id="location" class="location">
+                    <option id="deployed">Deployed</option>
+                    <option id="returned">Returned</option>
+                    <option id="comms">Comms</option>
+                    <option id="trainingRoom">Training Room</option>
+                    <option id="meetingPod">Meeting Pod</option>
+                </select>
+                    
                 </div>
 
         
