@@ -25,3 +25,38 @@ Prioridade 8 - Melhorar arquitetura
           storage.js
           dashboard.js
           table.js
+
+
+04 OCt 2026
+
+Terminar Assets
+Plain Text
+CRUD perfeito
+Validações
+Duplicidade
+Export
+Ordenação
+
+Fecha o módulo Asset primeiro.
+Validações
+Mensagens de erro amigáveis
+Prevenção de duplicidade
+Campos obrigatórios
+Confirmações
+Feedback visual
+Ordenação funcionando
+Pesquisa funcionando
+Export funcionando
+
+
+05 Oct 
+
+Começar Maintenance
+Um reparo é apenas um atributo do Asset ou uma entidade própria?
+
+
+06 Oct
+Começar Users
+Technician
+Auditor
+End User
