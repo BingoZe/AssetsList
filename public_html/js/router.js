@@ -21,6 +21,8 @@ async function loadPage(page){
     
     if(page.includes("assetRegister")){
         renderAssets();
+        searchElement();
+        btnExport();
     }
     
     if(page.includes("viewAsset")){

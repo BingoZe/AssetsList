@@ -148,9 +148,8 @@ function initAssetForm(){
    
 /* renderAssets representa READ apenas para table no Add asset*/
 
-function renderAssets(){
-        
-    const assets = getAssets();
+function renderAssets(assets = getAssets()){
+
     let output = "";
     assets.forEach((asset) => {
         output += `
