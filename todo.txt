@@ -1,1 +1,27 @@
+1. Corrigir bugs restantes
+2. Pesquisa
+3. Filtros
+4. Dashboard com métricas
+5. Export CSV
+6. Polimento visual
+7. Documentação
+8. Apresentação
 
+
+Prioridade 1 - Qualidade do CRUD
+Prioridade 2 - Pesquisa
+Prioridade 3 - Filtros
+Prioridade 5 - Dashboard
+Prioridade 6 - Export CSV
+Prioridade 7 - Estatísticas
+Prioridade 8 - Melhorar arquitetura
+       muita lógica dentro de poucos arquivos.
+
+          Tenho que separar:
+          
+          Plain Text
+          router.js
+          crud.js
+          storage.js
+          dashboard.js
+          table.js
