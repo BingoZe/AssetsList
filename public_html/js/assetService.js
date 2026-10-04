@@ -67,10 +67,21 @@ function initAssetForm(){
         return closeViewAsset();
     }
 
-    const randomAssetNumber = Math.floor(Math.random() * 1000);
-    const assetId = `AST${randomAssetNumber.toString().padStart(3, "0")}`;        
-      
-    const assetName = document.getElementById("assetName").value;
+    /*criacao e validacao de assetID*/
+    const generatedId = setAssetId();
+    const assetId = `AST${generatedId.toString().padStart(3,"0")}`;
+    
+    
+    /*name validation*/
+    const assetName = setAssetName();
+    if(!assetName){
+        alert("Invalid name!");
+        return;
+    }else{
+        document.getElementById("assetName").classList.remove("inputError");
+    }
+    
+    
     const serviceTag = document.getElementById("serviceTag").value;
     const model = document.getElementById("model").value;
     const type = document.getElementById("type").value;
@@ -278,7 +289,7 @@ function saveUpdatedAsset(){
         /*procurando ID selecionada e puxando atributos*/
         if(assets[i].assetId===selectedAssetId){
    
-            assets[i].assetName = document.getElementById("assetName").value;
+            assets[i].assetName = setAssetName();
             assets[i].serviceTag = document.getElementById("serviceTag").value;
             assets[i].model = document.getElementById("model").value;
             assets[i].type = document.getElementById("type").value;
@@ -312,5 +323,42 @@ function saveUpdatedAsset(){
       
     closeViewAsset();
     
+}
+
+/*
+ -------------
+ ASSeT VALIDATION
+ -------------
+    */
+
+function setAssetId(){
+    const asset = getAssets();
+    /*Busca o maior assetId*/
+      let max= 0;  
+
+        for(let j = 0; j < asset.length;j++){
+            let assetItem = parseInt(asset[j].assetId.slice(3));
+
+            if(assetItem > max){
+                max = assetItem;
+            }
+        }
+
+    return max+1;
+
+}
+
+
+/*validacao do nome. Se for vazio, recusa.*/
+function setAssetName(){
+    const assetName = document.getElementById("assetName").value.trim();
+    
+    if(assetName ===""){
+        document.getElementById("assetName").classList.add("inputError");
+        
+        return false;
+    }
+    
+    return assetName;
 }
 

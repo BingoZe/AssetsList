@@ -48,6 +48,17 @@ Ordenação funcionando
 Pesquisa funcionando
 Export funcionando
 
+ASSET VALIDATION
+ 
+[ ] Asset ID único
+[ ] Asset Name obrigatório
+[ ] Service Tag obrigatória
+[ ] Service Tag única
+[ ] User Email válido
+[ ] Acquisition Value >= 0
+[ ] Useful Life > 0
+[ ] Warranty Date >= Acquisition Date
+
 
 05 Oct 
 

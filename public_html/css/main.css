@@ -430,5 +430,15 @@ fieldset{
     background-color: #bb2d3b;
 }
 
+/* ==========================================
+   VALIDATION - ASSETS
+   ========================================== */
+
+.inputError{
+   background-color: pink;
+   border: none;
+   outline: 2px solid red;
+   border-radius: 5px; 
+}
 
 
