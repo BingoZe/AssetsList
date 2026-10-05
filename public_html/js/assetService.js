@@ -79,6 +79,7 @@ function initAssetForm(){
         return;
     }else{
         document.getElementById("assetName").classList.remove("inputError");
+        document.getElementById("assetName").value;
     }
     
     
