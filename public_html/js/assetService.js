@@ -80,8 +80,16 @@ function initAssetForm(){
     }
     
         
+    /*serviceTag validation*/
+    const serviceTag = setServiceTag();
+    if(!serviceTag){
+        alert("Service Tag not unique!");
+        return;
+    }
     
-    const serviceTag = document.getElementById("serviceTag").value;
+    
+    
+    
     const model = document.getElementById("model").value;
     const type = document.getElementById("type").value;
     const assetStatus = document.getElementById("assetStatus").value;
@@ -294,7 +302,14 @@ function saveUpdatedAsset(){
                 return;
             }
             
-            assets[i].serviceTag = document.getElementById("serviceTag").value;
+      
+            assets[i].serviceTag = setServiceTag();
+            if(!assets[i].serviceTag){
+                alert("Service Tag not unique!");
+                return;
+            }
+            
+            
             assets[i].model = document.getElementById("model").value;
             assets[i].type = document.getElementById("type").value;
             assets[i].assetStatus = document.getElementById("assetStatus").value;
@@ -331,7 +346,7 @@ function saveUpdatedAsset(){
 
 /*
  -------------
- ASSeT VALIDATION
+ ASSET VALIDATION
  -------------
     */
 
@@ -366,5 +381,23 @@ function setAssetName(){
     return assetName;
 }
     
+/* validacao service tag, se nao for unico, recusa.*/
+function setServiceTag(){
+    const serviceTag = document.getElementById("serviceTag").value.trim();
+    const currentId = sessionStorage.getItem("viewAssetId"); /*evita bug no modo editar com o proprio registro*/
+    
+    const assets = getAssets();
+    
+    for(let i = 0; i<assets.length;i++){
+        if(assets[i].serviceTag ===serviceTag && assets[i].assetId !==currentId){
+            document.getElementById("serviceTag").classList.add("inputError");
+            return false;
+        }
+    }
+    
+    document.getElementById("serviceTag").classList.remove("inputError");
+    return serviceTag;  
+    
+}
 
 
