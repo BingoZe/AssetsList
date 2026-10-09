@@ -50,9 +50,7 @@ function initAssetForm(){
     if(!assetForm){
         return;
     }
-    
-      
-                
+              
     assetForm.addEventListener("submit",(event)=>{
     event.preventDefault();
     
@@ -111,10 +109,17 @@ function initAssetForm(){
         return;
     }
     
+    const depreciation = setDepreciation(acquisitionValue,usefulLife);
+     if(!depreciation){
+        alert("Invalid Depreciation");
+        return;
+    }   
     
-    const depreciation = Math.floor(Number(acquisitionValue) / Number(usefulLife));
-    
-    const netValue = Math.floor(Number(acquisitionValue) - Number(depreciation));
+    const netValue = setNetValue(acquisitionValue,depreciation);
+     if(!netValue){
+        alert("Invalid Net Value");
+        return;
+    }       
     
     const purchaseInvoice = document.getElementById("purchaseInvoice").value;
     const issueDescription = document.getElementById("issueDescription").value;
@@ -293,9 +298,7 @@ function deleteAsset(assetId){
  UPDATE
  -------------
     */
-   
-
-
+  
 function saveUpdatedAsset(){
     const selectedAssetId = sessionStorage.getItem("viewAssetId"); 
 
@@ -345,9 +348,18 @@ function saveUpdatedAsset(){
             }
 
 
-            assets[i].depreciation = Math.floor(Number(assets[i].acquisitionDate) / Number(assets[i].usefulLife));
-            assets[i].netValue = Math.floor(Number(assets[i].acquisitionValue) - Number(assets[i].depreciation));
+            assets[i].depreciation = setDepreciation(assets[i].acquisitionValue,assets[i].usefulLife);
+            if(!assets[i].depreciation){
+                alert("Invalid Depreciation");
+                return;
+            }            
             
+            assets[i].netValue = setNetValue(assets[i].acquisitionValue,assets[i].depreciation);
+            if(!assets[i].netValue){
+                alert("Invalid Net Value");
+                return;
+            }            
+                       
             
             assets[i].purchaseInvoice = document.getElementById("purchaseInvoice").value;
             assets[i].issueDescription = document.getElementById("issueDescription").value;
@@ -453,4 +465,23 @@ function setUsefulLife(){
     }
     document.getElementById("usefulLife").classList.remove("inputError");
     return usefulLife;
+}
+
+/*depreciacao*/
+
+function setDepreciation(acquisitionValue,usefulLife){
+    if(acquisitionValue !==0 && acquisitionValue !==null){
+    return Math.floor(Number(acquisitionValue)/Number(usefulLife));
+    }else
+        return;        
+    
+}
+
+function setNetValue(acquisitionValue,depreciation){
+    if(acquisitionValue !==0 && acquisitionValue !==null){
+    return Math.floor(Number(acquisitionValue) - Number(depreciation));
+    }else
+        return;        
+        
+    
 }
