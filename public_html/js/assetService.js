@@ -142,6 +142,7 @@ function initAssetForm(){
     assetForm.reset();
 
     alert("Record saved");
+    closeViewAsset();
         
     renderAssets();
       
@@ -264,7 +265,6 @@ function deleteAsset(assetId){
         }
     
         saveAssets(assets);
-    
         renderAssets();    
 }
 
