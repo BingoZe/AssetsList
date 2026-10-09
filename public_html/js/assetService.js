@@ -78,18 +78,14 @@ function initAssetForm(){
         alert("Invalid name!");
         return;
     }
-    
-        
+         
     /*serviceTag validation*/
     const serviceTag = setServiceTag();
     if(!serviceTag){
         alert("Service Tag not unique!");
         return;
     }
-    
-    
-    
-    
+      
     const model = document.getElementById("model").value;
     const type = document.getElementById("type").value;
     const assetStatus = document.getElementById("assetStatus").value;
@@ -101,10 +97,25 @@ function initAssetForm(){
     const warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
     const warrantyDocs = document.getElementById("warrantyDocs").value;
     const acquisitionDate = document.getElementById("acquisitionDate").value;
-    const acquisitionvalue = document.getElementById("acquisitionvalue").value;
-    const usefulLife = document.getElementById("usefulLife").value;
-    const depreciation = document.getElementById("depreciation").value;
-    const netValue = document.getElementById("netValue").value;
+    
+        
+    const acquisitionValue = setAcquisitionValue();
+    if(!acquisitionValue){
+        alert("Invalid Acquisition Value");
+        return;
+    }    
+    
+    const usefulLife = setUsefulLife();
+    if(!usefulLife){
+        alert("Invalid Useful Life");
+        return;
+    }
+    
+    
+    const depreciation = Math.floor(Number(acquisitionValue) / Number(usefulLife));
+    
+    const netValue = Math.floor(Number(acquisitionValue) - Number(depreciation));
+    
     const purchaseInvoice = document.getElementById("purchaseInvoice").value;
     const issueDescription = document.getElementById("issueDescription").value;
     const issueDate = document.getElementById("issueDate").value;
@@ -128,7 +139,7 @@ function initAssetForm(){
     warrantyExpiryDate,
     warrantyDocs,
     acquisitionDate,
-    acquisitionvalue,
+    acquisitionValue,
     usefulLife,
     depreciation,
     netValue,
@@ -222,7 +233,7 @@ function renderViewAsset(){
             document.getElementById("warrantyExpiryDate").value =assets[i].warrantyExpiryDate;
             document.getElementById("warrantyDocs").value =assets[i].warrantyDocs;
             document.getElementById("acquisitionDate").value =assets[i].acquisitionDate;
-            document.getElementById("acquisitionvalue").value =assets[i].acquisitionvalue;
+            document.getElementById("acquisitionValue").value =assets[i].acquisitionValue;
             document.getElementById("usefulLife").value =assets[i].usefulLife;
             document.getElementById("depreciation").value =assets[i].depreciation;
             document.getElementById("netValue").value =assets[i].netValue;
@@ -320,11 +331,24 @@ function saveUpdatedAsset(){
             assets[i].warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
             assets[i].warrantyDocs = document.getElementById("warrantyDocs").value;
             assets[i].acquisitionDate = document.getElementById("acquisitionDate").value;
-            assets[i].acquisitionvalue = document.getElementById("acquisitionvalue").value;
-            assets[i].warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
-            assets[i].usefulLife = document.getElementById("usefulLife").value;
-            assets[i].depreciation = document.getElementById("depreciation").value;
-            assets[i].netValue = document.getElementById("netValue").value;
+            
+            assets[i].acquisitionValue = setAcquisitionValue();
+            if(!assets[i].acquisitionValue){
+                alert("Invalid Acquisition Value");
+                return;
+            }
+
+            assets[i].usefulLife = setUsefulLife();
+            if(!assets[i].usefulLife){
+                alert("Invalid Useful Life");
+                return;
+            }
+
+
+            assets[i].depreciation = Math.floor(Number(assets[i].acquisitionDate) / Number(assets[i].usefulLife));
+            assets[i].netValue = Math.floor(Number(assets[i].acquisitionValue) - Number(assets[i].depreciation));
+            
+            
             assets[i].purchaseInvoice = document.getElementById("purchaseInvoice").value;
             assets[i].issueDescription = document.getElementById("issueDescription").value;
             assets[i].issueDate = document.getElementById("issueDate").value;
@@ -401,3 +425,32 @@ function setServiceTag(){
 }
 
 
+/*----------------------------*/
+/*validacao atributos financeiros*/
+/*----------------------------*/
+
+/*Valor de aquisicao*/
+function setAcquisitionValue(){
+   const acquisitionValue = document.getElementById("acquisitionValue").value;
+   
+    if(acquisitionValue <0){
+        document.getElementById("acquisitionValue").classList.add("inputError");
+        
+        return false;
+    }
+    document.getElementById("acquisitionValue").classList.remove("inputError");
+    return acquisitionValue;
+}
+
+/*vida util*/
+function setUsefulLife(){
+   const usefulLife = document.getElementById("usefulLife").value;
+   
+    if(usefulLife <=0){
+        document.getElementById("usefulLife").classList.add("inputError");
+        
+        return false;
+    }
+    document.getElementById("usefulLife").classList.remove("inputError");
+    return usefulLife;
+}

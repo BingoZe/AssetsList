@@ -50,13 +50,13 @@ Export funcionando
 
 ASSET VALIDATION
  
-[ ] Asset ID único
-[ ] Asset Name obrigatório
-[ ] Service Tag obrigatória
-[ ] Service Tag única
-[ ] User Email válido
-[ ] Acquisition Value >= 0
-[ ] Useful Life > 0
+[Feito] Asset ID único
+[Feito] Asset Name obrigatório
+[Feito] Service Tag obrigatória
+[Feito] Service Tag única
+[Feito] User Email válido
+[ Feito] Acquisition Value >= 0
+[ Feito] Useful Life > 0
 [ ] Warranty Date >= Acquisition Date
 
 
