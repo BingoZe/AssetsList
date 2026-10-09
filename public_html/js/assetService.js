@@ -77,9 +77,6 @@ function initAssetForm(){
     if(!assetName){
         alert("Invalid name!");
         return;
-    }else{
-        document.getElementById("assetName").classList.remove("inputError");
-        document.getElementById("assetName").value;
     }
     
         
@@ -295,9 +292,6 @@ function saveUpdatedAsset(){
             if(!assets[i].assetName){
                 alert("Invalid name!");
                 return;
-            }else{
-                document.getElementById("assetName").classList.remove("inputError");
-                document.getElementById("assetName").value;
             }
             
             assets[i].serviceTag = document.getElementById("serviceTag").value;
@@ -368,7 +362,7 @@ function setAssetName(){
         
         return false;
     }
-    
+    document.getElementById("assetName").classList.remove("inputError");
     return assetName;
 }
     
