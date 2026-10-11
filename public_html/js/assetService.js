@@ -92,9 +92,19 @@ function initAssetForm(){
     const location = document.getElementById("location").value;
     const notes = document.getElementById("notes").value;
     const warrantyDetails = document.getElementById("warrantyDetails").value;
-    const warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
+    
+ 
+
+    
     const warrantyDocs = document.getElementById("warrantyDocs").value;
     const acquisitionDate = document.getElementById("acquisitionDate").value;
+    
+    const warrantyExpiryDate = setWarrantyExpiryDate(acquisitionDate);
+    if(!warrantyExpiryDate){
+        alert("Warranty expire date cannot be before Acquisition Date");
+        return;
+    }     
+        
     
         
     const acquisitionValue = setAcquisitionValue();
@@ -331,9 +341,19 @@ function saveUpdatedAsset(){
             assets[i].userEmail = document.getElementById("userEmail").value;
             assets[i].location = document.getElementById("location").value;
             assets[i].warrantyDetails = document.getElementById("warrantyDetails").value;
-            assets[i].warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
+            
+
+
             assets[i].warrantyDocs = document.getElementById("warrantyDocs").value;
             assets[i].acquisitionDate = document.getElementById("acquisitionDate").value;
+            
+            assets[i].warrantyExpiryDate = setWarrantyExpiryDate(assets[i].acquisitionDate);
+            if(!assets[i].warrantyExpiryDate){
+                alert("Warranty expire date cannot be before Acquisition Date");
+                return;
+            }                 
+            
+            
             
             assets[i].acquisitionValue = setAcquisitionValue();
             if(!assets[i].acquisitionValue){
@@ -474,7 +494,6 @@ function setDepreciation(acquisitionValue,usefulLife){
     return Math.floor(Number(acquisitionValue)/Number(usefulLife));
     }else
         return;        
-    
 }
 
 function setNetValue(acquisitionValue,depreciation){
@@ -482,6 +501,14 @@ function setNetValue(acquisitionValue,depreciation){
     return Math.floor(Number(acquisitionValue) - Number(depreciation));
     }else
         return;        
-        
+}
+
+/*data de garantia nao pode ser menor do que data de aquisicao*/
+function setWarrantyExpiryDate(acquisitionDate){
+    const warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
     
+    if(warrantyExpiryDate >= acquisitionDate){
+        return warrantyExpiryDate;
+    }else
+        return;  
 }

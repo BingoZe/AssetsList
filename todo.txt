@@ -55,9 +55,10 @@ ASSET VALIDATION
 [Feito] Service Tag obrigatória
 [Feito] Service Tag única
 [Feito] User Email válido
-[ Feito] Acquisition Value >= 0
-[ Feito] Useful Life > 0
-[ ] Warranty Date >= Acquisition Date
+[Feito] Acquisition Value >= 0
+[Feito] Useful Life > 0
+[Feito] Warranty Date >= Acquisition Date
+        To define Financial Year in settings. This will  be taken into account for depreciation.
 
 
 05 Oct 
