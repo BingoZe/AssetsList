@@ -22,6 +22,8 @@ async function loadPage(page){
     if(page.includes("assetRegister")){
         renderAssets();
         searchElement();
+        renderAcquisitionYearFilter();
+        renderResponsibleUserFilter();
         btnExport();
     }
     

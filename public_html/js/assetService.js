@@ -98,6 +98,8 @@ function initAssetForm(){
     
     const warrantyDocs = document.getElementById("warrantyDocs").value;
     const acquisitionDate = document.getElementById("acquisitionDate").value;
+    const acquisitionYear = new Date(acquisitionDate).getFullYear();
+    
     
     const warrantyExpiryDate = setWarrantyExpiryDate(acquisitionDate);
     if(!warrantyExpiryDate){
@@ -154,6 +156,7 @@ function initAssetForm(){
     warrantyExpiryDate,
     warrantyDocs,
     acquisitionDate,
+    acquisitionYear,
     acquisitionValue,
     usefulLife,
     depreciation,
@@ -346,6 +349,7 @@ function saveUpdatedAsset(){
 
             assets[i].warrantyDocs = document.getElementById("warrantyDocs").value;
             assets[i].acquisitionDate = document.getElementById("acquisitionDate").value;
+            assets[i].acquisitionYear = new Date(assets[i].acquisitionDate).getFullYear();
             
             assets[i].warrantyExpiryDate = setWarrantyExpiryDate(assets[i].acquisitionDate);
             if(!assets[i].warrantyExpiryDate){

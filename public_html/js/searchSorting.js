@@ -13,6 +13,12 @@ function searchElement(){
     
     /*campo type*/
     const locationLookupItem = document.getElementById("locationSelect");
+
+    /*campo responsible user*/
+    const responsibleUserLookupItem = document.getElementById("responsibleUserSelect");
+
+    /*campo acquisition year*/
+    const acquisitionYearLookupItem = document.getElementById("acquisitionYearSelect");
     
     /* adiciona evento ao campo search - Asset Register*/
     lookupItem.addEventListener("input",function(){
@@ -41,16 +47,12 @@ function searchElement(){
         const filteredAssets = assets.filter(asset=>
             asset.assetStatus.toLowerCase()
             .includes(searchItem));
-
-        
+    
         if(searchItem !=="all status"){
             renderAssets(filteredAssets);
 
         }else /*mostra todos os assets*/
             renderAssets();
-
-        
-        
     }); 
 
     typeLookupItem.addEventListener("change",function(){
@@ -60,16 +62,12 @@ function searchElement(){
         const filteredAssets = assets.filter(asset=>
             asset.type.toLowerCase()
             .includes(searchItem));
-
-        
+    
         if(searchItem !=="all types"){
             renderAssets(filteredAssets);
 
         }else /*mostra todos os assets*/
             renderAssets();
-
-        
-        
     }); 
     
     locationLookupItem.addEventListener("change",function(){
@@ -80,23 +78,71 @@ function searchElement(){
             asset.location.toLowerCase()
             .includes(searchItem));
 
-        
         if(searchItem !=="all locations"){
             renderAssets(filteredAssets);
 
         }else /*mostra todos os assets*/
             renderAssets();
+        }); 
+    
+    
+    responsibleUserLookupItem.addEventListener("change",function(){
+                
+        const searchItem = responsibleUserLookupItem.value.toLowerCase(); 
+        
+        const filteredAssets = assets.filter(asset=>
+            asset.user.toLowerCase()
+            .includes(searchItem));
+       
+        if(searchItem !=="all users"){
+            renderAssets(filteredAssets);
 
+        }else /*mostra todos os assets*/
+            renderAssets();
+    });     
+
+    acquisitionYearLookupItem.addEventListener("change",function(){
+                
+        const searchItem = acquisitionYearLookupItem.value; 
+
+        const filteredAssets = assets.filter(asset=>
+            asset.acquisitionYear.toString()===searchItem);
+            
+        if(searchItem !=="All Years"){
+            renderAssets(filteredAssets);
+
+        }else /*mostra todos os assets*/
+            renderAssets();
+    });     
         
-        
-    }); 
-    
-    
-    
-    
-   
-    
-}
+
+};
+
+/*renderAcquisitionYear*/
+function renderAcquisitionYearFilter(assets = getAssets()){
+
+    let output = `<option selected>All Years</option>`;
+    assets.forEach((asset) => {
+        output += `
+            <option>${asset.acquisitionYear}</option>
+        `;
+    });
+
+    document.querySelector(".acquisitionYearSelect").innerHTML = output;
+};
+
+/*RenderUser*/
+function renderResponsibleUserFilter(assets = getAssets()){
+
+    let output = `<option selected>All Users</option>`;
+    assets.forEach((asset) => {
+        output += `
+            <option>${asset.user}</option>
+        `;
+    });
+
+    document.querySelector(".responsibleUserSelect").innerHTML = output;
+};
 
 
 
