@@ -104,11 +104,10 @@ function searchElement(){
     acquisitionYearLookupItem.addEventListener("change",function(){
                 
         const searchItem = acquisitionYearLookupItem.value; ; 
-        console.log("Item buscado: ",typeof (searchItem));
-
+        
         const filteredAssets = assets.filter(asset=>
             asset.acquisitionYear.toString() ===searchItem);
-        console.log("Item filtrado: ",typeof(filteredAssets));
+       
         if(searchItem !=="All Years"){
             renderAssets(filteredAssets);
 
@@ -123,10 +122,15 @@ function searchElement(){
 function renderAcquisitionYearFilter(assets = getAssets()){
 
     let output = `<option selected>All Years</option>`;
+    const uniqueYear = [];
+    
     assets.forEach((asset) => {
-        output += `
-            <option>${asset.acquisitionYear}</option>
-        `;
+        if(!uniqueYear.includes(asset.acquisitionYear)){
+            uniqueYear.push(asset.acquisitionYear);
+            output += `
+                <option>${asset.acquisitionYear}</option>
+            `;
+        }
     });
 
     document.querySelector(".acquisitionYearSelect").innerHTML = output;
@@ -136,10 +140,18 @@ function renderAcquisitionYearFilter(assets = getAssets()){
 function renderResponsibleUserFilter(assets = getAssets()){
 
     let output = `<option selected>All Users</option>`;
+    const uniqueUser = []; 
+    
     assets.forEach((asset) => {
+        
+        /*mostra apenas user unico no filtro*/
+        if(!uniqueUser.includes(asset.user)){
+        uniqueUser.push(asset.user);
+            
         output += `
             <option>${asset.user}</option>
         `;
+        }
     });
 
     document.querySelector(".responsibleUserSelect").innerHTML = output;
