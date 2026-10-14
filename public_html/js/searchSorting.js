@@ -103,11 +103,12 @@ function searchElement(){
 
     acquisitionYearLookupItem.addEventListener("change",function(){
                 
-        const searchItem = acquisitionYearLookupItem.value; 
+        const searchItem = acquisitionYearLookupItem.value; ; 
+        console.log("Item buscado: ",typeof (searchItem));
 
         const filteredAssets = assets.filter(asset=>
-            asset.acquisitionYear.toString()===searchItem);
-            
+            asset.acquisitionYear.toString() ===searchItem);
+        console.log("Item filtrado: ",typeof(filteredAssets));
         if(searchItem !=="All Years"){
             renderAssets(filteredAssets);
 
