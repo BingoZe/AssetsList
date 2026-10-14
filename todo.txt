@@ -38,15 +38,15 @@ Export
 Ordenação
 
 Fecha o módulo Asset primeiro.
-Validações
+Validações - Feito
 Mensagens de erro amigáveis
-Prevenção de duplicidade
-Campos obrigatórios
+Prevenção de duplicidade - Feito
+Campos obrigatórios 
 Confirmações
 Feedback visual
-Ordenação funcionando
-Pesquisa funcionando
-Export funcionando
+Ordenação funcionando - Feito
+Pesquisa funcionando - Feito
+Export funcionando - Feito
 
 ASSET VALIDATION
  
@@ -59,6 +59,7 @@ ASSET VALIDATION
 [Feito] Useful Life > 0
 [Feito] Warranty Date >= Acquisition Date
         To define Financial Year in settings. This will  be taken into account for depreciation.
+[Feito] Ordenacao bubble sort
 
 
 05 Oct 

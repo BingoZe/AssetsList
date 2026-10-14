@@ -168,10 +168,14 @@ function btnSort(){
     
     let sortDirection = "asc"; /*define estado inicial*/
     
+    
+    
     sortItem.forEach(button =>{
         button.addEventListener("click",function(){ /*evento em cada botao sort*/
             const assets = getAssets();
             const sortedAssets = [...assets]; /*faz uma copia do array para ordenacao bubble sort*/
+            const sortField = button.dataset.sort;/*captura o botao adequado do HTML usando campo dinamico*/
+
 
             switch(sortDirection){
                 case "asc":
@@ -181,7 +185,7 @@ function btnSort(){
 
                         for(let j=0;j < sortedAssets.length-1-i; j++){
 
-                            if(sortedAssets[j].assetName > sortedAssets[j+1].assetName){
+                            if(sortedAssets[j][sortField] > sortedAssets[j+1][sortField]){
 
                                 let temp = sortedAssets[j];
                                 sortedAssets[j] = sortedAssets[j+1];
@@ -199,7 +203,7 @@ function btnSort(){
 
                         for(let j=0;j < sortedAssets.length-1-i; j++){
 
-                            if(sortedAssets[j].assetName < sortedAssets[j+1].assetName){
+                            if(sortedAssets[j][sortField] < sortedAssets[j+1][sortField]){
 
                                 let temp = sortedAssets[j];
                                 sortedAssets[j] = sortedAssets[j+1];
