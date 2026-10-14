@@ -25,6 +25,7 @@ async function loadPage(page){
         renderAcquisitionYearFilter();
         renderResponsibleUserFilter();
         btnExport();
+        btnSort();
     }
     
     if(page.includes("viewAsset")){
