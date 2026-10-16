@@ -31,27 +31,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <nav>
                 <ul class ="nav-ul-items">
+                    <li><a href="#" onclick="event.preventDefault(); loadPage('pages/dashboard.html')">Dashboard</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/assetRegister.html')">Asset Register</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/categories.html')">Categories</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/active.html')">Active</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage()">History</a></li>
                     <li><a href="#" onclick="event.preventDefault(); loadPage('pages/settings.html')">Settings</a></li>
-
                 </ul>
         </nav>
 
-        <main id="main-content">
-
-            <div class="mainPage">
-                <div class="mainHeader">
-                    <h2>DwemerWorks Dashboard</h2>
-                </div>
-                <div class="mainContainer">
-
-                </div>              
-            </div>
-
-        </main>
+        <main id="main-content"></main>
 
 
        </div> 
@@ -60,6 +49,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <script src="js/assetService.js"></script>
         <script src="js/buttons.js"></script>
         <script src="js/searchSorting.js"></script>
+        <script src="js/dashboard.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         
     </body>
 

@@ -1,9 +1,3 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
- */
-
-
 /*pageloader on index*/
 async function loadPage(page){
     const response = await fetch(page);
@@ -31,6 +25,10 @@ async function loadPage(page){
     if(page.includes("viewAsset")){
         renderViewAsset();
     }
+    
+    if(page.includes("dashboard")){
+        renderAssetChart();
+    }
    
    
 }
@@ -55,3 +53,7 @@ function closeViewAsset(){
     loadPage('pages/assetRegister.html');
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadPage("pages/dashboard.html");
+});
