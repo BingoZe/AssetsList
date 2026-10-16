@@ -231,10 +231,16 @@ main {
    INDEX - DASHBOARD
    ========================================== */
 .assetCharts{
-    width: 50%;
-    height: 50%;
-    border: 1px red groove;
+    width: 40%;
+    margin:2%;
+    
+    
 }
+.chartContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
     
 
 
