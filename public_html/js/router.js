@@ -28,6 +28,7 @@ async function loadPage(page){
     
     if(page.includes("dashboard")){
         renderAssetChart();
+        renderKpi();
     }
    
    

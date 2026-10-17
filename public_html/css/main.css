@@ -253,9 +253,40 @@ main {
 .assetsStats{
     border: 1px red groove;    
     margin: 3% 0 0 0;
-    height: 20%;
+    height:100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.statsSubcontainer{
+    border: 1px blue groove;    
+    margin: 1%;
+    display:flex;   
+    justify-content: space-between;
 }
 
+.statsIcon{
+    border: 1px green groove;  
+    width: 20%;
+    margin: 1% 0 0 1%;
+    height: 40%;
+}
+.statsCaption{
+    margin-top: 0;
+    margin-left: 2%;    
+    width: 60%;
+    font-weight: 500;
+    font-size: 0.7em;
+    
+}
+
+
+.figures{
+    margin: 2% 9% 0 0;
+    height: 3em;
+    width: 3em;
+    font-weight: 500;
+    font-size: 1em;
+}
 
     
 

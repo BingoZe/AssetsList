@@ -1,3 +1,8 @@
+
+/* ==========================================
+   CHARTS
+   ========================================== */
+
 function renderAssetChart(){
   const assets = getAssets();
 
@@ -124,6 +129,34 @@ function countBy(items, field){
     }
     
     return count;  
+    
+}
+
+/* ==========================================
+   Indicators
+   ========================================== */
+function renderKpi(){
+    const assets = getAssets();
+    
+    /*Indicadores total assets*/
+    document.getElementById('totalAssetsFigures').textContent = assets.length || 0;
+    
+    /*Indicadores reparando*/
+    const statusCount = countBy(assets, "assetStatus");
+    document.getElementById('repairingFigures').textContent = statusCount["Repairing"] || 0;
+    
+    /*Indicadores disponivel*/
+    const activeCount = countBy(assets, "assetStatus");
+    document.getElementById('availableFigures').textContent = statusCount["Active"] || 0;
+    
+    /*Indicadores net value*/
+    let netValueCount = 0;
+    
+    assets.forEach((asset) => {
+        netValueCount+= Number(asset.netValue);
+    });
+    
+    document.getElementById('netValueFigures').textContent = netValueCount.toLocaleString();
     
 }
 
