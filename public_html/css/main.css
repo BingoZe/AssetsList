@@ -237,8 +237,8 @@ main {
     
 }
 .chartContainer{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+        
 }
 
     

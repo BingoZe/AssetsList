@@ -4,8 +4,9 @@ function renderAssetChart(){
   const ctxType = document.getElementById('typeChart');  
   const ctxStatus = document.getElementById('statusChart');  
   const ctxLocation = document.getElementById('locationChart');  
+  const ctxYear = document.getElementById('yearChart');  
   
-  if(!ctxType || !ctxStatus || !ctxLocation ){
+  if(!ctxType || !ctxStatus || !ctxLocation ||!ctxYear ){
     return;
   }
     
@@ -104,6 +105,39 @@ function renderAssetChart(){
           }
         }
       });
+      
+    const yearCount = {};
+    
+    for(const asset of assets){
+        if(yearCount[asset.acquisitionYear]){
+            yearCount[asset.acquisitionYear]++;
+        }else{
+            yearCount[asset.acquisitionYear] = 1;
+        }
+    }
+    
+    const yearLabels = Object.keys(yearCount);
+    const yearData = Object.values(yearCount);
+    
+    
+    new Chart(ctxYear, {
+        type:'line',
+        data:{
+            labels: yearLabels,
+            datasets: [{
+                label: 'Acquisition Year',
+                data:yearData,
+                borderWidth:1
+            }]
+        },
+       options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }        
+    });  
       
     
 }
