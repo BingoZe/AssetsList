@@ -10,15 +10,7 @@ function renderAssetChart(){
     return;
   }
     
-  const typeCount = {};
-
-  for (const asset of assets) {
-    if (typeCount[asset.type]) {
-        typeCount[asset.type]++;
-    } else {
-        typeCount[asset.type] = 1;
-        }
-    }
+  const typeCount = countBy(assets,'type');
 
     const labels = Object.keys(typeCount);
     const data = Object.values(typeCount);  
@@ -42,15 +34,8 @@ function renderAssetChart(){
         }
       });
       
-  const statusCount = {};
+  const statusCount = countBy(assets,'assetStatus');
 
-  for (const asset of assets) {
-    if (statusCount[asset.assetStatus]) {
-        statusCount[asset.assetStatus]++;
-    } else {
-        statusCount[asset.assetStatus] = 1;
-        }
-    }
 
     const statusLabels = Object.keys(statusCount);
     const statusData = Object.values(statusCount);  
@@ -74,15 +59,7 @@ function renderAssetChart(){
         }
       });
    
-    const locationCount = {};
-    
-    for(const asset of assets){
-        if(locationCount[asset.location]){
-            locationCount[asset.location]++;
-        }else{
-            locationCount[asset.location]= 1;
-        }
-    }
+    const locationCount = countBy(assets,'location');
         
     const locationLabels = Object.keys(locationCount);
     const locationData = Object.values(locationCount);
@@ -106,15 +83,7 @@ function renderAssetChart(){
         }
       });
       
-    const yearCount = {};
-    
-    for(const asset of assets){
-        if(yearCount[asset.acquisitionYear]){
-            yearCount[asset.acquisitionYear]++;
-        }else{
-            yearCount[asset.acquisitionYear] = 1;
-        }
-    }
+    const yearCount = countBy(assets,'acquisitionYear');
     
     const yearLabels = Object.keys(yearCount);
     const yearData = Object.values(yearCount);
@@ -142,4 +111,19 @@ function renderAssetChart(){
     
 }
 
-/*TESTE*/
+/*gera contador generico*/
+function countBy(items, field){
+    const count = {};
+    
+    for(const item of items){
+        if(count[item[field]]){
+            count[item[field]]++;
+        }else{
+            count[item[field]]=1;
+        }
+    }
+    
+    return count;  
+    
+}
+
