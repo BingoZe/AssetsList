@@ -108,4 +108,4 @@ function renderAssetChart(){
     
 }
 
-
+/*TESTE*/
