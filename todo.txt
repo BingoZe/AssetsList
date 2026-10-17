@@ -2,11 +2,6 @@
 2. Pesquisa
 3. Filtros
 4. Dashboard com métricas
-            Dashboard
-        ├── Assets por Status (Pie)
-        ├── Assets por Tipo (Bar)
-        ├── Assets por Localização (Bar)
-        └── Assets por Ano (Line)
 5. Export CSV
 6. Polimento visual
 7. Documentação
@@ -65,7 +60,7 @@ ASSET VALIDATION
 [Feito] Warranty Date >= Acquisition Date
         To define Financial Year in settings. This will  be taken into account for depreciation.
 [Feito] Ordenacao bubble sort
-[Feito] Dashboard - Charts
+[Feito] Dashboard - Charts & KPIs
 
 
 05 Oct 

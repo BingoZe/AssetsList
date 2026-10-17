@@ -230,64 +230,106 @@ main {
 /* ==========================================
    INDEX - DASHBOARD
    ========================================== */
-.assetCharts{
-    width: 80%;
-    margin-left:6%;
-    margin-top: 2%;
-}
-
-.assetCharts:nth-child(3){
-    width: 60%; 
-    margin-top: 3%;
-}
-
-.assetCharts:nth-child(4){
-    margin-top: 22%;
-}
 .chartContainer{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-        
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:20px;
+}
+
+.assetCharts{
+    width:100%;
+    min-width:0;
+    overflow:hidden;
+
+    padding:15px;
+    background:#fff;
+    border:1px solid #e3e6f0;
+    border-radius:8px;
 }
 
 .assetsStats{
-    border: 1px red groove;    
-    margin: 3% 0 0 0;
-    height:100px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 20px;
+
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:15px;
 }
+
 .statsSubcontainer{
-    border: 1px blue groove;    
-    margin: 1%;
-    display:flex;   
-    justify-content: space-between;
+    background:#fff;
+    border:1px solid #e3e6f0;
+    border-radius:8px;
+
+    min-height:90px;
+    padding:15px;
+
+    display:flex;
+    align-items:center;
 }
 
 .statsIcon{
-    border: 1px green groove;  
-    width: 20%;
-    margin: 1% 0 0 1%;
-    height: 40%;
-}
-.statsCaption{
-    margin-top: 0;
-    margin-left: 2%;    
-    width: 60%;
-    font-weight: 500;
-    font-size: 0.7em;
-    
+    width:48px;
+    height:48px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#E8F0FF;
+    border-radius:8px;
+    flex-shrink:0;
 }
 
+.statsCaption{
+    flex:1;
+    margin-left:12px;
+
+    font-size:0.8rem;
+    font-weight:600;
+    color:#858796;
+}
+
+.statsCaption p{
+    margin:0;
+}
 
 .figures{
-    margin: 2% 9% 0 0;
-    height: 3em;
-    width: 3em;
-    font-weight: 500;
-    font-size: 1em;
+    font-size:1.2rem;
+    font-weight:700;
+    color:#4e73df;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
+#netValueFigures{
+    font-size:1rem;
+}
+
+.statsIcon svg{
+    display:block;
+}
+
+#totalAssets{
+    border-left-color: pink;
+    border-left-width: 2px;
+}
+
+#repairAssets{
+    border-left-color: #f6c23e;
+    border-left-width: 2px;
+}
+
+#availableAssets{
+    border-left-color: #1cc88a;
+    border-left-width: 2px;
+}
+
+#netValueAssets{
+    border-left-color: red;
+    border-left-width: 2px;
+}
     
 
 
