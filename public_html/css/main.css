@@ -231,15 +231,31 @@ main {
    INDEX - DASHBOARD
    ========================================== */
 .assetCharts{
-    width: 40%;
-    margin:2%;
-    
-    
+    width: 80%;
+    margin-left:6%;
+    margin-top: 2%;
+}
+
+.assetCharts:nth-child(3){
+    width: 60%; 
+    margin-top: 3%;
+}
+
+.assetCharts:nth-child(4){
+    margin-top: 22%;
 }
 .chartContainer{
     display: grid;
+    grid-template-columns: 1fr 1fr;
         
 }
+
+.assetsStats{
+    border: 1px red groove;    
+    margin: 3% 0 0 0;
+    height: 20%;
+}
+
 
     
 
