@@ -1,0 +1,325 @@
+            
+<div class="mainPage">
+    <div class="mainHeader">
+        <h2>User</h2>
+        <div class="subMainHeader">
+            <p>Manage and track all organizational assets</p>
+            <button class="buttonExport" id="buttonExport">Export</button>
+            <button class="btnAddNewAsset" onclick="event.preventDefault(); loadPage('pages/addAsset.html')"> + Add New Asset</button>
+        </div>
+            <div class="assetsStats">
+
+                <!-- Total Assets -->
+                <div class="statsSubcontainer" id="totalAssets">
+
+                    <div class="statsIcon" id="totalAssetsIcon">
+                        <svg viewBox="0 0 64 64" width="28" height="28">
+                            <rect x="12" y="18" width="40" height="30" rx="4"
+                                  fill="#E8F0FF"
+                                  stroke="#4E73DF"
+                                  stroke-width="2"/>
+
+                            <path d="M12 26H52"
+                                  stroke="#4E73DF"
+                                  stroke-width="2"/>
+
+                            <path d="M32 18V48"
+                                  stroke="#4E73DF"
+                                  stroke-width="2"/>
+                        </svg>
+                    </div>
+
+                    <div class="statsCaption">
+                        <p>Total assets</p>
+                    </div>
+
+                    <div class="figures" id="totalAssetsFigures"></div>
+                </div>
+
+
+
+                <!-- Repairing -->
+                <div class="statsSubcontainer" id="repairAssets">
+
+                    <div class="statsIcon" id="repairingIcon">
+                        <svg viewBox="0 0 64 64" width="28" height="28">
+                            <circle cx="25"
+                                    cy="25"
+                                    r="8"
+                                    fill="#E8F0FF"
+                                    stroke="#4E73DF"
+                                    stroke-width="2"/>
+
+                            <path d="M30 30L46 46"
+                                  stroke="#4E73DF"
+                                  stroke-width="4"
+                                  stroke-linecap="round"/>
+
+                            <circle cx="49"
+                                    cy="49"
+                                    r="4"
+                                    fill="#4E73DF"/>
+                        </svg>
+                    </div>
+
+                    <div class="statsCaption">
+                        <p>Assets being repaired</p>
+                    </div>
+
+                    <div class="figures" id="repairingFigures"></div>
+                </div>
+
+
+
+                <!-- Available -->
+                <div class="statsSubcontainer" id="availableAssets">
+
+                    <div class="statsIcon" id="availableIcon">
+                        <svg viewBox="0 0 64 64" width="28" height="28">
+                            <circle cx="32"
+                                    cy="32"
+                                    r="20"
+                                    fill="#E8F0FF"
+                                    stroke="#4E73DF"
+                                    stroke-width="2"/>
+
+                            <path d="M22 33L29 40L43 25"
+                                  fill="none"
+                                  stroke="#4E73DF"
+                                  stroke-width="4"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="statsCaption">
+                        <p>Available assets</p>
+                    </div>
+
+                    <div class="figures" id="availableFigures"></div>
+                </div>
+
+
+
+                <!-- Net Value -->
+                <div class="statsSubcontainer" id="netValueAssets">
+
+                    <div class="statsIcon" id="netValueIcon">
+                        <svg viewBox="0 0 64 64" width="28" height="28">
+                            <circle cx="32"
+                                    cy="32"
+                                    r="20"
+                                    fill="#E8F0FF"
+                                    stroke="#4E73DF"
+                                    stroke-width="2"/>
+
+                            <text x="32"
+                                  y="40"
+                                  text-anchor="middle"
+                                  font-size="24"
+                                  fill="#4E73DF"
+                                  font-family="Arial, sans-serif">
+                                €
+                            </text>
+                        </svg>
+                    </div>
+
+                    <div class="statsCaption">
+                        <p>Net value of assets</p>
+                    </div>
+
+                    <div class="figures" id="netValueFigures"></div>
+                </div>
+
+            </div>
+            
+        </div>   
+
+        <div class="searchNav">
+            <div class="searchNavElement">
+                <label for="searchField">
+                    Search
+                </label>    
+                <input
+                    type="text"
+                    id="searchField"
+                    name="searchField"
+                    placeholder="Search by ID, Name or Service Tag..."
+                    >
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="typeSelect">
+                    Type
+                </label>
+
+                <select id="typeSelect" class="typeSelect">
+                    <option id="typeAll" selected>All types</option>
+                    <option id="typeLaptop">Laptop</option>
+                    <option id="typeMobile">Mobile</option>
+                    <option id="typeServer">Server</option>
+                    <option id="typeVirtualDesktop">Virtual Desktop</option>
+                    <option id="typeDesktop">Desktop</option>
+                    <option id="typeMonitor">Monitor</option>
+                    <option id="typePeripherals">Peripherals</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="assetStatus">
+                    Status
+                </label>
+
+                <select id="assetStatus" class="statusSelect">
+                    <option id="statusAll">All status</option>
+                    <option id="statusActive">Active</option>
+                    <option id="statusInactive">Inactive</option>
+                    <option id="statusRepairing">Repairing</option>
+                    <option id="statusRetired">Retired</option>
+                    <option id="statusLost">Lost</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="locationSelect">
+                    Location
+                </label>
+
+                <select id="locationSelect" class="locationSelect">
+                    <option id="allLocation">All Locations</option>
+                    <option id="deployed">Deployed</option>
+                    <option id="returned">Returned</option>
+                    <option id="comms">Comms</option>
+                    <option id="trainingRoom">Training Room</option>
+                    <option id="meetingPod">Meeting Pod</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="responsibleUserSelect">
+                    Responsible User
+                </label>
+
+                <select id="responsibleUserSelect" class="responsibleUserSelect">
+                    <option id="allUsers">All Users</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="acquisitionYearSelect">
+                    Acquisition Year 
+                </label>
+
+                <select id="acquisitionYearSelect" class="acquisitionYearSelect">
+                    <option id="allYears">All Years</option>
+                </select>
+            </div>      
+        </div>
+    </div>
+        <!-- MAIN CONTENT-->
+    <div class="mainContainer">
+        <table class="allAssets">
+            <thead class="tableHeader">
+                <tr>
+                    
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Username</span>
+                            <button class="sortingButton" data-sort="assetId">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                   
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Email</span>
+                            <button class="sortingButton" data-sort="assetName">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Role</span>
+                           <button class="sortingButton" data-sort="serviceTag">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Department</span>
+                            <button class="sortingButton" data-sort="type">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                                                              
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Status</span>
+                            <button class="sortingButton" data-sort="assetStatus">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Last Access</span>
+                            <button class="sortingButton" data-sort="user">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                    
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Actions</span>
+                        </div>
+                    </th>
+                    
+                    
+                                       
+                </tr>
+                             
+             </thead>
+             
+
+             <tbody id="tableBody" class="tableBody">
+                 
+
+             </tbody>
+
+
+        </table>
+    </div>              
+</div>
+

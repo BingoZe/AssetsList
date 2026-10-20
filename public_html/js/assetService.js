@@ -68,7 +68,7 @@ function initAssetForm(){
     /*criacao e validacao de assetID*/
     const generatedId = setAssetId();
     const assetId = `AST${generatedId.toString().padStart(3,"0")}`;
-    
+   
     
     /*name validation*/
     const assetName = setAssetName();
