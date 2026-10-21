@@ -35,7 +35,6 @@ async function loadPage(page){
 }
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
     loadPage("pages/dashboard.html");
 });
