@@ -34,26 +34,7 @@ async function loadPage(page){
    
 }
 
-/*Funcao viewAsset tem a funcao de guardar qual asset foi clicado e qual modo (ver ou editar)*/
-function viewAsset(assetId,mode){
-     
-    /*salva o assetId e o modo a ser visualizado no sessionStorage*/
-    
-    sessionStorage.setItem("viewAssetId", assetId);
-    sessionStorage.setItem("mode",mode);
-    
-    loadPage('pages/viewAsset.html');
-      
-}
 
-
-function closeViewAsset(){
-    sessionStorage.removeItem("viewAssetId");
-    sessionStorage.removeItem("mode");
-    
-    loadPage('pages/assetRegister.html');
-
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     loadPage("pages/dashboard.html");
