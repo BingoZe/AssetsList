@@ -3,13 +3,11 @@
     <div class="mainHeader">
         <h2>User</h2>
         <div class="subMainHeader">
-            <p>Manage and track all organizational assets</p>
-            <button class="buttonExport" id="buttonExport">Export</button>
-            <button class="btnAddNewAsset" onclick="event.preventDefault(); loadPage('pages/addAsset.html')"> + Add New Asset</button>
+            <p>Manage all users</p>
+            <button class="btnAddNewAsset" onclick="event.preventDefault(); loadPage('pages/addUser.html')"> + New User</button>
         </div>
-            <div class="assetsStats">
+            <div class="stats">
 
-                <!-- Total Assets -->
                 <div class="statsSubcontainer" id="totalAssets">
 
                     <div class="statsIcon" id="totalAssetsIcon">
@@ -30,7 +28,7 @@
                     </div>
 
                     <div class="statsCaption">
-                        <p>Total assets</p>
+                        <p>Total Users</p>
                     </div>
 
                     <div class="figures" id="totalAssetsFigures"></div>
@@ -63,7 +61,7 @@
                     </div>
 
                     <div class="statsCaption">
-                        <p>Assets being repaired</p>
+                        <p>Technicians</p>
                     </div>
 
                     <div class="figures" id="repairingFigures"></div>
@@ -93,7 +91,7 @@
                     </div>
 
                     <div class="statsCaption">
-                        <p>Available assets</p>
+                        <p>Auditors</p>
                     </div>
 
                     <div class="figures" id="availableFigures"></div>
@@ -125,7 +123,7 @@
                     </div>
 
                     <div class="statsCaption">
-                        <p>Net value of assets</p>
+                        <p>End users</p>
                     </div>
 
                     <div class="figures" id="netValueFigures"></div>
@@ -133,8 +131,6 @@
 
             </div>
             
-        </div>   
-
         <div class="searchNav">
             <div class="searchNavElement">
                 <label for="searchField">
@@ -150,18 +146,12 @@
             
             <div class="searchNavElement">
                 <label for="typeSelect">
-                    Type
+                    Roles
                 </label>
 
                 <select id="typeSelect" class="typeSelect">
                     <option id="typeAll" selected>All types</option>
-                    <option id="typeLaptop">Laptop</option>
-                    <option id="typeMobile">Mobile</option>
-                    <option id="typeServer">Server</option>
-                    <option id="typeVirtualDesktop">Virtual Desktop</option>
-                    <option id="typeDesktop">Desktop</option>
-                    <option id="typeMonitor">Monitor</option>
-                    <option id="typePeripherals">Peripherals</option>
+                    
                 </select>
             </div>
             
@@ -178,42 +168,7 @@
                     <option id="statusRetired">Retired</option>
                     <option id="statusLost">Lost</option>
                 </select>
-            </div>
-            
-            <div class="searchNavElement">
-                <label for="locationSelect">
-                    Location
-                </label>
-
-                <select id="locationSelect" class="locationSelect">
-                    <option id="allLocation">All Locations</option>
-                    <option id="deployed">Deployed</option>
-                    <option id="returned">Returned</option>
-                    <option id="comms">Comms</option>
-                    <option id="trainingRoom">Training Room</option>
-                    <option id="meetingPod">Meeting Pod</option>
-                </select>
-            </div>
-            
-            <div class="searchNavElement">
-                <label for="responsibleUserSelect">
-                    Responsible User
-                </label>
-
-                <select id="responsibleUserSelect" class="responsibleUserSelect">
-                    <option id="allUsers">All Users</option>
-                </select>
-            </div>
-            
-            <div class="searchNavElement">
-                <label for="acquisitionYearSelect">
-                    Acquisition Year 
-                </label>
-
-                <select id="acquisitionYearSelect" class="acquisitionYearSelect">
-                    <option id="allYears">All Years</option>
-                </select>
-            </div>      
+            </div>  
         </div>
     </div>
         <!-- MAIN CONTENT-->
@@ -305,8 +260,6 @@
                             <span class="thTitle">Actions</span>
                         </div>
                     </th>
-                    
-                    
                                        
                 </tr>
                              
