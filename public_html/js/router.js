@@ -30,8 +30,7 @@ async function loadPage(page){
         renderAssetChart();
         renderKpi();
     }
- 
-   
+    
 }
 
 

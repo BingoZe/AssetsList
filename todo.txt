@@ -1,76 +1,270 @@
-1. Corrigir bugs restantes
-2. Pesquisa
-3. Filtros
-4. Dashboard com métricas
-5. Export CSV
-6. Polimento visual
-7. Documentação
-8. Apresentação
+TCC - Asset Management System
 
+STATUS
 
-Prioridade 1 - Qualidade do CRUD
-Prioridade 2 - Pesquisa
-Prioridade 3 - Filtros
-Prioridade 5 - Dashboard
-Prioridade 6 - Export CSV
-Prioridade 7 - Estatísticas
-Prioridade 8 - Melhorar arquitetura
-       muita lógica dentro de poucos arquivos.
+[FEITO] Assets
+- CRUD
+- Validações
+- Duplicidade
+- Pesquisa
+- Ordenação
+- Export CSV
+- Dashboard
+- KPIs
+- Gráficos
 
-          Tenho que separar:
-          
-          Plain Text
-          router.js
-          crud.js
-          storage.js
-          dashboard.js
-          table.js
+[FEITO] Documentação Base
+- Contextualização
+- Glossário
+- Requisitos
+- Casos de Uso
+- Diagramas
+- Protótipos
+- Referências
 
+====================================================
+PRIORIDADE 1 - USERS
+====================================================
 
-04 OCt 2026
+- Add User
+- View User
+- Edit User
+- Delete User
 
-Terminar Assets
-Plain Text
-CRUD perfeito
 Validações
-Duplicidade
-Export
-Ordenação
+- Employee ID único
+- Email válido
+- Department obrigatório
+- Role obrigatório
 
-Fecha o módulo Asset primeiro.
-Validações - Feito
-Mensagens de erro amigáveis
-Prevenção de duplicidade - Feito
-Campos obrigatórios 
-Confirmações
-Feedback visual
-Ordenação funcionando - Feito
-Pesquisa funcionando - Feito
-Export funcionando - Feito
+Funcionalidades
+- Pesquisa
+- Ordenação
+- Filtros
 
-ASSET VALIDATION
- 
-[Feito] Asset ID único
-[Feito] Asset Name obrigatório
-[Feito] Service Tag obrigatória
-[Feito] Service Tag única
-[Feito] User Email válido
-[Feito] Acquisition Value >= 0
-[Feito] Useful Life > 0
-[Feito] Warranty Date >= Acquisition Date
-        To define Financial Year in settings. This will  be taken into account for depreciation.
-[Feito] Ordenacao bubble sort
-[Feito] Dashboard - Charts & KPIs
+Roles
+- End User
+- Technician
+- Auditor
+
+====================================================
+PRIORIDADE 2 - MAINTENANCE
+====================================================
+
+- Lista de assets em reparo
+- Ticket Number
+- Repair Cost
+- Technician Notes
+- Repair History
+
+Decisão
+- Maintenance continua associada ao Asset
+- Não criar entidade Repair separada
+
+====================================================
+PRIORIDADE 3 - LOGIN E AUTENTICAÇÃO
+====================================================
+
+- Login Page
+- Logout
+- Session Control
+
+RBAC
+- Technician
+- Auditor
+
+Opcional
+- End User sem acesso ao sistema
+
+====================================================
+PRIORIDADE 4 - BANCO DE DADOS
+====================================================
+
+Escolher solução
+- Supabase (preferencial)
+- PostgreSQL
+
+Migrar
+- Assets
+- Users
+- Maintenance
+
+Remover dependência de:
+- LocalStorage
+
+Criar tabelas
+- Assets
+- Users
+- Roles
+- Maintenance
+
+Testar CRUD completo no banco
+
+====================================================
+PRIORIDADE 5 - DEPLOY
+====================================================
+
+Frontend
+- Vercel
+
+Backend / Banco
+- Supabase
+
+Testes
+- Testar acesso externo
+- Testar diferentes dispositivos
+- Testar persistência dos dados
+
+====================================================
+PRIORIDADE 6 - REPORTS
+====================================================
+
+- Inventory Report
+- Assets by Type
+- Assets by Location
+- Assets by User
+- Repair History
+- Warranty Expiry
+
+Exportação
+- CSV
+- Excel (opcional)
+- PDF (opcional)
+
+====================================================
+PRIORIDADE 7 - SETTINGS
+====================================================
+
+- Financial Year
+- Depreciation Settings
+- Default Values
+
+====================================================
+PRIORIDADE 8 - USER SETTINGS
+====================================================
+
+- My Profile
+- Update Details
+
+Se Login implementado:
+- Change Password
+
+====================================================
+PRIORIDADE 9 - NOTIFICAÇÕES
+====================================================
+
+- Warranty Expiry Warning
+- Assets In Repair Warning
+- Dashboard Alerts
+
+Se faltar tempo:
+- Dashboard warnings apenas
+- Sem envio de email
+
+====================================================
+PRIORIDADE 10 - POLIMENTO VISUAL
+====================================================
+
+- Padronizar containers
+- Padronizar fieldsets
+- Padronizar botões
+- Melhorar espaçamento
+- Melhorar responsividade
+- Melhorar feedback visual
+
+====================================================
+PRIORIDADE 11 - TESTES FINAIS
+====================================================
+
+Assets
+- Create
+- Edit
+- Delete
+- Export
+
+Users
+- Create
+- Edit
+- Delete
+
+Maintenance
+- Create
+- Edit
+- Search
+
+Login
+- Login
+- Logout
+
+Banco
+- Persistência
+- Integridade
+
+====================================================
+PRIORIDADE 12 - ATUALIZAÇÃO DA DOCUMENTAÇÃO
+====================================================
+
+- Screenshots finais
+- Diagramas finais
+- Ajustes de requisitos
+- Ajustes de implementação
+- Revisão ortográfica
+- ABNT
+
+====================================================
+PRIORIDADE 13 - APRESENTAÇÃO
+====================================================
+
+- Problema
+- Contextualização
+- Dashboard
+- Assets
+- Users
+- Maintenance
+- Reports
+- Banco de Dados
+- Deploy
+- Conclusão
+
+====================================================
+PRIORIDADE 14 - REFATORAÇÃO (SE SOBRAR TEMPO)
+====================================================
+
+- router.js
+- assetService.js
+- userService.js
+- dashboardService.js
+- tableService.js
+- storageService.js
+
+- Generalizar CSS
+- Reduzir duplicação
+- Melhorar organização
+
+====================================================
+CAMINHO CRÍTICO
+====================================================
+
+1. Users
+2. Maintenance
+3. Login
+4. Banco de Dados (Supabase)
+5. Deploy
+6. Reports
+7. Settings
+8. User Settings
+9. Notificações
+10. Polimento
+11. Documentação
+12. Apresentação
+13. Refatoração
 
 
-05 Oct 
+Não refatorar código funcionando antes de:
+- Users concluído
+- Maintenance concluído
+- Banco funcionando
+- Deploy funcionando
 
-Começar Maintenance
-Um reparo é apenas um atributo do Asset ou uma entidade própria?
-
-
-06 Oct
-Começar Users
-Technician
-Auditor
-End User
+Funcionalidade > Arquitetura
+Entrega > Perfeição
