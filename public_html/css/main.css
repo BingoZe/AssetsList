@@ -337,7 +337,7 @@ main {
    PAGE: ADD ASSET
    ========================================== */
 
-.mainPage .generalInfo, .OwnerLocation, .warranty, .financial, .repair{
+.mainPage .formSection{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -366,10 +366,12 @@ fieldset{
     padding-left: 1%;
 }
 
-.mainPage input, select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.mainPage input,
+.mainPage select,
+.mainPage textarea{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:4px;
 }
 
 .headerUl{
@@ -393,7 +395,7 @@ fieldset{
     color: var(--blue);
 }
 
-.assetContainer {
+.formContainer {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -416,7 +418,7 @@ fieldset{
     display:block;
 }
 
-.btnAddNewAsset, .buttonExport{
+.btnPrimary, .buttonExport{
     background-color: var(--blue);
     color: white;
     border: none;
