@@ -12,7 +12,7 @@ async function loadPage(page){
     }
     
     initAssetForm();
-    
+        
     if(page.includes("assetRegister")){
         renderAssets();
         searchElement();
@@ -30,6 +30,18 @@ async function loadPage(page){
         renderAssetChart();
         renderKpi();
     }
+    
+    
+    initUserForm();
+    
+    if(page.includes("users")){
+        renderUsers();
+    }
+    
+    if(page.includes("viewUser")){
+        renderViewUser();
+    }    
+    
     
 }
 

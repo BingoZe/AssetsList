@@ -171,7 +171,11 @@
             </div>  
         </div>
     </div>
+    
+    
         <!-- MAIN CONTENT-->
+        
+        
     <div class="mainContainer">
         <table class="allAssets">
             <thead class="tableHeader">
@@ -179,8 +183,8 @@
                     
                     <th>
                         <div class="tableHeaderElement">
-                            <span class="thTitle">Username</span>
-                            <button class="sortingButton" data-sort="assetId">
+                            <span class="thTitle">User ID</span>
+                            <button class="sortingButton" data-sort="firstName">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
                                 <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
@@ -189,11 +193,50 @@
                             </button>
                         </div>
                     </th>
-                   
+                                     
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">User</span>
+                            <button class="sortingButton" data-sort="userEmail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
                     <th>
                         <div class="tableHeaderElement">
                             <span class="thTitle">Email</span>
-                            <button class="sortingButton" data-sort="assetName">
+                           <button class="sortingButton" data-sort="role">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Status</span>
+                            <button class="sortingButton" data-sort="department">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                                                              
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Department</span>
+                            <button class="sortingButton" data-sort="userStatus">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
                                 <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
@@ -206,45 +249,6 @@
                     <th>
                         <div class="tableHeaderElement">
                             <span class="thTitle">Role</span>
-                           <button class="sortingButton" data-sort="serviceTag">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
-                                <path d="m21 16-4 4-4-4"></path>
-                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
-                                <path d="M7 4v16"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </th>
-                                       
-                    <th>
-                        <div class="tableHeaderElement">
-                            <span class="thTitle">Department</span>
-                            <button class="sortingButton" data-sort="type">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
-                                <path d="m21 16-4 4-4-4"></path>
-                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
-                                <path d="M7 4v16"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </th>
-                                                                              
-                    <th>
-                        <div class="tableHeaderElement">
-                            <span class="thTitle">Status</span>
-                            <button class="sortingButton" data-sort="assetStatus">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
-                                <path d="m21 16-4 4-4-4"></path>
-                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
-                                <path d="M7 4v16"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </th>
-                                       
-                    <th>
-                        <div class="tableHeaderElement">
-                            <span class="thTitle">Last Access</span>
                             <button class="sortingButton" data-sort="user">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
