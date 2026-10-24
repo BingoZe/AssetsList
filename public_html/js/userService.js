@@ -269,18 +269,20 @@ function saveUpdatedUser(){
     */
 
 function setUserId(){
-    const user = getUsers();
-    /*Busca o maior assetId*/
+    const users = getUsers();
+    /*Busca o maior userId*/
       let max= 0;  
-
-        for(let j = 0; j < user.length;j++){
-            let userItem = parseInt(user[j].userId.slice(3));
-
+        console.log(users);
+        
+        for(let j = 0; j < users.length;j++){
+            let userItem = parseInt(users[j].userId.slice(3));
+            console.log(userItem);
             if(userItem > max){
                 max = userItem;
+                console.log(max);
             }
         }
-
+        
     return max+1;
 
 }
