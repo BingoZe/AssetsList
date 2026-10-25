@@ -194,15 +194,10 @@ async function renderViewUser(){
             document.getElementById("firstName").value =users[i].firstName;
             document.getElementById("lastName").value =users[i].lastName;
             document.getElementById("userEmail").value =users[i].userEmail;
-            console.log(users[i].userEmail);
             document.getElementById("userStatus").value =users[i].userStatus;
-            console.log(users[i].userStatus);
             document.getElementById("userType").value =users[i].userType;
-            console.log(users[i].userType);
             document.getElementById("department").value =users[i].department;
-            console.log(users[i].department);
             document.getElementById("role").value =users[i].role;
-            console.log(users[i].role);
    
             /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
             if(selectedMode === "edit"){                                       
@@ -225,24 +220,23 @@ async function renderViewUser(){
 /*deleteAsset() representa o DELETE*/
 
 async function deleteUser(userId){
-    const users = await getUsers();
     
     /*confirmando com usuario antes de deletar*/
     if(!confirm("Are you sure you want to delete it?")){
         return;
     }   
     
-    /*buscando o assetID dentro do array de assets*/
-     for(let i = 0; i < users.length;i++){
-         if(users[i].userId === userId){
-             users.splice(i,1);
-             break;
-            }
-        
-        }
-    
-        saveUsers(users);
-        renderUsers();    
+    const { error } = await supabaseClient
+        .from('users')
+        .delete()
+        .eq('userId', userId);
+
+    if(error){
+        console.error(error);
+        return;
+    }
+
+    await renderUsers();
 }
 
 
@@ -253,39 +247,63 @@ async function deleteUser(userId){
     */
   
 async function saveUpdatedUser(){
-    const selectedAssetId = sessionStorage.getItem("viewUserId"); 
+    const selectedUserId = parseInt(sessionStorage.getItem("viewUserId")); 
+    console.log("Selected user",selectedUserId);
 
     const users = await getUsers();
     
-    /*iterando sobre todos os registros*/
-    for(let i= 0; i <users.length;i++){
-        
-        /*procurando ID selecionada e puxando atributos*/
-        if(users[i].userId===selectedAssetId){
-   
-            users[i].firstName = setFirstName();
-            if(!users[i].firstName){
-                alert("Invalid name!");
-                return;
-            }
-            
-            users[i].lastName = setLastName();
-            if(!users[i].lastName){
-                alert("Invalid last name!");
-                return;
-            }
-            
-            users[i].userEmail = document.getElementById("userEmail").value;
-            users[i].userStatus = document.getElementById("userStatus").value;
-            users[i].department = document.getElementById("department").value;
-            users[i].role = document.getElementById("role").value;
-            
-            break;   
-        }
+    const updatedUser = users.find(
+        updatedUser => updatedUser.userId === selectedUserId
+    );
+    console.log("updated user",updatedUser);
+    
+    users.forEach(user => {
+        console.log(user.userId);
+    });
+    
+    if(!updatedUser){
+       alert("User not found");
+        return;
     }
     
-    saveUsers(users);  
+    
+    const updatedFirstName= setFirstName();
+    if(!updatedFirstName){
+        alert("Invalid last name!");
+        return;
+    }
+    
+    const updatedLastName= setLastName();
+    if(!updatedLastName){
+        alert("Invalid last name!");
+        return;
+    }
 
+
+    updatedUser.userEmail = document.getElementById("userEmail").value;
+    updatedUser.userStatus = document.getElementById("userStatus").value;
+    updatedUser.userType = document.getElementById("userType").value;
+    updatedUser.department = document.getElementById("department").value;
+    updatedUser.role = document.getElementById("role").value;
+
+    const { error } = await supabaseClient
+         .from('users')
+         .update({
+            firstName:updatedFirstName,
+            lastName: updatedLastName,
+            userEmail:updatedUser.userEmail,
+            userStatus: updatedUser.userStatus,
+            userType: updatedUser.userType,
+            department:updatedUser.department,
+            role: updatedUser.role
+         })
+         .eq('userId', updatedUser.userId);
+
+    if(error){
+        console.error(error);
+        return;
+    }    
+    
     alert("Record saved");
       
     closeViewUser();
