@@ -36,6 +36,7 @@ async function loadPage(page){
     
     if(page.includes("users")){
         renderUsers();
+        renderUsersKpi();
     }
     
     if(page.includes("viewUser")){

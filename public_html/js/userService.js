@@ -67,7 +67,7 @@ function initUserForm(){
 
     /*criacao e validacao de assetID*/
     const generatedUserId = setUserId();
-    const userId = `USR-${generatedUserId.toString().padStart(3,"0")}`;
+    const userId = `USR${generatedUserId.toString().padStart(3,"0")}`;
    
     
     /*name validation*/
@@ -85,6 +85,7 @@ function initUserForm(){
     
     const userEmail = document.getElementById("userEmail").value;
     const userStatus = document.getElementById("userStatus").value;
+    const userType = document.getElementById("userType").value;
     const department = document.getElementById("department").value;
     const role = document.getElementById("role").value;
   
@@ -95,6 +96,7 @@ function initUserForm(){
     lastName,
     userEmail,
     userStatus,
+    userType,
     department,
     role
 };
@@ -135,8 +137,8 @@ function renderUsers(users = getUsers()){
             <td>${user.firstName} ${user.lastName}</td>
             <td>${user.userEmail}</td>
             <td>${user.userStatus}</td>
-            <td>${user.department}</td>
             <td>${user.role}</td>
+            <td>${user.userType}</td>
             <td>
                 <button class="btTdItemView" onclick="viewUser('${user.userId}','view')">View</button>
                 <button class="btTdItemEdit" onclick="viewUser('${user.userId}','edit')">Edit</button>
@@ -170,6 +172,7 @@ function renderViewUser(){
             document.getElementById("lastName").value =users[i].lastName;
             document.getElementById("userEmail").value =users[i].userEmail;
             document.getElementById("userStatus").value =users[i].userStatus;
+            document.getElementById("userType").value =users[i].userType;
             document.getElementById("department").value =users[i].department;
             document.getElementById("role").value =users[i].role;
    

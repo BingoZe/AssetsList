@@ -168,3 +168,23 @@ function renderKpi(){
     
 }
 
+function renderUsersKpi(){
+    const users = getUsers();
+    
+    /*Indicadores total users*/
+    document.getElementById('totalUsersFigures').textContent = users.length || 0;
+    
+    /*Indicadores technicians*/
+    const technicianCount = countBy(users, "userType");
+    document.getElementById('techniciansFigures').textContent = technicianCount["Technician"] || 0;
+    
+    /*Indicadores auditors*/
+    const auditorCount = countBy(users, "userType");
+    document.getElementById('auditorsFigures').textContent = auditorCount["Auditor"] || 0;
+    
+    /*Indicadores endusers*/
+    const enduserCount = countBy(users, "userType");
+    document.getElementById('endUsersFigures').textContent = enduserCount["End User"] || 0;
+    
+}
+

@@ -8,9 +8,9 @@
         </div>
             <div class="stats">
 
-                <div class="statsSubcontainer" id="totalAssets">
+                <div class="statsSubcontainer" id="totalUsers">
 
-                    <div class="statsIcon" id="totalAssetsIcon">
+                    <div class="statsIcon" id="totalUsersIcon">
                         <svg viewBox="0 0 64 64" width="28" height="28">
                             <rect x="12" y="18" width="40" height="30" rx="4"
                                   fill="#E8F0FF"
@@ -31,15 +31,15 @@
                         <p>Total Users</p>
                     </div>
 
-                    <div class="figures" id="totalAssetsFigures"></div>
+                    <div class="figures" id="totalUsersFigures"></div>
                 </div>
 
 
 
-                <!-- Repairing -->
-                <div class="statsSubcontainer" id="repairAssets">
+                <!-- Technician -->
+                <div class="statsSubcontainer" id="technicians">
 
-                    <div class="statsIcon" id="repairingIcon">
+                    <div class="statsIcon" id="techniciansIcon">
                         <svg viewBox="0 0 64 64" width="28" height="28">
                             <circle cx="25"
                                     cy="25"
@@ -64,15 +64,15 @@
                         <p>Technicians</p>
                     </div>
 
-                    <div class="figures" id="repairingFigures"></div>
+                    <div class="figures" id="techniciansFigures"></div>
                 </div>
 
 
 
-                <!-- Available -->
-                <div class="statsSubcontainer" id="availableAssets">
+                <!-- auditors -->
+                <div class="statsSubcontainer" id="auditors">
 
-                    <div class="statsIcon" id="availableIcon">
+                    <div class="statsIcon" id="auditorsIcon">
                         <svg viewBox="0 0 64 64" width="28" height="28">
                             <circle cx="32"
                                     cy="32"
@@ -94,15 +94,15 @@
                         <p>Auditors</p>
                     </div>
 
-                    <div class="figures" id="availableFigures"></div>
+                    <div class="figures" id="auditorsFigures"></div>
                 </div>
 
 
 
-                <!-- Net Value -->
-                <div class="statsSubcontainer" id="netValueAssets">
+                <!-- End users-->
+                <div class="statsSubcontainer" id="endUsers">
 
-                    <div class="statsIcon" id="netValueIcon">
+                    <div class="statsIcon" id="endUsersIcon">
                         <svg viewBox="0 0 64 64" width="28" height="28">
                             <circle cx="32"
                                     cy="32"
@@ -126,7 +126,7 @@
                         <p>End users</p>
                     </div>
 
-                    <div class="figures" id="netValueFigures"></div>
+                    <div class="figures" id="endUsersFigures"></div>
                 </div>
 
             </div>
@@ -164,9 +164,6 @@
                     <option id="statusAll">All status</option>
                     <option id="statusActive">Active</option>
                     <option id="statusInactive">Inactive</option>
-                    <option id="statusRepairing">Repairing</option>
-                    <option id="statusRetired">Retired</option>
-                    <option id="statusLost">Lost</option>
                 </select>
             </div>  
         </div>
@@ -184,7 +181,7 @@
                     <th>
                         <div class="tableHeaderElement">
                             <span class="thTitle">User ID</span>
-                            <button class="sortingButton" data-sort="firstName">
+                            <button class="sortingButton" data-sort="userId">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
                                 <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
@@ -197,7 +194,7 @@
                     <th>
                         <div class="tableHeaderElement">
                             <span class="thTitle">User</span>
-                            <button class="sortingButton" data-sort="userEmail">
+                            <button class="sortingButton" data-sort="user">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
                                 <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
@@ -210,7 +207,7 @@
                     <th>
                         <div class="tableHeaderElement">
                             <span class="thTitle">Email</span>
-                           <button class="sortingButton" data-sort="role">
+                           <button class="sortingButton" data-sort="userEmail">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
                                 <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
@@ -223,7 +220,7 @@
                     <th>
                         <div class="tableHeaderElement">
                             <span class="thTitle">Status</span>
-                            <button class="sortingButton" data-sort="department">
+                            <button class="sortingButton" data-sort="userStatus">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
                                 <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
@@ -235,8 +232,8 @@
                                                                               
                     <th>
                         <div class="tableHeaderElement">
-                            <span class="thTitle">Department</span>
-                            <button class="sortingButton" data-sort="userStatus">
+                            <span class="thTitle">Role</span>
+                            <button class="sortingButton" data-sort="role">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
                                 <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
@@ -248,8 +245,8 @@
                                        
                     <th>
                         <div class="tableHeaderElement">
-                            <span class="thTitle">Role</span>
-                            <button class="sortingButton" data-sort="user">
+                            <span class="thTitle">Type</span>
+                            <button class="sortingButton" data-sort="userType">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
                                 <path d="m21 16-4 4-4-4"></path>
                                 <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
@@ -269,12 +266,9 @@
                              
              </thead>
              
-
              <tbody id="tableBody" class="tableBody">
                  
-
              </tbody>
-
 
         </table>
     </div>              
