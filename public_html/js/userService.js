@@ -9,18 +9,37 @@
     */
 
 
-function getUsers(){
+async function getUsers(){
      
     try{
-        return JSON.parse(localStorage.getItem("user")) || [];
+        const {data, error} = 
+            await supabaseClient.from('users').select('*');
+                if(error){
+                console.log(error);
+                return [];
+            }
+        return data;
     }
     catch(error){
+        console.log(error);
         return [];
     }
 }
 
-function saveUsers(user){
-    return localStorage.setItem("user", JSON.stringify(user));
+async function saveUsers(user){
+
+    const { data, error } =
+        await supabaseClient
+            .from('users')
+            .insert([user]);
+
+    if(error){
+        console.log("ERROR:");
+        console.log(error);
+        return null;
+    }
+
+    return data;
 }
 
 function getMode(){
@@ -44,77 +63,77 @@ function getMode(){
 
 /*initAssetForm retorna os assets em tela - AssetRegister*/
 
-function initUserForm(){
+async function initUserForm(){
     const userForm = document.querySelector(".user-form");
     
     if(!userForm){
         return;
     }
               
-    userForm.addEventListener("submit",(event)=>{
-    event.preventDefault();
-    
-    const mode = getMode();
-    console.log(mode);
- 
-    if(mode === "edit"){
-        saveUpdatedUser();
-        return;
-    }else if (mode === "view"){
+    userForm.addEventListener("submit",async (event)=>{
+        event.preventDefault();
+
+        const mode = getMode();
+        console.log(mode);
+     
+        if(mode === "edit"){
+            saveUpdatedUser();
+            return;
+        }else if (mode === "view"){
+
+            return closeViewUser();
+        }
+
+
+        /*name validation*/
+        const firstName = setFirstName();
+        if(!firstName){
+            alert("Invalid name!");
+            return;
+        }
+
+        const lastName = setLastName();
+        if(!lastName){
+            alert("Invalid name!");
+            return;
+        }
+
+        const userEmail = document.getElementById("userEmail").value;
+        const userStatus = document.getElementById("userStatus").value;
+        const userType = document.getElementById("userType").value;
+        const department = document.getElementById("department").value;
+        const role = document.getElementById("role").value;
+
+
+        const user = {
+        firstName,
+        lastName,
+        userEmail,
+        userStatus,
+        userType,
+        department,
+        role
+    };
+
+        const users = await getUsers();
+        await saveUsers(users);
+        const result = await saveUsers(user);
+
+        console.log(result);
+     
+        console.log(users);
         
-        return closeViewUser();
-    }
+        alert("Record saved");
 
-    /*criacao e validacao de assetID*/
-    const generatedUserId = setUserId();
-    const userId = `USR${generatedUserId.toString().padStart(3,"0")}`;
-   
-    
-    /*name validation*/
-    const firstName = setFirstName();
-    if(!firstName){
-        alert("Invalid name!");
-        return;
-    }
-         
-    const lastName = setLastName();
-    if(!lastName){
-        alert("Invalid name!");
-        return;
-    }
-    
-    const userEmail = document.getElementById("userEmail").value;
-    const userStatus = document.getElementById("userStatus").value;
-    const userType = document.getElementById("userType").value;
-    const department = document.getElementById("department").value;
-    const role = document.getElementById("role").value;
-  
-    
-    const user = {
-    userId,
-    firstName,
-    lastName,
-    userEmail,
-    userStatus,
-    userType,
-    department,
-    role
-};
+        userForm.reset();
 
-    const users = getUsers();
-
-    users.push(user);
-
-    saveUsers(users);
-    
-    userForm.reset();
-
-    alert("Record saved");
-    closeViewUser();
         
-    renderUsers();
-      
-    });
+        closeViewUser();
+
+        renderUsers();
+
+        }
+    );
 }
 
 
@@ -127,13 +146,17 @@ function initUserForm(){
    
 /* renderAssets representa READ apenas para table no Add asset*/
 
-function renderUsers(users = getUsers()){
+async function renderUsers(users = null){
+
+    if(!users){
+        users = await getUsers();
+    }
 
     let output = "";
     users.forEach((user) => {
         output += `
         <tr>
-            <td>${user.userId}</td>
+            <td>USR-${user.userId}</td>
             <td>${user.firstName} ${user.lastName}</td>
             <td>${user.userEmail}</td>
             <td>${user.userStatus}</td>
@@ -157,25 +180,29 @@ function renderUsers(users = getUsers()){
 /*renderViewUser - Exibe apenas no View*/
 
 
-function renderViewUser(){
+async function renderViewUser(){
     
-    const selectedUserId = sessionStorage.getItem("viewUserId");
+    const selectedUserId = parseInt(sessionStorage.getItem("viewUserId"));
     const selectedMode = sessionStorage.getItem("mode");
     
-    const users = getUsers();
+    const users = await getUsers();
     
-    for(let i = 0; i<users.length;i++){
+    for(let i = 0; i<users.length;i++){        
         if(users[i].userId ===selectedUserId){
-           
+            
             document.getElementById("userId").value =users[i].userId;
             document.getElementById("firstName").value =users[i].firstName;
             document.getElementById("lastName").value =users[i].lastName;
             document.getElementById("userEmail").value =users[i].userEmail;
+            console.log(users[i].userEmail);
             document.getElementById("userStatus").value =users[i].userStatus;
+            console.log(users[i].userStatus);
             document.getElementById("userType").value =users[i].userType;
+            console.log(users[i].userType);
             document.getElementById("department").value =users[i].department;
+            console.log(users[i].department);
             document.getElementById("role").value =users[i].role;
-   
+            console.log(users[i].role);
    
             /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
             if(selectedMode === "edit"){                                       
@@ -197,8 +224,8 @@ function renderViewUser(){
    
 /*deleteAsset() representa o DELETE*/
 
-function deleteUser(userId){
-    const users = getUsers();
+async function deleteUser(userId){
+    const users = await getUsers();
     
     /*confirmando com usuario antes de deletar*/
     if(!confirm("Are you sure you want to delete it?")){
@@ -225,10 +252,10 @@ function deleteUser(userId){
  -------------
     */
   
-function saveUpdatedUser(){
+async function saveUpdatedUser(){
     const selectedAssetId = sessionStorage.getItem("viewUserId"); 
 
-    const users = getUsers();
+    const users = await getUsers();
     
     /*iterando sobre todos os registros*/
     for(let i= 0; i <users.length;i++){
@@ -270,26 +297,6 @@ function saveUpdatedUser(){
  ASSET VALIDATION
  -------------
     */
-
-function setUserId(){
-    const users = getUsers();
-    /*Busca o maior userId*/
-      let max= 0;  
-        console.log(users);
-        
-        for(let j = 0; j < users.length;j++){
-            let userItem = parseInt(users[j].userId.slice(3));
-            console.log(userItem);
-            if(userItem > max){
-                max = userItem;
-                console.log(max);
-            }
-        }
-        
-    return max+1;
-
-}
-
 
 /*validacao do nome. Se for vazio, recusa.*/
 function setFirstName(){

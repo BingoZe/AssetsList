@@ -168,8 +168,8 @@ function renderKpi(){
     
 }
 
-function renderUsersKpi(){
-    const users = getUsers();
+async function renderUsersKpi(){
+    const users = await getUsers();
     
     /*Indicadores total users*/
     document.getElementById('totalUsersFigures').textContent = users.length || 0;

@@ -35,12 +35,12 @@ async function loadPage(page){
     initUserForm();
     
     if(page.includes("users")){
-        renderUsers();
-        renderUsersKpi();
+        await renderUsers();
+        await renderUsersKpi();
     }
     
     if(page.includes("viewUser")){
-        renderViewUser();
+        await renderViewUser();
     }    
     
     
@@ -50,3 +50,5 @@ async function loadPage(page){
 document.addEventListener("DOMContentLoaded", () => {
     loadPage("pages/dashboard.html");
 });
+
+        
