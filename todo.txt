@@ -105,7 +105,7 @@ PRIORIDADE 5 - DEPLOY
 ====================================================
 
 Frontend
-- Vercel
+- Cloudfare
 
 Backend / Banco
 - Supabase

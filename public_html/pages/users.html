@@ -97,8 +97,6 @@
                     <div class="figures" id="auditorsFigures"></div>
                 </div>
 
-
-
                 <!-- End users-->
                 <div class="statsSubcontainer" id="endUsers">
 
@@ -131,6 +129,8 @@
 
             </div>
             
+        <!--Search Nav-->
+        
         <div class="searchNav">
             <div class="searchNavElement">
                 <label for="searchField">
@@ -140,27 +140,26 @@
                     type="text"
                     id="searchField"
                     name="searchField"
-                    placeholder="Search by ID, Name or Service Tag..."
+                    placeholder="Search by ID or Name..."
                     >
             </div>
             
             <div class="searchNavElement">
-                <label for="typeSelect">
+                <label for="roleSelect">
                     Roles
                 </label>
 
-                <select id="typeSelect" class="typeSelect">
-                    <option id="typeAll" selected>All types</option>
-                    
+                <select id="roleSelect" class="typeSelect">
+                    <option id="typeAll" selected>All roles</option>
                 </select>
             </div>
             
             <div class="searchNavElement">
-                <label for="assetStatus">
+                <label for="userStatus">
                     Status
                 </label>
 
-                <select id="assetStatus" class="statusSelect">
+                <select id="userStatus" class="statusSelect">
                     <option id="statusAll">All status</option>
                     <option id="statusActive">Active</option>
                     <option id="statusInactive">Inactive</option>

@@ -26,7 +26,7 @@ async function getUsers(){
     }
 }
 
-async function saveUsers(user){
+async function createUser(user){
 
     const { data, error } =
         await supabaseClient
@@ -115,18 +115,11 @@ async function initUserForm(){
         role
     };
 
-        const users = await getUsers();
-        await saveUsers(users);
-        const result = await saveUsers(user);
-
-        console.log(result);
-     
-        console.log(users);
+        await createUser(user);
         
         alert("Record saved");
 
         userForm.reset();
-
         
         closeViewUser();
 
@@ -190,7 +183,6 @@ async function renderViewUser(){
     for(let i = 0; i<users.length;i++){        
         if(users[i].userId ===selectedUserId){
             
-            document.getElementById("userId").value =users[i].userId;
             document.getElementById("firstName").value =users[i].firstName;
             document.getElementById("lastName").value =users[i].lastName;
             document.getElementById("userEmail").value =users[i].userEmail;
@@ -248,19 +240,13 @@ async function deleteUser(userId){
   
 async function saveUpdatedUser(){
     const selectedUserId = parseInt(sessionStorage.getItem("viewUserId")); 
-    console.log("Selected user",selectedUserId);
 
     const users = await getUsers();
     
     const updatedUser = users.find(
         updatedUser => updatedUser.userId === selectedUserId
     );
-    console.log("updated user",updatedUser);
-    
-    users.forEach(user => {
-        console.log(user.userId);
-    });
-    
+
     if(!updatedUser){
        alert("User not found");
         return;
