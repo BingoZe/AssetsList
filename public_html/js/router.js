@@ -39,6 +39,7 @@ async function loadPage(page){
         await renderUsersKpi();
         await searchUserElement();
         await renderRolesFilter();
+        await renderTypesFilter();
     }
     
     if(page.includes("viewUser")){

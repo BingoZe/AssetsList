@@ -234,15 +234,18 @@ async function searchUserElement(){
     /*campo status*/
     const statusLookupItem = document.getElementById("userStatus");
     
-    /*campo type*/
+    /*campo role*/
     const rolelookupItem = document.getElementById("roleSelect");
+    
+    /*campo userType*/
+    const userTypelookupItem = document.getElementById("userType");
   
-    /* adiciona evento ao campo search - Asset Register*/
+    /* adiciona evento ao campo search - Users*/
     lookupItem.addEventListener("input",async function(){
 
         const searchItem = lookupItem.value.toLowerCase();   
  
-        /*filtro por ID, service tag ou nome*/
+        /*filtro por ID,nome ou sobrenome*/
         const filteredUsers = users.filter(user=>
                 user.firstName.toLowerCase().includes(searchItem) ||
                 user.lastName.toLowerCase().includes(searchItem) ||
@@ -253,7 +256,7 @@ async function searchUserElement(){
         renderUsers(filteredUsers);
     }); 
     
-   /* adiciona evento ao select status - Asset Register*/
+   /* adiciona evento ao select status - Users*/
 
     statusLookupItem.addEventListener("change",async function(){
                 
@@ -265,7 +268,7 @@ async function searchUserElement(){
         if(searchItem !=="all status"){
             renderUsers(filteredUser);
 
-        }else /*mostra todos os assets*/
+        }else /*mostra todos os users*/
             renderUsers();
     }); 
 
@@ -280,7 +283,21 @@ async function searchUserElement(){
         if(searchItem !=="all roles"){
             renderUsers(filteredUser);
 
-        }else /*mostra todos os assets*/
+        }else 
+            renderUsers();
+    }); 
+    userTypelookupItem.addEventListener("change",async function(){
+                
+        const searchItem = userTypelookupItem.value.toLowerCase();   
+        
+        const filteredUser = users.filter(user=>
+            user.userType.toLowerCase()
+            .includes(searchItem));
+    
+        if(searchItem !=="all types"){
+            renderUsers(filteredUser);
+
+        }else 
             renderUsers();
     }); 
 
@@ -307,6 +324,28 @@ async function renderRolesFilter(){
     });
 
     document.getElementById("roleSelect").innerHTML = output;
+};
+
+/*RenderType*/
+async function renderTypesFilter(){
+    const users = await getUsers();
+    
+    let output = `<option selected>All Types</option>`;
+    const uniqueType = []; 
+   
+    users.forEach((user) => {
+        
+        /*mostra apenas role unico no filtro*/
+        if(!uniqueType.includes(user.userType)){
+            uniqueType.push(user.userType);
+            
+        output += `
+            <option>${user.userType}</option>
+        `;
+        }
+    });
+
+    document.getElementById("userType").innerHTML = output;
 };
 
 /*---------------------------------------------*/

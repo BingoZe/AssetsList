@@ -229,6 +229,7 @@ async function deleteUser(userId){
     }
 
     await renderUsers();
+    await renderUsersKpi();
 }
 
 
