@@ -1,26 +1,41 @@
    
-/*localstorage*/
+/*Assets Service*/
 
 
-/*
- -------------
- HELPERS
- -------------
-    */
+/* HELPERS    */
 
 
-function getAssets(){
+async function getAssets(){
      
     try{
-        return JSON.parse(localStorage.getItem("assets")) || [];
+        const {data, error} = 
+            await supabaseClient.from('assets').select('*');
+                if(error){
+                console.log(error);
+                return [];
+            }
+        return data;
     }
     catch(error){
+        console.log(error);
         return [];
     }
 }
 
-function saveAssets(assets){
-    return localStorage.setItem("assets", JSON.stringify(assets));
+async function createAsset(asset){
+
+    const { data, error } =
+        await supabaseClient
+            .from('assets')
+            .insert([asset]);
+
+    if(error){
+        console.log("ERROR:");
+        console.log(error);
+        return null;
+    }
+
+    return data;
 }
 
 function getMode(){
@@ -31,7 +46,6 @@ function getMode(){
         return [];
     }
 }
-
 
 /* -------------implemantacao do CRUD-------------*/
 
@@ -44,18 +58,17 @@ function getMode(){
 
 /*initAssetForm retorna os assets em tela - AssetRegister*/
 
-function initAssetForm(){
+async function initAssetForm(){
     const assetForm = document.querySelector(".asset-form");
     
     if(!assetForm){
         return;
     }
               
-    assetForm.addEventListener("submit",(event)=>{
+    assetForm.addEventListener("submit",async (event)=>{
     event.preventDefault();
     
     const mode = getMode();
-    console.log(mode);
  
     if(mode === "edit"){
         saveUpdatedAsset();
@@ -65,11 +78,7 @@ function initAssetForm(){
         return closeViewAsset();
     }
 
-    /*criacao e validacao de assetID*/
-    const generatedId = setAssetId();
-    const assetId = `AST${generatedId.toString().padStart(3,"0")}`;
-   
-    
+
     /*name validation*/
     const assetName = setAssetName();
     if(!assetName){
@@ -115,8 +124,6 @@ function initAssetForm(){
         return;
     }     
         
-    
-        
     const acquisitionValue = setAcquisitionValue();
     if(!acquisitionValue){
         alert("Invalid Acquisition Value");
@@ -150,7 +157,6 @@ function initAssetForm(){
     const technicianNotes = document.getElementById("technicianNotes").value;    
     
     const asset = {
-    assetId,
     assetName,
     serviceTag,
     model,
@@ -177,16 +183,12 @@ function initAssetForm(){
     repairInvoice,
     technicianNotes
 };
-
-    const assets = getAssets();
-
-    assets.push(asset);
-
-    saveAssets(assets);
+    await createAsset(asset);
+    
+    alert("Record saved");
     
     assetForm.reset();
-
-    alert("Record saved");
+    
     closeViewAsset();
         
     renderAssets();
@@ -196,21 +198,21 @@ function initAssetForm(){
 
 
 
-/*
- -------------
- READ
- -------------
-    */
+/* READ */
    
-/* renderAssets representa READ apenas para table no Add asset*/
+/* renderAssets representa READ para table no Add User*/
 
-function renderAssets(assets = getAssets()){
+async function renderAssets(assets = null){
+    
+    if(!assets){
+        assets = await getAssets();
+    }
 
     let output = "";
     assets.forEach((asset) => {
         output += `
         <tr>
-            <td>${asset.assetId}</td>
+            <td>AST-${asset.assetId}</td>
             <td>${asset.assetName}</td>
             <td>${asset.serviceTag}</td>
             <td>${asset.type}</td>
@@ -235,12 +237,12 @@ function renderAssets(assets = getAssets()){
 /*renderViewAsset - Exibe apenas no View*/
 
 
-function renderViewAsset(){
+async function renderViewAsset(){
     
     const selectedAssetId = sessionStorage.getItem("viewAssetId");
     const selectedMode = sessionStorage.getItem("mode");
     
-    const assets = getAssets();
+    const assets = await getAssets();
     
     for(let i = 0; i<assets.length;i++){
         if(assets[i].assetId ===selectedAssetId){
@@ -292,154 +294,153 @@ function renderViewAsset(){
    
 /*deleteAsset() representa o DELETE*/
 
-function deleteAsset(assetId){
-    const assets = getAssets();
+async function deleteAsset(assetId){
     
     /*confirmando com usuario antes de deletar*/
     if(!confirm("Are you sure you want to delete it?")){
         return;
     }   
     
-    /*buscando o assetID dentro do array de assets*/
-     for(let i = 0; i < assets.length;i++){
-         if(assets[i].assetId === assetId){
-             assets.splice(i,1);
-             break;
-            }
-        
-        }
+    const {error} = await supabaseClient
+            .from('assets')
+            .delete()
+            .eq('assetId',assetId);
     
-        saveAssets(assets);
-        renderAssets();    
+    if(error){
+        console.log(error);
+        return;
+    }
+    
+    await renderAssets();    
 }
 
 
-/*
- -------------
- UPDATE
- -------------
-    */
+/* UPDATE */
   
-function saveUpdatedAsset(){
+async function saveUpdatedAsset(){
     const selectedAssetId = sessionStorage.getItem("viewAssetId"); 
 
-    const assets = getAssets();
+    const assets = await getAssets();
     
-    /*iterando sobre todos os registros*/
-    for(let i= 0; i <assets.length;i++){
-        
+    const updatedAsset = assets.find(updatedAsset=>
+        updatedAsset.assetId===selectedAssetId
+    );
+     
         /*procurando ID selecionada e puxando atributos*/
-        if(assets[i].assetId===selectedAssetId){
+        if(updatedAsset.assetId===selectedAssetId){
    
-            assets[i].assetName = setAssetName();
-            if(!assets[i].assetName){
+            updatedAsset.assetName = setAssetName();
+            if(!updatedAsset.assetName){
                 alert("Invalid name!");
                 return;
             }
             
-      
-            assets[i].serviceTag = setServiceTag();
-            if(!assets[i].serviceTag){
+            updatedAsset.serviceTag = setServiceTag();
+            if(!updatedAsset.serviceTag){
                 alert("Service Tag not unique!");
                 return;
             }
+                   
+            updatedAsset.model = document.getElementById("model").value;
+            updatedAsset.type = document.getElementById("type").value;
+            updatedAsset.assetStatus = document.getElementById("assetStatus").value;
+            updatedAsset.user = document.getElementById("user").value;
+            updatedAsset.userEmail = document.getElementById("userEmail").value;
+            updatedAsset.location = document.getElementById("location").value;
+            updatedAsset.warrantyDetails = document.getElementById("warrantyDetails").value;
             
-            
-            assets[i].model = document.getElementById("model").value;
-            assets[i].type = document.getElementById("type").value;
-            assets[i].assetStatus = document.getElementById("assetStatus").value;
-            assets[i].user = document.getElementById("user").value;
-            assets[i].userEmail = document.getElementById("userEmail").value;
-            assets[i].location = document.getElementById("location").value;
-            assets[i].warrantyDetails = document.getElementById("warrantyDetails").value;
-            
-
-
-            assets[i].warrantyDocs = document.getElementById("warrantyDocs").value;
-            assets[i].acquisitionDate = document.getElementById("acquisitionDate").value;
-            if(!assets[i].acquisitionDate){
+            updatedAsset.warrantyDocs = document.getElementById("warrantyDocs").value;
+            updatedAsset.acquisitionDate = document.getElementById("acquisitionDate").value;
+            if(!updatedAsset.acquisitionDate){
                 alert("Invalid Acquisition Date");
                 return;
             }    
             
-            assets[i].acquisitionYear = new Date(assets[i].acquisitionDate).getFullYear();
+            updatedAsset.acquisitionYear = new Date(updatedAsset.acquisitionDate).getFullYear();
             
-            assets[i].warrantyExpiryDate = setWarrantyExpiryDate(assets[i].acquisitionDate);
-            if(!assets[i].warrantyExpiryDate){
+            updatedAsset.warrantyExpiryDate = setWarrantyExpiryDate(updatedAsset.acquisitionDate);
+            if(!updatedAsset.warrantyExpiryDate){
                 alert("Warranty expire date cannot be before Acquisition Date");
                 return;
             }                 
-            
-            
-            
-            assets[i].acquisitionValue = setAcquisitionValue();
-            if(!assets[i].acquisitionValue){
+             
+            updatedAsset.acquisitionValue = setAcquisitionValue();
+            if(!updatedAsset.acquisitionValue){
                 alert("Invalid Acquisition Value");
                 return;
             }
 
-            assets[i].usefulLife = setUsefulLife();
-            if(!assets[i].usefulLife){
+            updatedAsset.usefulLife = setUsefulLife();
+            if(!updatedAsset.usefulLife){
                 alert("Invalid Useful Life");
                 return;
             }
 
 
-            assets[i].depreciation = setDepreciation(assets[i].acquisitionValue,assets[i].usefulLife);
-            if(!assets[i].depreciation){
+            updatedAsset.depreciation = setDepreciation(updatedAsset.acquisitionValue,updatedAsset.usefulLife);
+            if(!updatedAsset.depreciation){
                 alert("Invalid Depreciation");
                 return;
             }            
             
-            assets[i].netValue = setNetValue(assets[i].acquisitionValue,assets[i].depreciation);
-            if(!assets[i].netValue){
+            updatedAsset.netValue = setNetValue(updatedAsset.acquisitionValue,updatedAsset.depreciation);
+            if(!updatedAsset.netValue){
                 alert("Invalid Net Value");
                 return;
             }            
                        
             
-            assets[i].purchaseInvoice = document.getElementById("purchaseInvoice").value;
-            assets[i].issueDescription = document.getElementById("issueDescription").value;
-            assets[i].issueDate = document.getElementById("issueDate").value;
-            assets[i].supportTicketNumber = document.getElementById("supportTicketNumber").value;
-            assets[i].repairCost = document.getElementById("repairCost").value;
-            assets[i].repairInvoice = document.getElementById("repairInvoice").value;
-            assets[i].technicianNotes = document.getElementById("technicianNotes").value;
-            break;   
+            updatedAsset.purchaseInvoice = document.getElementById("purchaseInvoice").value;
+            updatedAsset.issueDescription = document.getElementById("issueDescription").value;
+            updatedAsset.issueDate = document.getElementById("issueDate").value;
+            updatedAsset.supportTicketNumber = document.getElementById("supportTicketNumber").value;
+            updatedAsset.repairCost = document.getElementById("repairCost").value;
+            updatedAsset.repairInvoice = document.getElementById("repairInvoice").value;
+            updatedAsset.technicianNotes = document.getElementById("technicianNotes").value;
         }
-    }
+            
+        const {error} = await supabaseClient.from('assets')
+            .update({
+                assetName = updateAsset.assetName,
+                serviceTag =updateAsset.serviceTag,
+                model = updateAsset.model,
+                type = updateAsset.type,
+                assetStatus = updateAsset.assetStatus,
+                user = updateAsset.assetName,
+                userEmail = updateAsset.userEmail,
+                location = updateAsset.location,
+                notes = updateAsset.notes,
+                warrantyDetails = updateAsset.warrantyDetails,
+                warrantyExpiryDate = updateAsset.warrantyExpiryDate,
+                warrantyDocs = updateAsset.warrantyDocs,
+                acquisitionDate = updateAsset.acquisitionDate,
+                acquisitionYear = updateAsset.acquisitionYear,
+                acquisitionValue = updateAsset.acquisitionValue,
+                usefulLife = updateAsset.usefulLife,
+                depreciation = updateAsset.depreciation,
+                netValue = updateAsset.netValue,
+                purchaseInvoice = updateAsset.purchaseInvoice,
+                issueDescription = updateAsset.issueDescription,
+                issueDate = updateAsset.issueDate,
+                supportTicketNumber = updateAsset.supportTicketNumber,
+                repairCost = updateAsset.repairCost,
+                repairInvoice = updateAsset.repairInvoice,
+                technicianNotes = updateAsset.technicianNotes
+            })
+            .eq('assetId'.updatedAsset.assetId);
     
-    saveAssets(assets);  
-
+        if(error){
+            console.log(error);
+            return;
+        }
+   
     alert("Record saved");
       
     closeViewAsset();
     
 }
 
-/*
- -------------
- ASSET VALIDATION
- -------------
-    */
-
-function setAssetId(){
-    const asset = getAssets();
-    /*Busca o maior assetId*/
-      let max= 0;  
-
-        for(let j = 0; j < asset.length;j++){
-            let assetItem = parseInt(asset[j].assetId.slice(3));
-
-            if(assetItem > max){
-                max = assetItem;
-            }
-        }
-
-    return max+1;
-
-}
-
+/* ASSET VALIDATION */
 
 /*validacao do nome. Se for vazio, recusa.*/
 function setAssetName(){
@@ -455,21 +456,23 @@ function setAssetName(){
 }
     
 /* validacao service tag, se nao for unico, recusa.*/
-function setServiceTag(){
-    const serviceTag = document.getElementById("serviceTag").value.trim();
+async function setServiceTag(){
+    const newServiceTag = document.getElementById("serviceTag").value.trim();
     const currentId = sessionStorage.getItem("viewAssetId"); /*evita bug no modo editar com o proprio registro*/
     
-    const assets = getAssets();
+    const assets = await getAssets();
     
-    for(let i = 0; i<assets.length;i++){
-        if(assets[i].serviceTag ===serviceTag && assets[i].assetId !==currentId){
+    const checkedAsset = assets.find(
+        asset => asset.serviceTag === newServiceTag
+    );
+   
+    if(checkedAsset && checkedAsset.assetId !==currentId){
             document.getElementById("serviceTag").classList.add("inputError");
-            return false;
-        }
+        return false;
     }
     
     document.getElementById("serviceTag").classList.remove("inputError");
-    return serviceTag;  
+    return newServiceTag;  
     
 }
 

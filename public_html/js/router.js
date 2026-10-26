@@ -14,7 +14,7 @@ async function loadPage(page){
     initAssetForm();
         
     if(page.includes("assetRegister")){
-        renderAssets();
+        await renderAssets();
         searchElement();
         renderAcquisitionYearFilter();
         renderResponsibleUserFilter();
@@ -23,7 +23,7 @@ async function loadPage(page){
     }
     
     if(page.includes("viewAsset")){
-        renderViewAsset();
+        await renderViewAsset();
     }
     
     if(page.includes("dashboard")){

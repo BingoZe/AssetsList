@@ -74,7 +74,6 @@ async function initUserForm(){
         event.preventDefault();
 
         const mode = getMode();
-        console.log(mode);
      
         if(mode === "edit"){
             saveUpdatedUser();
@@ -137,7 +136,7 @@ async function initUserForm(){
  -------------
     */
    
-/* renderAssets representa READ apenas para table no Add asset*/
+/* renderUser representa READ em view e add user*/
 
 async function renderUsers(users = null){
 
