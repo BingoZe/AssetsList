@@ -60,6 +60,7 @@ function getMode(){
 
 async function initAssetForm(){
     const assetForm = document.querySelector(".asset-form");
+    console.log("Test form:",assetForm);
     
     if(!assetForm){
         return;
@@ -326,9 +327,6 @@ async function saveUpdatedAsset(){
         updatedAsset.assetId===selectedAssetId
     );
      
-        /*procurando ID selecionada e puxando atributos*/
-        if(updatedAsset.assetId===selectedAssetId){
-   
             updatedAsset.assetName = setAssetName();
             if(!updatedAsset.assetName){
                 alert("Invalid name!");
@@ -376,7 +374,6 @@ async function saveUpdatedAsset(){
                 return;
             }
 
-
             updatedAsset.depreciation = setDepreciation(updatedAsset.acquisitionValue,updatedAsset.usefulLife);
             if(!updatedAsset.depreciation){
                 alert("Invalid Depreciation");
@@ -388,8 +385,7 @@ async function saveUpdatedAsset(){
                 alert("Invalid Net Value");
                 return;
             }            
-                       
-            
+                                
             updatedAsset.purchaseInvoice = document.getElementById("purchaseInvoice").value;
             updatedAsset.issueDescription = document.getElementById("issueDescription").value;
             updatedAsset.issueDate = document.getElementById("issueDate").value;
@@ -397,35 +393,34 @@ async function saveUpdatedAsset(){
             updatedAsset.repairCost = document.getElementById("repairCost").value;
             updatedAsset.repairInvoice = document.getElementById("repairInvoice").value;
             updatedAsset.technicianNotes = document.getElementById("technicianNotes").value;
-        }
-            
+                
         const {error} = await supabaseClient.from('assets')
             .update({
-                assetName = updateAsset.assetName,
-                serviceTag =updateAsset.serviceTag,
-                model = updateAsset.model,
-                type = updateAsset.type,
-                assetStatus = updateAsset.assetStatus,
-                user = updateAsset.assetName,
-                userEmail = updateAsset.userEmail,
-                location = updateAsset.location,
-                notes = updateAsset.notes,
-                warrantyDetails = updateAsset.warrantyDetails,
-                warrantyExpiryDate = updateAsset.warrantyExpiryDate,
-                warrantyDocs = updateAsset.warrantyDocs,
-                acquisitionDate = updateAsset.acquisitionDate,
-                acquisitionYear = updateAsset.acquisitionYear,
-                acquisitionValue = updateAsset.acquisitionValue,
-                usefulLife = updateAsset.usefulLife,
-                depreciation = updateAsset.depreciation,
-                netValue = updateAsset.netValue,
-                purchaseInvoice = updateAsset.purchaseInvoice,
-                issueDescription = updateAsset.issueDescription,
-                issueDate = updateAsset.issueDate,
-                supportTicketNumber = updateAsset.supportTicketNumber,
-                repairCost = updateAsset.repairCost,
-                repairInvoice = updateAsset.repairInvoice,
-                technicianNotes = updateAsset.technicianNotes
+                assetName : updatedAsset.assetName,
+                serviceTag :updatedAsset.serviceTag,
+                model :updatedAsset.model,
+                type : updatedAsset.type,
+                assetStatus : updatedAsset.assetStatus,
+                user : updatedAsset.user,
+                userEmail : updatedAsset.userEmail,
+                location : updatedAsset.location,
+                notes :updatedAsset.notes,
+                warrantyDetails : updatedAsset.warrantyDetails,
+                warrantyExpiryDate :updatedAsset.warrantyExpiryDate,
+                warrantyDocs : updatedAsset.warrantyDocs,
+                acquisitionDate : updatedAsset.acquisitionDate,
+                acquisitionYear :updatedAsset.acquisitionYear,
+                acquisitionValue : updatedAsset.acquisitionValue,
+                usefulLife : updatedAsset.usefulLife,
+                depreciation : updatedAsset.depreciation,
+                netValue : updatedAsset.netValue,
+                purchaseInvoice : updatedAsset.purchaseInvoice,
+                issueDescription :updatedAsset.issueDescription,
+                issueDate : updatedAsset.issueDate,
+                supportTicketNumber : updatedAsset.supportTicketNumber,
+                repairCost :updatedAsset.repairCost,
+                repairInvoice : updatedAsset.repairInvoice,
+                technicianNotes : updatedAsset.technicianNotes
             })
             .eq('assetId'.updatedAsset.assetId);
     
@@ -433,11 +428,10 @@ async function saveUpdatedAsset(){
             console.log(error);
             return;
         }
-   
+  
     alert("Record saved");
       
     closeViewAsset();
-    
 }
 
 /* ASSET VALIDATION */
