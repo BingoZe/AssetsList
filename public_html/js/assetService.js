@@ -8,12 +8,21 @@
 async function getAssets(){
      
     try{
-        const {data, error} = 
-            await supabaseClient.from('assets').select('*');
-                if(error){
-                console.log(error);
-                return [];
-            }
+        const { data, error } = await supabaseClient
+            .from('assets')
+            .select(`
+                *,
+                users (
+                    firstName,
+                    lastName
+                )
+            `);
+
+        if (error) {
+            console.log(error);
+            return [];
+        }
+
         return data;
     }
     catch(error){
@@ -97,7 +106,7 @@ async function initAssetForm(){
     const model = document.getElementById("model").value;
     const type = document.getElementById("type").value;
     const assetStatus = document.getElementById("assetStatus").value;
-    const user = document.getElementById("user").value;
+    const userId = document.getElementById("user").value;
     const userEmail = document.getElementById("userEmail").value;
     const location = document.getElementById("location").value;
     const notes = document.getElementById("notes").value;
@@ -163,7 +172,7 @@ async function initAssetForm(){
     model,
     type,
     assetStatus,
-    user,
+    userId,
     userEmail,
     location,
     notes,
@@ -210,7 +219,8 @@ async function renderAssets(assets = null){
     }
 
     let output = "";
-    assets.forEach((asset) => {
+    assets.forEach(async (asset) => {
+ 
         output += `
         <tr>
             <td>AST-${asset.assetId}</td>
@@ -219,7 +229,7 @@ async function renderAssets(assets = null){
             <td>${asset.type}</td>
             <td>${asset.location}</td>
             <td>${asset.assetStatus}</td>
-            <td>${asset.user}</td>
+            <td>${asset.users.firstName} ${asset.users.lastName}</td>
             <td>
                 <button class="btTdItemView" onclick="viewAsset('${asset.assetId}','view')">View</button>
                 <button class="btTdItemEdit" onclick="viewAsset('${asset.assetId}','edit')">Edit</button>
