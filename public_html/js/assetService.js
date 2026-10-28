@@ -14,7 +14,8 @@ async function getAssets(){
                 *,
                 users (
                     firstName,
-                    lastName
+                    lastName,
+                    userEmail
                 )
             `);
 
@@ -69,7 +70,6 @@ function getMode(){
 
 async function initAssetForm(){
     const assetForm = document.querySelector(".asset-form");
-    console.log("Test form:",assetForm);
     
     if(!assetForm){
         return;
@@ -97,66 +97,71 @@ async function initAssetForm(){
     }
          
     /*serviceTag validation*/
-    const serviceTag = setServiceTag();
+    const serviceTag = document.getElementById("serviceTag").value;
+    /*setServiceTag();
     if(!serviceTag){
         alert("Service Tag not unique!");
         return;
-    }
+    }*/
+      const assets = await getAssets();
       
     const model = document.getElementById("model").value;
     const type = document.getElementById("type").value;
     const assetStatus = document.getElementById("assetStatus").value;
-    const userId = document.getElementById("user").value;
+    const userId = 4;
+    console.log(userId);
     const userEmail = document.getElementById("userEmail").value;
     const location = document.getElementById("location").value;
     const notes = document.getElementById("notes").value;
     const warrantyDetails = document.getElementById("warrantyDetails").value;
     
- 
-
-    
     const warrantyDocs = document.getElementById("warrantyDocs").value;
-    const acquisitionDate = document.getElementById("acquisitionDate").value;
+    const acquisitionDate = document.getElementById("acquisitionDate").value || null;
     
     if(!acquisitionDate){
         alert("Invalid Acquisition Date");
         return;
     } 
-    const acquisitionYear = new Date(acquisitionDate).getFullYear();
-    if(!acquisitionDate){
+    const acquisitionYear = "2026" || null; 
+    //new Date(acquisitionDate).getFullYear()|| null;
+    /*if(!acquisitionDate){
         alert("Invalid Acquisition Date");
         return;
-    } 
+    } */
     
-    const warrantyExpiryDate = setWarrantyExpiryDate(acquisitionDate);
+    const warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
+            /*setWarrantyExpiryDate(acquisitionDate);
     if(!warrantyExpiryDate){
         alert("Warranty expire date cannot be before Acquisition Date");
         return;
-    }     
+    }     */
         
-    const acquisitionValue = setAcquisitionValue();
+    const acquisitionValue =document.getElementById("acquisitionValue").value;
+    /* setAcquisitionValue();
     if(!acquisitionValue){
         alert("Invalid Acquisition Value");
         return;
-    }    
+    }    */
     
-    const usefulLife = setUsefulLife();
+    const usefulLife = document.getElementById("usefulLife").value;
+            /*setUsefulLife();
     if(!usefulLife){
         alert("Invalid Useful Life");
         return;
-    }
+    }*/
     
-    const depreciation = setDepreciation(acquisitionValue,usefulLife);
+    const depreciation = document.getElementById("depreciation").value;
+            /*setDepreciation(acquisitionValue,usefulLife);
      if(!depreciation){
         alert("Invalid Depreciation");
         return;
-    }   
+    }   */
     
-    const netValue = setNetValue(acquisitionValue,depreciation);
+    const netValue =document.getElementById("netValue").value; /*setNetValue(acquisitionValue,depreciation);
      if(!netValue){
         alert("Invalid Net Value");
         return;
-    }       
+    }       */
     
     const purchaseInvoice = document.getElementById("purchaseInvoice").value;
     const issueDescription = document.getElementById("issueDescription").value;
@@ -250,51 +255,48 @@ async function renderAssets(assets = null){
 
 async function renderViewAsset(){
     
-    const selectedAssetId = sessionStorage.getItem("viewAssetId");
+    const selectedAssetId = parseInt(sessionStorage.getItem("viewAssetId"));
     const selectedMode = sessionStorage.getItem("mode");
-    
+
     const assets = await getAssets();
     
-    for(let i = 0; i<assets.length;i++){
-        if(assets[i].assetId ===selectedAssetId){
-           
-            document.getElementById("assetId").value =assets[i].assetId;
-            document.getElementById("assetName").value =assets[i].assetName;
-            document.getElementById("serviceTag").value =assets[i].serviceTag;
-            document.getElementById("model").value =assets[i].model;
-            document.getElementById("type").value =assets[i].type;
-            document.getElementById("assetStatus").value =assets[i].assetStatus;
-            document.getElementById("user").value =assets[i].user;
-            document.getElementById("userEmail").value =assets[i].userEmail;
-            document.getElementById("location").value =assets[i].location;
-            document.getElementById("notes").value =assets[i].notes;
-            document.getElementById("warrantyDetails").value =assets[i].warrantyDetails;
-            document.getElementById("warrantyExpiryDate").value =assets[i].warrantyExpiryDate;
-            document.getElementById("warrantyDocs").value =assets[i].warrantyDocs;
-            document.getElementById("acquisitionDate").value =assets[i].acquisitionDate;
-            document.getElementById("acquisitionValue").value =assets[i].acquisitionValue;
-            document.getElementById("usefulLife").value =assets[i].usefulLife;
-            document.getElementById("depreciation").value =assets[i].depreciation;
-            document.getElementById("netValue").value =assets[i].netValue;
-            document.getElementById("purchaseInvoice").value =assets[i].purchaseInvoice;
-            document.getElementById("issueDescription").value =assets[i].issueDescription;
-            document.getElementById("issueDate").value =assets[i].issueDate;
-            document.getElementById("supportTicketNumber").value =assets[i].supportTicketNumber;
-            document.getElementById("repairCost").value =assets[i].repairCost;
-            document.getElementById("repairInvoice").value =assets[i].repairInvoice;
-            document.getElementById("technicianNotes").value =assets[i].technicianNotes;
-   
-   
-            /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
-            if(selectedMode === "edit"){                                       
-                document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = false;});
-            }else {
-                document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
-                document.querySelector(".resave").style.display="none";
-            }
-        }
+    const viewedAsset = assets.find(asset =>
+       asset.assetId ===selectedAssetId
+    );
+ 
+    document.getElementById("assetId").value =viewedAsset.assetId;
+    document.getElementById("assetName").value =viewedAsset.assetName;
+    document.getElementById("serviceTag").value =viewedAsset.serviceTag;
+    document.getElementById("model").value =viewedAsset.model;
+    document.getElementById("type").value =viewedAsset.type;
+    document.getElementById("assetStatus").value =viewedAsset.assetStatus;
+    document.getElementById("user").value =`${viewedAsset.users.firstName} ${viewedAsset.users.lastName}`;
+    document.getElementById("userEmail").value =`${viewedAsset.users.userEmail}`;
+    document.getElementById("location").value =viewedAsset.location;
+    document.getElementById("notes").value =viewedAsset.notes;
+    document.getElementById("warrantyDetails").value =viewedAsset.warrantyDetails;
+    document.getElementById("warrantyExpiryDate").value =viewedAsset.warrantyExpiryDate;
+    document.getElementById("warrantyDocs").value =viewedAsset.warrantyDocs;
+    document.getElementById("acquisitionDate").value =viewedAsset.acquisitionDate;
+    document.getElementById("acquisitionValue").value =viewedAsset.acquisitionValue;
+    document.getElementById("usefulLife").value =viewedAsset.usefulLife;
+    document.getElementById("depreciation").value =viewedAsset.depreciation;
+    document.getElementById("netValue").value =viewedAsset.netValue;
+    document.getElementById("purchaseInvoice").value =viewedAsset.purchaseInvoice;
+    document.getElementById("issueDescription").value =viewedAsset.issueDescription;
+    document.getElementById("issueDate").value =viewedAsset.issueDate;
+    document.getElementById("supportTicketNumber").value =viewedAsset.supportTicketNumber;
+    document.getElementById("repairCost").value =viewedAsset.repairCost;
+    document.getElementById("repairInvoice").value =viewedAsset.repairInvoice;
+    document.getElementById("technicianNotes").value =viewedAsset.technicianNotes;
+
+    /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
+    if(selectedMode === "edit"){                                       
+        document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = false;});
+    }else {
+        document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
+        document.querySelector(".resave").style.display="none";
     }
-    
 }
 
 /*
@@ -329,25 +331,28 @@ async function deleteAsset(assetId){
 /* UPDATE */
   
 async function saveUpdatedAsset(){
-    const selectedAssetId = sessionStorage.getItem("viewAssetId"); 
+    const selectedAssetId = parseInt(sessionStorage.getItem("viewAssetId")); 
 
     const assets = await getAssets();
     
     const updatedAsset = assets.find(updatedAsset=>
         updatedAsset.assetId===selectedAssetId
     );
-     
-            updatedAsset.assetName = setAssetName();
+
+            updatedAsset.assetName =document.getElementById("assetName").value.trim();
+            /*setAssetName();
             if(!updatedAsset.assetName){
                 alert("Invalid name!");
                 return;
-            }
+            }*/
             
-            updatedAsset.serviceTag = setServiceTag();
+            updatedAsset.serviceTag = document.getElementById("serviceTag").value;
+                    /*await setServiceTag();
+            console.log("ST validation ",updatedAsset.serviceTag);
             if(!updatedAsset.serviceTag){
                 alert("Service Tag not unique!");
                 return;
-            }
+            }*/
                    
             updatedAsset.model = document.getElementById("model").value;
             updatedAsset.type = document.getElementById("type").value;
@@ -356,45 +361,53 @@ async function saveUpdatedAsset(){
             updatedAsset.userEmail = document.getElementById("userEmail").value;
             updatedAsset.location = document.getElementById("location").value;
             updatedAsset.warrantyDetails = document.getElementById("warrantyDetails").value;
-            
             updatedAsset.warrantyDocs = document.getElementById("warrantyDocs").value;
             updatedAsset.acquisitionDate = document.getElementById("acquisitionDate").value;
+            
+            /*
             if(!updatedAsset.acquisitionDate){
                 alert("Invalid Acquisition Date");
                 return;
-            }    
+            } */   
             
-            updatedAsset.acquisitionYear = new Date(updatedAsset.acquisitionDate).getFullYear();
+            updatedAsset.acquisitionYear = "2026";
             
-            updatedAsset.warrantyExpiryDate = setWarrantyExpiryDate(updatedAsset.acquisitionDate);
+            updatedAsset.warrantyExpiryDate = document.getElementById("warrantyExpiryDate").value;
+                    
+            /*setWarrantyExpiryDate(updatedAsset.acquisitionDate);
             if(!updatedAsset.warrantyExpiryDate){
                 alert("Warranty expire date cannot be before Acquisition Date");
                 return;
-            }                 
-             
-            updatedAsset.acquisitionValue = setAcquisitionValue();
+            }        */         
+            
+            
+            updatedAsset.acquisitionValue = document.getElementById("acquisitionValue").value;
+                    /*setAcquisitionValue();
             if(!updatedAsset.acquisitionValue){
                 alert("Invalid Acquisition Value");
                 return;
-            }
+            }*/
 
-            updatedAsset.usefulLife = setUsefulLife();
+            updatedAsset.usefulLife = document.getElementById("usefulLife").value;
+                    /*setUsefulLife();
             if(!updatedAsset.usefulLife){
                 alert("Invalid Useful Life");
                 return;
-            }
+            }*/
 
-            updatedAsset.depreciation = setDepreciation(updatedAsset.acquisitionValue,updatedAsset.usefulLife);
+            updatedAsset.depreciation = document.getElementById("depreciation").value;
+                    /*setDepreciation(updatedAsset.acquisitionValue,updatedAsset.usefulLife);
             if(!updatedAsset.depreciation){
                 alert("Invalid Depreciation");
                 return;
-            }            
+            }         */   
             
-            updatedAsset.netValue = setNetValue(updatedAsset.acquisitionValue,updatedAsset.depreciation);
+            updatedAsset.netValue = document.getElementById("netValue").value;
+                    /*setNetValue(updatedAsset.acquisitionValue,updatedAsset.depreciation);
             if(!updatedAsset.netValue){
                 alert("Invalid Net Value");
                 return;
-            }            
+            }            */
                                 
             updatedAsset.purchaseInvoice = document.getElementById("purchaseInvoice").value;
             updatedAsset.issueDescription = document.getElementById("issueDescription").value;
@@ -411,8 +424,7 @@ async function saveUpdatedAsset(){
                 model :updatedAsset.model,
                 type : updatedAsset.type,
                 assetStatus : updatedAsset.assetStatus,
-                user : updatedAsset.user,
-                userEmail : updatedAsset.userEmail,
+                
                 location : updatedAsset.location,
                 notes :updatedAsset.notes,
                 warrantyDetails : updatedAsset.warrantyDetails,
@@ -432,7 +444,8 @@ async function saveUpdatedAsset(){
                 repairInvoice : updatedAsset.repairInvoice,
                 technicianNotes : updatedAsset.technicianNotes
             })
-            .eq('assetId'.updatedAsset.assetId);
+            .eq('assetId',updatedAsset.assetId);
+    console.log(updatedAsset);
     
         if(error){
             console.log(error);
@@ -462,13 +475,14 @@ function setAssetName(){
 /* validacao service tag, se nao for unico, recusa.*/
 async function setServiceTag(){
     const newServiceTag = document.getElementById("serviceTag").value.trim();
-    const currentId = sessionStorage.getItem("viewAssetId"); /*evita bug no modo editar com o proprio registro*/
-    
+    const currentId = parseInt(sessionStorage.getItem("viewAssetId"))||0; /*evita bug no modo editar com o proprio registro*/
+    console.log("Current id" ,currentId);
     const assets = await getAssets();
     
     const checkedAsset = assets.find(
-        asset => asset.serviceTag === newServiceTag
-    );
+        asset => asset.serviceTag === newServiceTag);
+    
+    console.log("Checked ID ",checkedAsset.assetId);
    
     if(checkedAsset && checkedAsset.assetId !==currentId){
             document.getElementById("serviceTag").classList.add("inputError");
