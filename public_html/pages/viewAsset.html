@@ -1,15 +1,12 @@
 <!-- Essa pagina e apenas uma copia para leitura da pagina AddAsset -->
 
-
 <div class="mainPage">
     
     <div class="mainHeader">
         
-        
         <div class="headerTitle">
             <h2>View Asset</h2>
         </div>
-        
         
         <div class="headerNav">
             <ul class ="headerUl">
@@ -30,7 +27,6 @@
             <fieldset class="formSection">
                 <legend class="formLegends">General Information</legend>
                 
-
                 <div class="form-group">
                     <label for="assetId">
                         Asset ID
@@ -39,10 +35,11 @@
                     <input
                         type="text"
                         id="assetId"
-                        name="assetId">
+                        name="assetId"
+                        readonly
+                        disabled
+                        >
                 </div>
-
-
 
                 <div class="form-group">
                     <label for="assetName">
@@ -55,8 +52,6 @@
                         name="assetName">
                 </div>
 
-
-
                 <div class="form-group">
                     <label for="serviceTag">
                         Service Tag
@@ -68,7 +63,6 @@
                         name="serviceTag">
                 </div>
 
-
                 <div class="form-group">
                     <label for="model">
                         Model
@@ -79,8 +73,7 @@
                         id="model"
                         name="model">
                 </div>
-                
-                
+                                
                 <div class="form-group">
                     <label for="type">
                         Type
@@ -99,7 +92,6 @@
                     </select>
                 </div>  
                 
-
                 <div class="form-group">
                     <label for="assetStatus">
                         Status
@@ -111,8 +103,7 @@
                         <option id="statusRepairing">Repairing</option>
                         <option id="statusRetired">Retired</option>
                         <option id="statusLost">Lost</option>
-                        
-                        
+                                              
                     </select>
                 </div>
             </fieldset>
@@ -134,8 +125,6 @@
                         id="user"
                         name="user">
                 </div>
-
-        
           
                 <div class="form-group">
                     <label for="userEmail">
@@ -161,16 +150,13 @@
                     <option id="meetingPod">Meeting Pod</option>
                 </select>
                 </div>
-
-        
+       
             </fieldset>
-            
-            
+              
             <!-- ################################################################################## -->
             <!-- NOTES ################################################################### -->
             <!-- ################################################################################## -->        
-                        
-            
+                                
             <fieldset class="description">
                 <!--Item 7-->
                 <div class="form-group">
@@ -186,7 +172,6 @@
                 </div>
             </fieldset>
             </div>
-            
 
             <!-- ################################################################################## -->
             <!-- WARRANTY#####  ################################################################### -->
@@ -204,11 +189,8 @@
                         type="text"
                         id="warrantyDetails"
                         name="warrantyDetails">
-
                 </div>
-                       
-
-                                  
+                                                  
                 <div class="form-group">
                     <label for="warrantyExpiryDate">
                         Warranty Expiry Date
@@ -220,9 +202,7 @@
                         name="warrantyExpiryDate">
 
                 </div>
-           
-            
-            
+                     
                 <!--Item 7-->
                 <div class="form-group">
                     <label for="warrantyDocs">
@@ -233,7 +213,6 @@
                         type="file"
                         id="warrantyDocs"
                         name="warrantyDocs">
-
                 </div>
             </fieldset>           
             </div>
@@ -269,9 +248,7 @@
                         min="0"
                         >
                 </div>
-
-
-         
+        
                 <div class="form-group">
                     <label for="usefulLife">
                         Useful Life (Years)
@@ -282,8 +259,7 @@
                         id="usefulLife"
                         name="usefulLife">
                 </div>
-           
-     
+                
                 <div class="form-group">
                     <label for="depreciation">
                         Depreciation
@@ -294,9 +270,7 @@
                         id="depreciation"
                         name="depreciation">
                 </div>
-           
-           
-       
+                
                 <div class="form-group">
                     <label for="netValue">
                         Net Value
@@ -307,9 +281,7 @@
                         id="netValue"
                         name="netValue">
                 </div>
-           
-            
-            
+                
                 <!--Item 7-->
                 <div class="form-group">
                     <label for="purchaseInvoice">
@@ -320,7 +292,6 @@
                         type="file"
                         id="purchaseInvoice"
                         name="purchaseInvoice">
-
                 </div>
             </fieldset> 
             </div>
@@ -343,7 +314,6 @@
                         name="issueDescription">
                 </div>
 
-       
                 <div class="form-group">
                     <label for="issueDate">
                         Issue Date
@@ -355,8 +325,6 @@
                         name="issueDate">
                 </div>
 
-
- 
                 <div class="form-group">
                     <label for="supportTicketNumber">
                         Support Ticket Number
@@ -367,8 +335,7 @@
                         id="supportTicketNumber"
                         name="supportTicketNumber">
                 </div>
-           
-   
+              
                 <div class="form-group">
                     <label for="repairCost">
                         Repair Cost (€)
@@ -391,9 +358,7 @@
                         name="repairInvoice">
 
                 </div>
-           
                           
-     
             </fieldset>            
             
             <fieldset class="description">
@@ -410,13 +375,11 @@
 
                 </div>
             </fieldset>
-            
-            
+                  
             </div>
               
             <!-- buttons-->
-            
-            
+               
                 <div class="formButtons">
                      
                     <button type="button" id="close" onclick="closeViewAsset()">
@@ -427,11 +390,8 @@
                         Save Asset
                     </button>                     
       
-                </div>
-                
+                </div>          
         </form>
     </div>
-    
-    
-    
+   
 </div>
