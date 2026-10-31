@@ -11,13 +11,20 @@ async function loadPage(page){
     generalTab.style.display = "block";
     }
     
+    // Inicializadores dos formulários initAssetForm(); initUserForm();
     initAssetForm();
-        
+    initUserForm();
+    
+    if (page.includes("addAsset")) {
+        await renderUserField();
+    }
+            
     if(page.includes("assetRegister")){
         await renderAssets();
         await searchElement();
         await renderAcquisitionYearFilter();
         await renderResponsibleUserFilter();
+        
         btnExport();
         await btnSort();
     }
@@ -31,10 +38,8 @@ async function loadPage(page){
         await renderKpi();
     }
     
-    
-    initUserForm();
-    
     if(page.includes("users")){
+        
         await renderUsers();
         await renderUsersKpi();
         await searchUserElement();
@@ -48,7 +53,6 @@ async function loadPage(page){
     
     
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
     loadPage("pages/dashboard.html");

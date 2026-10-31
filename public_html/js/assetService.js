@@ -74,7 +74,7 @@ async function initAssetForm(){
     if(!assetForm){
         return;
     }
-              
+             
     assetForm.addEventListener("submit",async (event)=>{
     event.preventDefault();
     
@@ -105,8 +105,10 @@ async function initAssetForm(){
     const model = document.getElementById("model").value;
     const type = document.getElementById("type").value;
     const assetStatus = document.getElementById("assetStatus").value;
-    const userId = 4;
-    const userEmail = document.getElementById("userEmail").value;
+    
+    await renderUserField();
+    
+    const userId = document.getElementById("assetStatus").value;
     const location = document.getElementById("location").value;
     const notes = document.getElementById("notes").value;
     const warrantyDetails = document.getElementById("warrantyDetails").value;
@@ -174,7 +176,6 @@ async function initAssetForm(){
     type,
     assetStatus,
     userId,
-    userEmail,
     location,
     notes,
     warrantyDetails,
@@ -248,7 +249,6 @@ async function renderAssets(assets = null){
 
 /*renderViewAsset - Exibe apenas no View*/
 
-
 async function renderViewAsset(){
     
     const selectedAssetId = parseInt(sessionStorage.getItem("viewAssetId"));
@@ -293,6 +293,39 @@ async function renderViewAsset(){
         document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
         document.querySelector(".resave").style.display="none";
     }
+}
+
+
+/*Render User field*/
+async function renderUserField() {
+    const users = await getUsers();
+    const userSelect = document.getElementById("userSelect");
+
+    if (!userSelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select a user
+        </option>
+    `;
+
+    const uniqueUsers = [];
+
+    users.forEach(user => {
+        if (!uniqueUsers.includes(user.userId)) {
+            uniqueUsers.push(user.userId);
+
+            output += `
+                <option value="${user.userId}">
+                    ${user.firstName} ${user.lastName}
+                </option>
+            `;
+        }
+    });
+
+    userSelect.innerHTML = output;
 }
 
 /*
