@@ -19,7 +19,7 @@ async function loadPage(page){
         await renderAcquisitionYearFilter();
         await renderResponsibleUserFilter();
         btnExport();
-        btnSort();
+        await btnSort();
     }
     
     if(page.includes("viewAsset")){
