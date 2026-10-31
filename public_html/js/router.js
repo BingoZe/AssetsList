@@ -30,6 +30,7 @@ async function loadPage(page){
     }
     
     if(page.includes("viewAsset")){
+        await renderUserField();
         await renderViewAsset();
     }
     

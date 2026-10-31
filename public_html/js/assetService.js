@@ -106,9 +106,16 @@ async function initAssetForm(){
     const type = document.getElementById("type").value;
     const assetStatus = document.getElementById("assetStatus").value;
     
-    await renderUserField();
+   
     
-    const userId = document.getElementById("assetStatus").value;
+    const userSelect = document.getElementById("userSelect");
+    const userId = Number(userSelect.value);
+
+    if (!userSelect.value) {
+        console.log("Select a user.");
+        return;
+    }
+    
     const location = document.getElementById("location").value;
     const notes = document.getElementById("notes").value;
     const warrantyDetails = document.getElementById("warrantyDetails").value;
@@ -250,7 +257,7 @@ async function renderAssets(assets = null){
 /*renderViewAsset - Exibe apenas no View*/
 
 async function renderViewAsset(){
-    
+         
     const selectedAssetId = parseInt(sessionStorage.getItem("viewAssetId"));
     const selectedMode = sessionStorage.getItem("mode");
 
@@ -266,7 +273,12 @@ async function renderViewAsset(){
     document.getElementById("model").value =viewedAsset.model;
     document.getElementById("type").value =viewedAsset.type;
     document.getElementById("assetStatus").value =viewedAsset.assetStatus;
-    document.getElementById("user").value =`${viewedAsset.users.firstName} ${viewedAsset.users.lastName}`;
+    
+ 
+    
+   document.getElementById("userSelect").value =String(`${viewedAsset.users.userId} `);
+    
+    
     document.getElementById("userEmail").value =`${viewedAsset.users.userEmail}`;
     document.getElementById("location").value =viewedAsset.location;
     document.getElementById("notes").value =viewedAsset.notes;
@@ -324,7 +336,7 @@ async function renderUserField() {
             `;
         }
     });
-
+    
     userSelect.innerHTML = output;
 }
 
@@ -383,8 +395,17 @@ async function updateAsset(){
         updatedAsset.model = document.getElementById("model").value;
         updatedAsset.type = document.getElementById("type").value;
         updatedAsset.assetStatus = document.getElementById("assetStatus").value;
-        updatedAsset.user = document.getElementById("user").value;
+
+        updatedAsset.userSelect = document.getElementById("userSelect");
+        updatedAsset.userId = Number(updatedAsset.userSelect.value);
+
+        if (!updatedAsset.userSelect) {
+            console.log("Select a user.");
+            return;
+        }    
+        
         updatedAsset.userEmail = document.getElementById("userEmail").value;
+        
         updatedAsset.location = document.getElementById("location").value;
         updatedAsset.warrantyDetails = document.getElementById("warrantyDetails").value;
         updatedAsset.warrantyDocs = document.getElementById("warrantyDocs").value;
