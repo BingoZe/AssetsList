@@ -3,8 +3,8 @@
    CHARTS
    ========================================== */
 
-function renderAssetChart(){
-  const assets = getAssets();
+async function renderAssetChart(){
+  const assets = await getAssets();
 
   const ctxType = document.getElementById('typeChart');  
   const ctxStatus = document.getElementById('statusChart');  
@@ -143,8 +143,8 @@ function countBy(items, field){
 /* ==========================================
    Indicators
    ========================================== */
-function renderKpi(){
-    const assets = getAssets();
+async function renderKpi(){
+    const assets = await getAssets();
     
     /*Indicadores total assets*/
     document.getElementById('totalAssetsFigures').textContent = assets.length || 0;

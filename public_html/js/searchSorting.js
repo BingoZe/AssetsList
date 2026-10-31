@@ -175,7 +175,7 @@ async function renderResponsibleUserFilter(assets = null){
 /* SORTING USANDO ALGORITMO DE ORDENACAO BUBBLE SORT*/
 /*---------------------------------------------*/
 
-function btnSort(){
+async function btnSort(){
     
     const sortItem = document.querySelectorAll(".sortingButton");
     
@@ -184,9 +184,10 @@ function btnSort(){
     
     
     sortItem.forEach(button =>{
-        button.addEventListener("click",function(){ /*evento em cada botao sort*/
-            const assets = getAssets();
+        button.addEventListener("click",async function(){ /*evento em cada botao sort*/
+            const assets = await getAssets();
             const sortedAssets = [...assets]; /*faz uma copia do array para ordenacao bubble sort*/
+            console.log(sortedAssets);
             const sortField = button.dataset.sort;/*captura o botao adequado do HTML usando campo dinamico*/
 
 
