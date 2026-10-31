@@ -1,6 +1,6 @@
 
-function searchElement(){
-    const assets = getAssets();  
+async function searchElement(){
+    const assets = await getAssets();  
     
     /*campo busca*/
     const lookupItem = document.getElementById("searchField");
@@ -21,7 +21,7 @@ function searchElement(){
     const acquisitionYearLookupItem = document.getElementById("acquisitionYearSelect");
     
     /* adiciona evento ao campo search - Asset Register*/
-    lookupItem.addEventListener("input",function(){
+    lookupItem.addEventListener("input",async function(){
                 
         const searchItem = lookupItem.value.toLowerCase();   
         
@@ -31,8 +31,7 @@ function searchElement(){
             .includes(searchItem) ||
             asset.serviceTag.toLowerCase()
             .includes(searchItem)||
-            asset.assetId.toLowerCase()
-            .includes(searchItem)
+            asset.assetId.toString()===searchItem
             );
         
         renderAssets(filteredAssets);
@@ -40,7 +39,7 @@ function searchElement(){
     
    /* adiciona evento ao select status - Asset Register*/
 
-    statusLookupItem.addEventListener("change",function(){
+    statusLookupItem.addEventListener("change",async function(){
                 
         const searchItem = statusLookupItem.value.toLowerCase();   
         
@@ -54,7 +53,7 @@ function searchElement(){
             renderAssets();
     }); 
 
-    typeLookupItem.addEventListener("change",function(){
+    typeLookupItem.addEventListener("change",async function(){
                 
         const searchItem = typeLookupItem.value.toLowerCase();   
         
@@ -69,7 +68,7 @@ function searchElement(){
             renderAssets();
     }); 
     
-    locationLookupItem.addEventListener("change",function(){
+    locationLookupItem.addEventListener("change",async function(){
                 
         const searchItem = locationLookupItem.value.toLowerCase();   
         
@@ -85,13 +84,19 @@ function searchElement(){
         }); 
     
     
-    responsibleUserLookupItem.addEventListener("change",function(){
+    responsibleUserLookupItem.addEventListener("change",async function(){
                 
-        const searchItem = responsibleUserLookupItem.value.toLowerCase(); 
-        
-        const filteredAssets = assets.filter(asset=>
-            asset.user.toLowerCase()
-            .includes(searchItem));
+        const searchItem = responsibleUserLookupItem.value.trim().toLowerCase(); 
+
+        const filteredAssets = assets.filter(asset=>{
+            const fullName = `${asset.users?.firstName ?? ""} ${asset.users?.lastName ?? ""}`
+                .trim()
+                .toLowerCase();
+
+        return fullName === searchItem;
+    });
+            
+            console.log(filteredAssets);
        
         if(searchItem !=="all users"){
             renderAssets(filteredAssets);
@@ -100,7 +105,7 @@ function searchElement(){
             renderAssets();
     });     
 
-    acquisitionYearLookupItem.addEventListener("change",function(){
+    acquisitionYearLookupItem.addEventListener("change",async function(){
                 
         const searchItem = acquisitionYearLookupItem.value; ; 
         
@@ -118,14 +123,19 @@ function searchElement(){
 };
 
 /*renderAcquisitionYear*/
-function renderAcquisitionYearFilter(assets = getAssets()){
-
+async function renderAcquisitionYearFilter(assets = null){
+    
+    if(!assets){
+        assets = await getAssets();
+    }
+    
     let output = `<option selected>All Years</option>`;
     const uniqueYear = [];
     
     assets.forEach((asset) => {
         if(!uniqueYear.includes(asset.acquisitionYear)){
             uniqueYear.push(asset.acquisitionYear);
+            
             output += `
                 <option>${asset.acquisitionYear}</option>
             `;
@@ -136,19 +146,23 @@ function renderAcquisitionYearFilter(assets = getAssets()){
 };
 
 /*RenderUser*/
-function renderResponsibleUserFilter(assets = getAssets()){
-
+async function renderResponsibleUserFilter(assets = null){
+    
+    if(!assets){
+        assets = await getAssets();
+    }
+    
     let output = `<option selected>All Users</option>`;
     const uniqueUser = []; 
     
     assets.forEach((asset) => {
         
         /*mostra apenas user unico no filtro*/
-        if(!uniqueUser.includes(asset.user)){
-        uniqueUser.push(asset.user);
+        if(!uniqueUser.includes(asset.userId)){
+        uniqueUser.push(asset.userId);
             
         output += `
-            <option>${asset.user}</option>
+            <option>${asset.users.firstName} ${asset.users.lastName}</option>
         `;
         }
     });

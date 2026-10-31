@@ -15,9 +15,9 @@ async function loadPage(page){
         
     if(page.includes("assetRegister")){
         await renderAssets();
-        searchElement();
-        renderAcquisitionYearFilter();
-        renderResponsibleUserFilter();
+        await searchElement();
+        await renderAcquisitionYearFilter();
+        await renderResponsibleUserFilter();
         btnExport();
         btnSort();
     }
