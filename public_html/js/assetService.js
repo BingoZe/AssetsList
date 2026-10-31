@@ -13,6 +13,7 @@ async function getAssets(){
             .select(`
                 *,
                 users (
+                    userId,
                     firstName,
                     lastName,
                     userEmail
@@ -274,10 +275,9 @@ async function renderViewAsset(){
     document.getElementById("type").value =viewedAsset.type;
     document.getElementById("assetStatus").value =viewedAsset.assetStatus;
     
- 
-    
-   document.getElementById("userSelect").value =String(`${viewedAsset.users.userId} `);
-    
+    const userSelect = document.getElementById("userSelect");
+
+    userSelect.value = String(viewedAsset.users.userId);
     
     document.getElementById("userEmail").value =`${viewedAsset.users.userEmail}`;
     document.getElementById("location").value =viewedAsset.location;
@@ -395,14 +395,8 @@ async function updateAsset(){
         updatedAsset.model = document.getElementById("model").value;
         updatedAsset.type = document.getElementById("type").value;
         updatedAsset.assetStatus = document.getElementById("assetStatus").value;
-
-        updatedAsset.userSelect = document.getElementById("userSelect");
-        updatedAsset.userId = Number(updatedAsset.userSelect.value);
-
-        if (!updatedAsset.userSelect) {
-            console.log("Select a user.");
-            return;
-        }    
+        
+        updatedAsset.userId = document.getElementById("userSelect").value;
         
         updatedAsset.userEmail = document.getElementById("userEmail").value;
         
@@ -480,7 +474,7 @@ async function updateAsset(){
                 model :updatedAsset.model,
                 type : updatedAsset.type,
                 assetStatus : updatedAsset.assetStatus,
-                
+                userId:updatedAsset.userId,
                 location : updatedAsset.location,
                 notes :updatedAsset.notes,
                 warrantyDetails : updatedAsset.warrantyDetails,
