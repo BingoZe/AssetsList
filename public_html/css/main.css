@@ -520,6 +520,15 @@ fieldset{
     background:#f8fafc;
 }
 
+.allAssets td:last-child{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:4px;
+}
+
 /*   TABLE ACTIONS */
 
 .btTdItemView,
@@ -533,6 +542,10 @@ fieldset{
     cursor:pointer;
     font-size:.75rem;
     transition:.2s;
+    min-width:60px;
+    padding:8px;
+    font-size:.70rem;
+    
 }
 
 .btTdItemView{

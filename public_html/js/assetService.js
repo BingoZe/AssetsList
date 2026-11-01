@@ -90,11 +90,13 @@ async function initAssetForm(){
     }
 
     /*name validation*/
-    const assetName = setAssetName();
+    const assetName = document.getElementById("assetName").value.trim();
     if(!assetName){
         alert("Invalid name!");
+        addErrorCss("assetName");
         return;
     }
+    removeErrorCss("assetName");
          
     /*serviceTag validation*/
     const serviceTag = await setServiceTag();
@@ -156,14 +158,14 @@ async function initAssetForm(){
         return;
     }*/
     
-    const depreciation = document.getElementById("depreciation").value;
+    const depreciation = document.getElementById("depreciation").value||0;
             /*setDepreciation(acquisitionValue,usefulLife);
      if(!depreciation){
         alert("Invalid Depreciation");
         return;
     }   */
     
-    const netValue =document.getElementById("netValue").value; /*setNetValue(acquisitionValue,depreciation);
+    const netValue =document.getElementById("netValue").value||0; /*setNetValue(acquisitionValue,depreciation);
      if(!netValue){
         alert("Invalid Net Value");
         return;
@@ -229,7 +231,7 @@ async function renderAssets(assets = null){
     }
 
     let output = "";
-    assets.forEach(async (asset) => {
+    assets.forEach((asset) => {
  
         output += `
         <tr>
@@ -379,18 +381,23 @@ async function updateAsset(){
     const updatedAsset = assets.find(updatedAsset=>
         updatedAsset.assetId===selectedAssetId
     );
-        updatedAsset.assetName = setAssetName();
+    
+        updatedAsset.assetName = document.getElementById("assetName").value.trim();
         if(!updatedAsset.assetName){
             alert("Invalid name!");
+            addErrorCss("assetName");
             return;
         }
+        removeErrorCss("assetName");
 
         updatedAsset.serviceTag = await setServiceTag();
 
         if(!updatedAsset.serviceTag){
             alert("Service Tag not unique!");
+            addErrorCss("serviceTag");
             return;
         }
+        
 
         updatedAsset.model = document.getElementById("model").value;
         updatedAsset.type = document.getElementById("type").value;
@@ -409,10 +416,10 @@ async function updateAsset(){
         if(!updatedAsset.acquisitionDate ||updatedAsset.acquisitionDate===null
         ||updatedAsset.acquisitionDate===undefined ){
             alert("Invalid Acquisition Date");
-            document.getElementById("acquisitionDate").classList.add("inputError");
+            addErrorCss("acquisitionDate");
             return;
         }     
-        document.getElementById("acquisitionDate").classList.remove("inputError");
+        removeErrorCss("acquisitionDate");
 
         updatedAsset.acquisitionYear = parseInt(new Date(updatedAsset.acquisitionDate).getFullYear());
 
@@ -421,16 +428,18 @@ async function updateAsset(){
 
         if(!updatedAsset.warrantyExpiryDate){
             alert("Warranty expire date cannot be before Acquisition Date");
+            addErrorCss("warrantyExpiryDate");
             return;
         }     
-        document.getElementById("warrantyExpiryDate").classList.remove("inputError");
+        removeErrorCss("warrantyExpiryDate");
 
         /* refatorar e definir constraint no banco*/
          if(!updatedAsset.acquisitionDate){
             alert("Warranty expire date cannot be before Acquisition Date");
+            addErrorCss("acquisitionDate");  
             return;
         }     
-        document.getElementById("warrantyExpiryDate").classList.remove("inputError");            
+        removeErrorCss("acquisitionDate");            
 
         updatedAsset.acquisitionValue = parseFloat(setAcquisitionValue())||0;
         if(!updatedAsset.acquisitionValue){
@@ -438,12 +447,13 @@ async function updateAsset(){
             return;
         }
 
-        updatedAsset.usefulLife = document.getElementById("usefulLife").value;
-                /*setUsefulLife();
+        updatedAsset.usefulLife = setUsefulLife();
         if(!updatedAsset.usefulLife){
             alert("Invalid Useful Life");
+            addErrorCss("usefulLife");
             return;
-        }*/
+        }
+        removeErrorCss("usefulLife");
 
         updatedAsset.depreciation = document.getElementById("depreciation").value;
                 /*setDepreciation(updatedAsset.acquisitionValue,updatedAsset.usefulLife);
@@ -507,28 +517,13 @@ async function updateAsset(){
 }
 
 /* ASSET VALIDATION */
-
-/*validacao do nome. Se for vazio, recusa.*/
-function setAssetName(){
-    const assetName = document.getElementById("assetName").value.trim();
-    
-    if(assetName ===""){
-        document.getElementById("assetName").classList.add("inputError");
-        
-        return false;
-    }
-    document.getElementById("assetName").classList.remove("inputError");
-    return assetName;
-}
-    
+   
 /* validacao service tag, se nao for unico, recusa.*/
 async function setServiceTag() {
 
     const newServiceTag = document.getElementById("serviceTag").value.trim();
-
-    const currentId =
-        parseInt(sessionStorage.getItem("viewAssetId")) || 0;
-
+    const currentId = parseInt(sessionStorage.getItem("viewAssetId")) || 0;
+    
     const assets = await getAssets();
 
     const checkedAsset = assets.find(
@@ -536,14 +531,8 @@ async function setServiceTag() {
     );
 
     if (checkedAsset && checkedAsset.assetId !== currentId) {
-        document.getElementById("serviceTag")
-            .classList.add("inputError");
-
         return false;
     }
-
-    document.getElementById("serviceTag")
-        .classList.remove("inputError");
 
     return newServiceTag;
 }
@@ -558,11 +547,8 @@ function setAcquisitionValue(){
    const acquisitionValue = document.getElementById("acquisitionValue").value;
    
     if(acquisitionValue <0){
-        document.getElementById("acquisitionValue").classList.add("inputError");
-        
         return false;
     }
-    document.getElementById("acquisitionValue").classList.remove("inputError");
     return acquisitionValue;
 }
 
@@ -570,12 +556,9 @@ function setAcquisitionValue(){
 function setUsefulLife(){
    const usefulLife = document.getElementById("usefulLife").value;
    
-    if(usefulLife <=0){
-        document.getElementById("usefulLife").classList.add("inputError");
-        
+    if(usefulLife <0){       
         return false;
     }
-    document.getElementById("usefulLife").classList.remove("inputError");
     return usefulLife;
 }
 
@@ -602,15 +585,40 @@ function setWarrantyExpiryDate(acquisitionDate) {
         document.getElementById("warrantyExpiryDate").value;
 
     if (warrantyExpiryDate >= acquisitionDate) {
-
-        document.getElementById("warrantyExpiryDate")
-            .classList.remove("inputError");
-
         return warrantyExpiryDate;
     }
 
-    document.getElementById("warrantyExpiryDate")
-        .classList.add("inputError");
+    return false;
+}
+
+/*funcoes temporarias para validacoes*/
+
+function addErrorCss(prop) {
+    const field = document.getElementById(prop);
+
+    field.classList.add("inputError");
+
+    const tab = field.closest(".tabcontent");
+
+    if (tab) {
+        document.querySelectorAll(".tabcontent").forEach(t => {
+            t.style.display = "none";
+        });
+
+        tab.style.display = "block";
+    }
+
+    setTimeout(() => {
+        field.focus();
+        field.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 100);
 
     return false;
+}
+
+function removeErrorCss(prop) {
+    document.getElementById(prop).classList.remove("inputError");
 }
