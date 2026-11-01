@@ -47,12 +47,7 @@ html{
 body{
     margin:0;
     min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    font-family:
-    "Inter",
-    "Segoe UI",
-    sans-serif;
+    font-family:"Inter","Segoe UI",sans-serif;
     color:var(--gray-500);
     background:var(--main-background);
 }
@@ -80,70 +75,55 @@ ul{
     overflow-x:hidden;
 }
 
-/*   HEADER */
 
-.container-header{
 
-    display:flex;
-    min-height:64px;
-    background:
-    linear-gradient(
-        90deg,
-        #94bbdf 0%,
-        #4e73df 50%,
-        #94bbdf 100%
-    );
-}
-
-.fixed-title{
-
-    width:240px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-}
-
-.nav-logo{
-
-    width:60px;
-    height:60px;
-    background-image:url("../img/DwemerWorks-logo.png");
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-}
-
-header{
-
-    flex:1;
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    padding:0 24px;
-    gap: 25px;
-}
-
-.header-actions{
-
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-
-.notification,
-.user-profile{
-    color:white;
-}
 
 /*   LAYOUT */
 
-.container-main-nav{
+.app-layout{
     display:flex;
-    flex:1;
+    min-height:100vh;
 }
 
-/*  SIDEBAR */
+.content-area{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+}
+
+
+
+
+
+/*   HEADER 
+============*/
+
+header{
+    height:60px;
+    background:white;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:24px;
+    padding:0 24px;
+    border-bottom:
+    1px solid var(--gray-200);
+    box-shadow:
+    0 1px 2px rgba(0,0,0,.03);
+}
+
+
+
+.notification,
+.user-profile{
+    color:var(--gray-600);
+    font-weight:600;
+}
+
+
+/*  SIDEBAR 
+===============*/
 
 nav{
 
@@ -161,37 +141,69 @@ nav{
     display:flex;
     flex-direction:column;
 
-    flex-shrink:0;
+    box-shadow:
+    3px 0 20px rgba(0,0,0,.07);
 }
 
-nav ul{
-    list-style:none;
-    padding:16px;
-}
 
 .nav-ul-items{
-    margin-bottom:5px;
+    list-style:none;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:5px;
 }
 
 .nav-ul-items a{
-
     color:white;
-
     display:flex;
     align-items:center;
-
     padding:12px 16px;
-
     border-radius:10px;
-
     transition:.25s ease;
 }
 
+.nav-ul-items a.active{
+    background:
+    rgba(255,255,255,.20);
+    border-left:
+    4px solid white;
+    font-weight:700;
+}
+
 .nav-ul-items a:hover{
-
     background:rgba(255,255,255,.15);
-
     transform:translateX(4px);
+}
+
+
+.sidebar-brand{
+    height:120px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    padding-left:20px;
+    gap:8px;
+    border-bottom:
+    1px solid rgba(255,255,255,.15);
+}
+
+.nav-logo{
+    width:64px;
+    height:64px;
+    background-image: url("../img/dw-logo.png");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+
+.brand-title{
+    color:white;
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:2px;
+    text-align:left;
+    margin-left: 6%;
 }
 
 /*   MAIN */
@@ -200,11 +212,12 @@ main{
 
     flex:1;
 
-    min-width:0;
-
     padding:20px;
 
-    background:var(--main-background);
+    overflow:auto;
+
+    background:
+        var(--main-background);
 }
 
 .mainPage{
@@ -212,34 +225,25 @@ main{
 }
 
 .mainHeader{
-
     margin-bottom:16px;
-
     border-radius:var(--radius);
 }
 
 .mainContainer,
 .formContainer{
-
     background:white;
-
     border:none;
-
     border-radius:var(--radius);
-
     padding:20px;
-
     box-shadow:var(--shadow);
 }
 
 .subMainHeader{
-
     display:flex;
-
     justify-content:space-between;
     align-items:center;
-
     margin-bottom:15px;
+    gap:10px;
 }
 
 /*   DASHBOARD */
@@ -251,31 +255,23 @@ main{
     grid-template-columns:
     repeat(
         auto-fit,
-        minmax(450px,1fr)
+        minmax(350px,1fr)
     );
 
     gap:24px;
 }
 
 .assetCharts{
-
     background:white;
-
     border-radius:var(--radius);
-
     padding:20px;
-
     box-shadow:var(--shadow);
-
     overflow:hidden;
 }
 
 .stats{
-
     margin-top:24px;
-
     display:grid;
-
     grid-template-columns:
     repeat(
         auto-fit,
@@ -286,21 +282,13 @@ main{
 }
 
 .statsSubcontainer{
-
     display:flex;
-
     align-items:center;
-
     padding:20px;
-
     min-height:110px;
-
     background:white;
-
     border-radius:var(--radius);
-
     box-shadow:var(--shadow);
-
     transition:.2s ease;
 }
 
@@ -309,29 +297,20 @@ main{
 }
 
 .statsIcon{
-
     width:54px;
     height:54px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     background:#e8f0ff;
-
     border-radius:12px;
-
     flex-shrink:0;
 }
 
 .statsCaption{
-
     flex:1;
-
     margin-left:15px;
-
     font-size:.85rem;
-
     font-weight:600;
 }
 
@@ -340,11 +319,8 @@ main{
 }
 
 .figures{
-
     font-size:1.5rem;
-
     font-weight:700;
-
     color:var(--blue);
 }
 
@@ -371,64 +347,44 @@ main{
 /*   FORMS */
 
 .mainPage .formSection{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:24px;
 }
 
 fieldset{
-
     border:1px solid var(--gray-300);
-
     border-radius:var(--radius);
-
     padding:15px;
 }
 
 .formLegends{
-
     font-size:1.2rem;
-
     font-weight:700;
-
     color:var(--gray-600);
 }
 
 .form-group{
-
     display:flex;
-
     flex-direction:column;
-
     gap:10px;
 }
 
 .mainPage input,
 .mainPage select,
 .mainPage textarea{
-
     width:100%;
-
     padding:12px 14px;
-
     border:1px solid var(--gray-300);
-
     border-radius:10px;
-
     transition:.2s;
 }
 
 .mainPage input:focus,
 .mainPage select:focus,
 .mainPage textarea:focus{
-
     outline:none;
-
     border-color:var(--blue);
-
     box-shadow:
     0 0 0 4px
     rgba(78,115,223,.15);
@@ -440,40 +396,28 @@ fieldset{
 }
 
 .formButtons{
-
     grid-column:1 / -1;
-
     display:flex;
-
     gap:10px;
-
     margin-top:10px;
 }
 
 /*    HEADER NAV */
 
 .headerUl{
-
     list-style:none;
-
     display:flex;
-
     gap:15px;
-
     align-items:center;
 }
 
 .headerUl a{
-
     color:var(--gray-500);
-
     transition:.2s;
 }
 
 .headerUl a:hover{
-
     color:var(--blue);
-
     font-weight:600;
 }
 
@@ -483,47 +427,33 @@ fieldset{
 .buttonExport{
 
     height:44px;
-
     min-width:130px;
-
     border:none;
-
     border-radius:10px;
-
     cursor:pointer;
-
     color:white;
-
     font-weight:600;
-
     padding:0 20px;
-
     transition:.2s;
 }
 
 .btnPrimary{
-
     background:var(--blue);
 }
 
 .btnPrimary:hover{
-
     background:var(--blue-hover);
 }
 
 .buttonExport{
-
     background:var(--gray-600);
-
     margin-left:auto;
 }
 
 /*   FILTERS */
 
 .searchNav{
-
     display:grid;
-
     grid-template-columns:
     repeat(
         auto-fit,
@@ -534,11 +464,8 @@ fieldset{
 }
 
 .searchNavElement{
-
     display:flex;
-
     flex-direction:column;
-
     gap:6px;
 }
 
@@ -548,67 +475,48 @@ fieldset{
 
 .searchNav input,
 .searchNav select{
-
     width:100%;
-
     padding:12px;
-
     border:1px solid var(--gray-300);
-
     border-radius:10px;
 }
 
 /*   TABLES*/
 
 .table-responsive{
-
     width:100%;
-
     overflow-x:auto;
 }
 
 .allAssets{
-
     width:100%;
-
     min-width:1200px;
-
     border-collapse:collapse;
-
     background:white;
-
     border-radius:var(--radius);
 }
 
 .allAssets thead{
-
     background:#f7f9fc;
 }
 
 .allAssets th,
 .allAssets td{
-
     padding:14px;
-
     text-align:left;
 }
 
 .allAssets th{
-
     color:var(--gray-600);
-
     font-weight:700;
 }
 
 .allAssets tbody tr{
-
     border-top:1px solid var(--gray-200);
-
     transition:.2s;
 }
 
 .allAssets tbody tr:hover{
-
     background:#f8fafc;
 }
 
@@ -619,17 +527,11 @@ fieldset{
 .btTdItemDelete{
 
     border:none;
-
     border-radius:8px;
-
     padding:8px 14px;
-
     color:white;
-
     cursor:pointer;
-
     font-size:.75rem;
-
     transition:.2s;
 }
 
@@ -668,16 +570,11 @@ fieldset{
 }
 
 
-/* ==========================================
-   VALIDATION
-========================================== */
+/*  VALIDATION */
 
 .inputError{
-
     background:#ffe4e6;
-
     border:1px solid #ef4444;
-
     outline:none;
 }
 
@@ -688,8 +585,8 @@ fieldset{
 @media (max-width:1024px){
 
     nav{
-        width:200px;
-        min-width:200px;
+        width:220px;
+        min-width:220px;
     }
 
     .chartContainer{
@@ -705,31 +602,25 @@ fieldset{
     }
 }
 
-/* MOBILE TABLET*/
+/* MOBILE TABLET*/@media (max-width:768px){
 
-@media (max-width:768px){
-
-    .container-main-nav{
+    .app-layout{
         flex-direction:column;
     }
 
     nav{
-
         width:100%;
         min-width:100%;
     }
 
-    nav ul{
-
-        display:flex;
-
-        flex-wrap:wrap;
-
-        gap:8px;
+    .sidebar-brand{
+        height:80px;
     }
 
-    main{
-        padding:15px;
+    .nav-ul-items{
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:center;
     }
 
     .stats{
@@ -744,19 +635,8 @@ fieldset{
         grid-template-columns:1fr;
     }
 
-    .subMainHeader{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:10px;
-    }
-
     .searchNav{
-
-        grid-template-columns:
-        repeat(2,1fr);
+        grid-template-columns:1fr;
     }
 }
 
@@ -768,9 +648,6 @@ fieldset{
         font-size:14px;
     }
 
-    .fixed-title{
-        display:none;
-    }
 
     .searchNav{
         grid-template-columns:1fr;
@@ -781,11 +658,8 @@ fieldset{
     }
 
     .statsSubcontainer{
-
         flex-direction:column;
-
         text-align:center;
-
         gap:12px;
     }
 
@@ -795,14 +669,11 @@ fieldset{
 
     .btnPrimary,
     .buttonExport{
-
         width:100%;
-
         margin:0;
     }
 
     .formButtons{
-
         flex-direction:column;
     }
 }

@@ -1,67 +1,125 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html lang="en">
-    <head>
-        <title>DwemerWorks</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel ="stylesheet" href="css/main.css"/>
-        
-        
-        <script src="js/router.js"></script>
-        <script src="js/openTab.js"></script>
-        <script src="js/assetService.js"></script>
-        <script src="js/buttons.js"></script>
-        <script src="js/searchSorting.js"></script>
-        <script src="js/dashboard.js"></script>
-        <script src="js/viewMode.js"></script>
-        <script src="js/userService.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-        <script src="js/supabaseClient.js"></script>
 
-    </head>
+<head>
 
-    <body>
+    <title>DwemerWorks</title>
 
-        <div class="container-header">
-            <div class="fixed-title">
-                <figure class="nav-logo">             
-                </figure>
-            </div>
-            <header>
-               
-                <div class="notification">Notifications</div>
-                <div class="user-profile">User Profile</div>         
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            </header>
-        </div>
-        
-        <div class="container-main-nav">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/router.js"></script>
+    <script src="js/openTab.js"></script>
+    <script src="js/assetService.js"></script>
+    <script src="js/buttons.js"></script>
+    <script src="js/searchSorting.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/viewMode.js"></script>
+    <script src="js/userService.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="js/supabaseClient.js"></script>
+
+</head>
+
+<body>
+
+    <div class="app-layout">
 
         <nav>
-                <ul class ="nav-ul-items">
-                    <li><a href="#" onclick="event.preventDefault(); loadPage('pages/dashboard.html')">Dashboard</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); loadPage('pages/assetRegister.html')">Asset Register</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); loadPage('pages/maintenance.html')">Maintenance</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); loadPage('pages/movements.html')">Movements</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); loadPage('pages/users.html')">Users</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); loadPage()">Reports</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); loadPage('pages/settings.html')">Settings</a></li>
-                </ul>
+
+            <div class="sidebar-brand">
+
+                <figure class="nav-logo"></figure>
+
+                <span class="brand-title">
+                    DWEMERWORKS
+                </span>
+
+            </div>
+
+            <ul class="nav-ul-items">
+
+                <li>
+                    <a href="#"
+                       onclick="event.preventDefault(); loadPage('pages/dashboard.html')">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                       onclick="event.preventDefault(); loadPage('pages/assetRegister.html')">
+                        Asset Register
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                       onclick="event.preventDefault(); loadPage('pages/maintenance.html')">
+                        Maintenance
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                       onclick="event.preventDefault(); loadPage('pages/movements.html')">
+                        Movements
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                       onclick="event.preventDefault(); loadPage('pages/users.html')">
+                        Users
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                       onclick="event.preventDefault(); loadPage()">
+                        Reports
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                       onclick="event.preventDefault(); loadPage('pages/settings.html')">
+                        Settings
+                    </a>
+                </li>
+
+            </ul>
+
         </nav>
 
-        <main id="main-content"></main>
 
+        <div class="content-area">
 
-       </div> 
+            <header>
 
-        
-        
-        
-    </body>
+                <div class="notification">
+                    Notifications
+                </div>
+
+                <div class="user-profile">
+                    User Profile
+                </div>
+
+            </header>
+
+            <main id="main-content">
+
+            </main>
+
+        </div>
+
+    </div>
+
+</body>
 
 </html>
