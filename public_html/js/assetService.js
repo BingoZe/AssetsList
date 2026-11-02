@@ -151,12 +151,13 @@ async function initAssetForm(){
         return;
     }    
     
-    const usefulLife = document.getElementById("usefulLife").value;
-            /*setUsefulLife();
+    const usefulLife = setUsefulLife();
     if(!usefulLife){
         alert("Invalid Useful Life");
         return;
-    }*/
+    }
+        
+        /*document.getElementById("usefulLife").value||0;*/
     
     const depreciation = document.getElementById("depreciation").value||0;
             /*setDepreciation(acquisitionValue,usefulLife);
@@ -434,7 +435,7 @@ async function updateAsset(){
         removeErrorCss("warrantyExpiryDate");
 
         /* refatorar e definir constraint no banco*/
-         if(!updatedAsset.acquisitionDate){
+        if(!updatedAsset.acquisitionDate){
             alert("Warranty expire date cannot be before Acquisition Date");
             addErrorCss("acquisitionDate");  
             return;
@@ -454,20 +455,6 @@ async function updateAsset(){
             return;
         }
         removeErrorCss("usefulLife");
-
-        updatedAsset.depreciation = document.getElementById("depreciation").value;
-                /*setDepreciation(updatedAsset.acquisitionValue,updatedAsset.usefulLife);
-        if(!updatedAsset.depreciation){
-            alert("Invalid Depreciation");
-            return;
-        }         */   
-
-        updatedAsset.netValue = document.getElementById("netValue").value;
-                /*setNetValue(updatedAsset.acquisitionValue,updatedAsset.depreciation);
-        if(!updatedAsset.netValue){
-            alert("Invalid Net Value");
-            return;
-        }            */
 
         updatedAsset.purchaseInvoice = document.getElementById("purchaseInvoice").value;
         updatedAsset.issueDescription = document.getElementById("issueDescription").value;
@@ -494,8 +481,6 @@ async function updateAsset(){
                 acquisitionYear :updatedAsset.acquisitionYear,
                 acquisitionValue : updatedAsset.acquisitionValue,
                 usefulLife : updatedAsset.usefulLife,
-                depreciation : updatedAsset.depreciation,
-                netValue : updatedAsset.netValue,
                 purchaseInvoice : updatedAsset.purchaseInvoice,
                 issueDescription :updatedAsset.issueDescription,
                 issueDate : updatedAsset.issueDate,
