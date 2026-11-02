@@ -161,10 +161,10 @@ async function renderKpi(){
     let netValueCount = 0;
     
     assets.forEach((asset) => {
-        netValueCount+= Number(asset.netValue);
+        netValueCount+= Math.round(Number(asset.netValue));
     });
     
-    document.getElementById('netValueFigures').textContent = netValueCount.toLocaleString();
+    document.getElementById('netValueFigures').textContent = `€ ${netValueCount.toLocaleString()}`;
     
 }
 
