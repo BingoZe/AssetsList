@@ -1,0 +1,211 @@
+            
+<div class="mainPage">
+    <div class="mainHeader">
+        <h2>MAINTENANCE</h2>
+        <div class="subMainHeader">
+            <p>Manage and track all assets maintenance</p>
+            <button class="btnPrimary" onclick="event.preventDefault(); loadPage('pages/addOrder.html')"> + Add New Order</button>
+        </div>
+
+
+        <div class="searchNav">
+            <div class="searchNavElement">
+                <label for="searchField">
+                    Search
+                </label>    
+                <input
+                    type="text"
+                    id="searchField"
+                    name="searchField"
+                    placeholder="Search by ID, Name or Service Tag..."
+                    >
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="typeSelect">
+                    Type
+                </label>
+
+                <select id="typeSelect" class="typeSelect">
+                    <option id="typeAll" selected>All types</option>
+                    <option id="typeLaptop">Laptop</option>
+                    <option id="typeMobile">Mobile</option>
+                    <option id="typeServer">Server</option>
+                    <option id="typeVirtualDesktop">Virtual Desktop</option>
+                    <option id="typeDesktop">Desktop</option>
+                    <option id="typeMonitor">Monitor</option>
+                    <option id="typePeripherals">Peripherals</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="assetStatus">
+                    Status
+                </label>
+
+                <select id="assetStatus" class="statusSelect">
+                    <option id="statusAll">All status</option>
+                    <option id="statusActive">Active</option>
+                    <option id="statusInactive">Inactive</option>
+                    <option id="statusRepairing">Repairing</option>
+                    <option id="statusRetired">Retired</option>
+                    <option id="statusLost">Lost</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="locationSelect">
+                    Location
+                </label>
+
+                <select id="locationSelect" class="locationSelect">
+                    <option id="allLocation">All Locations</option>
+                    <option id="deployed">Deployed</option>
+                    <option id="returned">Returned</option>
+                    <option id="comms">Comms</option>
+                    <option id="trainingRoom">Training Room</option>
+                    <option id="meetingPod">Meeting Pod</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="responsibleUserSelect">
+                    Responsible User
+                </label>
+
+                <select id="responsibleUserSelect" class="responsibleUserSelect">
+                    <option id="allUsers">All Users</option>
+                </select>
+            </div>
+            
+            <div class="searchNavElement">
+                <label for="acquisitionYearSelect">
+                    Acquisition Year 
+                </label>
+
+                <select id="acquisitionYearSelect" class="acquisitionYearSelect">
+                    <option id="allYears">All Years</option>
+                </select>
+            </div>      
+        </div>
+    </div>
+        <!-- MAIN CONTENT-->
+    <div class="mainContainer">
+        <table class="allAssets">
+            <thead class="tableHeader">
+                <tr>
+                    
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Maintenance ID</span>
+                            <button class="sortingButton" data-sort="assetId">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                   
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Asset</span>
+                            <button class="sortingButton" data-sort="assetName">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Issue/Service</span>
+                           <button class="sortingButton" data-sort="serviceTag">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Type</span>
+                            <button class="sortingButton" data-sort="type">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Status</span>
+                            <button class="sortingButton" data-sort="location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Issue Date</span>
+                            <button class="sortingButton" data-sort="assetStatus">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                                       
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Priority</span>
+                            <button class="sortingButton" data-sort="user">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="test">
+                                <path d="m21 16-4 4-4-4"></path>
+                                <path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </th>
+                    
+                    <th>
+                        <div class="tableHeaderElement">
+                            <span class="thTitle">Actions</span>
+                        </div>
+                    </th>
+                    
+                    
+                                       
+                </tr>
+                             
+             </thead>
+             
+
+             <tbody id="tableBody" class="tableBody">
+                 
+
+             </tbody>
+
+
+        </table>
+    </div>              
+</div>
+

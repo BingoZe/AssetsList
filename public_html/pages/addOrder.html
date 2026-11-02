@@ -1,0 +1,182 @@
+<div class="mainPage">
+
+    <div class="mainHeader">
+
+        <div class="headerTitle">
+            <h2>ADD ORDER</h2>
+        </div>
+
+        <div class="headerNav">
+            <ul class="headerUl">
+                <li>Current</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="formContainer">
+
+        <form class="maintenance-form">
+
+            <!-- ################################################################################## -->
+            <!-- Repairs ########################################################################## -->
+            <!-- ################################################################################## -->
+
+            <div id="generalTab" class="tabcontent">
+
+                <fieldset class="formSection">
+
+                    <legend class="formLegends">
+                        Current Maintenance/Repair
+                    </legend>
+
+                    <div class="form-group">
+                        <label for="issueDescription">
+                            Issue Description
+                        </label>
+
+                        <input
+                            type="text"
+                            id="issueDescription"
+                            name="issueDescription">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issueDate">
+                            Issue Date
+                        </label>
+
+                        <input
+                            type="text"
+                            id="issueDate"
+                            name="issueDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supportTicketNumber">
+                            Support Ticket Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="supportTicketNumber"
+                            name="supportTicketNumber">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="repairCost">
+                            Repair Cost (€)
+                        </label>
+
+                        <input
+                            type="text"
+                            id="repairCost"
+                            name="repairCost">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="repairInvoice">
+                            Repair Invoice
+                        </label>
+
+                        <input
+                            type="text"
+                            id="repairInvoice"
+                            name="repairInvoice">
+                    </div>
+
+                </fieldset>
+
+                <fieldset class="description">
+
+                    <div class="form-group">
+
+                        <label for="technicianNotes">
+                            Technician Notes
+                        </label>
+
+                        <textarea
+                            class="technicianNotes"
+                            id="technicianNotes"
+                            name="technicianNotes">
+                        </textarea>
+
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    
+                    <legend class="formLegends">
+                        History
+                    </legend>                    
+
+                    <table class="allAssets">
+
+                        <thead class="tableHeader">
+
+                            <tr>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Maintenance ID</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Issue/Service</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Type</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Status</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Issue Date</span>
+                                    </div>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBody" class="tableBody">
+                        </tbody>
+
+                    </table>
+
+                </fieldset>
+
+            </div>
+
+            <div class="formButtons">
+
+                <button
+                    type="button"
+                    id="close"
+                    onclick="closeViewAsset()">
+                    Close
+                </button>
+
+                <button type="submit">
+                    Save
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

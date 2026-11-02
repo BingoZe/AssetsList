@@ -162,12 +162,6 @@ async function initAssetForm(){
 
     
     const purchaseInvoice = document.getElementById("purchaseInvoice").value;
-    const issueDescription = document.getElementById("issueDescription").value;
-    const issueDate = document.getElementById("issueDate").value;
-    const supportTicketNumber = document.getElementById("supportTicketNumber").value;
-    const repairCost = document.getElementById("repairCost").value;
-    const repairInvoice = document.getElementById("repairInvoice").value;
-    const technicianNotes = document.getElementById("technicianNotes").value;    
     
     const asset = {
     assetName,
@@ -185,13 +179,7 @@ async function initAssetForm(){
     acquisitionYear,
     acquisitionValue,
     usefulLife,
-    purchaseInvoice,
-    issueDescription,
-    issueDate,
-    supportTicketNumber,
-    repairCost,
-    repairInvoice,
-    technicianNotes
+    purchaseInvoice
 };
     await createAsset(asset);
     
