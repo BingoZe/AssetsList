@@ -159,18 +159,7 @@ async function initAssetForm(){
         
         /*document.getElementById("usefulLife").value||0;*/
     
-    const depreciation = document.getElementById("depreciation").value||0;
-            /*setDepreciation(acquisitionValue,usefulLife);
-     if(!depreciation){
-        alert("Invalid Depreciation");
-        return;
-    }   */
-    
-    const netValue =document.getElementById("netValue").value||0; /*setNetValue(acquisitionValue,depreciation);
-     if(!netValue){
-        alert("Invalid Net Value");
-        return;
-    }       */
+
     
     const purchaseInvoice = document.getElementById("purchaseInvoice").value;
     const issueDescription = document.getElementById("issueDescription").value;
@@ -196,8 +185,6 @@ async function initAssetForm(){
     acquisitionYear,
     acquisitionValue,
     usefulLife,
-    depreciation,
-    netValue,
     purchaseInvoice,
     issueDescription,
     issueDate,
@@ -244,9 +231,12 @@ async function renderAssets(assets = null){
             <td>${asset.assetStatus}</td>
             <td>${asset.users.firstName} ${asset.users.lastName}</td>
             <td>
-                <button class="btTdItemView" onclick="viewAsset('${asset.assetId}','view')">View</button>
-                <button class="btTdItemEdit" onclick="viewAsset('${asset.assetId}','edit')">Edit</button>
-                <button class="btTdItemDelete" onclick="deleteAsset('${asset.assetId}')">Delete</button>
+                <button class="btTdItemView" onclick="viewAsset('${asset.assetId}','view')">
+<i class="fa-solid fa-eye"></i></button>
+                <button class="btTdItemEdit" onclick="viewAsset('${asset.assetId}','edit')">
+<i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btTdItemDelete" onclick="deleteAsset('${asset.assetId}')">
+<i class="fa-solid fa-trash"></i></button>
             </td>
                     
         </tr>
@@ -383,118 +373,117 @@ async function updateAsset(){
         updatedAsset.assetId===selectedAssetId
     );
     
-        updatedAsset.assetName = document.getElementById("assetName").value.trim();
-        if(!updatedAsset.assetName){
-            alert("Invalid name!");
-            addErrorCss("assetName");
-            return;
-        }
-        removeErrorCss("assetName");
+    updatedAsset.assetName = document.getElementById("assetName").value.trim();
+    if(!updatedAsset.assetName){
+        alert("Invalid name!");
+        addErrorCss("assetName");
+        return;
+    }
+    removeErrorCss("assetName");
 
-        updatedAsset.serviceTag = await setServiceTag();
+    updatedAsset.serviceTag = await setServiceTag();
 
-        if(!updatedAsset.serviceTag){
-            alert("Service Tag not unique!");
-            addErrorCss("serviceTag");
-            return;
-        }
-        
+    if(!updatedAsset.serviceTag){
+        alert("Service Tag not unique!");
+        addErrorCss("serviceTag");
+        return;
+    }
 
-        updatedAsset.model = document.getElementById("model").value;
-        updatedAsset.type = document.getElementById("type").value;
-        updatedAsset.assetStatus = document.getElementById("assetStatus").value;
-        
-        updatedAsset.userId = document.getElementById("userSelect").value;
-        
-        updatedAsset.userEmail = document.getElementById("userEmail").value;
-        
-        updatedAsset.location = document.getElementById("location").value;
-        updatedAsset.warrantyDetails = document.getElementById("warrantyDetails").value;
-        updatedAsset.warrantyDocs = document.getElementById("warrantyDocs").value;
-        updatedAsset.acquisitionDate = document.getElementById("acquisitionDate").value;
+    updatedAsset.model = document.getElementById("model").value;
+    updatedAsset.type = document.getElementById("type").value;
+    updatedAsset.assetStatus = document.getElementById("assetStatus").value;
 
-        /*Para refatorar*/
-        if(!updatedAsset.acquisitionDate ||updatedAsset.acquisitionDate===null
-        ||updatedAsset.acquisitionDate===undefined ){
-            alert("Invalid Acquisition Date");
-            addErrorCss("acquisitionDate");
-            return;
-        }     
-        removeErrorCss("acquisitionDate");
+    updatedAsset.userId = document.getElementById("userSelect").value;
 
-        updatedAsset.acquisitionYear = parseInt(new Date(updatedAsset.acquisitionDate).getFullYear());
+    updatedAsset.userEmail = document.getElementById("userEmail").value;
 
-       /* refatorar e definir constraint no banco*/
-        updatedAsset.warrantyExpiryDate = setWarrantyExpiryDate(updatedAsset.acquisitionDate);
+    updatedAsset.location = document.getElementById("location").value;
+    updatedAsset.warrantyDetails = document.getElementById("warrantyDetails").value;
+    updatedAsset.warrantyDocs = document.getElementById("warrantyDocs").value;
+    updatedAsset.acquisitionDate = document.getElementById("acquisitionDate").value;
 
-        if(!updatedAsset.warrantyExpiryDate){
-            alert("Warranty expire date cannot be before Acquisition Date");
-            addErrorCss("warrantyExpiryDate");
-            return;
-        }     
-        removeErrorCss("warrantyExpiryDate");
+    /*Para refatorar*/
+    if(!updatedAsset.acquisitionDate ||updatedAsset.acquisitionDate===null
+    ||updatedAsset.acquisitionDate===undefined ){
+        alert("Invalid Acquisition Date");
+        addErrorCss("acquisitionDate");
+        return;
+    }     
+    removeErrorCss("acquisitionDate");
 
-        /* refatorar e definir constraint no banco*/
-        if(!updatedAsset.acquisitionDate){
-            alert("Warranty expire date cannot be before Acquisition Date");
-            addErrorCss("acquisitionDate");  
-            return;
-        }     
-        removeErrorCss("acquisitionDate");            
+    updatedAsset.acquisitionYear = parseInt(new Date(updatedAsset.acquisitionDate).getFullYear());
 
-        updatedAsset.acquisitionValue = parseFloat(setAcquisitionValue())||0;
-        if(!updatedAsset.acquisitionValue){
-            alert("Invalid Acquisition Value");
-            return;
-        }
+   /* refatorar e definir constraint no banco*/
+    updatedAsset.warrantyExpiryDate = setWarrantyExpiryDate(updatedAsset.acquisitionDate);
 
-        updatedAsset.usefulLife = setUsefulLife();
-        if(!updatedAsset.usefulLife){
-            alert("Invalid Useful Life");
-            addErrorCss("usefulLife");
-            return;
-        }
-        removeErrorCss("usefulLife");
+    if(!updatedAsset.warrantyExpiryDate){
+        alert("Warranty expire date cannot be before Acquisition Date");
+        addErrorCss("warrantyExpiryDate");
+        return;
+    }     
+    removeErrorCss("warrantyExpiryDate");
 
-        updatedAsset.purchaseInvoice = document.getElementById("purchaseInvoice").value;
-        updatedAsset.issueDescription = document.getElementById("issueDescription").value;
-        updatedAsset.issueDate = document.getElementById("issueDate").value;
-        updatedAsset.supportTicketNumber = document.getElementById("supportTicketNumber").value;
-        updatedAsset.repairCost = document.getElementById("repairCost").value;
-        updatedAsset.repairInvoice = document.getElementById("repairInvoice").value;
-        updatedAsset.technicianNotes = document.getElementById("technicianNotes").value;
-                
-        const {error} = await supabaseClient.from('assets')
-            .update({
-                assetName : updatedAsset.assetName,
-                serviceTag :updatedAsset.serviceTag,
-                model :updatedAsset.model,
-                type : updatedAsset.type,
-                assetStatus : updatedAsset.assetStatus,
-                userId:updatedAsset.userId,
-                location : updatedAsset.location,
-                notes :updatedAsset.notes,
-                warrantyDetails : updatedAsset.warrantyDetails,
-                warrantyExpiryDate :updatedAsset.warrantyExpiryDate,
-                warrantyDocs : updatedAsset.warrantyDocs,
-                acquisitionDate : updatedAsset.acquisitionDate,
-                acquisitionYear :updatedAsset.acquisitionYear,
-                acquisitionValue : updatedAsset.acquisitionValue,
-                usefulLife : updatedAsset.usefulLife,
-                purchaseInvoice : updatedAsset.purchaseInvoice,
-                issueDescription :updatedAsset.issueDescription,
-                issueDate : updatedAsset.issueDate,
-                supportTicketNumber : updatedAsset.supportTicketNumber,
-                repairCost :updatedAsset.repairCost,
-                repairInvoice : updatedAsset.repairInvoice,
-                technicianNotes : updatedAsset.technicianNotes
-            })
-            .eq('assetId',updatedAsset.assetId);
-    
-        if(error){
-            console.log(error);
-            return;
-        }
+    /* refatorar e definir constraint no banco*/
+    if(!updatedAsset.acquisitionDate){
+        alert("Warranty expire date cannot be before Acquisition Date");
+        addErrorCss("acquisitionDate");  
+        return;
+    }     
+    removeErrorCss("acquisitionDate");            
+
+    updatedAsset.acquisitionValue = parseFloat(setAcquisitionValue())||0;
+    if(!updatedAsset.acquisitionValue){
+        alert("Invalid Acquisition Value");
+        return;
+    }
+
+    updatedAsset.usefulLife = setUsefulLife();
+    if(!updatedAsset.usefulLife){
+        alert("Invalid Useful Life");
+        addErrorCss("usefulLife");
+        return;
+    }
+    removeErrorCss("usefulLife");
+
+    updatedAsset.purchaseInvoice = document.getElementById("purchaseInvoice").value;
+    updatedAsset.issueDescription = document.getElementById("issueDescription").value;
+    updatedAsset.issueDate = document.getElementById("issueDate").value;
+    updatedAsset.supportTicketNumber = document.getElementById("supportTicketNumber").value;
+    updatedAsset.repairCost = document.getElementById("repairCost").value;
+    updatedAsset.repairInvoice = document.getElementById("repairInvoice").value;
+    updatedAsset.technicianNotes = document.getElementById("technicianNotes").value;
+
+    const {error} = await supabaseClient.from('assets')
+        .update({
+            assetName : updatedAsset.assetName,
+            serviceTag :updatedAsset.serviceTag,
+            model :updatedAsset.model,
+            type : updatedAsset.type,
+            assetStatus : updatedAsset.assetStatus,
+            userId:updatedAsset.userId,
+            location : updatedAsset.location,
+            notes :updatedAsset.notes,
+            warrantyDetails : updatedAsset.warrantyDetails,
+            warrantyExpiryDate :updatedAsset.warrantyExpiryDate,
+            warrantyDocs : updatedAsset.warrantyDocs,
+            acquisitionDate : updatedAsset.acquisitionDate,
+            acquisitionYear :updatedAsset.acquisitionYear,
+            acquisitionValue : updatedAsset.acquisitionValue,
+            usefulLife : updatedAsset.usefulLife,
+            purchaseInvoice : updatedAsset.purchaseInvoice,
+            issueDescription :updatedAsset.issueDescription,
+            issueDate : updatedAsset.issueDate,
+            supportTicketNumber : updatedAsset.supportTicketNumber,
+            repairCost :updatedAsset.repairCost,
+            repairInvoice : updatedAsset.repairInvoice,
+            technicianNotes : updatedAsset.technicianNotes
+        })
+        .eq('assetId',updatedAsset.assetId);
+
+    if(error){
+        console.log(error);
+        return;
+    }
   
     alert("Record saved");
       
@@ -545,22 +534,6 @@ function setUsefulLife(){
         return false;
     }
     return usefulLife;
-}
-
-/*depreciacao - Para refatorar!*/
-
-function setDepreciation(acquisitionValue,usefulLife){
-    if(acquisitionValue !==0 && acquisitionValue !==null){
-    return Math.floor(Number(acquisitionValue)/Number(usefulLife));
-    }else
-        return;        
-}
-
-function setNetValue(acquisitionValue,depreciation){
-    if(acquisitionValue !==0 && acquisitionValue !==null){
-    return Math.floor(Number(acquisitionValue) - Number(depreciation));
-    }else
-        return;        
 }
 
 /*data de garantia nao pode ser menor do que data de aquisicao*/
