@@ -155,9 +155,12 @@ async function renderUsers(users = null){
             <td>${user.role}</td>
             <td>${user.userType}</td>
             <td>
-                <button class="btTdItemView" onclick="viewUser('${user.userId}','view')">View</button>
-                <button class="btTdItemEdit" onclick="viewUser('${user.userId}','edit')">Edit</button>
-                <button class="btTdItemDelete" onclick="deleteUser('${user.userId}')">Delete</button>
+                <button class="btTdItemView" onclick="viewUser('${user.userId}','view')">
+<i class="fa-solid fa-eye"></i></button>
+                <button class="btTdItemEdit" onclick="viewUser('${user.userId}','edit')">
+<i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btTdItemDelete" onclick="deleteUser('${user.userId}')">
+<i class="fa-solid fa-trash"></i></button>
             </td>
                     
         </tr>
