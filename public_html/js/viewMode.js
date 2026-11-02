@@ -10,7 +10,6 @@ function viewAsset(assetId,mode){
       
 }
 
-
 function closeViewAsset(){
     sessionStorage.removeItem("viewAssetId");
     sessionStorage.removeItem("mode");
@@ -36,5 +35,24 @@ function closeViewUser(){
     sessionStorage.removeItem("mode");
     
     loadPage('pages/users.html');
+
+}
+
+function viewMaintenance(maintenanceId,mode){
+     
+    /*salva o userId e o modo a ser visualizado no sessionStorage*/
+    
+    sessionStorage.setItem("viewMaintenanceId", maintenanceId);
+    sessionStorage.setItem("mode",mode);
+    
+    loadPage('pages/viewMaintenance.html');
+      
+}
+
+function closeViewMaintenance(){
+    sessionStorage.removeItem("viewMaintenanceId");
+    sessionStorage.removeItem("mode");
+    
+    loadPage('pages/maintenance.html');
 
 }

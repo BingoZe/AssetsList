@@ -17,6 +17,9 @@ async function getAssets(){
                     firstName,
                     lastName,
                     userEmail
+                ),
+                maintenance(
+                    maintenanceId
                 )
             `);
 
@@ -269,15 +272,10 @@ async function renderViewAsset(){
     document.getElementById("acquisitionDate").value =viewedAsset.acquisitionDate;
     document.getElementById("acquisitionValue").value =viewedAsset.acquisitionValue;
     document.getElementById("usefulLife").value =viewedAsset.usefulLife;
-    document.getElementById("depreciation").value =viewedAsset.depreciation;
-    document.getElementById("netValue").value =viewedAsset.netValue;
+    document.getElementById("depreciation").value =Math.round(viewedAsset.depreciation);
+    document.getElementById("netValue").value =Math.round(viewedAsset.netValue);
     document.getElementById("purchaseInvoice").value =viewedAsset.purchaseInvoice;
-    document.getElementById("issueDescription").value =viewedAsset.issueDescription;
-    document.getElementById("issueDate").value =viewedAsset.issueDate;
-    document.getElementById("supportTicketNumber").value =viewedAsset.supportTicketNumber;
-    document.getElementById("repairCost").value =viewedAsset.repairCost;
-    document.getElementById("repairInvoice").value =viewedAsset.repairInvoice;
-    document.getElementById("technicianNotes").value =viewedAsset.technicianNotes;
+
 
     /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
     if(selectedMode === "edit"){                                       
@@ -289,7 +287,7 @@ async function renderViewAsset(){
 }
 
 
-/*Render User field*/
+/*Render User field - REALOCAR?!*/
 async function renderUserField() {
     const users = await getUsers();
     const userSelect = document.getElementById("userSelect");
@@ -434,12 +432,6 @@ async function updateAsset(){
     removeErrorCss("usefulLife");
 
     updatedAsset.purchaseInvoice = document.getElementById("purchaseInvoice").value;
-    updatedAsset.issueDescription = document.getElementById("issueDescription").value;
-    updatedAsset.issueDate = document.getElementById("issueDate").value;
-    updatedAsset.supportTicketNumber = document.getElementById("supportTicketNumber").value;
-    updatedAsset.repairCost = document.getElementById("repairCost").value;
-    updatedAsset.repairInvoice = document.getElementById("repairInvoice").value;
-    updatedAsset.technicianNotes = document.getElementById("technicianNotes").value;
 
     const {error} = await supabaseClient.from('assets')
         .update({
@@ -458,13 +450,8 @@ async function updateAsset(){
             acquisitionYear :updatedAsset.acquisitionYear,
             acquisitionValue : updatedAsset.acquisitionValue,
             usefulLife : updatedAsset.usefulLife,
-            purchaseInvoice : updatedAsset.purchaseInvoice,
-            issueDescription :updatedAsset.issueDescription,
-            issueDate : updatedAsset.issueDate,
-            supportTicketNumber : updatedAsset.supportTicketNumber,
-            repairCost :updatedAsset.repairCost,
-            repairInvoice : updatedAsset.repairInvoice,
-            technicianNotes : updatedAsset.technicianNotes
+            purchaseInvoice : updatedAsset.purchaseInvoice
+
         })
         .eq('assetId',updatedAsset.assetId);
 
