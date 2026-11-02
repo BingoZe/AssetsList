@@ -542,14 +542,14 @@ fieldset{
     cursor:pointer;
     font-size:.75rem;
     transition:.2s;
-    min-width:60px;
+    min-width:20px;
     padding:8px;
     font-size:.70rem;
     
 }
 
 .btTdItemView{
-    background:#6c757d;
+    background:rgba(90, 98, 104, 0.3)    
 }
 
 .btTdItemView:hover{
@@ -557,7 +557,7 @@ fieldset{
 }
 
 .btTdItemEdit{
-    background:var(--blue);
+    background:rgba(78, 115, 223, 0.3);
 }
 
 .btTdItemEdit:hover{
@@ -565,7 +565,7 @@ fieldset{
 }
 
 .btTdItemDelete{
-    background:#dc3545;
+    background:rgba(220, 53, 69, 0.3);
 }
 
 .btTdItemDelete:hover{
