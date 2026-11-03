@@ -204,6 +204,37 @@ async function renderMaintenance(maintenance = null){
 
 }
 
+async function renderMaintenanceInnerTable(maintenanceHistory){
+
+    let output = "";
+
+    maintenanceHistory.forEach(maintenance => {
+
+        output += `
+        <tr>
+
+            <td>${maintenance.maintenanceId}</td>
+
+            <td>${maintenance.issueDescription}</td>
+
+            <td>${maintenance.issueCategory}</td>
+
+            <td>${maintenance.maintenanceStatus}</td>
+
+            <td>${maintenance.issueDate}</td>
+
+        </tr>
+        `;
+
+    });
+
+    document.querySelector(
+        ".tableBodyMaintenance"
+    ).innerHTML = output;
+
+}
+
+
 
 async function renderViewMaintenance(){
 
@@ -264,7 +295,16 @@ async function renderViewMaintenance(){
         document.querySelector(".resave")
             .style.display = "none";
     }
+    
+    /*maintenance inner table*/
+    const maintenanceHistory =
+        maintenance.filter(item =>
+            item.assetId === viewedMaintenance.assetId
+        );
 
+    renderMaintenanceInnerTable(
+        maintenanceHistory
+    );    
 }
 
 

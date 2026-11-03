@@ -13,7 +13,7 @@
                 <li><a href="#" class="tablinks" onclick="openTab(event,'generalTab')">General</a></li>
                 <li><a href="#" class="tablinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
                 <li><a href="#" class="tablinks" onclick="openTab(event,'financialTab')">Financial</a></li>
-                <li><a href="#" class="tablinks" >Maintenance History</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'maintenanceTab')">Maintenance History</a></li>
             </ul>
         </div>
     </div>
@@ -306,6 +306,62 @@
                         name="purchaseInvoice">
                 </div>
             </fieldset> 
+            </div>
+            <div id="maintenanceTab" class="tabcontent">
+                <div id="main-content">
+                                    <fieldset>
+                    
+                    <legend class="formLegends">
+                        History
+                    </legend>                    
+
+                    <table class="allAssets">
+
+                        <thead class="tableHeader">
+
+                            <tr>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Maintenance ID</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Issue/Service</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Type</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Status</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Issue Date</span>
+                                    </div>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBody" class="tableBody">
+                        </tbody>
+
+                    </table>
+
+                </fieldset>
+                </div>
             </div>
                          
             <!-- buttons-->
