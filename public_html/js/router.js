@@ -14,6 +14,7 @@ async function loadPage(page){
     // Inicializadores dos formulários initAssetForm(); initUserForm();
     initAssetForm();
     initUserForm();
+    initMaintenanceForm();
     
     if (page.includes("addAsset")) {
         await renderUserField();
@@ -51,6 +52,15 @@ async function loadPage(page){
     if(page.includes("viewUser")){
         await renderViewUser();
     }    
+    
+    
+    if(page.includes("maintenance")){
+        await renderMaintenance();
+    }
+    
+    if(page.includes("viewMaintenance")){
+        await renderViewMaintenance();
+    }
     
     
 }

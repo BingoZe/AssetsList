@@ -42,6 +42,7 @@ async function createMaintenance(maintenance){
             .insert([maintenance]);
 
     if(error){
+        console.log("ERROR:");
         console.log(error);
         return null;
     }
@@ -50,13 +51,13 @@ async function createMaintenance(maintenance){
 
 }
 
-function getMaintenanceMode(){
+function getMode(){
 
     try{
         return sessionStorage.getItem("mode");
     }
     catch(error){
-        return "";
+        return [];
     }
 
 }
@@ -73,20 +74,22 @@ async function initMaintenanceForm(){
 
         event.preventDefault();
 
-        const mode = getMaintenanceMode();
+        const mode = getMode();
 
         if(mode === "edit"){
             updateMaintenance();
             return;
         }
 
-        const assetId = Number(document.getElementById("assetSelect").value);
+        const assetId = 54;
 
+        const issueCategory = document.getElementById("issueCategory").value;
+        
         const issueDescription = document.getElementById("issueDescription").value;
 
         const issueDate = document.getElementById("issueDate").value;
 
-        const supportTicketNumber = document.getElementById("supportTicketNumber").value;
+        const supportTicket = document.getElementById("supportTicket").value;
 
         const repairCost = document.getElementById("repairCost").value || 0;
 
@@ -100,25 +103,28 @@ async function initMaintenanceForm(){
 
         const maintenance = {
             assetId,
+            issueCategory,
             issueDescription,
             issueDate,
-            supportTicketNumber,
+            supportTicket,
             repairCost,
             repairInvoice,
             technicianNotes,
             priority,
             maintenanceStatus
         };
-
-        await createMaintenance(
-            maintenance
-        );
-
+        
+        console.log("Criando manutencao");
+        await createMaintenance(maintenance);
+        console.log("Criado ",maintenance);
+        
         alert("Maintenance order created");
 
         maintenanceForm.reset();
 
-        loadPage("pages/maintenance.html");
+        closeViewMaintenance();
+        
+        renderMaintenance();
 
     });
 
@@ -128,36 +134,36 @@ async function initMaintenanceForm(){
 async function renderMaintenance(maintenance = null){
 
     if(!maintenance){
-        maintenance = await getMaintenance();
-    }
+        maintenance = await getMaintenance()
+    ;}
 
     let output = "";
 
-    maintenance.forEach(item => {
+    maintenance.forEach(maintenance => {
 
         output += `
         <tr>
 
-            <td>${item.maintenanceId}</td>
+            <td>${maintenance.maintenanceId}</td>
 
-            <td>${item.assets.assetName}</td>
+            <td>${maintenance.assets.assetId} 
+                ${maintenance.assets.assetName}</td>
 
-            <td>${item.issueDescription}</td>
+            <td>${maintenance.issueDescription}</td>
 
-            <td>${item.assets.type}</td>
+            <td>${maintenance.issueCategory}</td>
 
-            <td>${item.maintenanceStatus}</td>
+            <td>${maintenance.maintenanceStatus}</td>
 
-            <td>${item.issueDate}</td>
+            <td>${maintenance.issueDate}</td>
 
-            <td>${item.priority}</td>
+            <td>${maintenance.priority}</td>
 
             <td>
 
                 <button
                     class="btTdItemView"
-                    onclick="viewMaintenance(
-                        '${item.maintenanceId}',
+                    onclick="viewMaintenance('${maintenance.maintenanceId}',
                         'view'
                     )">
 
@@ -168,7 +174,7 @@ async function renderMaintenance(maintenance = null){
                 <button
                     class="btTdItemEdit"
                     onclick="viewMaintenance(
-                        '${item.maintenanceId}',
+                        '${maintenance.maintenanceId}',
                         'edit'
                     )">
 
@@ -179,7 +185,7 @@ async function renderMaintenance(maintenance = null){
                 <button
                     class="btTdItemDelete"
                     onclick="deleteMaintenance(
-                        '${item.maintenanceId}'
+                        '${maintenance.maintenanceId}'
                     )">
 
                     <i class="fa-solid fa-trash"></i>
@@ -198,122 +204,65 @@ async function renderMaintenance(maintenance = null){
 
 }
 
-function viewMaintenance(
-    maintenanceId,
-    mode
-){
-
-    sessionStorage.setItem(
-        "viewMaintenanceId",
-        maintenanceId
-    );
-
-    sessionStorage.setItem(
-        "mode",
-        mode
-    );
-
-    loadPage(
-        "pages/viewMaintenance.html"
-    );
-
-}
 
 async function renderViewMaintenance(){
 
     const selectedMaintenanceId =
-        parseInt(
-            sessionStorage.getItem(
-                "viewMaintenanceId"
-            )
+        parseInt(sessionStorage.getItem("viewMaintenanceId"));
+
+    const selectedMode =sessionStorage.getItem("mode");
+
+    const maintenance = await getMaintenance();
+
+    const viewedMaintenance =maintenance.find(item =>
+            item.maintenanceId ===selectedMaintenanceId
         );
 
-    const selectedMode =
-        sessionStorage.getItem("mode");
+    /*document.getElementById("assetId").value =
+            viewedMaintenance.assetId;
+    
+    document.getElementById("maintenanceId").value =
+            viewedMaintenance.maintenanceId;*/
+    
+    document.getElementById("issueCategory").value =
+        viewedMaintenance.issueCategory;
 
-    const maintenance =
-        await getMaintenance();
-
-    const viewedMaintenance =
-        maintenance.find(
-            item =>
-            item.maintenanceId ===
-            selectedMaintenanceId
-        );
-
-    document.getElementById(
-        "maintenanceId"
-    ).value =
-        viewedMaintenance.maintenanceId;
-
-    document.getElementById(
-        "issueDescription"
-    ).value =
+    document.getElementById("issueDescription").value =
         viewedMaintenance.issueDescription;
 
-    document.getElementById(
-        "issueDate"
-    ).value =
+    document.getElementById("issueDate").value =
         viewedMaintenance.issueDate;
 
-    document.getElementById(
-        "supportTicketNumber"
-    ).value =
-        viewedMaintenance.supportTicketNumber;
+    document.getElementById("supportTicket").value =
+        viewedMaintenance.supportTicket;
 
-    document.getElementById(
-        "repairCost"
-    ).value =
+    document.getElementById("repairCost").value =
         viewedMaintenance.repairCost;
 
-    document.getElementById(
-        "repairInvoice"
-    ).value =
-        viewedMaintenance.repairInvoice;
-
-    document.getElementById(
-        "technicianNotes"
-    ).value =
+    document.getElementById("technicianNotes").value =
         viewedMaintenance.technicianNotes;
 
-    document.getElementById(
-        "priority"
-    ).value =
+    document.getElementById("repairInvoice").value =
+        viewedMaintenance.repairInvoice;
+
+    document.getElementById("priority").value =
         viewedMaintenance.priority;
 
-    document.getElementById(
-        "maintenanceStatus"
-    ).value =
+    document.getElementById("maintenanceStatus").value =
         viewedMaintenance.maintenanceStatus;
 
     if(selectedMode === "edit"){
 
         document
-            .querySelectorAll(
-                "input, textarea, select"
-            )
-            .forEach(
-                field => {
-                    field.disabled = false;
-                }
-            );
+            .querySelectorAll("input, textarea, select")
+            .forEach(field => {field.disabled = false;});
 
     }else{
+        document.querySelectorAll("input, textarea, select")
+            .forEach(field => {field.disabled = true;});
 
-        document
-            .querySelectorAll(
-                "input, textarea, select"
-            )
-            .forEach(
-                field => {
-                    field.disabled = true;
-                }
-            );
-
-        document
-            .querySelector(".resave")
+        document.querySelector(".resave")
             .style.display = "none";
-
     }
 
 }
@@ -321,21 +270,20 @@ async function renderViewMaintenance(){
 
 async function updateMaintenance(){
 
-    const maintenanceId =
-        parseInt(
-            sessionStorage.getItem(
-                "viewMaintenanceId"
-            )
-        );
+    const maintenanceId =parseInt(sessionStorage.getItem("viewMaintenanceId"));
 
     const { error } =
         await supabaseClient
             .from("maintenance")
             .update({
-
                 issueDescription:
                     document.getElementById(
                         "issueDescription"
+                    ).value,
+
+                issueCategory:
+                    document.getElementById(
+                        "issueCategory"
                     ).value,
 
                 issueDate:
@@ -343,9 +291,9 @@ async function updateMaintenance(){
                         "issueDate"
                     ).value,
 
-                supportTicketNumber:
+                supportTicket:
                     document.getElementById(
-                        "supportTicketNumber"
+                        "supportTicket"
                     ).value,
 
                 repairCost:
@@ -386,26 +334,17 @@ async function updateMaintenance(){
 
     alert("Record saved");
 
-    loadPage(
-        "pages/maintenance.html"
-    );
+    closeViewMaintenance();
 
 }
 
-async function deleteMaintenance(
-    maintenanceId
-){
+async function deleteMaintenance(maintenanceId){
 
-    if(
-        !confirm(
-            "Are you sure you want to delete it?"
-        )
-    ){
+    if(!confirm("Are you sure you want to delete it?")){
         return;
     }
 
-    const { error } =
-        await supabaseClient
+    const { error } =await supabaseClient
             .from('maintenance')
             .delete()
             .eq(

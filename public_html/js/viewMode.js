@@ -39,9 +39,6 @@ function closeViewUser(){
 }
 
 function viewMaintenance(maintenanceId,mode){
-     
-    /*salva o userId e o modo a ser visualizado no sessionStorage*/
-    
     sessionStorage.setItem("viewMaintenanceId", maintenanceId);
     sessionStorage.setItem("mode",mode);
     
