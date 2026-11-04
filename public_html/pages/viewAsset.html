@@ -10,10 +10,25 @@
         
         <div class="headerNav">
             <ul class ="headerUl">
-                <li><a href="#" class="tablinks" onclick="openTab(event,'generalTab')">General</a></li>
-                <li><a href="#" class="tablinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
-                <li><a href="#" class="tablinks" onclick="openTab(event,'financialTab')">Financial</a></li>
-                <li><a href="#" class="tablinks" onclick="openTab(event,'maintenanceTab')">Maintenance History</a></li>
+                <li><a href="#" 
+                       class="tablinks" 
+                       onclick="openTab(event,'generalTab')">
+                        General</a></li>
+                <li><a href="#" 
+                       class="tablinks" 
+                       onclick="openTab(event,'warrantyTab')">
+                        Warranty</a></li>
+                <li><a href="#"
+                       class="tablinks" 
+                       onclick="openTab(event,'financialTab')">
+                        Financial</a></li>
+                <li>
+                    <a href="#"
+                       class="tablinks"
+                       onclick="openTab(event,'maintenanceTab')">
+                        Maintenance History
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -21,9 +36,9 @@
     <div class="formContainer">
         <form class="asset-form">
             <div id="generalTab" class="tabcontent">
-            <!-- ################################################################################## -->
-            <!-- GENERAL INFO   ################################################################### -->
-            <!-- ################################################################################## -->
+            
+            <!-- GENERAL INFO   ####################################### -->
+         
             <fieldset class="formSection">
                 <legend class="formLegends">General Information</legend>
                 
@@ -108,9 +123,7 @@
                 </div>
             </fieldset>
             
-            <!-- ################################################################################## -->
-            <!-- OWNER & LOCATION  ################################################################### -->
-            <!-- ################################################################################## -->        
+            <!-- OWNER & LOCATION  ############################################ -->
             
             <fieldset class="formSection">
                 <legend class="formLegends">Owner & Location</legend>
@@ -155,9 +168,7 @@
        
             </fieldset>
               
-            <!-- ################################################################################## -->
-            <!-- NOTES ################################################################### -->
-            <!-- ################################################################################## -->        
+            <!-- NOTES ############################### -->
                                 
             <fieldset class="description">
                 <!--Item 7-->
@@ -175,9 +186,8 @@
             </fieldset>
             </div>
 
-            <!-- ################################################################################## -->
-            <!-- WARRANTY#####  ################################################################### -->
-            <!-- ################################################################################## -->  
+            <!-- WARRANTY######################### -->
+      
             <div id="warrantyTab" class="tabcontent">          
              <fieldset class="formSection">
                 <legend class="formLegends">Warranty</legend>
@@ -218,9 +228,8 @@
                 </div>
             </fieldset>           
             </div>
-            <!-- ################################################################################## -->
-            <!-- Financial#####  ################################################################### -->
-            <!-- ################################################################################## -->  
+            
+            <!-- Financial############################## -->
             <div id="financialTab" class="tabcontent">          
              <fieldset class="formSection">
                  
@@ -307,15 +316,19 @@
                 </div>
             </fieldset> 
             </div>
+            
+            <!-- Maintenance ############################## -->
+
             <div id="maintenanceTab" class="tabcontent">
                 <div id="main-content">
-                                    <fieldset>
+                    
+                    <fieldset>
                     
                     <legend class="formLegends">
                         History
                     </legend>                    
 
-                    <table class="allAssets">
+                    <table class="allAssets" id="maintenanceHistoryTable">
 
                         <thead class="tableHeader">
 
@@ -355,7 +368,7 @@
 
                         </thead>
 
-                        <tbody id="tableBody" class="tableBody">
+                        <tbody id="tableBodyMaintenance" class="tableBodyMaintenance">
                         </tbody>
 
                     </table>

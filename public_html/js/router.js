@@ -33,7 +33,7 @@ async function loadPage(page){
     if(page.includes("viewAsset")){
         await renderUserField();
         await renderViewAsset();
-    }
+  }
     
     if(page.includes("dashboard")){
         await renderAssetChart();
@@ -59,7 +59,12 @@ async function loadPage(page){
     }
     
     if(page.includes("viewMaintenance")){
+        await renderAssetField();
         await renderViewMaintenance();
+    }
+    
+    if(page.includes("addMaintenance")){
+        await renderAssetField();
     }
     
     

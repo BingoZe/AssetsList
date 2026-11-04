@@ -529,6 +529,10 @@ fieldset{
     gap:4px;
 }
 
+#maintenanceHistoryTable{
+    min-width:auto;
+}
+
 /*   TABLE ACTIONS */
 
 .btTdItemView,

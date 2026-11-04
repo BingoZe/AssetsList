@@ -284,6 +284,33 @@ async function renderViewAsset(){
         document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
         document.querySelector(".resave").style.display="none";
     }
+    
+    const maintenance = await getMaintenance();
+
+    /*maintenance inner table*/
+    const maintenanceHistory =
+      maintenance.filter(item =>
+          item.assetId === viewedAsset.assetId
+      );
+
+    if(maintenanceHistory.length > 0){
+
+      renderMaintenanceInnerTable(
+          maintenanceHistory
+      );
+
+    }else{
+
+      const para = document.createElement("p");
+      para.innerText =
+          "No maintenance orders found for this asset";
+
+      document
+          .querySelector(".tableBodyMaintenance")
+          .appendChild(para);
+
+  }
+        
 }
 
 
@@ -318,6 +345,9 @@ async function renderUserField() {
     
     userSelect.innerHTML = output;
 }
+
+
+
 
 /*
  -------------

@@ -81,7 +81,7 @@ async function initMaintenanceForm(){
             return;
         }
 
-        const assetId = 54;
+        const assetId = Number(document.getElementById("assetId").value);
 
         const issueCategory = document.getElementById("issueCategory").value;
         
@@ -249,10 +249,10 @@ async function renderViewMaintenance(){
             item.maintenanceId ===selectedMaintenanceId
         );
 
-    /*document.getElementById("assetId").value =
+    document.getElementById("assetId").value =
             viewedMaintenance.assetId;
     
-    document.getElementById("maintenanceId").value =
+    /*document.getElementById("maintenanceId").value =
             viewedMaintenance.maintenanceId;*/
     
     document.getElementById("issueCategory").value =
@@ -304,10 +304,45 @@ async function renderViewMaintenance(){
 
     renderMaintenanceInnerTable(
         maintenanceHistory
-    );    
+    );   
+    
 }
 
+/*Render AssetId field - REALOCAR?!*/
+async function renderAssetField() {
+    const assets = await getAssets();
+    const assetSelect = document.getElementById("assetId");
 
+    if (!assetSelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select an asset
+        </option>
+    `;
+
+    const uniqueAssets= [];
+
+    assets.forEach(asset => {
+        if (!uniqueAssets.includes(asset.assetId)) {
+            uniqueAssets.push(asset.assetId);
+
+            output += `
+                <option value="${asset.assetId}">
+                   ${asset.assetId} -
+                   ${asset.assetName} - 
+                   ${asset.serviceTag}
+                </option>
+            `;
+        }
+    });
+    
+    assetSelect.innerHTML = output;
+}
+
+/*UPDATE*/
 async function updateMaintenance(){
 
     const maintenanceId =parseInt(sessionStorage.getItem("viewMaintenanceId"));
@@ -316,6 +351,11 @@ async function updateMaintenance(){
         await supabaseClient
             .from("maintenance")
             .update({
+                assetId:
+                    document.getElementById(
+                        "assetId"
+                    ).value,
+
                 issueDescription:
                     document.getElementById(
                         "issueDescription"
