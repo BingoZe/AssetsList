@@ -48,7 +48,7 @@ Roles
 - Auditor
 
 ====================================================
-PRIORIDADE 2 - MAINTENANCE
+PRIORIDADE 2 - MAINTENANCE - FEITO
 ====================================================
 
 - Lista de assets em reparo
@@ -77,7 +77,7 @@ Opcional
 - End User sem acesso ao sistema
 
 ====================================================
-PRIORIDADE 4 - BANCO DE DADOS
+PRIORIDADE 4 - BANCO DE DADOS - FEITO
 ====================================================
 
 Escolher solução
@@ -101,7 +101,7 @@ Criar tabelas
 Testar CRUD completo no banco
 
 ====================================================
-PRIORIDADE 5 - DEPLOY
+PRIORIDADE 5 - DEPLOY - WIP
 ====================================================
 
 Frontend
