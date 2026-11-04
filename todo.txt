@@ -126,6 +126,13 @@ PRIORIDADE 6 - REPORTS
 - Repair History
 - Warranty Expiry
 
+Assets by Type
+Assets by User
+Assets by Location
+Maintenance History
+Assets in Repair
+Warranty Expiry
+
 Exportação
 - CSV
 - Excel (opcional)
@@ -240,6 +247,11 @@ PRIORIDADE 14 - REFATORAÇÃO (SE SOBRAR TEMPO)
 - Generalizar CSS
 - Reduzir duplicação
 - Melhorar organização
+
+
+Refatorar tabelas reutilizáveis
+Refatorar filtros reutilizáveis
+Refatorar cards reutilizáveis
 
 ====================================================
 CAMINHO CRÍTICO
