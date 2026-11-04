@@ -234,8 +234,6 @@ async function renderMaintenanceInnerTable(maintenanceHistory){
 
 }
 
-
-
 async function renderViewMaintenance(){
 
     const selectedMaintenanceId =
