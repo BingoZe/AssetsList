@@ -10,18 +10,29 @@
         
         <div class="headerNav">
             <ul class ="headerUl">
-                <li><a href="#" 
+                <li>
+                    <a href="#" 
                        class="tablinks" 
                        onclick="openTab(event,'generalTab')">
                         General</a></li>
-                <li><a href="#" 
+                <li>
+                    <a href="#" 
                        class="tablinks" 
                        onclick="openTab(event,'warrantyTab')">
                         Warranty</a></li>
-                <li><a href="#"
+                <li>
+                    <a href="#"
                        class="tablinks" 
                        onclick="openTab(event,'financialTab')">
                         Financial</a></li>
+                <li>
+                    <a href="#"
+                       class="tablinks"
+                       onclick="openTab(event,'assetHistory')">
+                        Asset History
+                    </a>
+                </li>
+                
                 <li>
                     <a href="#"
                        class="tablinks"
@@ -376,7 +387,54 @@
                 </fieldset>
                 </div>
             </div>
-                         
+            <div id="assetHistory" class="tabcontent">
+            <fieldset>
+                    
+                    <legend class="formLegends">
+                        Asset History
+                    </legend>                    
+
+                    <table class="allAssets" id="maintenanceHistoryTable">
+
+                        <thead class="tableHeader">
+
+                            <tr>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">User ID</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">User</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Status</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Deploy Date</span>
+                                    </div>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBodyAssetHistory" class="tableBodyAssetHistory">
+                        </tbody>
+
+                    </table>
+
+                </fieldset>            
+            </div>            
             <!-- buttons-->
                
                 <div class="formButtons">

@@ -8,7 +8,7 @@
         
         <div class="headerNav">
             <ul class ="headerUl">
-                <li>User General info</li>
+                <li>User info</li>
             </ul>
         </div>
     </div>
@@ -108,7 +108,58 @@
                 </div>
                   
             </fieldset>
-            
+            <fieldset>
+                    
+                    <legend class="formLegends">
+                        Assets assigned
+                    </legend>                    
+
+                    <table class="allAssets" id="assetHistoryTable">
+
+                        <thead class="tableHeader">
+
+                            <tr>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Asset ID</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Asset</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Type</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Status</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Deploy Date</span>
+                                    </div>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBodyAssetHistory" class="tableBodyAssetHistory">
+                        </tbody>
+
+                    </table>
+
+                </fieldset>
             </div>
             
                 <div class="formButtons">

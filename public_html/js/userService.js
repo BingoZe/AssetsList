@@ -202,9 +202,56 @@ async function renderViewUser(){
             }
         }
     }
+
+    const assets = await getAssets();
+     
+    const assetAssigned = assets.filter(item => {
+        return item.users.userId === selectedUserId;
+    });
+    
+    if(assetAssigned.length > 0){
+        renderAssetInnerTable(assetAssigned);  
+    }else{
+
+      const para = document.createElement("p");
+      para.innerText =
+          "No assets assigned for this user";
+
+      document
+          .querySelector(".tableBodyAssetHistory")
+          .appendChild(para);
+
+  }
     
 }
 
+async function renderAssetInnerTable(assetAssigned){
+
+    let output = "";
+
+    assetAssigned.forEach(asset => {
+
+        output += `
+        <tr>
+
+            <td>${asset.assetId}</td>
+
+            <td>${asset.assetName} ${asset.serviceTag}</td>
+
+            <td>${asset.type}</td>
+
+            <td>${asset.acquisitionDate}</td>
+
+        </tr>
+        `;
+
+    });
+
+    document.querySelector(
+        ".tableBodyAssetHistory"
+    ).innerHTML = output;
+
+}
 /*
  -------------
  DELETE

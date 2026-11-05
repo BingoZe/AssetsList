@@ -310,6 +310,32 @@ async function renderViewAsset(){
           .appendChild(para);
 
   }
+  
+    const users = await getUsers();
+  
+    /*user inner table*/
+    const userHistory =
+      users.filter(item =>
+          item.userId === viewedAsset.users.userId
+      );
+
+    if(userHistory.length > 0){
+
+      renderUserInnerTable(
+          userHistory,viewedAsset
+      );
+
+    }else{
+
+      const para = document.createElement("p");
+      para.innerText =
+          "No maintenance orders found for this asset";
+
+      document
+          .querySelector(".tableBodyAssetHistory")
+          .appendChild(para);
+
+  }
         
 }
 
@@ -347,6 +373,34 @@ async function renderUserField() {
 }
 
 
+
+async function renderUserInnerTable(userHistory,viewedAsset){
+
+    let output = "";
+
+    userHistory.forEach(user => {
+
+        output += `
+        <tr>
+
+            <td>${user.userId}</td>
+
+            <td>${user.firstName} ${user.lastName}</td>
+
+            <td>${viewedAsset.assetStatus}</td>
+
+            <td>${user.role}</td>
+
+        </tr>
+        `;
+
+    });
+
+    document.querySelector(
+        ".tableBodyAssetHistory"
+    ).innerHTML = output;
+
+}
 
 
 /*
