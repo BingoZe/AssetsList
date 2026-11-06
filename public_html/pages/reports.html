@@ -1,59 +1,162 @@
-    <div class="mainPage">
-        <div class="mainHeader">
-            <h2>REPORTS</h2>
-        </div>
-        <div class="mainContainer">
-            <div class="chartContainer">
-                
-                <div class="statsSubcontainer">
-                    <div class="statsCaption">
-                        <p>Inventory Total</p>
-                        <button class="buttonExport" id="buttonExport">Generate Report</button>
-                    </div>                  
-                </div>
+<div class="mainPage">
 
-                <div class="statsSubcontainer">
-                    <div class="statsCaption">
-                        <p>Assets by Type</p>
-                        <button class="buttonExport" id="assetsByType">Generate Report</button>                        
-                    </div>                  
-                </div>
-
-                <div class="statsSubcontainer">
-                    <div class="statsCaption">
-                        <p>Assets by Location</p>
-                        <button class="buttonExport" id="assetsByLocation">Generate Report</button>    
-                    </div>                  
-                </div>
-
-                <div class="statsSubcontainer">
-                    <div class="statsCaption">
-                        <p>Assets by User</p>
-                        <button class="buttonExport" id="assetsByUser">Generate Report</button>
-                    </div>                  
-                </div>
-
-                <div class="statsSubcontainer">
-                    <div class="statsCaption">
-                        <p>Maintenance History</p>
-                    </div>                  
-                </div>
-
-                <div class="statsSubcontainer">
-                    <div class="statsCaption">
-                        <p>Assets in Repair</p>
-                    </div>                  
-                </div>
-                
-                <div class="statsSubcontainer">
-                    <div class="statsCaption">
-                        <p>Warranty Expiry</p>
-                    </div>                  
-                </div>
-                             
-                          
-            </div>
- 
-        </div>              
+    <div class="mainHeader">
+        <h2>REPORTS</h2>
     </div>
 
+    <div class="mainContainer">
+
+        <div class="reportGrid">
+
+            <!-- Inventory Total -->
+
+            <div class="reportCard">
+
+                <div class="reportIcon">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+
+                <div class="reportInfo">
+                    <h3>Inventory Total</h3>
+                    <p>Complete inventory export.</p>
+                </div>
+
+                <button
+                    class="buttonExport"
+                    id="buttonExport">
+                    Export
+                </button>
+
+            </div>
+
+            <!-- Assets by Type -->
+
+            <div class="reportCard">
+
+                <div class="reportIcon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div class="reportInfo">
+                    <h3>Assets by Type</h3>
+                    <p>Grouped by asset category.</p>
+                </div>
+
+                <button
+                    class="buttonExport"
+                    id="assetsByType">
+                    Export
+                </button>
+
+            </div>
+
+            <!-- Assets by Location -->
+
+            <div class="reportCard">
+
+                <div class="reportIcon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+
+                <div class="reportInfo">
+                    <h3>Assets by Location</h3>
+                    <p>Grouped by location.</p>
+                </div>
+
+                <button
+                    class="buttonExport"
+                    id="assetsByLocation">
+                    Export
+                </button>
+
+            </div>
+
+            <!-- Assets by User -->
+
+            <div class="reportCard">
+
+                <div class="reportIcon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="reportInfo">
+                    <h3>Assets by User</h3>
+                    <p>Assigned assets by user.</p>
+                </div>
+
+                <button
+                    class="buttonExport"
+                    id="assetsByUser">
+                    Export
+                </button>
+
+            </div>
+
+            <!-- Maintenance History -->
+
+            <div class="reportCard">
+
+                <div class="reportIcon">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+
+                <div class="reportInfo">
+                    <h3>Maintenance History</h3>
+                    <p>Full maintenance history.</p>
+                </div>
+
+                <button
+                    class="buttonExport"
+                    id="maintenanceHistory">
+                    Export
+                </button>
+
+            </div>
+
+            <!-- Assets in Repair -->
+
+            <div class="reportCard">
+
+                <div class="reportIcon">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+
+                <div class="reportInfo">
+                    <h3>Assets in Repair</h3>
+                    <p>Open maintenance jobs.</p>
+                </div>
+
+                <button
+                    class="buttonExport"
+                    id="assetsInRepair">
+                    Export
+                </button>
+
+            </div>
+
+            <!-- Warranty Expiry -->
+
+            <div class="reportCard">
+
+                <div class="reportIcon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <div class="reportInfo">
+                    <h3>Warranty Expiry</h3>
+                    <p>Warranty dates and expirations.</p>
+                </div>
+
+                <button
+                    class="buttonExport"
+                    id="warrantyExpiry">
+                    Export
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

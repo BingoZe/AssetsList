@@ -73,6 +73,9 @@ async function loadPage(page){
         await assetsByType();
         await assetsByLocation();
         await assetsByUser();
+        await maintenanceHistory();
+        await assetsInRepair();
+        await warrantyExpiry();
     }
     
 }

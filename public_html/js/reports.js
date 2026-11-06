@@ -35,17 +35,7 @@ async function assetsByType() {
 
         });
 
-        const encodedUri =
-            encodeURI("data:text/csv;charset=utf-8," + csvContent);
-
-        const link = document.createElement("a");
-
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "assetsByType.csv");
-
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    exportCsv(csvContent,"assetsByType.csv");
 
     });
 
@@ -88,18 +78,8 @@ async function assetsByLocation() {
 
         });
 
-        const encodedUri =
-            encodeURI("data:text/csv;charset=utf-8," + csvContent);
-
-        const link = document.createElement("a");
-
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "assetsByLocation.csv");
-
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
+        exportCsv(csvContent,"assetsByLocation.csv");
+        
     });
 
 }
@@ -111,8 +91,6 @@ async function assetsByUser() {
     const triggerExport = document.getElementById("assetsByUser");
 
     triggerExport.addEventListener("click", () => {
-
-        const typeCount = countBy(assets, "user");
 
         let csvContent =
             "Asset ID,Service Tag,UserId,User\r\n";
@@ -126,17 +104,89 @@ async function assetsByUser() {
                 `${asset.users.firstName} ${asset.users.lastName} \r\n`;
         });
 
-        const encodedUri =
-            encodeURI("data:text/csv;charset=utf-8," + csvContent);
+        exportCsv(csvContent,"assetsByUser.csv");
+    });
 
-        const link = document.createElement("a");
+}
 
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "assetsByUser.csv");
 
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+async function assetsInRepair() {
+    
+    const maintenances = await getMaintenance();
+
+    const triggerExport = document.getElementById("assetsInRepair");
+
+    triggerExport.addEventListener("click", () => {
+
+        let csvContent =
+            "Maintenance Id,Asset,Issue/Service,Category,Status, Issue Date\r\n";
+
+        maintenances.forEach(maintenance => {
+
+            if (maintenance.maintenanceStatus !== "Closed"){
+                
+                csvContent +=
+                    `MNT-${maintenance.maintenanceId},` +
+                    `${maintenance.assets.assetId} ${maintenance.assets.assetName},` +
+                    `${maintenance.issueDescription},` +
+                    `${maintenance.issueCategory},` +
+                    `${maintenance.maintenanceStatus},` +
+                    `${maintenance.issueDate}  \r\n`;
+            }
+        });
+
+        exportCsv(csvContent,"assetsInRepair.csv");
+    });
+
+}
+
+async function maintenanceHistory() {
+    
+    const maintenances = await getMaintenance();
+
+    const triggerExport = document.getElementById("maintenanceHistory");
+
+    triggerExport.addEventListener("click", () => {
+
+        let csvContent =
+            "Maintenance Id,Asset,Issue/Service,Category,Status, Issue Date\r\n";
+
+        maintenances.forEach(maintenance => {
+
+            csvContent +=
+                `MNT-${maintenance.maintenanceId},` +
+                `${maintenance.assets.assetId} ${maintenance.assets.assetName},` +
+                `${maintenance.issueDescription},` +
+                `${maintenance.issueCategory},` +
+                `${maintenance.maintenanceStatus},` +
+                `${maintenance.issueDate}  \r\n`;
+        });
+
+        exportCsv(csvContent,"maintenanceHistory.csv");
+    });
+    
+}
+
+async function warrantyExpiry() {
+    
+    const assets = await getAssets();
+
+    const triggerExport = document.getElementById("warrantyExpiry");
+
+    triggerExport.addEventListener("click", () => {
+
+        let csvContent =
+            "Asset ID,Service Tag,Warranty Expiry\r\n";
+
+        assets.forEach(asset => {
+
+            csvContent +=
+                `AST-${asset.assetId},` +
+                `${asset.serviceTag},` +
+                `${asset.warrantyExpiryDate} \r\n`;
+        });
+
+    exportCsv(csvContent,"warrantyExpiry.csv");
 
     });
 
