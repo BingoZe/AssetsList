@@ -119,13 +119,6 @@ Testes
 PRIORIDADE 6 - REPORTS
 ====================================================
 
-- Inventory Report
-- Assets by Type
-- Assets by Location
-- Assets by User
-- Repair History
-- Warranty Expiry
-
 Assets by Type
 Assets by User
 Assets by Location

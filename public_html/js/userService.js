@@ -2,11 +2,7 @@
 /*User Service*/
 
 
-/*
- -------------
- HELPERS
- -------------
-    */
+/* HELPERS    */
 
 
 async function getUsers(){
@@ -55,11 +51,7 @@ function getMode(){
 /* -------------implemantacao do CRUD-------------*/
 
 
-/*
- -------------
- CREATE
- -------------
-    */
+/* CREATE   */
 
 /*initAssetForm retorna os assets em tela - AssetRegister*/
 
@@ -130,11 +122,7 @@ async function initUserForm(){
 
 
 
-/*
- -------------
- READ
- -------------
-    */
+/* READ    */
    
 /* renderUser representa READ em view e add user*/
 
@@ -252,11 +240,7 @@ async function renderAssetInnerTable(assetAssigned){
     ).innerHTML = output;
 
 }
-/*
- -------------
- DELETE
- -------------
-    */
+/* DELETE    */
    
 /*deleteAsset() representa o DELETE*/
 
@@ -282,11 +266,7 @@ async function deleteUser(userId){
 }
 
 
-/*
- -------------
- UPDATE
- -------------
-    */
+/* UPDATE    */
   
 async function saveUpdatedUser(){
     const selectedUserId = parseInt(sessionStorage.getItem("viewUserId")); 

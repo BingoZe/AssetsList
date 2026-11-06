@@ -68,6 +68,13 @@ async function loadPage(page){
     }
     
     
+    if(page.includes("reports")){
+        btnExport();
+        await assetsByType();
+        await assetsByLocation();
+        await assetsByUser();
+    }
+    
 }
 
 document.addEventListener("DOMContentLoaded", () => {
