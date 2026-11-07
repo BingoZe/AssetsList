@@ -55,6 +55,7 @@
 
 .login-mode .mainContainer{
     position:static;
+    max-width: 440px;
 }
 
 .login-mode #main-content{

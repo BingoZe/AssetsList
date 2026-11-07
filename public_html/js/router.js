@@ -2,7 +2,7 @@
 async function loadPage(page){
     const response = await fetch(page);
     const html = await response.text();
-     
+         
     document.getElementById("main-content").innerHTML = html;
      
     const generalTab = document.getElementById("generalTab");
@@ -78,11 +78,7 @@ async function loadPage(page){
         await warrantyExpiry();
     }
     
+
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.body.classList.add("login-mode");
-    loadPage("pages/login.html");
-});
 
-        
