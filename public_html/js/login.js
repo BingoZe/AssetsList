@@ -1,5 +1,5 @@
 async function signInWithEmail(){
-    console.log("Clicou no botao");
+    
     const userEmail = document.getElementById('email').value;
     const userPassword = document.getElementById('password').value;
     
@@ -17,3 +17,17 @@ async function signInWithEmail(){
 };
 
 //fazer sign out
+
+async function signOut(){
+
+    const { error } = await supabaseClient.auth.signOut();
+
+    if(error){
+        console.log(error);
+        console.log("Erro no sign out");
+        return;
+    }
+
+    await initApplication();
+
+}
