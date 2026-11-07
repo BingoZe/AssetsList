@@ -12,6 +12,7 @@ async function signInWithEmail(){
         console.log("Erro na autenticacao");
     } else{
         console.log("Usuario autenticado");
+        await initApplication();
     }
     
 };
