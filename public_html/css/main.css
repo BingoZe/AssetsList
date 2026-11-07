@@ -32,6 +32,55 @@
     --main-background:#f8fafc;
 }
 
+/*   LOGIN 
+============*/
+.login-mode nav,
+.login-mode header {
+    display: none;
+}
+
+.login-mode .content-area {
+    width: 100%;
+}
+.login-mode .mainPage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.login-mode .nav-logo{
+    width:500px;
+    height:300px;
+}
+
+.login-mode .mainContainer{
+    position:static;
+}
+
+.login-mode #main-content{
+    background-color: var(--sidebar-start);
+}
+
+
+.loginTitle{
+    position: static;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.loginCard{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    width: 400px;
+    padding: 2rem;
+}
+
+
+
+
+
 /*  RESET*/
 
 *,

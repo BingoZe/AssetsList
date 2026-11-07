@@ -81,7 +81,8 @@ async function loadPage(page){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadPage("pages/dashboard.html");
+    document.body.classList.add("login-mode");
+    loadPage("pages/login.html");
 });
 
         
