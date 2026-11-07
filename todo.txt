@@ -116,7 +116,7 @@ Testes
 - Testar persistência dos dados
 
 ====================================================
-PRIORIDADE 6 - REPORTS
+PRIORIDADE 6 - REPORTS - FEITO
 ====================================================
 
 Assets by Type

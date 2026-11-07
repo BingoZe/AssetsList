@@ -69,7 +69,7 @@ async function loadPage(page){
     
     
     if(page.includes("reports")){
-        btnExport();
+        btnExport(); /* inventory in total*/
         await assetsByType();
         await assetsByLocation();
         await assetsByUser();

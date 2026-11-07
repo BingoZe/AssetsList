@@ -154,9 +154,7 @@ async function renderUsers(users = null){
         </tr>
         `;
     });
-    
-    console.log(document.getElementById("tableBody"));
-    
+       
     document.querySelector(".tableBody").innerHTML = output;
 };
 
@@ -191,6 +189,8 @@ async function renderViewUser(){
         }
     }
 
+
+    /* renderiza os assets em posse do corrente usuario => selectedUser*/
     const assets = await getAssets();
      
     const assetAssigned = assets.filter(item => {
@@ -213,6 +213,9 @@ async function renderViewUser(){
     
 }
 
+
+/* renderiza a tabela com historico de assets em posse de
+ * um determinado usuario no view User*/
 async function renderAssetInnerTable(assetAssigned){
 
     let output = "";

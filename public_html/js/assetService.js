@@ -80,121 +80,121 @@ async function initAssetForm(){
     }
              
     assetForm.addEventListener("submit",async (event)=>{
-    event.preventDefault();
-    
-    const mode = getMode();
- 
-    if(mode === "edit"){
-        updateAsset();
-        return;
-    }else if (mode === "view"){
-        
-        return closeViewAsset();
-    }
+        event.preventDefault();
 
-    /*name validation*/
-    const assetName = document.getElementById("assetName").value.trim();
-    if(!assetName){
-        alert("Invalid name!");
-        addErrorCss("assetName");
-        return;
-    }
-    removeErrorCss("assetName");
-         
-    /*serviceTag validation*/
-    const serviceTag = await setServiceTag();
-        if(!serviceTag){
-            alert("Service Tag not unique!");
+        const mode = getMode();
+     
+        if(mode === "edit"){
+            updateAsset();
+            return;
+        }else if (mode === "view"){
+
+            return closeViewAsset();
+        }
+
+        /*name validation*/
+        const assetName = document.getElementById("assetName").value.trim();
+        if(!assetName){
+            alert("Invalid name!");
+            addErrorCss("assetName");
             return;
         }
-        
-    const model = document.getElementById("model").value;
-    const type = document.getElementById("type").value;
-    const assetStatus = document.getElementById("assetStatus").value;
-    
-   
-    
-    const userSelect = document.getElementById("userSelect");
-    const userId = Number(userSelect.value);
+        removeErrorCss("assetName");
 
-    if (!userSelect.value) {
-        console.log("Select a user.");
-        return;
-    }
-    
-    const location = document.getElementById("location").value;
-    const notes = document.getElementById("notes").value;
-    const warrantyDetails = document.getElementById("warrantyDetails").value;
-    
-    const warrantyDocs = document.getElementById("warrantyDocs").value;
-    const acquisitionDate = document.getElementById("acquisitionDate").value || null;
-    
-    /*Para refatorar*/
-    if(!acquisitionDate ||acquisitionDate===null ||acquisitionDate===undefined ){
-        alert("Invalid Acquisition Date");
-        document.getElementById("acquisitionDate").classList.add("inputError");
-        return;
-    } 
-    document.getElementById("acquisitionDate").classList.remove("inputError");
-    
-    const acquisitionYear = parseInt(new Date(acquisitionDate).getFullYear());
-    
-    /* refatorar e definir constraint no banco*/
-    const warrantyExpiryDate = setWarrantyExpiryDate(acquisitionDate);
-    if(!warrantyExpiryDate){
-        alert("Warranty expire date cannot be before Acquisition Date");
-        return;
-    }     
-    document.getElementById("warrantyExpiryDate").classList.remove("inputError");
-        
-    const acquisitionValue = parseFloat(setAcquisitionValue()) || 0;
-    
-    if(!acquisitionValue){
-        alert("Invalid Acquisition Value");
-        return;
-    }    
-    
-    const usefulLife = setUsefulLife();
-    if(!usefulLife){
-        alert("Invalid Useful Life");
-        return;
-    }
-        
-        /*document.getElementById("usefulLife").value||0;*/
-    
+        /*serviceTag validation*/
+        const serviceTag = await setServiceTag();
+            if(!serviceTag){
+                alert("Service Tag not unique!");
+                return;
+            }
 
-    
-    const purchaseInvoice = document.getElementById("purchaseInvoice").value;
-    
-    const asset = {
-    assetName,
-    serviceTag,
-    model,
-    type,
-    assetStatus,
-    userId,
-    location,
-    notes,
-    warrantyDetails,
-    warrantyExpiryDate,
-    warrantyDocs,
-    acquisitionDate,
-    acquisitionYear,
-    acquisitionValue,
-    usefulLife,
-    purchaseInvoice
-};
-    await createAsset(asset);
-    
-    alert("Record saved");
-    
-    assetForm.reset();
-    
-    closeViewAsset();
-        
-    renderAssets();
-      
-    });
+        const model = document.getElementById("model").value;
+        const type = document.getElementById("type").value;
+        const assetStatus = document.getElementById("assetStatus").value;
+
+
+
+        const userSelect = document.getElementById("userSelect");
+        const userId = Number(userSelect.value);
+
+        if (!userSelect.value) {
+            console.log("Select a user.");
+            return;
+        }
+
+        const location = document.getElementById("location").value;
+        const notes = document.getElementById("notes").value;
+        const warrantyDetails = document.getElementById("warrantyDetails").value;
+
+        const warrantyDocs = document.getElementById("warrantyDocs").value;
+        const acquisitionDate = document.getElementById("acquisitionDate").value || null;
+
+        /*Para refatorar*/
+        if(!acquisitionDate ||acquisitionDate===null ||acquisitionDate===undefined ){
+            alert("Invalid Acquisition Date");
+            document.getElementById("acquisitionDate").classList.add("inputError");
+            return;
+        } 
+        document.getElementById("acquisitionDate").classList.remove("inputError");
+
+        const acquisitionYear = parseInt(new Date(acquisitionDate).getFullYear());
+
+        /* refatorar e definir constraint no banco*/
+        const warrantyExpiryDate = setWarrantyExpiryDate(acquisitionDate);
+        if(!warrantyExpiryDate){
+            alert("Warranty expire date cannot be before Acquisition Date");
+            return;
+        }     
+        document.getElementById("warrantyExpiryDate").classList.remove("inputError");
+
+        const acquisitionValue = parseFloat(setAcquisitionValue()) || 0;
+
+        if(!acquisitionValue){
+            alert("Invalid Acquisition Value");
+            return;
+        }    
+
+        const usefulLife = setUsefulLife();
+        if(!usefulLife){
+            alert("Invalid Useful Life");
+            return;
+        }
+
+            /*document.getElementById("usefulLife").value||0;*/
+
+
+
+        const purchaseInvoice = document.getElementById("purchaseInvoice").value;
+
+        const asset = {
+        assetName,
+        serviceTag,
+        model,
+        type,
+        assetStatus,
+        userId,
+        location,
+        notes,
+        warrantyDetails,
+        warrantyExpiryDate,
+        warrantyDocs,
+        acquisitionDate,
+        acquisitionYear,
+        acquisitionValue,
+        usefulLife,
+        purchaseInvoice
+    };
+        await createAsset(asset);
+
+        alert("Record saved");
+
+        assetForm.reset();
+
+        closeViewAsset();
+
+        renderAssets();
+
+        });
 }
 
 
@@ -233,9 +233,7 @@ async function renderAssets(assets = null){
         </tr>
         `;
     });
-    
-    console.log(document.getElementById("tableBody"));
-    
+        
     document.querySelector(".tableBody").innerHTML = output;
 };
 
@@ -339,7 +337,7 @@ async function renderViewAsset(){
         
 }
 
-
+/* renderiza os usuarios do BD dentro do select do view Asset*/
 /*Render User field - REALOCAR?!*/
 async function renderUserField() {
     const users = await getUsers();
@@ -373,7 +371,8 @@ async function renderUserField() {
 }
 
 
-
+/* renderiza a tabela com historico de usuarios em posse de
+ * asset no view Asset*/
 async function renderUserInnerTable(userHistory,viewedAsset){
 
     let output = "";
@@ -409,8 +408,6 @@ async function renderUserInnerTable(userHistory,viewedAsset){
  -------------
     */
    
-/*deleteAsset() representa o DELETE*/
-
 async function deleteAsset(assetId){
     
     /*confirmando com usuario antes de deletar*/

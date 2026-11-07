@@ -6,8 +6,6 @@ async function initApplication() {
 
     if (session) {
 
-        console.log("Usuario autenticado");
-
         document.body.classList.remove("login-mode");
 
         await loadPage("pages/dashboard.html");

@@ -13,6 +13,5 @@ async function getSession() {
         return;
     }
     
-    console.log("Autenticado. Sessao ativa.");
     return data.session;
 }
