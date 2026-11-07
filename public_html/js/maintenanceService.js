@@ -144,7 +144,7 @@ async function renderMaintenance(maintenance = null){
         output += `
         <tr>
 
-            <td>${maintenance.maintenanceId}</td>
+            <td>MNT-${maintenance.maintenanceId}</td>
 
             <td>${maintenance.assets.assetId} 
                 ${maintenance.assets.assetName}</td>

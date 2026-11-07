@@ -1,4 +1,9 @@
 
+/*---------------------------------------------*/
+/* FILTROS E ORDENACAO - ASSETS
+/*---------------------------------------------*/
+
+
 async function searchElement(){
     const assets = await getAssets();  
     
@@ -238,6 +243,11 @@ async function btnSort(){
 
 };
 
+/*---------------------------------------------*/
+/* FILTROS E ORDENACAO - USERS
+/*---------------------------------------------*/
+
+
 /*Search users*/
 
 async function searchUserElement(){
@@ -363,9 +373,7 @@ async function renderTypesFilter(){
     document.getElementById("userType").innerHTML = output;
 };
 
-/*---------------------------------------------*/
-/* SORTING USANDO ALGORITMO DE ORDENACAO BUBBLE SORT*/
-/*---------------------------------------------*/
+/* BUBBLE SORT - users*/
 
 function btnSort(){
     
@@ -430,4 +438,203 @@ function btnSort(){
 };
 
 
+/*---------------------------------------------*/
+/* FILTROS E ORDENACAO - MAINTENANCE
+/*---------------------------------------------*/
+async function searchMaintenanceElement(){
 
+    const maintenance = await getMaintenance();
+
+    const lookupItem =
+        document.getElementById("searchField");
+
+    const assetLookupItem =
+        document.getElementById("assetSelect");
+
+    const categoryLookupItem =
+        document.getElementById("categoryStatus");
+
+    const statusLookupItem =
+        document.getElementById("assetStatus");
+
+    /* SEARCH */
+
+    lookupItem.addEventListener("input",function(){
+
+        const searchItem =
+            lookupItem.value.toLowerCase();
+
+        const filteredMaintenance =
+            maintenance.filter(item =>
+
+                item.maintenanceId.toString()
+                    .includes(searchItem)
+                    
+                ||
+                
+                item.assets.assetId.toString()
+                    .includes(searchItem)
+                    
+                ||
+
+                item.issueCategory
+                    ?.toLowerCase()
+                    .includes(searchItem)
+
+                ||
+
+                item.issueDescription
+                    ?.toLowerCase()
+                    .includes(searchItem)
+
+                ||
+
+                item.supportTicket
+                    ?.toLowerCase()
+                    .includes(searchItem)
+
+                ||
+
+                item.priority
+                    ?.toLowerCase()
+                    .includes(searchItem)
+            );
+        console.log(filteredMaintenance);
+        renderMaintenance(filteredMaintenance);
+
+    });
+
+    /* ASSET */
+
+    assetLookupItem.addEventListener("change",function(){
+
+        const searchItem =
+            assetLookupItem.value;
+
+        const filteredMaintenance =
+            maintenance.filter(item =>
+                item.assetId.toString() === searchItem
+            );
+
+        if(searchItem !== "All Assets"){
+            renderMaintenance(filteredMaintenance);
+        }else{
+            renderMaintenance();
+        }
+
+    });
+
+    /* CATEGORY */
+
+    categoryLookupItem.addEventListener("change",function(){
+
+        const searchItem =
+            categoryLookupItem.value.toLowerCase();
+
+        const filteredMaintenance =
+            maintenance.filter(item =>
+                item.issueCategory
+                    .toLowerCase()
+                    .includes(searchItem)
+            );
+
+        if(searchItem !== "all categories"){
+            renderMaintenance(filteredMaintenance);
+        }else{
+            renderMaintenance();
+        }
+
+    });
+
+    /* STATUS */
+
+    statusLookupItem.addEventListener("change",function(){
+
+        const searchItem =
+            statusLookupItem.value.toLowerCase();
+
+        const filteredMaintenance =
+            maintenance.filter(item =>
+                item.maintenanceStatus
+                    .toLowerCase() === searchItem
+            );
+
+        if(searchItem !== "all status"){
+            renderMaintenance(filteredMaintenance);
+        }else{
+            renderMaintenance();
+        }
+
+    });
+
+}
+
+async function renderMaintenanceAssetFilter(){
+
+    const maintenance =
+        await getMaintenance();
+
+    let output =
+        `<option selected>All Assets</option>`;
+
+    const uniqueAssets = [];
+
+    maintenance.forEach(item => {
+
+        if(
+            !uniqueAssets.includes(item.assetId)
+        ){
+
+            uniqueAssets.push(item.assetId);
+
+            output += `
+                <option>
+                    ${item.assetId}
+                    ${item.assets.assetName} - 
+                    ${item.assets.serviceTag}
+                </option>
+            `;
+        }
+
+    });
+
+    document.querySelector(".assetSelect")
+        .innerHTML = output;
+
+}
+
+async function renderMaintenanceCategoryFilter(){
+
+    const maintenance =
+        await getMaintenance();
+
+    let output =
+        `<option selected>All Categories</option>`;
+
+    const uniqueCategories = [];
+
+    maintenance.forEach(item => {
+
+        if(
+            !uniqueCategories.includes(
+                item.issueCategory
+            )
+        ){
+
+            uniqueCategories.push(
+                item.issueCategory
+            );
+
+            output += `
+                <option>
+                    ${item.issueCategory}
+                </option>
+            `;
+        }
+
+    });
+
+    document.querySelector(".categoryStatus")
+        .innerHTML = output;
+
+}

@@ -56,6 +56,10 @@ async function loadPage(page){
     
     if(page.includes("maintenance")){
         await renderMaintenance();
+        await searchMaintenanceElement();
+        await renderMaintenanceAssetFilter();
+        await renderMaintenanceCategoryFilter();
+        
     }
     
     if(page.includes("viewMaintenance")){
