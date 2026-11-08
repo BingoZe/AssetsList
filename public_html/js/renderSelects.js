@@ -45,7 +45,7 @@ async function renderSpecsField() {
             Select a model
         </option>
     `;
-    console.log("Specs ",specs);
+
     const uniqueSpecs = [];
     
     specs.forEach(item => {
@@ -76,7 +76,7 @@ async function renderTypeField() {
             Select a type
         </option>
     `;
-    console.log("assetType ",assetType);
+
     const uniqueAssetType = [];
     
     assetType.forEach(item => {
@@ -129,7 +129,6 @@ async function renderLocationField() {
     const assetLocation = await getAssetLocation();
     const locationSelect = document.getElementById("locationSelect");
 
-    console.log("Location select ",locationSelect);
     if (!locationSelect) {
         return;
     }

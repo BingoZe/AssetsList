@@ -125,21 +125,15 @@ async function initAssetForm(){
             }
             
 
-        const specsSelect = document.getElementById("specsSelect").value;   
-        const specsId = Number(specsSelect.value);
-
-           
+        const specsId = 
+                Number(document.getElementById("specsSelect").value);  
         
+        const assetTypeId = 
+                Number(document.getElementById("typeSelect").value);
         
-        const typeSelect = document.getElementById("typeSelect").value;   
-        const assetTypeId = Number(typeSelect.value);
-        
-      
-       
-        const statusSelect = document.getElementById("statusSelect").value; 
-        const assetStatusId = Number(statusSelect.value);
+        const assetStatusId = 
+                Number(document.getElementById("statusSelect").value);
  
-
         const userSelect = document.getElementById("userSelect");
         const userId = Number(userSelect.value);
 
@@ -148,8 +142,8 @@ async function initAssetForm(){
             return;
         }
 
-        const locationSelect = document.getElementById("locationSelect").value;
-        const assetLocationId = Number(locationSelect.value);
+        const assetLocationId =
+                Number(document.getElementById("locationSelect").value);
         
         
         const notes = document.getElementById("notes").value;
@@ -241,7 +235,7 @@ async function renderAssets(assets = null){
 
     let output = "";
     assets.forEach((asset) => {
-        console.log(asset.assetType.name);
+       
         output += `
         <tr>
             <td>AST-${asset.assetId}</td>
@@ -291,6 +285,9 @@ async function renderViewAsset(){
     
     const typeSelect = document.getElementById("typeSelect"); 
     typeSelect.value = String(viewedAsset.assetType.assetTypeId);
+    
+    console.log("ID banco:", viewedAsset.assetType.assetTypeId);
+    console.log("Value select:", typeSelect.value);
     
     const statusSelect = document.getElementById("statusSelect"); 
     statusSelect.value = String(viewedAsset.assetStatus.assetStatusId);
