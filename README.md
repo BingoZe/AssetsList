@@ -28,14 +28,11 @@ The system provides real-time visual reports including:
 
 ## Technologies Used
 
-- Java
-- JSP / Servlet
 - HTML5
 - CSS3
-- Bootstrap
 - JavaScript
 - Chart.js
-- MySQL
+- Supabase
 
 ## Purpose
 
@@ -44,10 +41,10 @@ This project was developed as part of a Software Engineering academic project, s
 ## Screenshots
 
 ### Dashboard
-(Add screenshot here)
+
 
 ### Asset Register
-(Add screenshot here)
+
 
 ## Author
 
