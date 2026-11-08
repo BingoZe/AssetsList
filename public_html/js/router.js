@@ -18,6 +18,10 @@ async function loadPage(page){
     
     if (page.includes("addAsset")) {
         await renderUserField();
+        await renderSpecsField();
+        await renderTypeField();
+        await renderStatusField();
+        await renderLocationField();
     }
             
     if(page.includes("assetRegister")){
@@ -32,6 +36,10 @@ async function loadPage(page){
     
     if(page.includes("viewAsset")){
         await renderUserField();
+        await renderSpecsField();
+        await renderTypeField();
+        await renderStatusField();
+        await renderLocationField();
         await renderViewAsset();
   }
     

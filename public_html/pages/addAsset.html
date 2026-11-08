@@ -19,9 +19,9 @@
     <div class="formContainer">
         <form class="asset-form">
             <div id="generalTab" class="tabcontent">
-            <!-- ################################################################################## -->
+                
             <!-- GENERAL INFO   ################################################################### -->
-            <!-- ################################################################################## -->
+            
             <fieldset class="formSection">
                 <legend class="formLegends">General Information</legend>
 
@@ -49,56 +49,33 @@
                         >
                 </div>
 
-
                 <div class="form-group">
-                    <label for="model">
-                        Model
+                    <label for="specsSelect">
+                        Model/Family group
                     </label>
-
-                    <input
-                        type="text"
-                        id="model"
-                        name="model">
+                    
+                    <select id="specsSelect" name="specsSelect">
+                        </select>
                 </div>
                  
                 <div class="form-group">
-                    <label for="type">
+                    <label for="typeSelect">
                         Type
                     </label>
-
-                    <select id="type" class="typeSelect">
-                        <option id="typeLaptop">Laptop</option>
-                        <option id="typeMobile">Mobile</option>
-                        <option id="typeServer">Server</option>
-                        <option id="typeVirtualDesktop">Virtual Desktop</option>
-                        <option id="typeDesktop">Desktop</option>
-                        <option id="typeMonitor">Monitor</option>
-                        <option id="typePeripherals">Peripherals</option>
-                    </select>
+                    <select id="typeSelect" name="typeSelect">
+                        </select>
                 </div>  
-                
 
                 <div class="form-group">
-                    <label for="assetStatus">
+                    <label for="statusSelect">
                         Status
                     </label>
-
-                    <select id="assetStatus" class="statusSelect">
-                        <option id="statusActive" selected>Active</option>
-                        <option id="statusInactive">Inactive</option>
-                        <option id="statusRepairing">Repairing</option>
-                        <option id="statusRetired">Retired</option>
-                        <option id="statusLost">Lost</option>
-                        
-                        
-                    </select>
+                        <select id="statusSelect" name="statusSelect">
+                            </select>
                 </div>
             </fieldset>
             
-            <!-- ################################################################################## -->
-            <!-- OWNER & LOCATION  ################################################################### -->
-            <!-- ################################################################################## -->        
-            
+            <!-- OWNER & LOCATION  ################################################################### -->                 
             <fieldset class="formSection">
                 <legend class="formLegends">Owner & Location</legend>
               
@@ -106,34 +83,23 @@
                     <label for="userSelect">
                         User
                     </label>
-                    
                     <select id="userSelect" name="userSelect">
-                        
-                    </select>
+                        </select>
 
                 </div>
                 
                 <div class="form-group">
-                    <label for="location">
+                    <label for="locationSelect">
                         Location
                     </label>
-
-                <select id="location" class="location">
-                    <option id="deployed">Deployed</option>
-                    <option id="returned">Returned</option>
-                    <option id="comms">Comms</option>
-                    <option id="trainingRoom">Training Room</option>
-                    <option id="meetingPod">Meeting Pod</option>
-                </select>
-                    
+                    <select id="locationSelect" name="locationSelect">
+                        </select>                        
                 </div>
 
         
             </fieldset>
                        
-            <!-- ################################################################################## -->
-            <!-- NOTES ################################################################### -->
-            <!-- ################################################################################## -->        
+             <!-- NOTES ################################################################### -->    
                         
             <fieldset class="description">
                 
@@ -151,9 +117,8 @@
             </fieldset>
             </div>
             
-            <!-- ################################################################################## -->
             <!-- WARRANTY#####  ################################################################### -->
-            <!-- ################################################################################## -->  
+            
             <div id="warrantyTab" class="tabcontent">          
              <fieldset class="formSection">
                 <legend class="formLegends">Warranty</legend>
@@ -196,9 +161,9 @@
                 </div>
             </fieldset>           
             </div>
-            <!-- ################################################################################## -->
+            
             <!-- Financial#####  ################################################################### -->
-            <!-- ################################################################################## -->  
+
             <div id="financialTab" class="tabcontent">          
              <fieldset class="formSection">
                  

@@ -1,5 +1,3 @@
-<!-- Essa pagina e apenas uma copia para leitura da pagina AddAsset -->
-
 <div class="mainPage">
     
     <div class="mainHeader">
@@ -10,36 +8,10 @@
         
         <div class="headerNav">
             <ul class ="headerUl">
-                <li>
-                    <a href="#" 
-                       class="tablinks" 
-                       onclick="openTab(event,'generalTab')">
-                        General</a></li>
-                <li>
-                    <a href="#" 
-                       class="tablinks" 
-                       onclick="openTab(event,'warrantyTab')">
-                        Warranty</a></li>
-                <li>
-                    <a href="#"
-                       class="tablinks" 
-                       onclick="openTab(event,'financialTab')">
-                        Financial</a></li>
-                <li>
-                    <a href="#"
-                       class="tablinks"
-                       onclick="openTab(event,'assetHistory')">
-                        Asset History
-                    </a>
-                </li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'generalTab')">General</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
+                <li><a href="#" class="tablinks" onclick="openTab(event,'financialTab')">Financial</a></li>
                 
-                <li>
-                    <a href="#"
-                       class="tablinks"
-                       onclick="openTab(event,'maintenanceTab')">
-                        Maintenance History
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
@@ -47,25 +19,11 @@
     <div class="formContainer">
         <form class="asset-form">
             <div id="generalTab" class="tabcontent">
+                
+            <!-- GENERAL INFO   ################################################################### -->
             
-            <!-- GENERAL INFO   ####################################### -->
-         
             <fieldset class="formSection">
                 <legend class="formLegends">General Information</legend>
-                
-                <div class="form-group">
-                    <label for="assetId">
-                        Asset ID
-                    </label>
-
-                    <input
-                        type="text"
-                        id="assetId"
-                        name="assetId"
-                        readonly
-                        disabled
-                        >
-                </div>
 
                 <div class="form-group">
                     <label for="assetName">
@@ -75,7 +33,8 @@
                     <input
                         type="text"
                         id="assetName"
-                        name="assetName">
+                        name="assetName"
+                        >
                 </div>
 
                 <div class="form-group">
@@ -86,103 +45,64 @@
                     <input
                         type="text"
                         id="serviceTag"
-                        name="serviceTag">
+                        name="serviceTag"
+                        >
                 </div>
 
                 <div class="form-group">
-                    <label for="model">
-                        Model
+                    <label for="specsSelect">
+                        Model/Family group
                     </label>
-
-                    <input
-                        type="text"
-                        id="model"
-                        name="model">
+                    
+                    <select id="specsSelect" name="specsSelect">
+                        </select>
                 </div>
-                                
+                 
                 <div class="form-group">
-                    <label for="type">
+                    <label for="typeSelect">
                         Type
                     </label>
-
-                    <select id="type" class="typeSelect">
-
-                        <option id="typeLaptop">Laptop</option>
-                        <option id="typeMobile">Mobile</option>
-                        <option id="typeServer">Server</option>
-                        <option id="typeVirtualDesktop">Virtual Desktop</option>
-                        <option id="typeDesktop">Desktop</option>
-                        <option id="typeMonitor">Monitor</option>
-                        <option id="typePeripherals">Peripherals</option>
-
-                    </select>
+                    <select id="typeSelect" name="typeSelect">
+                        </select>
                 </div>  
-                
+
                 <div class="form-group">
-                    <label for="assetStatus">
+                    <label for="statusSelect">
                         Status
                     </label>
-
-                    <select id="assetStatus" class="statusSelect">
-                        <option id="statusActive">Active</option>
-                        <option id="statusInactive">Inactive</option>
-                        <option id="statusRepairing">Repairing</option>
-                        <option id="statusRetired">Retired</option>
-                        <option id="statusLost">Lost</option>
-                                              
-                    </select>
+                        <select id="statusSelect" name="statusSelect">
+                            </select>
                 </div>
             </fieldset>
             
-            <!-- OWNER & LOCATION  ############################################ -->
-            
+            <!-- OWNER & LOCATION  ################################################################### -->                 
             <fieldset class="formSection">
                 <legend class="formLegends">Owner & Location</legend>
-        
+              
                 <div class="form-group">
                     <label for="userSelect">
                         User
                     </label>
-                    
                     <select id="userSelect" name="userSelect">
-                        
-                    </select>
+                        </select>
 
-                </div>
-          
-                <div class="form-group">
-                    <label for="userEmail">
-                        User Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="userEmail"
-                        name="userEmail"
-                        readonly
-                        disabled>
                 </div>
                 
                 <div class="form-group">
-                    <label for="location">
+                    <label for="locationSelect">
                         Location
                     </label>
-                <select id="location" class="location">
-                    <option id="allLocation">All Locations</option>
-                    <option id="deployed">Deployed</option>
-                    <option id="returned">Returned</option>
-                    <option id="comms">Comms</option>
-                    <option id="trainingRoom">Training Room</option>
-                    <option id="meetingPod">Meeting Pod</option>
-                </select>
+                    <select id="locationSelect" name="locationSelect">
+                        </select>                        
                 </div>
-       
+
+        
             </fieldset>
-              
-            <!-- NOTES ############################### -->
-                                
+                       
+             <!-- NOTES ################################################################### -->    
+                        
             <fieldset class="description">
-                <!--Item 7-->
+                
                 <div class="form-group">
                     <label for="notes">
                         Additional Notes
@@ -196,9 +116,9 @@
                 </div>
             </fieldset>
             </div>
-
-            <!-- WARRANTY######################### -->
-      
+            
+            <!-- WARRANTY#####  ################################################################### -->
+            
             <div id="warrantyTab" class="tabcontent">          
              <fieldset class="formSection">
                 <legend class="formLegends">Warranty</legend>
@@ -212,8 +132,9 @@
                         type="text"
                         id="warrantyDetails"
                         name="warrantyDetails">
+
                 </div>
-                                                  
+
                 <div class="form-group">
                     <label for="warrantyExpiryDate">
                         Warranty Expiry Date
@@ -222,30 +143,32 @@
                     <input
                         type="date"
                         id="warrantyExpiryDate"
-                        name="warrantyExpiryDate">
+                        name="warrantyExpiryDate"
+                        >
 
                 </div>
-                     
-                <!--Item 7-->
+
                 <div class="form-group">
                     <label for="warrantyDocs">
                         Warranty Docs
                     </label>
 
                     <input
-                        type="file"
+                        type="text"
                         id="warrantyDocs"
                         name="warrantyDocs">
+
                 </div>
             </fieldset>           
             </div>
             
-            <!-- Financial############################## -->
+            <!-- Financial#####  ################################################################### -->
+
             <div id="financialTab" class="tabcontent">          
              <fieldset class="formSection">
                  
                 <legend class="formLegends">Financial</legend>
-                               
+                              
                 <div class="form-group">
                     <label for="acquisitionDate">
                         Acquisition Date
@@ -256,7 +179,7 @@
                         id="acquisitionDate"
                         name="acquisitionDate">
                 </div>
-                                               
+
                 <div class="form-group">
                     <label for="acquisitionValue">
                         Acquisition Value
@@ -270,185 +193,46 @@
                         min="0"
                         >
                 </div>
-        
+
                 <div class="form-group">
                     <label for="usefulLife">
                         Useful Life (Years)
                     </label>
 
                     <input
-                        type="number"
+                        type="text"
                         id="usefulLife"
                         name="usefulLife">
                 </div>
-                
-                <div class="form-group">
-                    <label for="depreciation">
-                        Depreciation
-                    </label>
 
-                    <input
-                        type="number"
-                        id="depreciation"
-                        name="depreciation"
-                        step="0.01"
-                        min="0"
-                        readonly
-                        disabled
-                        >
-                </div>
-  
-                <div class="form-group">
-                    <label for="netValue">
-                        Net Value
-                    </label>
-
-                    <input
-                        type="number"
-                        id="netValue"
-                        name="netValue"
-                        step="0.01"
-                        min="0"
-                        readonly
-                        disabled
-                        >
-                </div>
-                
-                <!--Item 7-->
                 <div class="form-group">
                     <label for="purchaseInvoice">
                         Purchase Invoice
                     </label>
 
                     <input
-                        type="file"
+                        type="text"
                         id="purchaseInvoice"
                         name="purchaseInvoice">
+
                 </div>
             </fieldset> 
             </div>
-            
-            <!-- Maintenance ############################## -->
 
-            <div id="maintenanceTab" class="tabcontent">
-                <div id="main-content">
-                    
-                    <fieldset>
-                    
-                    <legend class="formLegends">
-                        History
-                    </legend>                    
-
-                    <table class="allAssets" id="maintenanceHistoryTable">
-
-                        <thead class="tableHeader">
-
-                            <tr>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">Maintenance ID</span>
-                                    </div>
-                                </th>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">Issue/Service</span>
-                                    </div>
-                                </th>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">Type</span>
-                                    </div>
-                                </th>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">Status</span>
-                                    </div>
-                                </th>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">Issue Date</span>
-                                    </div>
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tableBodyMaintenance" class="tableBodyMaintenance">
-                        </tbody>
-
-                    </table>
-
-                </fieldset>
-                </div>
-            </div>
-            <div id="assetHistory" class="tabcontent">
-            <fieldset>
-                    
-                    <legend class="formLegends">
-                        Asset History
-                    </legend>                    
-
-                    <table class="allAssets" id="maintenanceHistoryTable">
-
-                        <thead class="tableHeader">
-
-                            <tr>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">User ID</span>
-                                    </div>
-                                </th>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">User</span>
-                                    </div>
-                                </th>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">Status</span>
-                                    </div>
-                                </th>
-
-                                <th>
-                                    <div class="tableHeaderElement">
-                                        <span class="thTitle">Deploy Date</span>
-                                    </div>
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tableBodyAssetHistory" class="tableBodyAssetHistory">
-                        </tbody>
-
-                    </table>
-
-                </fieldset>            
-            </div>            
-            <!-- buttons-->
-               
                 <div class="formButtons">
-                     
+                    
                     <button type="button" id="close" onclick="closeViewAsset()">
                         Close
-                    </button>               
+                    </button>    
                     
-                    <button type="submit" id="resave" class="resave">
+                    <button type="submit">
                         Save Asset
-                    </button>                     
-      
-                </div>          
+                    </button>
+                </div>
+                
         </form>
     </div>
-   
+    
+    
+    
 </div>

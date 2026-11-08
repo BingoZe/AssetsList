@@ -20,6 +20,22 @@ async function getAssets(){
                 ),
                 maintenance(
                     maintenanceId
+                ),
+                assetStatus(
+                    assetStatusId,
+                    name
+                ),
+                specs(
+                    specsId,
+                    specsGroup
+                ),
+                assetLocation(
+                    assetLocationId,
+                    name
+                ),
+                assetType(
+                    assetTypeId,
+                    name
                 )
             `);
 
@@ -107,12 +123,22 @@ async function initAssetForm(){
                 alert("Service Tag not unique!");
                 return;
             }
+            
 
-        const model = document.getElementById("model").value;
-        const type = document.getElementById("type").value;
-        const assetStatus = document.getElementById("assetStatus").value;
+        const specsSelect = document.getElementById("specsSelect").value;   
+        const specsId = Number(specsSelect.value);
 
-
+           
+        
+        
+        const typeSelect = document.getElementById("typeSelect").value;   
+        const assetTypeId = Number(typeSelect.value);
+        
+      
+       
+        const statusSelect = document.getElementById("statusSelect").value; 
+        const assetStatusId = Number(statusSelect.value);
+ 
 
         const userSelect = document.getElementById("userSelect");
         const userId = Number(userSelect.value);
@@ -122,7 +148,10 @@ async function initAssetForm(){
             return;
         }
 
-        const location = document.getElementById("location").value;
+        const locationSelect = document.getElementById("locationSelect").value;
+        const assetLocationId = Number(locationSelect.value);
+        
+        
         const notes = document.getElementById("notes").value;
         const warrantyDetails = document.getElementById("warrantyDetails").value;
 
@@ -169,11 +198,11 @@ async function initAssetForm(){
         const asset = {
         assetName,
         serviceTag,
-        model,
-        type,
-        assetStatus,
+        specsId,
+        assetTypeId,
+        assetStatusId,
         userId,
-        location,
+        assetLocationId,
         notes,
         warrantyDetails,
         warrantyExpiryDate,
@@ -183,7 +212,8 @@ async function initAssetForm(){
         acquisitionValue,
         usefulLife,
         purchaseInvoice
-    };
+        };
+        
         await createAsset(asset);
 
         alert("Record saved");
@@ -211,15 +241,15 @@ async function renderAssets(assets = null){
 
     let output = "";
     assets.forEach((asset) => {
- 
+        console.log(asset.assetType.name);
         output += `
         <tr>
             <td>AST-${asset.assetId}</td>
             <td>${asset.assetName}</td>
             <td>${asset.serviceTag}</td>
-            <td>${asset.type}</td>
-            <td>${asset.location}</td>
-            <td>${asset.assetStatus}</td>
+            <td>${asset.assetType.name}</td>
+            <td>${asset.assetLocation.name}</td>
+            <td>${asset.assetStatus.name}</td>
             <td>${asset.users.firstName} ${asset.users.lastName}</td>
             <td>
                 <button class="btTdItemView" onclick="viewAsset('${asset.assetId}','view')">
@@ -253,17 +283,30 @@ async function renderViewAsset(){
     document.getElementById("assetId").value =viewedAsset.assetId;
     document.getElementById("assetName").value =viewedAsset.assetName;
     document.getElementById("serviceTag").value =viewedAsset.serviceTag;
-    document.getElementById("model").value =viewedAsset.model;
-    document.getElementById("type").value =viewedAsset.type;
-    document.getElementById("assetStatus").value =viewedAsset.assetStatus;
     
+    /*Elementos com tabelas especializadas - FKs*/
+    
+    const specsSelect = document.getElementById("specsSelect"); 
+    specsSelect.value = String(viewedAsset.specs.specsId);
+    
+    const typeSelect = document.getElementById("typeSelect"); 
+    typeSelect.value = String(viewedAsset.assetType.assetTypeId);
+    
+    const statusSelect = document.getElementById("statusSelect"); 
+    statusSelect.value = String(viewedAsset.assetStatus.assetStatusId);
+             
     const userSelect = document.getElementById("userSelect");
-
     userSelect.value = String(viewedAsset.users.userId);
     
+    const locationSelect = document.getElementById("locationSelect");
+    locationSelect.value = String(viewedAsset.assetLocation.assetLocationId);
+    
+   
+    
     document.getElementById("userEmail").value =`${viewedAsset.users.userEmail}`;
-    document.getElementById("location").value =viewedAsset.location;
     document.getElementById("notes").value =viewedAsset.notes;
+    
+     /*Garantia e financeiro*/
     document.getElementById("warrantyDetails").value =viewedAsset.warrantyDetails;
     document.getElementById("warrantyExpiryDate").value =viewedAsset.warrantyExpiryDate;
     document.getElementById("warrantyDocs").value =viewedAsset.warrantyDocs;
@@ -337,71 +380,6 @@ async function renderViewAsset(){
         
 }
 
-/* renderiza os usuarios do BD dentro do select do view Asset*/
-/*Render User field - REALOCAR?!*/
-async function renderUserField() {
-    const users = await getUsers();
-    const userSelect = document.getElementById("userSelect");
-
-    if (!userSelect) {
-        return;
-    }
-
-    let output = `
-        <option value="" selected disabled>
-            Select a user
-        </option>
-    `;
-
-    const uniqueUsers = [];
-
-    users.forEach(user => {
-        if (!uniqueUsers.includes(user.userId)) {
-            uniqueUsers.push(user.userId);
-
-            output += `
-                <option value="${user.userId}">
-                    ${user.firstName} ${user.lastName}
-                </option>
-            `;
-        }
-    });
-    
-    userSelect.innerHTML = output;
-}
-
-
-/* renderiza a tabela com historico de usuarios em posse de
- * asset no view Asset*/
-async function renderUserInnerTable(userHistory,viewedAsset){
-
-    let output = "";
-
-    userHistory.forEach(user => {
-
-        output += `
-        <tr>
-
-            <td>${user.userId}</td>
-
-            <td>${user.firstName} ${user.lastName}</td>
-
-            <td>${viewedAsset.assetStatus}</td>
-
-            <td>${user.role}</td>
-
-        </tr>
-        `;
-
-    });
-
-    document.querySelector(
-        ".tableBodyAssetHistory"
-    ).innerHTML = output;
-
-}
-
-
 /*
  -------------
  DELETE
@@ -456,15 +434,20 @@ async function updateAsset(){
         return;
     }
 
-    updatedAsset.model = document.getElementById("model").value;
-    updatedAsset.type = document.getElementById("type").value;
-    updatedAsset.assetStatus = document.getElementById("assetStatus").value;
-
+    /*tabelas especializadas - FKs*/
+    
+    updatedAsset.specsId = document.getElementById("specsSelect").value;
+    updatedAsset.assetTypeId = document.getElementById("typeSelect").value;
+    updatedAsset.assetStatusId = document.getElementById("statusSelect").value;
+    updatedAsset.assetLocationId = document.getElementById("locationSelect").value;
     updatedAsset.userId = document.getElementById("userSelect").value;
 
     updatedAsset.userEmail = document.getElementById("userEmail").value;
+    
+    updatedAsset.notes = document.getElementById("notes").value;
 
-    updatedAsset.location = document.getElementById("location").value;
+    /*Garantia & financeiro*/
+    
     updatedAsset.warrantyDetails = document.getElementById("warrantyDetails").value;
     updatedAsset.warrantyDocs = document.getElementById("warrantyDocs").value;
     updatedAsset.acquisitionDate = document.getElementById("acquisitionDate").value;
@@ -518,11 +501,11 @@ async function updateAsset(){
         .update({
             assetName : updatedAsset.assetName,
             serviceTag :updatedAsset.serviceTag,
-            model :updatedAsset.model,
-            type : updatedAsset.type,
-            assetStatus : updatedAsset.assetStatus,
+            specsId :updatedAsset.specsId,
+            assetTypeId : updatedAsset.assetTypeId,
+            assetStatusId : updatedAsset.assetStatusId,
             userId:updatedAsset.userId,
-            location : updatedAsset.location,
+            assetLocationId : updatedAsset.assetLocationId,
             notes :updatedAsset.notes,
             warrantyDetails : updatedAsset.warrantyDetails,
             warrantyExpiryDate :updatedAsset.warrantyExpiryDate,

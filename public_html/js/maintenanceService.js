@@ -14,8 +14,8 @@ async function getMaintenance(){
                     assetId,
                     assetName,
                     serviceTag,
-                    type,
-                    assetStatus
+                    assetTypeId,
+                    assetStatusId
                 )
             `);
 

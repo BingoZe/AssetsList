@@ -273,3 +273,6 @@ Não refatorar código funcionando antes de:
 
 Funcionalidade > Arquitetura
 Entrega > Perfeição
+
+
+FAZER SERVICES PRA SPECS
