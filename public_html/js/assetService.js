@@ -208,6 +208,8 @@ async function initAssetForm(){
         purchaseInvoice
         };
         
+        console.log("ASSET ",asset);
+        
         await createAsset(asset);
 
         alert("Record saved");
@@ -310,8 +312,11 @@ async function renderViewAsset(){
     document.getElementById("acquisitionDate").value =viewedAsset.acquisitionDate;
     document.getElementById("acquisitionValue").value =viewedAsset.acquisitionValue;
     document.getElementById("usefulLife").value =viewedAsset.usefulLife;
+        
     document.getElementById("depreciation").value =Math.round(viewedAsset.depreciation);
+        
     document.getElementById("netValue").value =Math.round(viewedAsset.netValue);
+    
     document.getElementById("purchaseInvoice").value =viewedAsset.purchaseInvoice;
 
 

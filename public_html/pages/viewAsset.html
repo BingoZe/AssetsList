@@ -7,13 +7,46 @@
         </div>
         
         <div class="headerNav">
-            <ul class ="headerUl">
-                <li><a href="#" class="tablinks" onclick="openTab(event,'generalTab')">General</a></li>
-                <li><a href="#" class="tablinks" onclick="openTab(event,'warrantyTab')">Warranty</a></li>
-                <li><a href="#" class="tablinks" onclick="openTab(event,'financialTab')">Financial</a></li>
-                
+            <ul class="headerUl">
+
+                <li>
+                    <a href="#" class="tablinks"
+                       onclick="openTab(event,'generalTab')">
+                        General
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="tablinks"
+                       onclick="openTab(event,'warrantyTab')">
+                        Warranty
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="tablinks"
+                       onclick="openTab(event,'financialTab')">
+                        Financial
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="tablinks"
+                       onclick="openTab(event,'maintenanceHistory')">
+                        Maintenance History
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="tablinks"
+                       onclick="openTab(event,'assetHistory')">
+                        Asset History
+                    </a>
+                </li>
+
             </ul>
         </div>
+        
     </div>
     
     <div class="formContainer">
@@ -98,6 +131,18 @@
                     <select id="userSelect" name="userSelect">
                         </select>
 
+                </div>
+                
+                <div class="form-group">
+                    <label for="userEmail">
+                        User E-mail
+                    </label>
+
+                    <input
+                        type="text"
+                        id="userEmail"
+                        name="userEmail"
+                        >
                 </div>
                 
                 <div class="form-group">
@@ -216,6 +261,28 @@
                         id="usefulLife"
                         name="usefulLife">
                 </div>
+                
+                <div class="form-group">
+                    <label for="depreciation">
+                        Depreciation
+                    </label>
+
+                    <input
+                        type="number"
+                        id="depreciation"
+                        name="depreciation">
+                </div>
+                
+                <div class="form-group">
+                    <label for="netValue">
+                        Net Value
+                    </label>
+
+                    <input
+                        type="number"
+                        id="netValue"
+                        name="netValue">
+                </div>
 
                 <div class="form-group">
                     <label for="purchaseInvoice">
@@ -230,6 +297,122 @@
                 </div>
             </fieldset> 
             </div>
+            
+            <!-- ################################################################### -->
+            <!-- MAINTENANCE HISTORY -->
+            <!-- ################################################################### -->
+
+            <div id="maintenanceHistory" class="tabcontent">
+
+                <fieldset>
+
+                    <legend class="formLegends">
+                        Maintenance History
+                    </legend>
+
+                    <table class="allAssets" id="maintenanceHistoryTable">
+
+                        <thead class="tableHeader">
+
+                            <tr>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Maintenance ID</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Issue</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Status</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Open Date</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Close Date</span>
+                                    </div>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBodyMaintenance" class="tableBodyMaintenance">
+                        </tbody>
+
+                    </table>
+
+                </fieldset>
+
+            </div>
+
+            <!-- ################################################################### -->
+            <!-- ASSET HISTORY -->
+            <!-- ################################################################### -->
+
+            <div id="assetHistory" class="tabcontent">
+
+                <fieldset>
+
+                    <legend class="formLegends">
+                        Asset History
+                    </legend>
+
+                    <table class="allAssets" id="assetHistoryTable">
+
+                        <thead class="tableHeader">
+
+                            <tr>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">User ID</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">User</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Status</span>
+                                    </div>
+                                </th>
+
+                                <th>
+                                    <div class="tableHeaderElement">
+                                        <span class="thTitle">Deploy Date</span>
+                                    </div>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBodyAssetHistory" class="tableBodyAssetHistory">
+                        </tbody>
+
+                    </table>
+
+                </fieldset>
+
+            </div>
 
                 <div class="formButtons">
                     
@@ -237,7 +420,7 @@
                         Close
                     </button>    
                     
-                    <button type="submit">
+                    <button type="submit" id="resave" class="resave">
                         Save Asset
                     </button>
                 </div>
