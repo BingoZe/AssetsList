@@ -223,6 +223,16 @@ nav{
     transform:translateX(4px);
 }
 
+.nav-ul-items a:hover{
+    background:rgba(255,255,255,.15);
+    transform:translateX(4px);
+}
+
+.nav-bottom li:last-child a:hover{
+    background:rgba(255,0,0,.30);
+    transform:translateX(4px);
+}
+
 
 .sidebar-brand{
     height:120px;
@@ -251,6 +261,23 @@ nav{
     letter-spacing:2px;
     text-align:left;
     margin-left: 6%;
+}
+
+
+.nav-bottom{
+    margin-top:20%;
+    padding-bottom:20px;
+}
+
+.nav-ul-items a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.nav-ul-items a i{
+    width:20px;
+    text-align:center;
 }
 
 /*   MAIN */
@@ -826,6 +853,7 @@ fieldset{
         flex-direction:column;
     }
 }
+
 
 
 

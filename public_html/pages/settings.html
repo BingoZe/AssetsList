@@ -1,3 +1,238 @@
+<div class="mainPage">
 
-        <div>To be implemented</div>
+    <div class="mainHeader">
 
+        <div class="headerTitle">
+            <h2>APPLICATION SETTINGS</h2>
+        </div>
+
+    </div>
+
+    <div class="formContainer">
+
+        <form>
+
+            <fieldset class="formSection">
+
+                <legend class="formLegends">
+                    System Preferences
+                </legend>
+
+                <div class="form-group">
+
+                    <label for="financialYearEnd">
+                        Financial Year End
+                    </label>
+
+                    <select id="financialYearEnd">
+
+                        <option>31 December</option>
+                        <option>30 June</option>
+                        <option>31 March</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="currency">
+                        Default Currency
+                    </label>
+
+                    <select id="currency">
+
+                        <option>EUR (€)</option>
+                        <option>GBP (£)</option>
+                        <option>USD ($)</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="depreciationRate">
+                        Default Depreciation Rate (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="depreciationRate"
+                        value="20">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="usefulLife">
+                        Default Useful Life (Years)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="usefulLife"
+                        value="5">
+
+                </div>
+                
+                <div class="form-group">
+                    <label>Default Asset Types</label>
+
+                    <select>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Repairing</option>
+                    </select>
+                </div>   
+                
+                <div class="form-group">
+                    <label>Default Asset Status</label>
+
+                    <select>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Repairing</option>
+                    </select>
+                </div>    
+                
+                <div class="form-group">
+                    <label>Default Locations</label>
+
+                    <select>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Repairing</option>
+                    </select>
+                </div>              
+                
+                <div class="form-group">
+                    <label>Maintenance Status</label>
+
+                    <select>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Repairing</option>
+                    </select>
+                </div>  
+                
+                <div class="form-group">
+                    <label>Repair Category</label>
+
+                    <select>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Repairing</option>
+                    </select>
+                </div>      
+                
+                <div class="form-group">
+                    <label>Repair Priority</label>
+
+                    <select>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Repairing</option>
+                    </select>
+                </div>                
+
+            </fieldset>
+
+            <fieldset class="formSection">
+
+                <legend class="formLegends">
+                    Company Information
+                </legend>
+
+                <div class="form-group">
+
+                    <label for="companyName">
+                        Company Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="companyName">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="companyEmail">
+                        Company Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="companyEmail">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="companyPhone">
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="companyPhone">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="companyAddress">
+                        Address
+                    </label>
+
+                    <input
+                        type="text"
+                        id="companyAddress">
+
+                </div>
+
+            </fieldset>
+
+            <fieldset class="description">
+
+                <div class="form-group">
+
+                    <label for="settingsNotes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="settingsNotes"
+                        class="notes">
+                    </textarea>
+
+                </div>
+
+            </fieldset>
+
+            <div class="formButtons">
+
+                <button
+                    type="reset"
+                    class="buttonExport">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="btnPrimary">
+
+                    Save Settings
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
