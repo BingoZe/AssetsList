@@ -444,8 +444,6 @@ async function updateAsset(){
     updatedAsset.assetLocationId = document.getElementById("locationSelect").value;
     updatedAsset.userId = document.getElementById("userSelect").value;
 
-    updatedAsset.userEmail = document.getElementById("userEmail").value;
-    
     updatedAsset.notes = document.getElementById("notes").value;
 
     /*Garantia & financeiro*/

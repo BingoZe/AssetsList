@@ -15,10 +15,12 @@ async function renderAssetChart(){
     return;
   }
     
-  const typeCount = countBy(assets,'type');
+  const typeCount = countBy(assets,'assetType');
 
     const labels = Object.keys(typeCount);
-    const data = Object.values(typeCount);  
+    //const data = Object.values(typeCount);  
+   const data = assets.filter(
+    asset => asset.assetType).length;
     
   new Chart(ctxType, {
         type: 'bar',
@@ -68,7 +70,7 @@ async function renderAssetChart(){
         }
       });
    
-    const locationCount = countBy(assets,'location');
+    const locationCount = countBy(assets,'assetLocation');
         
     const locationLabels = Object.keys(locationCount);
     const locationData = Object.values(locationCount);
@@ -150,12 +152,15 @@ async function renderKpi(){
     document.getElementById('totalAssetsFigures').textContent = assets.length || 0;
     
     /*Indicadores reparando*/
-    const statusCount = countBy(assets, "assetStatus");
-    document.getElementById('repairingFigures').textContent = statusCount["Repairing"] || 0;
+     let countRepair = assets.filter(
+            asset => asset.assetLocation.name === "Repairing").length;
+    document.getElementById('repairingFigures').textContent = countRepair|| 0;
     
     /*Indicadores disponivel*/
-    const activeCount = countBy(assets, "assetStatus");
-    document.getElementById('availableFigures').textContent = statusCount["Active"] || 0;
+    let countDeployed = assets.filter(
+            asset => asset.assetLocation.name === "User deployed").length;
+        
+    document.getElementById('availableFigures').textContent = countDeployed|| 0;
     
     /*Indicadores net value*/
     let netValueCount = 0;

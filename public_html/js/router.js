@@ -29,6 +29,9 @@ async function loadPage(page){
         await searchElement();
         await renderAcquisitionYearFilter();
         await renderResponsibleUserFilter();
+        await renderLocationFilter();
+        await renderStatusFilter();
+        await renderTypeFilter();
         
         btnExport();
         await btnSort();

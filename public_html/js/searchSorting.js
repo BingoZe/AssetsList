@@ -49,8 +49,8 @@ async function searchElement(){
         const searchItem = statusLookupItem.value.toLowerCase();   
         
         const filteredAssets = assets.filter(asset=>
-            asset.assetStatus.toLowerCase()===searchItem);
-    
+            asset.assetStatus.name.toLowerCase()===searchItem);
+        
         if(searchItem !=="all status"){
             renderAssets(filteredAssets);
 
@@ -63,7 +63,7 @@ async function searchElement(){
         const searchItem = typeLookupItem.value.toLowerCase();   
         
         const filteredAssets = assets.filter(asset=>
-            asset.type.toLowerCase()
+            asset.assetType.name.toLowerCase()
             .includes(searchItem));
     
         if(searchItem !=="all types"){
@@ -78,7 +78,7 @@ async function searchElement(){
         const searchItem = locationLookupItem.value.toLowerCase();   
         
         const filteredAssets = assets.filter(asset=>
-            asset.location.toLowerCase()
+            asset.assetLocation.name.toLowerCase()
             .includes(searchItem));
 
         if(searchItem !=="all locations"){
@@ -101,9 +101,7 @@ async function searchElement(){
         return fullName === searchItem;
     });
             
-            console.log(filteredAssets);
-       
-        if(searchItem !=="all users"){
+         if(searchItem !=="all users"){
             renderAssets(filteredAssets);
 
         }else /*mostra todos os assets*/
@@ -175,6 +173,78 @@ async function renderResponsibleUserFilter(assets = null){
     document.querySelector(".responsibleUserSelect").innerHTML = output;
 };
 
+/*RenderLocation*/
+async function renderLocationFilter(assets = null){
+    
+    if(!assets){
+        assets = await getAssets();
+    }
+    
+    let output = `<option selected>All Locations</option>`;
+    const uniqueLocation = []; 
+    
+    assets.forEach((asset) => {
+        
+        if(!uniqueLocation.includes(asset.assetLocationId)){
+        uniqueLocation.push(asset.assetLocationId);
+
+        output += `
+            <option>${asset.assetLocation.name}</option>
+        `;
+        }
+    });
+
+    document.querySelector(".locationSelect").innerHTML = output;
+};
+
+/*RenderStatus*/
+async function renderStatusFilter(assets = null){
+    
+    if(!assets){
+        assets = await getAssets();
+    }
+    
+    let output = `<option selected>All Status</option>`;
+    const uniqueStatus = []; 
+    
+    assets.forEach((asset) => {
+        
+        if(!uniqueStatus.includes(asset.assetStatusId)){
+        uniqueStatus.push(asset.assetStatusId);
+
+        output += `
+            <option>${asset.assetStatus.name}</option>
+        `;
+        }
+    });
+
+    document.querySelector(".statusSelect").innerHTML = output;
+};
+
+/*RenderType*/
+async function renderTypeFilter(assets = null){
+    
+    if(!assets){
+        assets = await getAssets();
+    }
+    
+    let output = `<option selected>All Types</option>`;
+    const uniqueType = []; 
+    
+    assets.forEach((asset) => {
+        
+        if(!uniqueType.includes(asset.assetTypeId)){
+        uniqueType.push(asset.assetTypeId);
+
+        output += `
+            <option>${asset.assetType.name}</option>
+        `;
+        }
+    });
+
+    document.querySelector(".typeSelect").innerHTML = output;
+};
+
 
 /*---------------------------------------------*/
 /* SORTING USANDO ALGORITMO DE ORDENACAO BUBBLE SORT*/
@@ -185,9 +255,7 @@ async function btnSort(){
     const sortItem = document.querySelectorAll(".sortingButton");
     
     let sortDirection = "asc"; /*define estado inicial*/
-    
-    
-    
+
     sortItem.forEach(button =>{
         button.addEventListener("click",async function(){ /*evento em cada botao sort*/
             const assets = await getAssets();
