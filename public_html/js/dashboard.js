@@ -15,115 +15,177 @@ async function renderAssetChart(){
     return;
   }
     
-  const typeCount = countBy(assets,'assetType');
-
-    const labels = Object.keys(typeCount);
-    //const data = Object.values(typeCount);  
-   const data = assets.filter(
-    asset => asset.assetType).length;
-    
-  new Chart(ctxType, {
-        type: 'bar',
-        data: {
-          labels,
-          datasets: [{
-            label: 'Assets type',
-            data,
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-      
-  const statusCount = countBy(assets,'assetStatus');
-
-
-    const statusLabels = Object.keys(statusCount);
-    const statusData = Object.values(statusCount);  
-    
-  new Chart(ctxStatus, {
-        type: 'pie',
-        data: {
-         labels: statusLabels,
-          datasets: [{
-            label: 'Assets Status',
-            data: statusData,
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,  
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
+  const typeCount = {};
+  
+  assets.forEach(asset =>{
+      const typeName = asset.assetType?.name || 'unknown';
+      typeCount[typeName] = (typeCount[typeName] || 0)+1;      
+  });
+          
+  const labels = Object.keys(typeCount);
    
-    const locationCount = countBy(assets,'assetLocation');
-        
-    const locationLabels = Object.keys(locationCount);
-    const locationData = Object.values(locationCount);
-    
-    new Chart(ctxLocation,{
-        type: 'bar',
-        data: {
-            labels: locationLabels,
-            datasets: [{
-              label:'Locations',
-              data: locationData,
-              borderWidth: 1                    
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,  
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+const data = Object.values(typeCount);
+
+new Chart(ctxType, {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [{
+      label: 'Assets type',
+      data,
+      borderWidth: 1,
+      borderColor: [
+              '#2563EB',
+              '#10B981',
+              '#F59E0B',
+              '#EF4444',
+              '#8B5CF6'
+      ],
+      backgroundColor: [
+          '#93C5FD',
+          '#6EE7B7',
+          '#FCD34D',
+          '#FCA5A5',
+          '#C4B5FD'
+      ]
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          precision: 0}
+      }
+    }
+  }
+});
+
+const statusCount = {};
+
+assets.forEach(asset =>{
+    const statusName = asset.assetStatus?.name || 'unknown';
+    statusCount[statusName] = (statusCount[statusName] || 0)+1;      
+});
+
+
+const statusLabels = Object.keys(statusCount);
+const statusData = Object.values(statusCount);  
+
+new Chart(ctxStatus, {
+  type: 'doughnut', // ou 'pie'
+  data: {
+      labels: statusLabels,
+      datasets: [{
+          label: 'Assets Status',
+          data: statusData,
+          borderWidth: 1
+      }]
+  },
+  options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+          legend: {
+              position: 'top'
+          }
+      }
+  }
+});
+
+const locationCount ={};
+
+assets.forEach(asset => {
+    const locationName = asset.assetLocation?.name || 'unknown';
+    locationCount[locationName] = (locationCount[locationName] || 0) + 1;
+});
+
+const locationLabels = Object.keys(locationCount);
+const locationData = Object.values(locationCount);
+
+new Chart(ctxLocation,{
+      type: 'bar',
+      data: {
+          labels: locationLabels,
+          datasets: [{
+            label:'Locations',
+            data: locationData,
+            borderWidth: 1,
+            borderColor: [
+                    '#2563EB',
+                    '#10B981',
+                    '#F59E0B',
+                    '#EF4444',
+                    '#8B5CF6'
+            ],
+            backgroundColor: [
+                '#93C5FD',
+                '#6EE7B7',
+                '#FCD34D',
+                '#FCA5A5',
+                '#C4B5FD'
+            ]              
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,  
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              precision: 0}
           }
         }
-      });
-      
-    const yearCount = countBy(assets,'acquisitionYear');
-    
-    const yearLabels = Object.keys(yearCount);
-    const yearData = Object.values(yearCount);
-    
-    
-    new Chart(ctxYear, {
-        type:'line',
-        data:{
-            labels: yearLabels,
-            datasets: [{
-                label: 'Acquisition Year',
-                data:yearData,
-                borderWidth:1
-            }]
-        },
-       options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+      }
+    });
+
+const yearCount = countBy(assets,'acquisitionYear');
+
+const yearLabels = Object.keys(yearCount);
+const yearData = Object.values(yearCount);
+
+
+new Chart(ctxYear, {
+    type:'line',
+    data:{
+        labels: yearLabels,
+        datasets: [{
+            label: 'Acquisition Year',
+            data:yearData,
+            borderWidth:1,
+             borderColor: [
+                  '#2563EB',
+                  '#10B981',
+                  '#F59E0B',
+                  '#EF4444',
+                  '#8B5CF6'
+          ],
+          backgroundColor: [
+              '#93C5FD',
+              '#6EE7B7',
+              '#FCD34D',
+              '#FCA5A5',
+              '#C4B5FD'
+          ]   
+        }]
+    },
+     options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              precision: 0}
           }
-        }        
-    });  
-      
-    
+        }
+      }        
+  });  
+
+
 }
 
 /*gera contador generico*/
