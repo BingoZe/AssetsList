@@ -16,9 +16,21 @@ async function getMaintenance(){
                     serviceTag,
                     assetTypeId,
                     assetStatusId
-                )
+                ),
+                maintenanceCategory(
+                    maintenanceCategoryId,
+                    name
+                ),
+                maintenanceStatus(
+                    maintenanceStatusId,
+                    name
+                ),
+                maintenancePriority(
+                    maintenancePriorityId,
+                    name
+                )        
             `);
-
+       
         if(error){
             console.log(error);
             return [];
@@ -82,8 +94,8 @@ async function initMaintenanceForm(){
         }
 
         const assetId = Number(document.getElementById("assetId").value);
-
-        const issueCategory = document.getElementById("issueCategory").value;
+        
+        const maintenanceCategoryId = Number(document.getElementById("maintenanceCategory").value);
         
         const issueDescription = document.getElementById("issueDescription").value;
 
@@ -97,26 +109,24 @@ async function initMaintenanceForm(){
 
         const technicianNotes =document.getElementById("technicianNotes").value;
 
-        const priority = document.getElementById("priority").value;
+        const maintenancePriorityId = Number(document.getElementById("maintenancePriority").value);
 
-        const maintenanceStatus = document.getElementById("maintenanceStatus").value;
-
+        const maintenanceStatusId = Number(document.getElementById("maintenanceStatus").value);
+ 
         const maintenance = {
             assetId,
-            issueCategory,
+            maintenanceCategoryId,
             issueDescription,
             issueDate,
             supportTicket,
             repairCost,
             repairInvoice,
             technicianNotes,
-            priority,
-            maintenanceStatus
+            maintenancePriorityId,
+            maintenanceStatusId
         };
         
-        console.log("Criando manutencao");
         await createMaintenance(maintenance);
-        console.log("Criado ",maintenance);
         
         alert("Maintenance order created");
 
@@ -151,13 +161,13 @@ async function renderMaintenance(maintenance = null){
 
             <td>${maintenance.issueDescription}</td>
 
-            <td>${maintenance.issueCategory}</td>
+            <td>${maintenance.maintenanceCategory.name}</td>
 
-            <td>${maintenance.maintenanceStatus}</td>
+            <td>${maintenance.maintenanceStatus.name}</td>
 
             <td>${maintenance.issueDate}</td>
 
-            <td>${maintenance.priority}</td>
+            <td>${maintenance.maintenancePriority.name}</td>
 
             <td>
 
@@ -204,35 +214,6 @@ async function renderMaintenance(maintenance = null){
 
 }
 
-async function renderMaintenanceInnerTable(maintenanceHistory){
-
-    let output = "";
-
-    maintenanceHistory.forEach(maintenance => {
-
-        output += `
-        <tr>
-
-            <td>${maintenance.maintenanceId}</td>
-
-            <td>${maintenance.issueDescription}</td>
-
-            <td>${maintenance.issueCategory}</td>
-
-            <td>${maintenance.maintenanceStatus}</td>
-
-            <td>${maintenance.issueDate}</td>
-
-        </tr>
-        `;
-
-    });
-
-    document.querySelector(
-        ".tableBodyMaintenance"
-    ).innerHTML = output;
-
-}
 
 async function renderViewMaintenance(){
 
@@ -253,9 +234,6 @@ async function renderViewMaintenance(){
     /*document.getElementById("maintenanceId").value =
             viewedMaintenance.maintenanceId;*/
     
-    document.getElementById("issueCategory").value =
-        viewedMaintenance.issueCategory;
-
     document.getElementById("issueDescription").value =
         viewedMaintenance.issueDescription;
 
@@ -274,11 +252,17 @@ async function renderViewMaintenance(){
     document.getElementById("repairInvoice").value =
         viewedMaintenance.repairInvoice;
 
-    document.getElementById("priority").value =
-        viewedMaintenance.priority;
+    
+    /*Tabelas especializadas - FKs*/
+    let maintenanceStatusSelect = document.getElementById("maintenanceStatus");
+    maintenanceStatusSelect.value = viewedMaintenance.maintenanceStatus.maintenanceStatusId;
 
-    document.getElementById("maintenanceStatus").value =
-        viewedMaintenance.maintenanceStatus;
+    let maintenancePrioritySelect = document.getElementById("maintenancePriority");
+    maintenancePrioritySelect.value = viewedMaintenance.maintenancePriority.maintenancePriorityId;
+
+    let maintenanceCategorySelect = document.getElementById("maintenanceCategory");
+    maintenanceCategorySelect.value=viewedMaintenance.maintenanceCategory.maintenanceCategoryId;
+
 
     if(selectedMode === "edit"){
 
@@ -306,39 +290,6 @@ async function renderViewMaintenance(){
     
 }
 
-/*Render AssetId field - REALOCAR?!*/
-async function renderAssetField() {
-    const assets = await getAssets();
-    const assetSelect = document.getElementById("assetId");
-
-    if (!assetSelect) {
-        return;
-    }
-
-    let output = `
-        <option value="" selected disabled>
-            Select an asset
-        </option>
-    `;
-
-    const uniqueAssets= [];
-
-    assets.forEach(asset => {
-        if (!uniqueAssets.includes(asset.assetId)) {
-            uniqueAssets.push(asset.assetId);
-
-            output += `
-                <option value="${asset.assetId}">
-                   ${asset.assetId} -
-                   ${asset.assetName} - 
-                   ${asset.serviceTag}
-                </option>
-            `;
-        }
-    });
-    
-    assetSelect.innerHTML = output;
-}
 
 /*UPDATE*/
 async function updateMaintenance(){
@@ -349,61 +300,18 @@ async function updateMaintenance(){
         await supabaseClient
             .from("maintenance")
             .update({
-                assetId:
-                    document.getElementById(
-                        "assetId"
-                    ).value,
-
-                issueDescription:
-                    document.getElementById(
-                        "issueDescription"
-                    ).value,
-
-                issueCategory:
-                    document.getElementById(
-                        "issueCategory"
-                    ).value,
-
-                issueDate:
-                    document.getElementById(
-                        "issueDate"
-                    ).value,
-
-                supportTicket:
-                    document.getElementById(
-                        "supportTicket"
-                    ).value,
-
-                repairCost:
-                    document.getElementById(
-                        "repairCost"
-                    ).value,
-
-                repairInvoice:
-                    document.getElementById(
-                        "repairInvoice"
-                    ).value,
-
-                technicianNotes:
-                    document.getElementById(
-                        "technicianNotes"
-                    ).value,
-
-                priority:
-                    document.getElementById(
-                        "priority"
-                    ).value,
-
-                maintenanceStatus:
-                    document.getElementById(
-                        "maintenanceStatus"
-                    ).value
-
+                assetId:document.getElementById("assetId").value,
+                issueDescription:document.getElementById("issueDescription").value,
+                maintenanceCategoryId:document.getElementById("maintenanceCategory").value,
+                issueDate:document.getElementById("issueDate").value,
+                supportTicket:document.getElementById("supportTicket").value,
+                repairCost:document.getElementById("repairCost").value,
+                repairInvoice:document.getElementById("repairInvoice").value,
+                technicianNotes:document.getElementById("technicianNotes").value,
+                maintenancePriorityId:document.getElementById("maintenancePriority").value,
+                maintenanceStatusId:document.getElementById("maintenanceStatus").value
             })
-            .eq(
-                "maintenanceId",
-                maintenanceId
-            );
+            .eq("maintenanceId",maintenanceId);
 
     if(error){
         console.log(error);

@@ -75,11 +75,17 @@ async function loadPage(page){
     
     if(page.includes("viewMaintenance")){
         await renderAssetField();
+        await renderMaintenanceStatusField();
+        await renderMaintenanceCategoryField();
+        await renderMaintenancePriorityField();
         await renderViewMaintenance();
     }
     
     if(page.includes("addMaintenance")){
         await renderAssetField();
+        await renderMaintenanceStatusField();
+        await renderMaintenanceCategoryField();
+        await renderMaintenancePriorityField();
     }
     
     

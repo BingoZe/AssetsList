@@ -288,9 +288,6 @@ async function renderViewAsset(){
     const typeSelect = document.getElementById("typeSelect"); 
     typeSelect.value = String(viewedAsset.assetType.assetTypeId);
     
-    console.log("ID banco:", viewedAsset.assetType.assetTypeId);
-    console.log("Value select:", typeSelect.value);
-    
     const statusSelect = document.getElementById("statusSelect"); 
     statusSelect.value = String(viewedAsset.assetStatus.assetStatusId);
              

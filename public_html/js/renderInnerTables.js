@@ -28,3 +28,37 @@ async function renderUserInnerTable(userHistory,viewedAsset){
     ).innerHTML = output;
 
 }
+
+
+/*Maintenance*/
+
+
+async function renderMaintenanceInnerTable(maintenanceHistory){
+
+    let output = "";
+
+    maintenanceHistory.forEach(maintenance => {
+
+        output += `
+        <tr>
+
+            <td>${maintenance.maintenanceId}</td>
+
+            <td>${maintenance.issueDescription}</td>
+
+            <td>${maintenance.maintenanceCategory.name}</td>
+
+            <td>${maintenance.maintenanceStatus.name}</td>
+
+            <td>${maintenance.issueDate}</td>
+
+        </tr>
+        `;
+
+    });
+
+    document.querySelector(
+        ".tableBodyMaintenance"
+    ).innerHTML = output;
+
+}

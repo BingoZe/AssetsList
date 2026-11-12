@@ -155,4 +155,137 @@ async function renderLocationField() {
     
     locationSelect.innerHTML = output;
 }
- 
+
+/*-----------------------------------*/
+/*Maintenance*/
+/*-----------------------------------*/
+
+/*Render AssetId field - Maintenance*/
+async function renderAssetField() {
+    const assets = await getAssets();
+    const assetSelect = document.getElementById("assetId");
+
+    if (!assetSelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select an asset
+        </option>
+    `;
+
+    const uniqueAssets= [];
+
+    assets.forEach(asset => {
+        if (!uniqueAssets.includes(asset.assetId)) {
+            uniqueAssets.push(asset.assetId);
+
+            output += `
+                <option value="${asset.assetId}">
+                   ${asset.assetId} -
+                   ${asset.assetName} - 
+                   ${asset.serviceTag}
+                </option>
+            `;
+        }
+    });
+    
+    assetSelect.innerHTML = output;
+}
+
+ async function renderMaintenanceStatusField() {
+    const MaintenanceStatus = await getMaintenanceStatus();
+    const maintenanceStatusSelect = document.getElementById("maintenanceStatus");
+    
+    if (!maintenanceStatusSelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select a status
+        </option>
+    `;
+
+    const uniqueMaintenance = [];
+    
+    MaintenanceStatus.forEach(item => {
+
+        if (!uniqueMaintenance.includes(item.maintenanceStatusId)) {
+            uniqueMaintenance.push(item.maintenanceStatusId);
+
+            output += `
+                <option value="${item.maintenanceStatusId}">
+                    ${item.name}
+                </option>
+            `;
+        }
+    });
+    
+    maintenanceStatusSelect.innerHTML = output;
+}
+
+ async function renderMaintenanceCategoryField() {
+    const maintenanceCategory = await getMaintenanceCategory();
+    const maintenanceCategorySelect = document.getElementById("maintenanceCategory");
+    
+    if (!maintenanceCategorySelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select a status
+        </option>
+    `;
+
+    const uniqueMaintenance = [];
+    
+    maintenanceCategory.forEach(item => {
+
+        if (!uniqueMaintenance.includes(item.maintenanceCategoryId)) {
+            uniqueMaintenance.push(item.maintenanceCategoryId);
+
+            output += `
+                <option value="${item.maintenanceCategoryId}">
+                    ${item.name}
+                </option>
+            `;
+        }
+    });
+    
+    maintenanceCategorySelect.innerHTML = output;
+}
+
+ async function renderMaintenancePriorityField() {
+    const maintenancePriority = await getMaintenancePriority();
+    const maintenancePrioritySelect = document.getElementById("maintenancePriority");
+    
+    if (!maintenancePrioritySelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select a priority
+        </option>
+    `;
+
+    const uniqueMaintenance = [];
+    
+    maintenancePriority.forEach(item => {
+
+        if (!uniqueMaintenance.includes(item.maintenancePriorityId)) {
+            uniqueMaintenance.push(item.maintenancePriorityId);
+
+            output += `
+                <option value="${item.maintenancePriorityId}">
+                    ${item.name}
+                </option>
+            `;
+        }
+    });
+    
+    maintenancePrioritySelect.innerHTML = output;
+}
