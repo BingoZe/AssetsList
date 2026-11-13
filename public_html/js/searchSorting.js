@@ -31,16 +31,26 @@ async function searchElement(){
         const searchItem = lookupItem.value.toLowerCase();   
         
         /*filtro por ID, service tag ou nome*/
-        const filteredAssets = assets.filter(asset=>
-            asset.assetName.toLowerCase()
-            .includes(searchItem) ||
-            asset.serviceTag.toLowerCase()
-            .includes(searchItem)||
-            asset.assetId.toString()===searchItem
-            );
+        const filteredAssets = assets.filter(item=>{
+            const assetId = item.assetId;
+
+            return(
+                item.assetId.toString().includes(searchItem) ||
+                //pesquisa por id do asset ou qualquer ID + display name
+                [`ast-${assetId}`, `ast${assetId}`]
+                    .some(name => name.toLowerCase().includes(searchItem)) ||
+                    
+                item.assetName.toLowerCase()
+                .includes(searchItem) ||
+                item.serviceTag.toLowerCase()
+                .includes(searchItem)||
+                item.assetId.toString()===searchItem
+        );
+    });
         
         renderAssets(filteredAssets);
     }); 
+    
     
    /* adiciona evento ao select status - Asset Register*/
 
