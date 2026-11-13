@@ -260,7 +260,7 @@ async function btnSort(){
         button.addEventListener("click",async function(){ /*evento em cada botao sort*/
             const assets = await getAssets();
             const sortedAssets = [...assets]; /*faz uma copia do array para ordenacao bubble sort*/
-            console.log(sortedAssets);
+    
             const sortField = button.dataset.sort;/*captura o botao adequado do HTML usando campo dinamico*/
 
 
@@ -520,73 +520,72 @@ async function searchMaintenanceElement(){
         document.getElementById("assetSelect");
 
     const categoryLookupItem =
-        document.getElementById("categoryStatus");
+        document.getElementById("categorySelect");
 
     const statusLookupItem =
-        document.getElementById("assetStatus");
+        document.getElementById("statusSelect");
+
 
     /* SEARCH */
 
-    lookupItem.addEventListener("input",function(){
+    lookupItem.addEventListener("input", function () {
 
-        const searchItem =
-            lookupItem.value.toLowerCase();
+     const searchItem = lookupItem.value.toLowerCase();
 
-        const filteredMaintenance =
-            maintenance.filter(item =>
+     const filteredMaintenance = maintenance.filter(item => {
+            const maintenanceId = item.maintenanceId;
+            
+            //pesquisa por nome de asset incluindo ID e service tag
+            const itemDisplayName =
+                `${item.assets?.assetId ?? ""} ${item.assets?.assetName ?? ""} - ${item.assets?.serviceTag ?? ""}`
+                    .trim()
+                    .toLowerCase();
 
-                item.maintenanceId.toString()
-                    .includes(searchItem)
-                    
-                ||
+            return (
+                item.maintenanceId.toString().includes(searchItem) ||
+                //pesquisa por id da manutencao ou qualquer parte do display name do asset
+                [`mnt-${maintenanceId}`, `mnt${maintenanceId}`]
+                    .some(name => name.toLowerCase().includes(searchItem)) ||
                 
-                item.assets.assetId.toString()
-                    .includes(searchItem)
-                    
-                ||
+                itemDisplayName.includes(searchItem) ||
 
-                item.issueCategory
-                    ?.toLowerCase()
-                    .includes(searchItem)
-
-                ||
+                item.assets?.assetId?.toString().includes(searchItem) ||
 
                 item.issueDescription
                     ?.toLowerCase()
-                    .includes(searchItem)
-
-                ||
+                    .includes(searchItem) ||
 
                 item.supportTicket
                     ?.toLowerCase()
-                    .includes(searchItem)
-
-                ||
-
-                item.priority
-                    ?.toLowerCase()
-                    .includes(searchItem)
+                    .includes(searchItem) 
             );
-        console.log(filteredMaintenance);
-        renderMaintenance(filteredMaintenance);
+        });
+
+     renderMaintenance(filteredMaintenance);
 
     });
 
     /* ASSET */
 
-    assetLookupItem.addEventListener("change",function(){
+    assetLookupItem.addEventListener("change", function () {
 
-        const searchItem =
-            assetLookupItem.value;
+        const searchItem = assetLookupItem.value
+            .trim()
+            .toLowerCase();
 
-        const filteredMaintenance =
-            maintenance.filter(item =>
-                item.assetId.toString() === searchItem
-            );
+        const filteredMaintenance = maintenance.filter(item => {
 
-        if(searchItem !== "All Assets"){
+            const itemDisplayName =
+                `${item.assets?.assetId ?? ""} ${item.assets?.assetName ?? ""} - ${item.assets?.serviceTag ?? ""}`
+                    .trim()
+                    .toLowerCase();
+
+            return itemDisplayName === searchItem;
+        });
+
+        if (searchItem !== "all assets".toLowerCase()) {
             renderMaintenance(filteredMaintenance);
-        }else{
+        } else {
             renderMaintenance();
         }
 
@@ -601,7 +600,7 @@ async function searchMaintenanceElement(){
 
         const filteredMaintenance =
             maintenance.filter(item =>
-                item.issueCategory
+                item.maintenanceCategory.name
                     .toLowerCase()
                     .includes(searchItem)
             );
@@ -617,16 +616,16 @@ async function searchMaintenanceElement(){
     /* STATUS */
 
     statusLookupItem.addEventListener("change",function(){
-
+            
         const searchItem =
             statusLookupItem.value.toLowerCase();
 
         const filteredMaintenance =
             maintenance.filter(item =>
-                item.maintenanceStatus
-                    .toLowerCase() === searchItem
+                item.maintenanceStatus.name
+                    .toLowerCase()===searchItem
             );
-
+    
         if(searchItem !== "all status"){
             renderMaintenance(filteredMaintenance);
         }else{
@@ -680,29 +679,64 @@ async function renderMaintenanceCategoryFilter(){
         `<option selected>All Categories</option>`;
 
     const uniqueCategories = [];
-
+    
     maintenance.forEach(item => {
 
         if(
             !uniqueCategories.includes(
-                item.issueCategory
+                item.maintenanceCategoryId
             )
         ){
 
             uniqueCategories.push(
-                item.issueCategory
+                item.maintenanceCategoryId
             );
 
             output += `
                 <option>
-                    ${item.issueCategory}
+                    ${item.maintenanceCategory.name}
                 </option>
             `;
         }
 
     });
 
-    document.querySelector(".categoryStatus")
+    document.querySelector(".categorySelect")
+        .innerHTML = output;
+
+}
+
+async function renderMaintenanceStatusFilter(){
+
+    const maintenance =
+        await getMaintenance();
+
+    let output =
+        `<option selected>All Status</option>`;
+
+    const uniqueStatus = [];
+    
+    maintenance.forEach(item => {
+
+        if(
+            !uniqueStatus.includes(
+                item.maintenanceStatusId
+            )
+        ){
+            uniqueStatus.push(
+                item.maintenanceStatusId
+            );
+            
+            output += `
+                <option>
+                    ${item.maintenanceStatus.name}
+                </option>
+            `;
+        }
+
+    });
+
+    document.querySelector(".statusSelect")
         .innerHTML = output;
 
 }

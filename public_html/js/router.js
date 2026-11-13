@@ -70,7 +70,8 @@ async function loadPage(page){
         await searchMaintenanceElement();
         await renderMaintenanceAssetFilter();
         await renderMaintenanceCategoryFilter();
-        
+        await renderMaintenanceStatusFilter();
+               
     }
     
     if(page.includes("viewMaintenance")){
