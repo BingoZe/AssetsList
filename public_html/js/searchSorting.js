@@ -349,12 +349,20 @@ async function searchUserElement(){
         const searchItem = lookupItem.value.toLowerCase();   
  
         /*filtro por ID,nome ou sobrenome*/
-        const filteredUsers = users.filter(user=>
-                user.firstName.toLowerCase().includes(searchItem) ||
-                user.lastName.toLowerCase().includes(searchItem) ||
-                user.role.toLowerCase().includes(searchItem) ||
-                user.userId.toString().includes(searchItem)
+        const filteredUsers = users.filter(item=>{
+            const userId = item.userId;
+
+            return(
+                item.userId.toString().includes(searchItem) ||
+                //pesquisa por id do user ou ID + display name
+                [`usr-${userId}`, `usr${userId}`]
+                    .some(name => name.toLowerCase().includes(searchItem)) ||
+                item.firstName.toLowerCase().includes(searchItem) ||
+                item.lastName.toLowerCase().includes(searchItem) ||
+                item.role.toLowerCase().includes(searchItem) ||
+                item.userId.toString().includes(searchItem)
             );
+        });
  
         renderUsers(filteredUsers);
     }); 
