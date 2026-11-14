@@ -9,7 +9,25 @@ async function getUsers(){
      
     try{
         const {data, error} = 
-            await supabaseClient.from('users').select('*');
+            await supabaseClient.from('users').select(`
+                *,
+                userRole(
+                    userRoleId,
+                    name
+                ),
+                userType(
+                    userTypeId,
+                    name
+                ),
+                userStatus(
+                    userStatusId,
+                    name
+                ),
+                department(
+                    departmentId,
+                    name
+                )        
+            `);
                 if(error){
                 console.log(error);
                 return [];
@@ -89,21 +107,26 @@ async function initUserForm(){
             return;
         }
 
-        const userEmail = document.getElementById("userEmail").value;
-        const userStatus = document.getElementById("userStatus").value;
-        const userType = document.getElementById("userType").value;
-        const department = document.getElementById("department").value;
-        const role = document.getElementById("role").value;
+        const userEmail = 
+                document.getElementById("userEmail").value;
+        const userStatusId = 
+                Number(document.getElementById("userStatusSelect").value);
+        const userTypeId = 
+                Number(document.getElementById("userTypeSelect").value);
+        const departmentId = 
+                Number(document.getElementById("departmentSelect").value);
+        const userRoleId = 
+                Number(document.getElementById("userRoleSelect").value);
 
 
         const user = {
         firstName,
         lastName,
         userEmail,
-        userStatus,
-        userType,
-        department,
-        role
+        userStatusId,
+        userTypeId,
+        departmentId,
+        userRoleId
     };
 
         await createUser(user);
@@ -139,9 +162,9 @@ async function renderUsers(users = null){
             <td>USR-${user.userId}</td>
             <td>${user.firstName} ${user.lastName}</td>
             <td>${user.userEmail}</td>
-            <td>${user.userStatus}</td>
-            <td>${user.role}</td>
-            <td>${user.userType}</td>
+            <td>${user.userStatus.name}</td>
+            <td>${user.userRole.name}</td>
+            <td>${user.userType.name}</td>
             <td>
                 <button class="btTdItemView" onclick="viewUser('${user.userId}','view')">
 <i class="fa-solid fa-eye"></i></button>
@@ -168,28 +191,56 @@ async function renderViewUser(){
     
     const users = await getUsers();
     
-    for(let i = 0; i<users.length;i++){        
-        if(users[i].userId ===selectedUserId){
-            
-            document.getElementById("firstName").value =users[i].firstName;
-            document.getElementById("lastName").value =users[i].lastName;
-            document.getElementById("userEmail").value =users[i].userEmail;
-            document.getElementById("userStatus").value =users[i].userStatus;
-            document.getElementById("userType").value =users[i].userType;
-            document.getElementById("department").value =users[i].department;
-            document.getElementById("role").value =users[i].role;
+    const viewedUser = users.find(item =>
+        item.userId === selectedUserId
+    );       
+      
+    document.getElementById("firstName").value =
+            viewedUser.firstName;
+    document.getElementById("lastName").value =
+            viewedUser.lastName;
+    document.getElementById("userEmail").value =
+            viewedUser.userEmail;
+
+/*Elementos com tabelas especializadas - FKs*/
+
+    const userStatusSelect = 
+            document.getElementById("userStatusSelect"); 
+    userStatusSelect.value = 
+            String(viewedUser.userStatus.userStatusId);
+
+    console.log(
+        viewedUser.userStatus.userStatusId,
+        userStatusSelect.value
+    );
+
+    const userTypeSelect = 
+            document.getElementById("userTypeSelect"); 
+    userTypeSelect.value = 
+            String(viewedUser.userType.userTypeId);
+    
+    const departmentSelect =
+            document.getElementById("departmentSelect");
+    departmentSelect.value =
+            String(viewedUser.department.departmentId);
+    
+    const userRoleSelect=
+            document.getElementById("userRoleSelect");
+    userRoleSelect.value =
+            String(viewedUser.userRole.userRoleId);
    
-            /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
-            if(selectedMode === "edit"){                                       
-                document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = false;});
-            }else {
-                document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
-                document.querySelector(".resave").style.display="none";
-            }
-        }
+    /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
+    if(selectedMode === "edit"){                                       
+        document.querySelectorAll("input, textarea, select")
+                .forEach(field => {field.disabled = false;});
+    }else {
+        document.querySelectorAll("input, textarea, select")
+                .forEach(field => {field.disabled = true;});
+        document.querySelector(".resave")
+                .style.display="none";
     }
-
-
+        
+    
     /* renderiza os assets em posse do corrente usuario => selectedUser*/
     const assets = await getAssets();
      
@@ -213,36 +264,6 @@ async function renderViewUser(){
     
 }
 
-
-/* renderiza a tabela com historico de assets em posse de
- * um determinado usuario no view User*/
-async function renderAssetInnerTable(assetAssigned){
-
-    let output = "";
-
-    assetAssigned.forEach(asset => {
-
-        output += `
-        <tr>
-
-            <td>${asset.assetId}</td>
-
-            <td>${asset.assetName} ${asset.serviceTag}</td>
-
-            <td>${asset.type}</td>
-
-            <td>${asset.acquisitionDate}</td>
-
-        </tr>
-        `;
-
-    });
-
-    document.querySelector(
-        ".tableBodyAssetHistory"
-    ).innerHTML = output;
-
-}
 /* DELETE    */
    
 /*deleteAsset() representa o DELETE*/
@@ -299,22 +320,27 @@ async function saveUpdatedUser(){
     }
 
 
-    updatedUser.userEmail = document.getElementById("userEmail").value;
-    updatedUser.userStatus = document.getElementById("userStatus").value;
-    updatedUser.userType = document.getElementById("userType").value;
-    updatedUser.department = document.getElementById("department").value;
-    updatedUser.role = document.getElementById("role").value;
+    updatedUser.userEmail = 
+            document.getElementById("userEmail").value;
+    updatedUser.userStatusId = 
+            document.getElementById("userTypeSelect").value;
+    updatedUser.userTypeId = 
+            document.getElementById("userTypeSelect").value;
+    updatedUser.departmentId = 
+            document.getElementById("departmentSelect").value;
+    updatedUser.userRoleId = 
+            document.getElementById("userRoleSelect").value;
 
     const { error } = await supabaseClient
          .from('users')
          .update({
-            firstName:updatedFirstName,
-            lastName: updatedLastName,
+            firstName:updatedUser.updatedFirstName,
+            lastName: updatedUser.updatedLastName,
             userEmail:updatedUser.userEmail,
-            userStatus: updatedUser.userStatus,
-            userType: updatedUser.userType,
-            department:updatedUser.department,
-            role: updatedUser.role
+            userStatusId: updatedUser.userStatusId,
+            userTypeId: updatedUser.userTypeId,
+            departmentId:updatedUser.departmentId,
+            userRoleId: updatedUser.userRoleId
          })
          .eq('userId', updatedUser.userId);
 
@@ -349,7 +375,8 @@ function setFirstName(){
 }
 
 function setLastName(){
-    const lastName = document.getElementById("lastName").value.trim();
+    const lastName = 
+            document.getElementById("lastName").value.trim();
     
     if(lastName ===""){
         document.getElementById("lastName").classList.add("inputError");

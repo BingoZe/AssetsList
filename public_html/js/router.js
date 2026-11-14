@@ -60,18 +60,27 @@ async function loadPage(page){
         await renderTypesFilter();
     }
     
+    if(page.includes("addUser")){
+        await renderUserStatusField();
+        await renderUserTypeField();
+        await renderDepartmentField();
+        await renderUserRoleField();
+    }
+    
     if(page.includes("viewUser")){
+        await renderUserStatusField();
+        await renderUserTypeField();
+        await renderDepartmentField();
+        await renderUserRoleField();
         await renderViewUser();
     }    
-    
     
     if(page.includes("maintenance")){
         await renderMaintenance();
         await searchMaintenanceElement();
         await renderMaintenanceAssetFilter();
         await renderMaintenanceCategoryFilter();
-        await renderMaintenanceStatusFilter();
-               
+        await renderMaintenanceStatusFilter();          
     }
     
     if(page.includes("viewMaintenance")){

@@ -1,3 +1,32 @@
+/* renderiza a tabela com historico de assets em posse de
+ * um determinado usuario no view User*/
+async function renderAssetInnerTable(assetAssigned){
+
+    let output = "";
+
+    assetAssigned.forEach(asset => {
+
+        output += `
+        <tr>
+
+            <td>${asset.assetId}</td>
+
+            <td>${asset.assetName} ${asset.serviceTag}</td>
+
+            <td>${asset.assetType.name}</td>
+
+            <td>${asset.acquisitionDate}</td>
+
+        </tr>
+        `;
+
+    });
+
+    document.querySelector(
+        ".tableBodyAssetHistory"
+    ).innerHTML = output;
+
+}
 
 /* renderiza a tabela com historico de usuarios em posse de
  * asset no view Asset*/
@@ -16,7 +45,7 @@ async function renderUserInnerTable(userHistory,viewedAsset){
 
             <td>${viewedAsset.assetStatus}</td>
 
-            <td>${user.role}</td>
+            <td>${user.userRole.name}</td>
 
         </tr>
         `;

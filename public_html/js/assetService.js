@@ -276,53 +276,79 @@ async function renderViewAsset(){
        asset.assetId ===selectedAssetId
     );
  
-    document.getElementById("assetId").value =viewedAsset.assetId;
-    document.getElementById("assetName").value =viewedAsset.assetName;
-    document.getElementById("serviceTag").value =viewedAsset.serviceTag;
+    document.getElementById("assetId").value =
+            viewedAsset.assetId;
+    document.getElementById("assetName").value =
+            viewedAsset.assetName;
+    document.getElementById("serviceTag").value =
+            viewedAsset.serviceTag;
     
     /*Elementos com tabelas especializadas - FKs*/
     
-    const specsSelect = document.getElementById("specsSelect"); 
-    specsSelect.value = String(viewedAsset.specs.specsId);
+    const specsSelect = 
+            document.getElementById("specsSelect"); 
+    specsSelect.value = 
+            String(viewedAsset.specs.specsId);
     
-    const typeSelect = document.getElementById("typeSelect"); 
-    typeSelect.value = String(viewedAsset.assetType.assetTypeId);
+    const typeSelect = 
+            document.getElementById("typeSelect"); 
+    typeSelect.value = 
+            String(viewedAsset.assetType.assetTypeId);
     
-    const statusSelect = document.getElementById("statusSelect"); 
-    statusSelect.value = String(viewedAsset.assetStatus.assetStatusId);
+    const statusSelect = 
+            document.getElementById("statusSelect"); 
+    statusSelect.value = 
+            String(viewedAsset.assetStatus.assetStatusId);
              
-    const userSelect = document.getElementById("userSelect");
-    userSelect.value = String(viewedAsset.users.userId);
+    const userSelect = 
+            document.getElementById("userSelect");
+    userSelect.value = 
+            String(viewedAsset.users.userId);
     
-    const locationSelect = document.getElementById("locationSelect");
-    locationSelect.value = String(viewedAsset.assetLocation.assetLocationId);
+    const locationSelect = 
+            document.getElementById("locationSelect");
+    locationSelect.value = 
+            String(viewedAsset.assetLocation.assetLocationId);
     
-   
-    
-    document.getElementById("userEmail").value =`${viewedAsset.users.userEmail}`;
-    document.getElementById("notes").value =viewedAsset.notes;
+     
+    document.getElementById("userEmail").value =
+            `${viewedAsset.users.userEmail}`;
+    document.getElementById("notes").value =
+            viewedAsset.notes;
     
      /*Garantia e financeiro*/
-    document.getElementById("warrantyDetails").value =viewedAsset.warrantyDetails;
-    document.getElementById("warrantyExpiryDate").value =viewedAsset.warrantyExpiryDate;
-    document.getElementById("warrantyDocs").value =viewedAsset.warrantyDocs;
-    document.getElementById("acquisitionDate").value =viewedAsset.acquisitionDate;
-    document.getElementById("acquisitionValue").value =viewedAsset.acquisitionValue;
-    document.getElementById("usefulLife").value =viewedAsset.usefulLife;
+    document.getElementById("warrantyDetails").value =
+            viewedAsset.warrantyDetails;
+    document.getElementById("warrantyExpiryDate").value =
+            viewedAsset.warrantyExpiryDate;
+    document.getElementById("warrantyDocs").value =
+            viewedAsset.warrantyDocs;
+    document.getElementById("acquisitionDate").value =
+            viewedAsset.acquisitionDate;
+    document.getElementById("acquisitionValue").value =
+            viewedAsset.acquisitionValue;
+    document.getElementById("usefulLife").value =
+            viewedAsset.usefulLife;
         
-    document.getElementById("depreciation").value =Math.round(viewedAsset.depreciation);
+    document.getElementById("depreciation").value =
+            Math.round(viewedAsset.depreciation);
         
-    document.getElementById("netValue").value =Math.round(viewedAsset.netValue);
+    document.getElementById("netValue").value =
+            Math.round(viewedAsset.netValue);
     
-    document.getElementById("purchaseInvoice").value =viewedAsset.purchaseInvoice;
+    document.getElementById("purchaseInvoice").value =
+            viewedAsset.purchaseInvoice;
 
 
     /*avalia modo - se for editavel, campos sao ativados. Senao, apenas leitura.*/
     if(selectedMode === "edit"){                                       
-        document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = false;});
+        document.querySelectorAll("input, textarea, select")
+                .forEach(field => {field.disabled = false;});
     }else {
-        document.querySelectorAll("input, textarea, select").forEach(field => {field.disabled = true;});
-        document.querySelector(".resave").style.display="none";
+        document.querySelectorAll("input, textarea, select")
+                .forEach(field => {field.disabled = true;});
+        document.querySelector(".resave")
+                .style.display="none";
     }
     
     const maintenance = await getMaintenance();
@@ -417,7 +443,8 @@ async function updateAsset(){
         updatedAsset.assetId===selectedAssetId
     );
     
-    updatedAsset.assetName = document.getElementById("assetName").value.trim();
+    updatedAsset.assetName = 
+            document.getElementById("assetName").value.trim();
     if(!updatedAsset.assetName){
         alert("Invalid name!");
         addErrorCss("assetName");
@@ -435,19 +462,28 @@ async function updateAsset(){
 
     /*tabelas especializadas - FKs*/
     
-    updatedAsset.specsId = document.getElementById("specsSelect").value;
-    updatedAsset.assetTypeId = document.getElementById("typeSelect").value;
-    updatedAsset.assetStatusId = document.getElementById("statusSelect").value;
-    updatedAsset.assetLocationId = document.getElementById("locationSelect").value;
-    updatedAsset.userId = document.getElementById("userSelect").value;
+    updatedAsset.specsId = 
+            document.getElementById("specsSelect").value;
+    updatedAsset.assetTypeId = 
+            document.getElementById("typeSelect").value;
+    updatedAsset.assetStatusId = 
+            document.getElementById("statusSelect").value;
+    updatedAsset.assetLocationId = 
+            document.getElementById("locationSelect").value;
+    updatedAsset.userId = 
+            document.getElementById("userSelect").value;
 
-    updatedAsset.notes = document.getElementById("notes").value;
+    updatedAsset.notes = 
+            document.getElementById("notes").value;
 
     /*Garantia & financeiro*/
     
-    updatedAsset.warrantyDetails = document.getElementById("warrantyDetails").value;
-    updatedAsset.warrantyDocs = document.getElementById("warrantyDocs").value;
-    updatedAsset.acquisitionDate = document.getElementById("acquisitionDate").value;
+    updatedAsset.warrantyDetails = 
+            document.getElementById("warrantyDetails").value;
+    updatedAsset.warrantyDocs = 
+            document.getElementById("warrantyDocs").value;
+    updatedAsset.acquisitionDate = 
+            document.getElementById("acquisitionDate").value;
 
     /*Para refatorar*/
     if(!updatedAsset.acquisitionDate ||updatedAsset.acquisitionDate===null
@@ -458,10 +494,12 @@ async function updateAsset(){
     }     
     removeErrorCss("acquisitionDate");
 
-    updatedAsset.acquisitionYear = parseInt(new Date(updatedAsset.acquisitionDate).getFullYear());
+    updatedAsset.acquisitionYear = 
+            parseInt(new Date(updatedAsset.acquisitionDate).getFullYear());
 
    /* refatorar e definir constraint no banco*/
-    updatedAsset.warrantyExpiryDate = setWarrantyExpiryDate(updatedAsset.acquisitionDate);
+    updatedAsset.warrantyExpiryDate = 
+            setWarrantyExpiryDate(updatedAsset.acquisitionDate);
 
     if(!updatedAsset.warrantyExpiryDate){
         alert("Warranty expire date cannot be before Acquisition Date");
@@ -492,7 +530,8 @@ async function updateAsset(){
     }
     removeErrorCss("usefulLife");
 
-    updatedAsset.purchaseInvoice = document.getElementById("purchaseInvoice").value;
+    updatedAsset.purchaseInvoice = 
+            document.getElementById("purchaseInvoice").value;
 
     const {error} = await supabaseClient.from('assets')
         .update({
@@ -564,7 +603,8 @@ function setAcquisitionValue(){
 
 /*vida util - Para refatorar!*/
 function setUsefulLife(){
-   const usefulLife = document.getElementById("usefulLife").value;
+   const usefulLife = 
+           document.getElementById("usefulLife").value;
    
     if(usefulLife <0){       
         return false;

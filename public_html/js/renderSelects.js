@@ -1,3 +1,9 @@
+/*SCRIPT PARA A POPULACAO DE CAMPOS SELECT NAS PAGES ADD & VIEW*/
+
+
+/*-----------------------------------*/
+/*ASSET*/
+/*-----------------------------------*/
 
 /* renderiza os usuarios do BD dentro do select do view Asset*/
 /*Render User field - */
@@ -32,6 +38,8 @@ async function renderUserField() {
     userSelect.innerHTML = output;
 }
 
+/* renderiza SPECS select no ADD & VIEW Asset*/
+
 async function renderSpecsField() {
     const specs = await getSpecs();
     const specsSelect = document.getElementById("specsSelect");
@@ -63,6 +71,7 @@ async function renderSpecsField() {
     specsSelect.innerHTML = output;
 }
 
+/* renderiza TYPE select no ADD & VIEW Asset*/
 async function renderTypeField() {
     const assetType = await getAssetType();
     const typeSelect = document.getElementById("typeSelect");
@@ -94,6 +103,7 @@ async function renderTypeField() {
     typeSelect.innerHTML = output;
 }
 
+/* renderiza assetStatus select no ADD & VIEW Asset*/
 async function renderStatusField() {
     const assetStatus = await getAssetStatus();
     const statusSelect = document.getElementById("statusSelect");
@@ -125,6 +135,7 @@ async function renderStatusField() {
     statusSelect.innerHTML = output;
 }
 
+/* renderiza LOCATION select no ADD & VIEW Asset*/
 async function renderLocationField() {
     const assetLocation = await getAssetLocation();
     const locationSelect = document.getElementById("locationSelect");
@@ -288,4 +299,142 @@ async function renderAssetField() {
     });
     
     maintenancePrioritySelect.innerHTML = output;
+}
+
+
+/*-----------------------------------*/
+/*USERS*/
+/*-----------------------------------*/
+
+ async function renderUserStatusField() {
+    const userStatus = await getUserStatus();
+    const userStatusSelect =
+            document.getElementById("userStatusSelect");
+    
+    if (!userStatusSelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select a status
+        </option>
+    `;
+
+    const uniqueStatus = [];
+    
+    userStatus.forEach(item => {
+
+        if (!uniqueStatus.includes(item.userStatusId)) {
+            uniqueStatus.push(item.userStatusId);
+
+            output += `
+                <option value="${item.userStatusId}">
+                    ${item.name}
+                </option>
+            `;
+        }
+    });
+    
+    userStatusSelect.innerHTML = output;
+}
+
+ async function renderUserTypeField() {
+    const userType = await getUserType();
+    const userTypeSelect =
+            document.getElementById("userTypeSelect");
+    
+    if (!userTypeSelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select a user type
+        </option>
+    `;
+
+    const uniqueType = [];
+    
+    userType.forEach(item => {
+
+        if (!uniqueType.includes(item.userTypeId)) {
+            uniqueType.push(item.userTypeId);
+
+            output += `
+                <option value="${item.userTypeId}">
+                    ${item.name}
+                </option>
+            `;
+        }
+    });
+    
+    userTypeSelect.innerHTML = output;
+}
+
+ async function renderDepartmentField() {
+    const department = await getDepartment();
+    const departmentSelect =
+            document.getElementById("departmentSelect");
+    
+    if (!departmentSelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select a department
+        </option>
+    `;
+
+    const uniqueDepartment = [];
+    
+    department.forEach(item => {
+
+        if (!uniqueDepartment.includes(item.departmentId)) {
+            uniqueDepartment.push(item.departmentId);
+
+            output += `
+                <option value="${item.departmentId}">
+                    ${item.name}
+                </option>
+            `;
+        }
+    });
+    
+    departmentSelect.innerHTML = output;
+}
+
+
+ async function renderUserRoleField() {
+    const userRole = await getUserRole();
+    const userRoleSelect =
+            document.getElementById("userRoleSelect");
+ 
+    if (!userRoleSelect) {
+        return;
+    }
+
+    let output = `
+        <option value="" selected disabled>
+            Select user role
+        </option>
+    `;
+
+    const uniqueRole = [];
+    
+    userRole.forEach(item => {
+
+        if (!uniqueRole.includes(item.userRoleId)) {
+            uniqueRole.push(item.userRoleId);
+
+            output += `
+                <option value="${item.userRoleId}">
+                    ${item.name}
+                </option>
+            `;
+        }
+    });
+    
+    userRoleSelect.innerHTML = output;
 }
