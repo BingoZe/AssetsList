@@ -14,7 +14,7 @@ async function renderUserField() {
     if (!userSelect) {
         return;
     }
-
+    
     let output = `
         <option value="" selected disabled>
             Select a user
@@ -320,7 +320,7 @@ async function renderAssetField() {
             Select a status
         </option>
     `;
-
+    
     const uniqueStatus = [];
     
     userStatus.forEach(item => {
@@ -353,7 +353,7 @@ async function renderAssetField() {
             Select a user type
         </option>
     `;
-
+        
     const uniqueType = [];
     
     userType.forEach(item => {
@@ -421,7 +421,7 @@ async function renderAssetField() {
         </option>
     `;
 
-    const uniqueRole = [];
+     const uniqueRole = [];
     
     userRole.forEach(item => {
 

@@ -335,13 +335,13 @@ async function searchUserElement(){
     const lookupItem = document.getElementById("searchField");
   
     /*campo status*/
-    const statusLookupItem = document.getElementById("userStatus");
+    const statusLookupItem = document.getElementById("userStatusSelect");
     
     /*campo role*/
-    const rolelookupItem = document.getElementById("roleSelect");
+    const rolelookupItem = document.getElementById("userRoleSelect");
     
     /*campo userType*/
-    const userTypelookupItem = document.getElementById("userType");
+    const userTypelookupItem = document.getElementById("userTypeSelect");
   
     /* adiciona evento ao campo search - Users*/
     lookupItem.addEventListener("input",async function(){
@@ -372,10 +372,10 @@ async function searchUserElement(){
     statusLookupItem.addEventListener("change",async function(){
                 
         const searchItem = statusLookupItem.value.toLowerCase();   
-        
+        console.log("ITEM ",searchItem);
         const filteredUser = users.filter(user=>
-            user.userStatus.toLowerCase()===searchItem);
-    
+            user.userStatusId.userStatus===searchItem);
+        console.log("ITEM ",filteredUser);
         if(searchItem !=="all status"){
             renderUsers(filteredUser);
 
@@ -414,10 +414,39 @@ async function searchUserElement(){
 
 };
 
+/*RenderStatus*/
+async function renderUserStatusFilter(){
+
+    const userStatus = await getUserStatus();
+
+    let output = `
+        <option selected>
+            All Status
+        </option>
+    `;
+
+    const uniqueStatus = [];
+
+    userStatus.forEach(status => {
+
+        if(!uniqueStatus.includes(status.userStatusId)){
+            uniqueStatus.push(status.userStatusId);
+
+            output += `
+                <option>
+                    ${status.name}
+                </option>
+            `;
+        }
+
+    });
+
+    document.getElementById("userStatusSelect").innerHTML = output;
+};
 
 /*RenderUser*/
 async function renderRolesFilter(){
-    const users = await getUsers();
+    const users = await getUserRole();
     
     let output = `<option selected>All Roles</option>`;
     const uniqueRole = []; 
@@ -425,21 +454,21 @@ async function renderRolesFilter(){
     users.forEach((user) => {
         
         /*mostra apenas role unico no filtro*/
-        if(!uniqueRole.includes(user.role)){
-            uniqueRole.push(user.role);
+        if(!uniqueRole.includes(user.userRoleId)){
+            uniqueRole.push(user.userRoleId);
             
         output += `
-            <option>${user.role}</option>
+            <option>${user.name}</option>
         `;
         }
     });
 
-    document.getElementById("roleSelect").innerHTML = output;
+    document.getElementById("userRoleSelect").innerHTML = output;
 };
 
 /*RenderType*/
 async function renderTypesFilter(){
-    const users = await getUsers();
+    const users = await getUserType();
     
     let output = `<option selected>All Types</option>`;
     const uniqueType = []; 
@@ -447,85 +476,22 @@ async function renderTypesFilter(){
     users.forEach((user) => {
         
         /*mostra apenas role unico no filtro*/
-        if(!uniqueType.includes(user.userType)){
-            uniqueType.push(user.userType);
+        if(!uniqueType.includes(user.userTypeId)){
+            uniqueType.push(user.userTypeId);
             
         output += `
-            <option>${user.userType}</option>
+            <option>${user.name}</option>
         `;
         }
     });
 
-    document.getElementById("userType").innerHTML = output;
+    document.getElementById("userTypeSelect").innerHTML = output;
 };
 
-/* BUBBLE SORT - users*/
-
-function btnSort(){
-    
-    const sortItem = document.querySelectorAll(".sortingButton");
-    
-    let sortDirection = "asc"; /*define estado inicial*/
-    
-    
-    
-    sortItem.forEach(button =>{
-        button.addEventListener("click",function(){ /*evento em cada botao sort*/
-            const assets = getAssets();
-            const sortedAssets = [...assets]; /*faz uma copia do array para ordenacao bubble sort*/
-            const sortField = button.dataset.sort;/*captura o botao adequado do HTML usando campo dinamico*/
-
-
-            switch(sortDirection){
-                case "asc":
-                
-                    /*implementa bubble sort ascendente*/
-                    for(let i=0; i < sortedAssets.length; i++){
-
-                        for(let j=0;j < sortedAssets.length-1-i; j++){
-
-                            if(sortedAssets[j][sortField] > sortedAssets[j+1][sortField]){
-
-                                let temp = sortedAssets[j];
-                                sortedAssets[j] = sortedAssets[j+1];
-                                sortedAssets[j+1] = temp;                        
-                            }                    
-                        }
-                    } 
-                    
-                sortDirection = "desc";
-                break;
-                
-                case "desc":
-                    /*implementa bubble sort descendente*/
-                    for(let i=0; i < sortedAssets.length; i++){
-
-                        for(let j=0;j < sortedAssets.length-1-i; j++){
-
-                            if(sortedAssets[j][sortField] < sortedAssets[j+1][sortField]){
-
-                                let temp = sortedAssets[j];
-                                sortedAssets[j] = sortedAssets[j+1];
-                                sortedAssets[j+1] = temp;                        
-                            }                    
-                        }
-                    }                     
-                sortDirection = "asc";
-                break;
-                 
-            };
-
-                renderAssets(sortedAssets);
-            
-        });
-          
-    });
-
-};
 
 
 /*---------------------------------------------*/
-/* FILTROS E ORDENACAO - MAINTENANCE
+/* FILTROS - MAINTENANCE
 /*---------------------------------------------*/
 async function searchMaintenanceElement(){
 

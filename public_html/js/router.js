@@ -55,9 +55,12 @@ async function loadPage(page){
         
         await renderUsers();
         await renderUsersKpi();
-        await searchUserElement();
+        await renderUserStatusFilter();
         await renderRolesFilter();
-        await renderTypesFilter();
+        await renderTypesFilter();            
+
+        await searchUserElement();  
+
     }
     
     if(page.includes("addUser")){
