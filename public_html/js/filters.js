@@ -359,7 +359,6 @@ async function searchUserElement(){
                     .some(name => name.toLowerCase().includes(searchItem)) ||
                 item.firstName.toLowerCase().includes(searchItem) ||
                 item.lastName.toLowerCase().includes(searchItem) ||
-                item.role.toLowerCase().includes(searchItem) ||
                 item.userId.toString().includes(searchItem)
             );
         });
