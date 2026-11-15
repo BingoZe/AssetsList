@@ -372,10 +372,10 @@ async function searchUserElement(){
     statusLookupItem.addEventListener("change",async function(){
                 
         const searchItem = statusLookupItem.value.toLowerCase();   
-        console.log("ITEM ",searchItem);
-        const filteredUser = users.filter(user=>
-            user.userStatusId.userStatus===searchItem);
-        console.log("ITEM ",filteredUser);
+       
+        const filteredUser = users.filter(user =>
+             user.userStatus.name.toLowerCase() === searchItem
+        );
         if(searchItem !=="all status"){
             renderUsers(filteredUser);
 
@@ -387,9 +387,9 @@ async function searchUserElement(){
                 
         const searchItem = rolelookupItem.value.toLowerCase();   
         
-        const filteredUser = users.filter(user=>
-            user.role.toLowerCase()
-            .includes(searchItem));
+        const filteredUser = users.filter(user =>
+            user.userRole.name.toLowerCase() === searchItem
+        );
     
         if(searchItem !=="all roles"){
             renderUsers(filteredUser);
@@ -401,9 +401,9 @@ async function searchUserElement(){
                 
         const searchItem = userTypelookupItem.value.toLowerCase();   
         
-        const filteredUser = users.filter(user=>
-            user.userType.toLowerCase()
-            .includes(searchItem));
+        const filteredUser = users.filter(user =>
+            user.userType.name.toLowerCase() === searchItem
+        );
     
         if(searchItem !=="all types"){
             renderUsers(filteredUser);
