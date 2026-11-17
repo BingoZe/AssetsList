@@ -242,16 +242,20 @@ async function renderUsersKpi(){
     document.getElementById('totalUsersFigures').textContent = users.length || 0;
     
     /*Indicadores technicians*/
-    const technicianCount = countBy(users, "userType");
-    document.getElementById('techniciansFigures').textContent = technicianCount["Technician"] || 0;
+    const technicianCount = users.filter(
+            user => user.userType.name==="Technician").length;
+    document.getElementById('techniciansFigures').textContent = technicianCount || 0;
     
     /*Indicadores auditors*/
-    const auditorCount = countBy(users, "userType");
-    document.getElementById('auditorsFigures').textContent = auditorCount["Auditor"] || 0;
+    const auditorCount = users.filter(
+            user => user.userType.name==="Auditor").length;
+            
+    document.getElementById('auditorsFigures').textContent = auditorCount || 0;
     
     /*Indicadores endusers*/
-    const enduserCount = countBy(users, "userType");
-    document.getElementById('endUsersFigures').textContent = enduserCount["End User"] || 0;
+    const enduserCount = users.filter(
+            user => user.userType.name==="End User").length;
+    document.getElementById('endUsersFigures').textContent = enduserCount || 0;
     
 }
 
