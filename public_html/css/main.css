@@ -745,6 +745,28 @@ fieldset{
     display:block;
 }
 
+/* SETTINGS */
+
+.settingsSubField{
+    display:flex;
+    flex-direction: row;
+    align-content: space-around;
+    gap: 30px;
+    border-color: red;
+}
+
+.settingsButton{
+    width: 40px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: white;
+    color: var(--blue);
+}
+
+#removeSetting{
+    color: red;
+}
+
 
 /*  VALIDATION */
 
