@@ -748,20 +748,38 @@ fieldset{
 /* SETTINGS */
 
 .settingsSubField{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display:flex;
+    align-items:center;
+    gap:6px;
 }
-
+.settingsSubField label{
+    margin-right:6px;
+    font-weight:500;
+}
 .settingsButton{
-    width: 40px;
-    background-color: white;
-    border-radius: 5px;
-    border-color: white;
-    color: var(--blue);
+    width: 26px;
+    height: 26px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:transparent;
+    border:none;
+
+    color:var(--gray-500);
+
+    cursor:pointer;
+
+    padding:0;
+
+    transition:all .15s ease;
 }
 
-
+.settingsButton:hover{
+    color:var(--blue);
+    transform:scale(1.08);
+}
 
 .manageContainer{
     display: flex;
@@ -776,14 +794,6 @@ fieldset{
 .manageContainer button{
     width: 30px;
     height: 30px;
-}
-
-.editSetting{
-    color: var(--yellow);
-}
-
-.removeSetting{
-    color: red;
 }
 
 #confirmAssetType{
