@@ -102,9 +102,22 @@ async function loadPage(page){
     }
     
     if(page.includes("settings")){
+
         await renderTypeField();
+
+        await renderStatusField();
+
+        await renderLocationField();
+
+        await renderMaintenanceStatusField();
+
+        await renderMaintenanceCategoryField();
+
+        await renderMaintenancePriorityField();
+
         initAssetTypeSettings();
-    }    
+        initAssetStatusSettings();
+    }
     
     if(page.includes("reports")){
         btnExport(); /* inventory in total*/

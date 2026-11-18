@@ -25,11 +25,9 @@
                     </label>
 
                     <select id="financialYearEnd">
-
                         <option>31 December</option>
                         <option>30 June</option>
                         <option>31 March</option>
-
                     </select>
 
                 </div>
@@ -41,11 +39,9 @@
                     </label>
 
                     <select id="currency">
-
                         <option>EUR (€)</option>
                         <option>GBP (£)</option>
                         <option>USD ($)</option>
-
                     </select>
 
                 </div>
@@ -75,7 +71,9 @@
                         value="5">
 
                 </div>
-                
+
+                <!-- DEFAULT ASSET TYPES -->
+
                 <div class="form-group">
 
                     <div class="settingsSubField">
@@ -93,73 +91,196 @@
                             class="settingsButton editSetting">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
-                        
+
                         <button
                             type="button"
                             class="settingsButton removeSetting">
                             <i class="fa-solid fa-minus"></i>
                         </button>
-                        
+
                         <div class="manageContainer"></div>
-                        
+
                     </div>
 
                     <select id="typeSelect">
-      
                     </select>
 
- 
                 </div>
 
-                
-                <div class="form-group">
-                    <label>Default Asset Status</label>
-                    <select>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Repairing</option>
-                    </select>
-                </div>    
-                
-                <div class="form-group">
-                    <label>Default Locations</label>
+                <!-- DEFAULT ASSET STATUS -->
 
-                    <select>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Repairing</option>
-                    </select>
-                </div>              
-                
                 <div class="form-group">
-                    <label>Maintenance Status</label>
 
-                    <select>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Repairing</option>
+                    <div class="settingsSubField">
+
+                        <label>Default Asset Status</label>
+
+                        <button
+                            type="button"
+                            class="settingsButton addAssetStatus">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton editAssetStatus">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton removeAssetStatus">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+
+                        <div class="assetStatusContainer"></div>
+
+                    </div>
+
+                    <select id="statusSelect">
                     </select>
-                </div>  
-                
+
+                </div>
+
+                <!-- DEFAULT LOCATIONS -->
+
                 <div class="form-group">
-                    <label>Repair Category</label>
 
-                    <select>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Repairing</option>
+                    <div class="settingsSubField">
+
+                        <label>Default Locations</label>
+
+                        <button
+                            type="button"
+                            class="settingsButton addLocation">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton editLocation">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton removeLocation">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+
+                        <div class="locationContainer"></div>
+
+                    </div>
+
+                    <select id="locationSelect">
                     </select>
-                </div>      
-                
+
+                </div>
+
+                <!-- MAINTENANCE STATUS -->
+
                 <div class="form-group">
-                    <label>Repair Priority</label>
 
-                    <select>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Repairing</option>
+                    <div class="settingsSubField">
+
+                        <label>Maintenance Status</label>
+
+                        <button
+                            type="button"
+                            class="settingsButton addMaintenanceStatus">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton editMaintenanceStatus">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton removeMaintenanceStatus">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+
+                        <div class="maintenanceStatusContainer"></div>
+
+                    </div>
+
+                    <select id="maintenanceStatus">
                     </select>
-                </div>                
+
+                </div>
+
+                <!-- REPAIR CATEGORY -->
+
+                <div class="form-group">
+
+                    <div class="settingsSubField">
+
+                        <label>Repair Category</label>
+
+                        <button
+                            type="button"
+                            class="settingsButton addRepairCategory">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton editRepairCategory">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton removeRepairCategory">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+
+                        <div class="repairCategoryContainer"></div>
+
+                    </div>
+
+                    <select id="maintenanceCategory">
+                    </select>
+
+                </div>
+
+                <!-- REPAIR PRIORITY -->
+
+                <div class="form-group">
+
+                    <div class="settingsSubField">
+
+                        <label>Repair Priority</label>
+
+                        <button
+                            type="button"
+                            class="settingsButton addRepairPriority">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton editRepairPriority">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton removeRepairPriority">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+
+                        <div class="repairPriorityContainer"></div>
+
+                    </div>
+
+                    <select id="maintenancePriority">
+                    </select>
+
+                </div>
 
             </fieldset>
 

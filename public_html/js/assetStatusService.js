@@ -1,5 +1,5 @@
 async function getAssetStatus(){
-     
+
     try{
         const { data, error } = await supabaseClient
             .from('assetStatus')
@@ -18,12 +18,14 @@ async function getAssetStatus(){
     }
 }
 
-async function createAssetStatus(assetStatus){
+async function createAssetStatus(assetStatusName){
 
     const { data, error } =
         await supabaseClient
             .from('assetStatus')
-            .insert([assetStatus]);
+            .insert({
+                name: assetStatusName
+            });
 
     if(error){
         console.log("ERROR:");
@@ -34,13 +36,43 @@ async function createAssetStatus(assetStatus){
     return data;
 }
 
-function getMode(){
-    try{
-     return sessionStorage.getItem("mode");
+async function updateAssetStatus(assetStatusId, name){
+
+    const { data, error } =
+        await supabaseClient
+            .from('assetStatus')
+            .update({
+                name: name
+            })
+            .eq('assetStatusId', assetStatusId);
+
+    if(error){
+        console.log(error);
+        return null;
     }
-    catch(error){
-        return [];
-    }
+
+    return data;
 }
 
-/*TO BE DEVELOPED*/
+async function deleteAssetStatus(assetStatusId){
+
+    if(!confirm("Are you sure you want to delete it?")){
+        return;
+    }
+
+    const { error } = await supabaseClient
+        .from('assetStatus')
+        .delete()
+        .eq(
+            'assetStatusId',
+            assetStatusId
+        );
+
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    await renderStatusField();
+
+}
