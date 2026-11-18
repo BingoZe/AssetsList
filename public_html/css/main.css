@@ -748,11 +748,9 @@ fieldset{
 /* SETTINGS */
 
 .settingsSubField{
-    display:flex;
-    flex-direction: row;
-    align-content: space-around;
-    gap: 30px;
-    border-color: red;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .settingsButton{
@@ -763,8 +761,39 @@ fieldset{
     color: var(--blue);
 }
 
+
+
+#newAssetTypeContainer{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#newAssetTypeContainer input{
+    width: 200px;
+}
+
+#newAssetTypeContainer button{
+    width: 30px;
+    height: 30px;
+}
+
+#editSetting{
+    color: var(--yellow);
+}
+
 #removeSetting{
     color: red;
+}
+
+#confirmAssetType{
+    color: var(--green);
+    width: 40px;
+}
+
+#cancelAssetType{
+    color: red;
+    width: 40px;
 }
 
 

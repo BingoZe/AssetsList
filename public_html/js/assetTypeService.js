@@ -18,12 +18,16 @@ async function getAssetType(){
     }
 }
 
-async function createAssetType(assetType){
+
+async function createAssetType(assetTypeName){
 
     const { data, error } =
         await supabaseClient
             .from('assetType')
-            .insert([assetType]);
+            .insert({
+                name: assetTypeName
+            });
+
 
     if(error){
         console.log("ERROR:");
@@ -31,16 +35,48 @@ async function createAssetType(assetType){
         return null;
     }
 
+
     return data;
 }
 
-function getMode(){
-    try{
-     return sessionStorage.getItem("mode");
+async function updateAssetType(assetTypeId, name){
+
+    const { data, error } =
+        await supabaseClient
+            .from('assetType')
+            .update({
+                name: name
+            })
+            .eq('assetTypeId', assetTypeId);
+
+    if(error){
+        console.log(error);
+        return null;
     }
-    catch(error){
-        return [];
-    }
+
+    return data;
 }
 
-/*TO BE DEVELOPED*/
+
+async function deleteAssetType(assetTypeId){
+
+    if(!confirm("Are you sure you want to delete it?")){
+        return;
+    }
+
+    const { error } =await supabaseClient
+            .from('assetType')
+            .delete()
+            .eq(
+                'assetTypeId',
+                assetTypeId
+            );
+
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    await renderTypeField();
+
+}

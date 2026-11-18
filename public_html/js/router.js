@@ -101,6 +101,10 @@ async function loadPage(page){
         await renderMaintenancePriorityField();
     }
     
+    if(page.includes("settings")){
+        await renderTypeField();
+        initAssetTypeSettings();
+    }    
     
     if(page.includes("reports")){
         btnExport(); /* inventory in total*/
