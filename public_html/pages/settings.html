@@ -77,22 +77,40 @@
                 </div>
                 
                 <div class="form-group">
-                    <span class="settingsSubField">
-                        <label>Default Asset Types</label>
-                        <button class="settingsButton" id="addSetting"
-                                onclick="event.preventDefault()">
-                            <i class="fa-solid fa-plus"></i>
-                        </button> 
-                        <button class="settingsButton" id="removeSetting"
-                                onclick="event.preventDefault()">
-                            <i class="fa-solid fa-minus"></i>
-                        </button> 
-                    </span>
-                    <select>
-                        <option>Active</option>
 
+                    <div class="settingsSubField">
+
+                        <label>Default Asset Types</label>
+
+                        <button
+                            type="button"
+                            class="settingsButton addSetting">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settingsButton editSetting">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+                        
+                        <button
+                            type="button"
+                            class="settingsButton removeSetting">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        
+                        <div id="newAssetTypeContainer"></div>
+                        
+                    </div>
+
+                    <select id="typeSelect">
+      
                     </select>
-                </div>   
+
+ 
+                </div>
+
                 
                 <div class="form-group">
                     <label>Default Asset Status</label>
