@@ -763,17 +763,17 @@ fieldset{
 
 
 
-#newAssetTypeContainer{
+.manageContainer{
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-#newAssetTypeContainer input{
+.manageContainer input{
     width: 200px;
 }
 
-#newAssetTypeContainer button{
+.manageContainer button{
     width: 30px;
     height: 30px;
 }

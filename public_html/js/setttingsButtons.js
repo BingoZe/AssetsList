@@ -2,21 +2,11 @@
 
 function initAssetTypeSettings() {
 
-    const addElement =
-        document.querySelector(".addSetting");
+    const elements = getElements();
 
-    const editElement =
-        document.querySelector(".editSetting");
+    elements.addElement.addEventListener("click", () => {
 
-    const removeElement =
-        document.querySelector(".removeSetting");
-
-    const container =
-        document.getElementById("newAssetTypeContainer");
-
-    addElement.addEventListener("click", () => {
-
-        container.innerHTML = `
+        elements.container.innerHTML = `
             <input
                 id="newAssetType"
                 type="text"
@@ -57,7 +47,7 @@ function initAssetTypeSettings() {
 
                 await createAssetType(newAssetTypeName);
 
-                container.innerHTML = "";
+                elements.container.innerHTML = "";
 
                 showActionButtons();
 
@@ -69,7 +59,7 @@ function initAssetTypeSettings() {
             .getElementById("cancelAssetType")
             .addEventListener("click", () => {
 
-                container.innerHTML = "";
+                elements.container.innerHTML = "";
         
                 showActionButtons();
 
@@ -79,7 +69,7 @@ function initAssetTypeSettings() {
     
     /* BOTAO EDITAR*/
     
-    editElement.addEventListener("click", async () => {
+    elements.editElement.addEventListener("click", async () => {
         const assetType = await getAssetType();
         
         const targetItem = 
@@ -93,7 +83,7 @@ function initAssetTypeSettings() {
             item.assetTypeId === targetItem
         );
         
-        container.innerHTML = `
+        elements.container.innerHTML = `
             <input
                 id="newAssetType"
                 type="text"
@@ -131,7 +121,7 @@ function initAssetTypeSettings() {
             .getElementById("cancelAssetType")
             .addEventListener("click", () => {
 
-                container.innerHTML = "";
+                elements.container.innerHTML = "";
 
                 showActionButtons();
 
@@ -150,7 +140,7 @@ function initAssetTypeSettings() {
                 newName
              );
 
-                container.innerHTML = "";
+                elements.container.innerHTML = "";
 
                 showActionButtons();
 
@@ -162,7 +152,7 @@ function initAssetTypeSettings() {
     
     /* BOTAO REMOVER*/    
     
-    removeElement.addEventListener("click", async () => {
+    elements.removeElement.addEventListener("click", async () => {
         const targetItem = 
                 Number(document.getElementById("typeSelect").value);
         
@@ -176,17 +166,28 @@ function initAssetTypeSettings() {
  
     /* FUNCOES FILHAS*/
     function hideActionButtons() {
-        addElement.style.display = "none";
-        editElement.style.display = "none";
-        removeElement.style.display = "none";
+        elements.addElement.style.display = "none";
+        elements.editElement.style.display = "none";
+        elements.removeElement.style.display = "none";
     }
 
     function showActionButtons() {
-        addElement.style.display = "";
-        editElement.style.display = "";
-        removeElement.style.display = "";
+        elements.addElement.style.display = "";
+        elements.editElement.style.display = "";
+        elements.removeElement.style.display = "";
     }    
 
 }
 
+
+function getElements(){
+
+    return {
+        addElement: document.querySelector(".addSetting"),
+        editElement: document.querySelector(".editSetting"),
+        removeElement: document.querySelector(".removeSetting"),
+        container: document.querySelector(".manageContainer")
+    };
+
+}
 
