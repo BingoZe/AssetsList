@@ -181,7 +181,6 @@ function initAssetTypeSettings() {
 
 }
 
-
 function getElements(){
 
     return {
