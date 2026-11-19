@@ -18,12 +18,14 @@ async function getMaintenanceStatus(){
     }
 }
 
-async function createMaintenanceStatus(maintenanceStatus){
+async function createMaintenanceStatus(maintenanceStatusName){
 
     const { data, error } =
         await supabaseClient
             .from('maintenanceStatus')
-            .insert([maintenanceStatus]);
+            .insert({
+                name:maintenanceStatusName
+            });
 
     if(error){
         console.log("ERROR:");
@@ -34,13 +36,45 @@ async function createMaintenanceStatus(maintenanceStatus){
     return data;
 }
 
-function getMode(){
-    try{
-     return sessionStorage.getItem("mode");
+async function updateMaintenanceStatus(
+        maintenanceStatusId, name){
+
+    const { data, error } =
+        await supabaseClient
+            .from('maintenanceStatus')
+            .update({
+                name:name
+            })
+            .eq("maintenanceStatusId",maintenanceStatusId);
+
+    if(error){
+        console.log("ERROR:");
+        console.log(error);
+        return null;
     }
-    catch(error){
-        return [];
-    }
+
+    return data;
 }
 
-/*TO BE DEVELOPED*/
+async function deleteMaintenanceStatus(maintenanceStatusId){
+
+    if(!confirm("Are you sure you want to delete it?")){
+        return;
+    }
+
+    const { error } =await supabaseClient
+            .from('maintenanceStatus')
+            .delete()
+            .eq(
+                'maintenanceStatusId',
+                maintenanceStatusId
+            );
+
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    await renderMaintenanceStatusField();
+
+}

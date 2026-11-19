@@ -781,31 +781,41 @@ fieldset{
     transform:scale(1.08);
 }
 
-.manageContainer{
+.settingsContainer{
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.manageContainer input{
+.settingsContainer input{
     width: 200px;
 }
 
-.manageContainer button{
+.settingsContainer button{
     width: 30px;
     height: 30px;
 }
 
-#confirmAssetType{
+#confirmAssetType,
+#confirmAssetStatus,
+#confirmAssetLocation,
+#confirmMtnStatus,
+#confirmMtnCategory,
+#confirmMtnPriority{
     color: var(--green);
     width: 40px;
 }
 
-#cancelAssetType{
+#cancelAssetType,
+#cancelAssetStatus,
+#cancelAssetLocation,
+#cancelMtnStatus,
+#cancelMtnCategory,
+#cancelMtnPriority
+{
     color: red;
     width: 40px;
 }
-
 
 /*  VALIDATION */
 

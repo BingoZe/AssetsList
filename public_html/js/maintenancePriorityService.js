@@ -18,12 +18,15 @@ async function getMaintenancePriority(){
     }
 }
 
-async function createMaintenancePriority(maintenancePriority){
+async function createMaintenancePriority(
+        maintenancePriorityName){
 
     const { data, error } =
         await supabaseClient
             .from('maintenancePriority')
-            .insert([maintenancePriority]);
+            .insert({
+                name:maintenancePriorityName
+            });
 
     if(error){
         console.log("ERROR:");
@@ -34,13 +37,47 @@ async function createMaintenancePriority(maintenancePriority){
     return data;
 }
 
-function getMode(){
-    try{
-     return sessionStorage.getItem("mode");
+async function updateMaintenancePriority(
+        maintenancePriorityId, name){
+
+    const { data, error } =
+        await supabaseClient
+            .from('maintenancePriority')
+            .update({
+                name:name
+            })
+            .eq(
+            "maintenancePriorityId",maintenancePriorityId);
+
+    if(error){
+        console.log("ERROR:");
+        console.log(error);
+        return null;
     }
-    catch(error){
-        return [];
-    }
+
+    return data;
 }
 
-/*TO BE DEVELOPED*/
+async function deleteMaintenancePriority(
+        maintenancePriorityId){
+
+    if(!confirm("Are you sure you want to delete it?")){
+        return;
+    }
+
+    const { error } =await supabaseClient
+            .from('maintenancePriority')
+            .delete()
+            .eq(
+                'maintenancePriorityId',
+                maintenancePriorityId
+            );
+
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    await renderMaintenancePriorityField();
+
+}

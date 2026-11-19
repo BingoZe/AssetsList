@@ -18,12 +18,15 @@ async function getMaintenanceCategory(){
     }
 }
 
-async function createMaintenanceCategory(maintenanceCategory){
+async function createMaintenanceCategory(
+        maintenanceCategoryName){
 
     const { data, error } =
         await supabaseClient
             .from('maintenanceCategory')
-            .insert([maintenanceCategory]);
+            .insert({
+                name:maintenanceCategoryName
+            });
 
     if(error){
         console.log("ERROR:");
@@ -34,13 +37,47 @@ async function createMaintenanceCategory(maintenanceCategory){
     return data;
 }
 
-function getMode(){
-    try{
-     return sessionStorage.getItem("mode");
+async function updateMaintenanceCategory(
+        maintenanceCategoryId, name){
+
+    const { data, error } =
+        await supabaseClient
+            .from('maintenanceCategory')
+            .update({
+                name:name
+            })
+            .eq(
+            "maintenanceCategoryId",maintenanceCategoryId);
+
+    if(error){
+        console.log("ERROR:");
+        console.log(error);
+        return null;
     }
-    catch(error){
-        return [];
-    }
+
+    return data;
 }
 
-/*TO BE DEVELOPED*/
+async function deleteMaintenanceCategory(
+        maintenanceCategoryId){
+
+    if(!confirm("Are you sure you want to delete it?")){
+        return;
+    }
+
+    const { error } =await supabaseClient
+            .from('maintenanceCategory')
+            .delete()
+            .eq(
+                'maintenanceCategoryId',
+                maintenanceCategoryId
+            );
+
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    await renderMaintenanceCategoryField();
+
+}

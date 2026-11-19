@@ -117,6 +117,10 @@ async function loadPage(page){
 
         initAssetTypeSettings();
         initAssetStatusSettings();
+        initAssetLocationSettings();
+        initMtnStatusSettings();
+        initMtnCategorySettings();
+        initMtnPrioritySettings();
     }
     
     if(page.includes("reports")){
