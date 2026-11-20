@@ -1,236 +1,79 @@
-/* MAINTENANCE SERVICE */
+/* SETTINGS SERVICE */
 
-/* HELPERS */
-
-async function getSettings(){
-
-    try{
-
+async function getSettings() {
+    try {
         const { data, error } = await supabaseClient
-            .from('settings')
-            .select(`
-                *
-            `);
-       
-        if(error){
+            .from("settings")
+            .select("*")
+            .single();
+
+        if (error) {
             console.log(error);
-            return [];
+            return null;
         }
 
         return data;
-
     }
-    catch(error){
-        console.log(error);
-        return [];
-    }
-
-}
-
-async function createSettings(settings){
-
-    const { data, error } =
-        await supabaseClient
-            .from('settings')
-            .insert([settings]);
-
-    if(error){
-        console.log("ERROR:");
+    catch (error) {
         console.log(error);
         return null;
     }
-
-    return data;
-
 }
 
-async function initSettingsForm(){
+async function renderSettings() {
 
-    const settingsForm =document.querySelector(".settings-form");
+    const settings = await getSettings();
 
-    if(!settingsForm){
+    if (!settings) return;
+
+    document.getElementById("monthEnd").value = settings.monthEnd || "";
+    document.getElementById("currency").value = settings.currency || "";
+    document.getElementById("defaultDepreciationRate").value = settings.defaultDepreciationRate || "";
+    document.getElementById("defaultUsefulLife").value = settings.defaultUsefulLife || "";
+    document.getElementById("companyName").value = settings.companyName || "";
+    document.getElementById("companyEmail").value = settings.companyEmail || "";
+    document.getElementById("contactNumber").value = settings.contactNumber || "";
+    document.getElementById("companyAddress").value = settings.companyAddress || "";
+    document.getElementById("settingsNotes").value = settings.settingsNotes || "";
+}
+
+async function initSettings() {
+
+    await renderSettings();
+
+    document
+        .getElementById("saveSettings")
+        .addEventListener("click", updateSettings);
+}
+
+
+async function updateSettings() {
+
+    if (!confirm("Are you sure you want to save the settings?")) {
         return;
     }
+    
+    const { error } = await supabaseClient
+        .from("settings")
+        .update({
+            monthEnd: document.getElementById("monthEnd").value,
+            currency: document.getElementById("currency").value,
+            defaultDepreciationRate: document.getElementById("defaultDepreciationRate").value,
+            defaultUsefulLife: document.getElementById("defaultUsefulLife").value,
+            companyName: document.getElementById("companyName").value,
+            companyEmail: document.getElementById("companyEmail").value,
+            contactNumber: document.getElementById("contactNumber").value,
+            companyAddress: document.getElementById("companyAddress").value,
+            settingsNotes: document.getElementById("settingsNotes").value
+        })
+        .eq("settingsId", 1);
 
-    settingsForm.addEventListener( "submit",async(event)=>{
-
-        event.preventDefault();
-
-
-        const assetId = Number(document.getElementById("assetId").value);
-        
-        const maintenanceCategoryId = Number(document.getElementById("maintenanceCategory").value);
-        
-        const issueDescription = document.getElementById("issueDescription").value;
-
-        const issueDate = document.getElementById("issueDate").value;
-
-        const supportTicket = document.getElementById("supportTicket").value;
-
-        const repairCost = document.getElementById("repairCost").value || 0;
-
-        const repairInvoice = document.getElementById("repairInvoice").value;
-
-        const technicianNotes =document.getElementById("technicianNotes").value;
-
-        const maintenancePriorityId = Number(document.getElementById("maintenancePriority").value);
-
-        const maintenanceStatusId = Number(document.getElementById("maintenanceStatus").value);
+    if (error) {
+        console.log(error);
+        alert("Failed to save settings.");
+        return;
+    }
  
-        const maintenance = {
-            assetId,
-            maintenanceCategoryId,
-            issueDescription,
-            issueDate,
-            supportTicket,
-            repairCost,
-            repairInvoice,
-            technicianNotes,
-            maintenancePriorityId,
-            maintenanceStatusId
-        };
-        
-        await createMaintenance(maintenance);
-        
-        alert("Maintenance order created");
-
-        settingsForm.reset();
-
-        closeViewMaintenance();
-        
-        renderMaintenance();
-
-    });
-
+    alert("Settings saved.");
+    await renderSettings();
 }
-
-
-async function renderMaintenance(maintenance = null){
-
-    if(!maintenance){
-        maintenance = await getMaintenance()
-    ;}
-
-    let output = "";
-
-    maintenance.forEach(maintenance => {
-
-        output += `
-        <tr>
-
-            <td>MNT-${maintenance.maintenanceId}</td>
-
-            <td>${maintenance.assets.assetId} 
-                ${maintenance.assets.assetName}</td>
-
-            <td>${maintenance.issueDescription}</td>
-
-            <td>${maintenance.maintenanceCategory.name}</td>
-
-            <td>${maintenance.maintenanceStatus.name}</td>
-
-            <td>${maintenance.issueDate}</td>
-
-            <td>${maintenance.maintenancePriority.name}</td>
-
-            <td>
-
-                <button
-                    class="btTdItemView"
-                    onclick="viewMaintenance('${maintenance.maintenanceId}',
-                        'view'
-                    )">
-
-                    <i class="fa-solid fa-eye"></i>
-
-                </button>
-
-                <button
-                    class="btTdItemEdit"
-                    onclick="viewMaintenance(
-                        '${maintenance.maintenanceId}',
-                        'edit'
-                    )">
-
-                    <i class="fa-solid fa-pen-to-square"></i>
-
-                </button>
-
-                <button
-                    class="btTdItemDelete"
-                    onclick="deleteMaintenance(
-                        '${maintenance.maintenanceId}'
-                    )">
-
-                    <i class="fa-solid fa-trash"></i>
-
-                </button>
-
-            </td>
-
-        </tr>
-        `;
-
-    });
-
-    document.querySelector(".tableBody").innerHTML =
-        output;
-
-}
-
-/*UPDATE*/
-async function updateMaintenance(){
-
-    const maintenanceId =parseInt(sessionStorage.getItem("viewMaintenanceId"));
-
-    const { error } =
-        await supabaseClient
-            .from("maintenance")
-            .update({
-                assetId:document.getElementById("assetId").value,
-                issueDescription:document.getElementById("issueDescription").value,
-                maintenanceCategoryId:document.getElementById("maintenanceCategory").value,
-                issueDate:document.getElementById("issueDate").value,
-                supportTicket:document.getElementById("supportTicket").value,
-                repairCost:document.getElementById("repairCost").value,
-                repairInvoice:document.getElementById("repairInvoice").value,
-                technicianNotes:document.getElementById("technicianNotes").value,
-                maintenancePriorityId:document.getElementById("maintenancePriority").value,
-                maintenanceStatusId:document.getElementById("maintenanceStatus").value
-            })
-            .eq("maintenanceId",maintenanceId);
-
-    if(error){
-        console.log(error);
-        return;
-    }
-
-    alert("Record saved");
-
-    closeViewMaintenance();
-
-}
-/*
-async function deleteSettings(settingsId){
-
-    if(!confirm("Are you sure you want to delete it?")){
-        return;
-    }
-
-    const { error } =await supabaseClient
-            .from('maintenance')
-            .delete()
-            .eq(
-                'maintenanceId',
-                maintenanceId
-            );
-
-    if(error){
-        console.log(error);
-        return;
-    }
-
-    await renderMaintenance();
-
-}
-*/

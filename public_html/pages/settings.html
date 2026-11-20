@@ -20,14 +20,14 @@
 
                 <div class="form-group">
 
-                    <label for="financialYearEnd">
-                        Financial Year End
+                    <label for="monthEnd">
+                        Financial Year
                     </label>
 
-                    <select id="financialYearEnd">
-                        <option>31 December</option>
-                        <option>30 June</option>
-                        <option>31 March</option>
+                    <select id="monthEnd">
+                        <option value="12">31 December</option>
+                        <option value="6">30 June</option>
+                        <option value="3">31 March</option>
                     </select>
 
                 </div>
@@ -48,26 +48,26 @@
 
                 <div class="form-group">
 
-                    <label for="depreciationRate">
+                    <label for="defaultDepreciationRate">
                         Default Depreciation Rate (%)
                     </label>
 
                     <input
                         type="number"
-                        id="depreciationRate"
+                        id="defaultDepreciationRate"
                         value="20">
 
                 </div>
 
                 <div class="form-group">
 
-                    <label for="usefulLife">
+                    <label for="defaultUsefulLife">
                         Default Useful Life (Years)
                     </label>
 
                     <input
                         type="number"
-                        id="usefulLife"
+                        id="defaultUsefulLife"
                         value="5">
 
                 </div>
@@ -322,13 +322,13 @@
 
                 <div class="form-group">
 
-                    <label for="companyPhone">
+                    <label for="contactNumber">
                         Contact Number
                     </label>
 
                     <input
                         type="text"
-                        id="companyPhone">
+                        id="contactNumber">
 
                 </div>
 
@@ -374,7 +374,8 @@
                 </button>
 
                 <button
-                    type="submit"
+                    type="button"
+                    id="saveSettings"
                     class="btnPrimary">
 
                     Save Settings

@@ -16,6 +16,7 @@ async function loadPage(page){
     initUserForm();
     initMaintenanceForm();
     
+    
     if (page.includes("addAsset")) {
         await renderUserField();
         await renderSpecsField();
@@ -102,7 +103,7 @@ async function loadPage(page){
     }
     
     if(page.includes("settings")){
-
+        
         await renderTypeField();
 
         await renderStatusField();
@@ -114,6 +115,7 @@ async function loadPage(page){
         await renderMaintenanceCategoryField();
 
         await renderMaintenancePriorityField();
+        
 
         initAssetTypeSettings();
         initAssetStatusSettings();
@@ -121,6 +123,11 @@ async function loadPage(page){
         initMtnStatusSettings();
         initMtnCategorySettings();
         initMtnPrioritySettings();
+        initSettings();
+        
+        
+        await renderSettings();
+        
     }
     
     if(page.includes("reports")){
