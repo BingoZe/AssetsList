@@ -17,9 +17,9 @@ async function btnExport(){
                 `${asset.assetId},` +
                 `${asset.assetName},` +
                 `${asset.serviceTag},` +
-                `${asset.type},` +
-                `${asset.location},` +
-                `${asset.assetStatus},` +
+                `${asset.assetType.name},` +
+                `${asset.assetLocation.name},` +
+                `${asset.assetStatus.name},` +
                 `${asset.users.firstName} ${asset.users.lastName}\r\n`;
 
         });
