@@ -6,7 +6,12 @@ async function assetsByType() {
 
     triggerExport.addEventListener("click", () => {
 
-        const typeCount = countBy(assets, "type");
+    const typeCount = {};
+
+    assets.forEach(asset =>{
+        const typeName = asset.assetType?.name || 'unknown';
+        typeCount[typeName] = (typeCount[typeName] || 0)+1;      
+    });
 
         let csvContent =
             "Asset ID,Service Tag,Type\r\n";
@@ -16,7 +21,7 @@ async function assetsByType() {
             csvContent +=
                 `${asset.assetId},` +
                 `${asset.serviceTag},` +
-                `${asset.type}\r\n`;
+                `${asset.assetType.name}\r\n`;
 
         });
 
@@ -28,10 +33,10 @@ async function assetsByType() {
             `\r\n` +
             `Type,Count\r\n`;
 
-        Object.entries(typeCount).forEach(([type, count]) => {
+        Object.entries(typeCount).forEach(([assetType, count]) => {
 
             csvContent +=
-                `${type},${count}\r\n`;
+                `${assetType},${count}\r\n`;
 
         });
 
@@ -50,8 +55,13 @@ async function assetsByLocation() {
 
     triggerExport.addEventListener("click", () => {
 
-        const typeCount = countBy(assets, "location");
+        const locationCount = {};
 
+        assets.forEach(asset =>{
+            const LocationName = asset.assetLocation?.name || 'unknown';
+            locationCount[LocationName] = (locationCount[LocationName] || 0)+1;      
+        });
+        
         let csvContent =
             "Asset ID,Service Tag,Location\r\n";
 
@@ -60,7 +70,7 @@ async function assetsByLocation() {
             csvContent +=
                 `${asset.assetId},` +
                 `${asset.serviceTag},` +
-                `${asset.location}\r\n`;
+                `${asset.assetLocation.name}\r\n`;
         });
 
         csvContent +=
@@ -71,10 +81,10 @@ async function assetsByLocation() {
             `\r\n` +
             `Type,Count\r\n`;
 
-        Object.entries(typeCount).forEach(([type, count]) => {
+        Object.entries(locationCount).forEach(([location, count]) => {
 
             csvContent +=
-                `${type},${count}\r\n`;
+                `${location},${count}\r\n`;
 
         });
 
@@ -93,13 +103,14 @@ async function assetsByUser() {
     triggerExport.addEventListener("click", () => {
 
         let csvContent =
-            "Asset ID,Service Tag,UserId,User\r\n";
+            "Asset ID,Service Tag,Asset Name,UserId,UserId,Username\r\n";
 
         assets.forEach(asset => {
 
             csvContent +=
                 `AST-${asset.assetId},` +
                 `${asset.serviceTag},` +
+                `${asset.assetName},` +
                 `USR-${asset.users.userId},` +
                 `${asset.users.firstName} ${asset.users.lastName} \r\n`;
         });
@@ -129,8 +140,8 @@ async function assetsInRepair() {
                     `MNT-${maintenance.maintenanceId},` +
                     `${maintenance.assets.assetId} ${maintenance.assets.assetName},` +
                     `${maintenance.issueDescription},` +
-                    `${maintenance.issueCategory},` +
-                    `${maintenance.maintenanceStatus},` +
+                    `${maintenance.maintenanceCategory.name},` +
+                    `${maintenance.maintenanceStatus.name},` +
                     `${maintenance.issueDate}  \r\n`;
             }
         });
@@ -157,8 +168,8 @@ async function maintenanceHistory() {
                 `MNT-${maintenance.maintenanceId},` +
                 `${maintenance.assets.assetId} ${maintenance.assets.assetName},` +
                 `${maintenance.issueDescription},` +
-                `${maintenance.issueCategory},` +
-                `${maintenance.maintenanceStatus},` +
+                `${maintenance.maintenanceCategory.name},` +
+                `${maintenance.maintenanceStatus.name},` +
                 `${maintenance.issueDate}  \r\n`;
         });
 
@@ -176,14 +187,15 @@ async function warrantyExpiry() {
     triggerExport.addEventListener("click", () => {
 
         let csvContent =
-            "Asset ID,Service Tag,Warranty Expiry\r\n";
+            "Asset ID,Service Tag,Warranty Expiry,Details\r\n";
 
         assets.forEach(asset => {
 
             csvContent +=
                 `AST-${asset.assetId},` +
                 `${asset.serviceTag},` +
-                `${asset.warrantyExpiryDate} \r\n`;
+                `${asset.warrantyExpiryDate},` +
+                `${asset.warrantyDetails} \r\n`;
         });
 
     exportCsv(csvContent,"warrantyExpiry.csv");
