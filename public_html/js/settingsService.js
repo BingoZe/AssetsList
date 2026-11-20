@@ -44,6 +44,11 @@ async function initSettings() {
     document
         .getElementById("saveSettings")
         .addEventListener("click", updateSettings);
+
+    document
+        .getElementById("cancelSettings")
+        .addEventListener("click", renderSettings);
+
 }
 
 
