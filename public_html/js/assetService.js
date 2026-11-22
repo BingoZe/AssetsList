@@ -36,6 +36,10 @@ async function getAssets(){
                 assetType(
                     assetTypeId,
                     name
+                ),
+                settings(
+                    settingsId,
+                    defaultUsefulLife
                 )
             `);
 
@@ -176,18 +180,13 @@ async function initAssetForm(){
             alert("Invalid Acquisition Value");
             return;
         }    
-
-        const usefulLife = setUsefulLife();
-        if(!usefulLife){
-            alert("Invalid Useful Life");
-            return;
-        }
-
-            /*document.getElementById("usefulLife").value||0;*/
-
-
+        
+        const settings = await getSettings();
+        const usefulLife = settings.defaultUsefulLife || 0;
 
         const purchaseInvoice = document.getElementById("purchaseInvoice").value;
+        
+        const settingsId = settings.settingsId || 1;
 
         const asset = {
         assetName,
@@ -205,7 +204,8 @@ async function initAssetForm(){
         acquisitionYear,
         acquisitionValue,
         usefulLife,
-        purchaseInvoice
+        purchaseInvoice,
+        settingsId
         };
         
         console.log("ASSET ",asset);
@@ -601,16 +601,6 @@ function setAcquisitionValue(){
     return acquisitionValue;
 }
 
-/*vida util - Para refatorar!*/
-function setUsefulLife(){
-   const usefulLife = 
-           document.getElementById("usefulLife").value;
-   
-    if(usefulLife <0){       
-        return false;
-    }
-    return usefulLife;
-}
 
 /*data de garantia nao pode ser menor do que data de aquisicao*/
 function setWarrantyExpiryDate(acquisitionDate) {

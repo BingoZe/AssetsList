@@ -22,6 +22,9 @@
 
                     <label for="monthEnd">
                         Financial Year
+                        <small>
+                            (For future reference)
+                        </small>    
                     </label>
 
                     <select id="monthEnd">
@@ -36,6 +39,9 @@
 
                     <label for="currency">
                         Default Currency
+                        <small>
+                            (For future reference)
+                        </small>       
                     </label>
 
                     <select id="currency">
@@ -50,12 +56,18 @@
 
                     <label for="defaultDepreciationRate">
                         Default Depreciation Rate (%)
+                        <small>
+                            (reference future balancing figure implementation only)
+                        </small>
                     </label>
 
                     <input
                         type="number"
                         id="defaultDepreciationRate"
-                        value="20">
+                        value="20"
+                        readonly
+                        disabled
+                        >
 
                 </div>
 
@@ -63,6 +75,9 @@
 
                     <label for="defaultUsefulLife">
                         Default Useful Life (Years)
+                        <small>
+                            (Currently, the system is based on straight-line basis only)
+                        </small>
                     </label>
 
                     <input

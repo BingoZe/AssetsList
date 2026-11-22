@@ -276,3 +276,24 @@ Entrega > Perfeição
 
 
 FAZER SERVICES PRA SPECS
+
+
+Regra de Negócio: Vida Útil Padrão dos Ativos
+RN-01 – Definição da Vida Útil
+O sistema possui uma configuração global denominada defaultUsefulLife, armazenada na tabela Settings.
+Ao cadastrar um novo ativo (Asset), o valor de Settings.defaultUsefulLife deve ser copiado para o campo Asset.usefulLife.
+O usuário não precisa informar a vida útil durante o cadastro do ativo.
+RN-02 – Cálculo da Depreciação
+A depreciação do ativo é calculada automaticamente pelo sistema utilizando a fórmula:
+Plain Text
+Depreciação = Valor de Aquisição / Vida Útil
+O valor líquido é calculado por:
+Plain Text
+Valor Líquido = Valor de Aquisição - Depreciação
+RN-03 – Preservação de Histórico
+Após a criação do ativo, a vida útil armazenada em Asset.usefulLife passa a pertencer exclusivamente àquele ativo.
+Alterações posteriores em Settings.defaultUsefulLife não modificam ativos já cadastrados.
+RN-04 – Aplicação de Novas Configurações
+Quando o valor de Settings.defaultUsefulLife for alterado:
+os ativos existentes permanecem inalterados;
+a nova configuração será aplicada apenas aos ativos cadastrados após a alteração.
