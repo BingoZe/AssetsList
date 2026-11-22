@@ -61,6 +61,8 @@ async function loadPage(page){
         await renderTypesFilter();            
 
         await searchUserElement();  
+        
+        await btnSort();
 
     }
     
@@ -84,7 +86,8 @@ async function loadPage(page){
         await searchMaintenanceElement();
         await renderMaintenanceAssetFilter();
         await renderMaintenanceCategoryFilter();
-        await renderMaintenanceStatusFilter();          
+        await renderMaintenanceStatusFilter();
+        await btnSort();
     }
     
     if(page.includes("viewMaintenance")){
