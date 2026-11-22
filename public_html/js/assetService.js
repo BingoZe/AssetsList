@@ -516,20 +516,6 @@ async function updateAsset(){
     }     
     removeErrorCss("acquisitionDate");            
 
-    updatedAsset.acquisitionValue = parseFloat(setAcquisitionValue())||0;
-    if(!updatedAsset.acquisitionValue){
-        alert("Invalid Acquisition Value");
-        return;
-    }
-
-    updatedAsset.usefulLife = setUsefulLife();
-    if(!updatedAsset.usefulLife){
-        alert("Invalid Useful Life");
-        addErrorCss("usefulLife");
-        return;
-    }
-    removeErrorCss("usefulLife");
-
     updatedAsset.purchaseInvoice = 
             document.getElementById("purchaseInvoice").value;
 
@@ -548,8 +534,6 @@ async function updateAsset(){
             warrantyDocs : updatedAsset.warrantyDocs,
             acquisitionDate : updatedAsset.acquisitionDate,
             acquisitionYear :updatedAsset.acquisitionYear,
-            acquisitionValue : updatedAsset.acquisitionValue,
-            usefulLife : updatedAsset.usefulLife,
             purchaseInvoice : updatedAsset.purchaseInvoice
 
         })

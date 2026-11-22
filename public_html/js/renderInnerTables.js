@@ -43,9 +43,9 @@ async function renderUserInnerTable(userHistory,viewedAsset){
 
             <td>${user.firstName} ${user.lastName}</td>
 
-            <td>${viewedAsset.assetStatus}</td>
+            <td>${viewedAsset.assetStatus.name}</td>
 
-            <td>${user.userRole.name}</td>
+            <td>${viewedAsset.assetLocation.name}</td>
 
         </tr>
         `;
