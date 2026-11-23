@@ -15,7 +15,7 @@ async function loadPage(page){
     initAssetForm();
     initUserForm();
     initMaintenanceForm();
-    
+        
     
     if (page.includes("addAsset")) {
         await renderUserField();

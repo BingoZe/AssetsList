@@ -115,7 +115,7 @@ async function initAssetForm(){
         /*name validation*/
         const assetName = document.getElementById("assetName").value.trim();
         if(!assetName){
-            alert("Invalid name!");
+            errorPopUp("Please enter a valid name.");
             addErrorCss("assetName");
             return;
         }
@@ -123,32 +123,62 @@ async function initAssetForm(){
 
         /*serviceTag validation*/
         const serviceTag = await setServiceTag();
-            if(!serviceTag){
-                alert("Service Tag not unique!");
-                return;
-            }
-            
+        if(!serviceTag){
+            errorPopUp("Service Tag not unique!");
+            addErrorCss("serviceTag");
+            return;
+        }
+        removeErrorCss("serviceTag");    
 
         const specsId = 
                 Number(document.getElementById("specsSelect").value);  
         
+        if(!specsId){
+            errorPopUp("Please select a model/family group.");
+            addErrorCss("specsSelect");
+            return;
+        }
+        removeErrorCss("specsSelect");              
+        
         const assetTypeId = 
                 Number(document.getElementById("typeSelect").value);
         
+        if(!assetTypeId){
+            errorPopUp("Please select a type");
+            addErrorCss("typeSelect");
+            return;
+        }
+        removeErrorCss("typeSelect"); 
+        
         const assetStatusId = 
                 Number(document.getElementById("statusSelect").value);
- 
+
+        if(!assetStatusId){
+            errorPopUp("Please select a status");
+            addErrorCss("statusSelect");
+            return;
+        } 
+        removeErrorCss("statusSelect"); 
+        
         const userSelect = document.getElementById("userSelect");
         const userId = Number(userSelect.value);
 
         if (!userSelect.value) {
-            console.log("Select a user.");
+            errorPopUp("Please select an user.");
+            addErrorCss("userSelect");
             return;
         }
+        removeErrorCss("userSelect");
 
         const assetLocationId =
                 Number(document.getElementById("locationSelect").value);
         
+        if(!assetLocationId){
+            errorPopUp("Please select a location");
+            addErrorCss("locationSelect");
+            return;
+        }
+        removeErrorCss("locationSelect");   
         
         const notes = document.getElementById("notes").value;
         const warrantyDetails = document.getElementById("warrantyDetails").value;
@@ -158,28 +188,31 @@ async function initAssetForm(){
 
         /*Para refatorar*/
         if(!acquisitionDate ||acquisitionDate===null ||acquisitionDate===undefined ){
-            alert("Invalid Acquisition Date");
-            document.getElementById("acquisitionDate").classList.add("inputError");
+            errorPopUp("Please enter a valid acquisition date.");
+            addErrorCss("acquisitionDate");
             return;
         } 
-        document.getElementById("acquisitionDate").classList.remove("inputError");
+        removeErrorCss("acquisitionDate");
 
         const acquisitionYear = parseInt(new Date(acquisitionDate).getFullYear());
 
         /* refatorar e definir constraint no banco*/
         const warrantyExpiryDate = setWarrantyExpiryDate(acquisitionDate);
         if(!warrantyExpiryDate){
-            alert("Warranty expire date cannot be before Acquisition Date");
+            errorPopUp("Warranty expire date cannot be before acquisition date.");
+            addErrorCss("warrantyExpiryDate");
             return;
         }     
-        document.getElementById("warrantyExpiryDate").classList.remove("inputError");
+        removeErrorCss("warrantyExpiryDate");
 
         const acquisitionValue = parseFloat(setAcquisitionValue()) || 0;
 
         if(!acquisitionValue){
-            alert("Invalid Acquisition Value");
+            errorPopUp("Invalid Acquisition Value");
+            addErrorCss("acquisitionValue");
             return;
         }    
+        removeErrorCss("acquisitionValue");
         
         const settings = await getSettings();
         const usefulLife = settings.defaultUsefulLife || 0;
@@ -212,7 +245,7 @@ async function initAssetForm(){
         
         await createAsset(asset);
 
-        alert("Record saved");
+        successPopUp("New asset saved.");
 
         assetForm.reset();
 
@@ -446,7 +479,7 @@ async function updateAsset(){
     updatedAsset.assetName = 
             document.getElementById("assetName").value.trim();
     if(!updatedAsset.assetName){
-        alert("Invalid name!");
+        errorPopUp("Please enter a valid asset name.");
         addErrorCss("assetName");
         return;
     }
@@ -455,15 +488,24 @@ async function updateAsset(){
     updatedAsset.serviceTag = await setServiceTag();
 
     if(!updatedAsset.serviceTag){
-        alert("Service Tag not unique!");
+        errorPopUp("Service Tag not unique.");
         addErrorCss("serviceTag");
         return;
     }
+    removeErrorCss("serviceTag");
 
     /*tabelas especializadas - FKs*/
     
     updatedAsset.specsId = 
             document.getElementById("specsSelect").value;
+    
+    if(!updatedAsset.specsId){
+        errorPopUp("Please select a model/family group.");
+        addErrorCss("specsSelect");
+        return;
+    }
+    removeErrorCss("specsSelect");
+        
     updatedAsset.assetTypeId = 
             document.getElementById("typeSelect").value;
     updatedAsset.assetStatusId = 
@@ -472,7 +514,14 @@ async function updateAsset(){
             document.getElementById("locationSelect").value;
     updatedAsset.userId = 
             document.getElementById("userSelect").value;
-
+    
+    if(!updatedAsset.userId){
+        errorPopUp("Please select an user.");
+        addErrorCss("userSelect");
+        return;
+    }
+    removeErrorCss("userSelect");
+    
     updatedAsset.notes = 
             document.getElementById("notes").value;
 
@@ -488,7 +537,7 @@ async function updateAsset(){
     /*Para refatorar*/
     if(!updatedAsset.acquisitionDate ||updatedAsset.acquisitionDate===null
     ||updatedAsset.acquisitionDate===undefined ){
-        alert("Invalid Acquisition Date");
+        errorPopUp("Invalid Acquisition Date");
         addErrorCss("acquisitionDate");
         return;
     }     
@@ -502,7 +551,7 @@ async function updateAsset(){
             setWarrantyExpiryDate(updatedAsset.acquisitionDate);
 
     if(!updatedAsset.warrantyExpiryDate){
-        alert("Warranty expire date cannot be before Acquisition Date");
+        errorPopUp("Warranty expire date cannot be before Acquisition Date");
         addErrorCss("warrantyExpiryDate");
         return;
     }     
@@ -510,7 +559,7 @@ async function updateAsset(){
 
     /* refatorar e definir constraint no banco*/
     if(!updatedAsset.acquisitionDate){
-        alert("Warranty expire date cannot be before Acquisition Date");
+        errorPopUp("Please enter the acquisition date");
         addErrorCss("acquisitionDate");  
         return;
     }     
@@ -544,7 +593,7 @@ async function updateAsset(){
         return;
     }
   
-    alert("Record saved");
+    successPopUp("Asset updated.");
       
     closeViewAsset();
 }
@@ -597,36 +646,4 @@ function setWarrantyExpiryDate(acquisitionDate) {
     }
 
     return false;
-}
-
-/*funcoes temporarias para validacoes*/
-
-function addErrorCss(prop) {
-    const field = document.getElementById(prop);
-
-    field.classList.add("inputError");
-
-    const tab = field.closest(".tabcontent");
-
-    if (tab) {
-        document.querySelectorAll(".tabcontent").forEach(t => {
-            t.style.display = "none";
-        });
-
-        tab.style.display = "block";
-    }
-
-    setTimeout(() => {
-        field.focus();
-        field.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-    }, 100);
-
-    return false;
-}
-
-function removeErrorCss(prop) {
-    document.getElementById(prop).classList.remove("inputError");
 }
