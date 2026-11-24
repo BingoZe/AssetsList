@@ -35,7 +35,9 @@ async function loadPage(page){
         await renderTypeFilter();
         
         btnExport();
-        await btnSort();
+        
+        initCsvImport();
+             
     }
     
     if(page.includes("viewAsset")){
