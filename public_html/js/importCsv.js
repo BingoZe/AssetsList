@@ -2,13 +2,13 @@ let yolo = [];
 
 async function loadCsv() {
 
-    const read = document.getElementById("read");
-    console.log("Clicado");
-    if (!read) {
+    const importFile = document.getElementById("importFile");
+    
+    if (!importFile) {
         return;
     }
 
-    read.addEventListener("click", () => {
+    importFile.addEventListener("click", () => {
 
         const file = document
             .getElementById("fileInput")
@@ -38,32 +38,60 @@ async function loadCsv() {
 
 }
 
-function mostrarRows() {
+async function getTemplate() {
 
-    const mostrar = document.getElementById("mostrar");
-console.log("CARREGADO");
-    mostrar.addEventListener("click", () => {
-        console.log("CARREGADO");
-        let output = "";
+    const downloadTemplate = document.getElementById("downloadTemplate");
+    
+    if (!downloadTemplate) {
+        return;
+    }
 
-        yolo.forEach(row => {
+    downloadTemplate.addEventListener("click", () => {
+        
+        const link =
+            document.createElement("a");
 
-            output += `
-            
-            
-                <tr>
-                    <td>${row["Asset ID"]}</td>
-                    <td>${row["Service Tag"]}</td>
-                    <td>${row["Asset Name"]}</td>
-                    <td>${row["UserId"]}</td>
-                    <td>${row["UserId_1"]}</td>
-                </tr>
-            `;
+        link.href = "https://shorturl.at/fN41v";
 
-        });
+        link.download = "template";
 
-        console.table(output);
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+        
 
     });
 
 }
+
+async function getInstructions() {
+
+    const downloadInstructions = document.getElementById("downloadInstructions");
+    
+    if (!downloadInstructions) {
+        return;
+    }
+
+    downloadInstructions.addEventListener("click", () => {
+        
+        const link =
+            document.createElement("a");
+
+        link.href = "https://shorturl.at/1Ghxr";
+
+        link.download = "instructions";
+        link.target = "_blank";
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+        
+
+    });
+
+}
+

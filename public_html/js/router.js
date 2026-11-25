@@ -33,13 +33,7 @@ async function loadPage(page){
         await renderLocationFilter();
         await renderStatusFilter();
         await renderTypeFilter();
-        
-        btnExport();
-        
-         loadCsv();
-        mostrarRows();
-      
-             
+                          
     }
     
     if(page.includes("viewAsset")){
@@ -145,6 +139,12 @@ async function loadPage(page){
         await maintenanceHistory();
         await assetsInRepair();
         await warrantyExpiry();
+    }
+    
+    if(page.includes("import")){
+        loadCsv();
+        getInstructions();
+        getTemplate();
     }
     
 

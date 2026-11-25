@@ -663,6 +663,18 @@ fieldset{
 }
 
 
+.importButtonWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    width: 50%;
+    max-width: 700px;
+    justify-content: center;
+
+    margin: 0 auto;
+}
+
+
 /*   TABLES*/
 
 .table-responsive{
