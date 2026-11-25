@@ -36,7 +36,9 @@ async function loadPage(page){
         
         btnExport();
         
-        initCsvImport();
+         loadCsv();
+        mostrarRows();
+      
              
     }
     

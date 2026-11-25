@@ -1,44 +1,69 @@
-async function importCsv(){
+let yolo = [];
 
-    const file =
-        document.getElementById("fileInput")
-        .files[0];
+async function loadCsv() {
 
-    if(!file){
-        console.log("No file selected");
+    const read = document.getElementById("read");
+    console.log("Clicado");
+    if (!read) {
         return;
     }
 
-    Papa.parse(file, {
+    read.addEventListener("click", () => {
 
-        complete: function(results){
+        const file = document
+            .getElementById("fileInput")
+            .files[0];
 
-            console.log(results.data);
-
-        },
-
-        error: function(error){
-
-            console.log(error);
-
+        if (!file) {
+            console.log("No file selected");
+            return;
         }
+        
+        
+        Papa.parse(file, {
+            header: true,
+            skipEmptyLines: true,
+
+            complete(results) {
+                console.table(results.data);
+                yolo = results.data;
+            },
+
+            error(error) {
+                console.log(error);
+            }
+        });
 
     });
 
 }
 
-function initCsvImport(){
+function mostrarRows() {
 
-    const fileInput =
-        document.getElementById("fileInput");
+    const mostrar = document.getElementById("mostrar");
+console.log("CARREGADO");
+    mostrar.addEventListener("click", () => {
+        console.log("CARREGADO");
+        let output = "";
 
-    if(!fileInput){
-        return;
-    }
+        yolo.forEach(row => {
 
-    fileInput.addEventListener(
-        "change",
-        importCsv
-    );
+            output += `
+            
+            
+                <tr>
+                    <td>${row["Asset ID"]}</td>
+                    <td>${row["Service Tag"]}</td>
+                    <td>${row["Asset Name"]}</td>
+                    <td>${row["UserId"]}</td>
+                    <td>${row["UserId_1"]}</td>
+                </tr>
+            `;
+
+        });
+
+        console.table(output);
+
+    });
 
 }
